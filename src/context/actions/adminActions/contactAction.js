@@ -55,7 +55,7 @@ const updateContact = (data) => {
       })
       .catch((error) => {
         dispatch(
-          contactAlert({ success: true, message: "Error adding successfully" })
+          contactAlert({ success: false, message: "Error updating contact" })
         );
         dispatch(loading(false));
       });
