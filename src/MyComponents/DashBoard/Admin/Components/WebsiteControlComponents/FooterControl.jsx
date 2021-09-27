@@ -29,6 +29,9 @@ const validate = (values) => {
   if (!values.address) {
     errors.address = "*Required";
   }
+  if (!values.mapLocation) {
+    errors.mapLocation = "*Required";
+  }
 
   return errors;
 };
@@ -68,6 +71,7 @@ const FooterControl = () => {
       email: "",
       phoneNumber: "",
       address: "",
+      mapLocation: "",
     },
     validate,
     onSubmit: (values, { resetForm }) => {
@@ -143,6 +147,21 @@ const FooterControl = () => {
           />
           {errors.address ? (
             <div className="w-full text-xs text-red-400">{errors.address}</div>
+          ) : null}
+          <input
+            className={`w-full ${
+              errors.mapLocation
+                ? "border-b-2 border-red-600"
+                : "border-b border-black"
+            } focus:outline-none mt-4 p-1`}
+            type="text"
+            placeholder="Google maps url"
+            {...getFieldProps("mapLocation")}
+          />
+          {errors.mapLocation ? (
+            <div className="w-full text-xs text-red-400">
+              {errors.mapLocation}
+            </div>
           ) : null}
           <button
             className="w-2/3 mx-auto mt-6 p-4 border text-white bg-red-700 hover:bg-white hover:text-red-700 hover:border-red-700"
