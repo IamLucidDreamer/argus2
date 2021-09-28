@@ -64,7 +64,7 @@ const EmployeeMonth = () => {
                           <p className="leading-relaxed text-base lg:text-xl font-medium text-gray-2 bg-gray-200 px-6 py-6 lg:px-12 lg:py-8 shadow-speech">
                             {emp.description}
                           </p>
-                          <div class="w-11 inline-block overflow-hidden">
+                          <div class="w-11 inline-block overflow-hidden -mb-10">
                             <div class=" h-16 bg-gray-200 shadow-button-shadow-3 rotate-60 transform origin-top-right"></div>
                           </div>
                         </>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import logo from "./../../argus website/PNG/Logo Vectors.png";
+import logo from "./../../../argus website/PNG/Logo Vectors.png";
 import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // eslint-disable-next-line no-unused-vars
-import { aunthenticate } from "../../helpers/auth";
+import { aunthenticate } from "./../../../helpers/auth";
 import { useFormik } from "formik";
-import Alert from "../Components/Alert";
-import axiosInstance from "../../helpers/axiosInstance";
+import Alert from "../../Components/Alert";
+import axiosInstance from "../../../helpers/axiosInstance";
 const validate = (values) => {
   const errors = {};
   if (!values.password) {
@@ -112,7 +112,7 @@ const LogIn = ({ open, setOpen }) => {
               </button>
               <p className="text-gray-900 font-bold text-center my-2">
                 Not yet Registered ?
-                <Link to="/signup">
+                <Link to="/dashboard/student/signup">
                   <span className="text-blue-500"> Register</span>
                 </Link>
               </p>

@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import about_image from "./../../argus website/PNG/Video.png";
 import SideBar from "./../Components/SideBar.jsx";
 import SideLine from "./../Components/SideLine";
 
-class Training extends Component {
-  render() {
+const Courses = () => {
+
+    const[faq , setFaq] =  useState(0);
+
     return (
       <div className="font-for-para">
         <div className="text-gray-600 body-font bg-no-repeat bg-cover bg-servicesbg bg-center">
@@ -150,59 +152,100 @@ class Training extends Component {
                     FAQ
                   </h1>
                 </div>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(1)}>
                   <span className="text-red-1 font-bold">1.</span> Where do I
                   take the test?
+                  <div className={faq === 1 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>Testing services for the Ministry of Community Safety and Correctional Services, Private Security Investigator Security Guards Branch is only available through an approved agency called SERCO. Please be cautious of other entities who suggest they can offer testing services. SERCO, operating as Ontario Security Guard and Private Investigator may be contacted by telephone at 1-866-248-2555, 8:00 am to 5:00 pm, Monday to Friday or through their website at: <a href="http://www.ontariosecuritytesting.com" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com </a>
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">2.</span> Is there a
-                  government website to answer my questions?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(2)}>
+                  <span className="text-red-1 font-bold">2.</span> Is there a website to answer my questions?
+                  <div className={faq === 2 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>Yes, please visit <a href="http://www.ontariosecuritytesting.com" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com</a> for all inquiries.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">3.</span> How much does
-                  it cost?{" "}
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(3)}>
+                  <span className="text-red-1 font-bold">3.</span> How much does it cost?
+                  <div className={faq === 3 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The test fee is $66.50 plus applicable taxes.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">4.</span> Does this fee
-                  include the cost of my license?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(4)}>
+                  <span className="text-red-1 font-bold">4.</span> Does this fee include the cost of my license?
+                  <div className={faq === 4 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The licensing fee and test fee are two separate costs — one for the test and one for the license.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">5.</span> Where do I
-                  take the training?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(5)}>
+                  <span className="text-red-1 font-bold">5.</span> Where do I take the training?
+                  <div className={faq === 5 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>Training programs are offered at three Argus Institute located at 350 Rutherford Road South Brampton ON L6W 4N6 Plaza 2 Suite 210. Course is offered every other week.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">6.</span> Is everything
-                  included in the price of the course?{" "}
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(6)}>
+                  <span className="text-red-1 font-bold">6.</span> Is everything included in the price of the course?
+                  <div className={faq === 6 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>Yes. There are no hidden fees. Study manual, First Aid/CPR certification, license assistance, and notary services are all included.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">7.</span> What is the
-                  cost to the five days of training?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(7)}>
+                  <span className="text-red-1 font-bold">7.</span> What is the cost to the five days of training?
+                  <div className={faq === 7 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The training will be provided to non-licensed persons who want to become security guards at a cost of $199.00 plus HST.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">8.</span> Do I have to
-                  take the test each time my license is going to expire?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(8)}>
+                  <span className="text-red-1 font-bold">8.</span> If I have to take the test more than once, do I have to pay again each time?
+                  <div className={faq === 8 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>Yes, if you fail the test you must pay to re-write it.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">9.</span> How many
-                  questions are on the test?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(9)}>
+                  <span className="text-red-1 font-bold">9.</span> Do I have to take the test each time my license is going to expire?
+                  <div className={faq === 9 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>No, you only need to pass the test once to be qualified for license renewals.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">10.</span> How much
-                  time is given to complete the test?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(10)}>
+                  <span className="text-red-1 font-bold">10.</span> How many questions are on the test?
+                  <div className={faq === 10 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The test is comprised of 60 multiple choice questions with four possible answers each. The test is supervised by a SERCO ‘Invigilator’, an employee assigned to supervise all test participants to ensure that all rules are adhered to. Please see the SERCO website below for more details: <a href="http://www.ontariosecuritytesting.com/candidate_protocol.html" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com/candidate_protocol.html</a>
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">11.</span> When will I
-                  get back my test results?{" "}
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(11)}>
+                  <span className="text-red-1 font-bold">11.</span> How much time is given to complete the test?
+                  <div className={faq === 11 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The time limit for the test is 75 minutes. Breaks are allowed only under strict supervision and details are available at the website. If you finish your test early, you must remain in the testing facility for a minimum of 60 minutes before you can submit your test to the Invigilator and be excused from the facility.
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">12.</span> When is the
-                  expiry date on my license? What is the cost of the license?{" "}
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(12)}>
+                  <span className="text-red-1 font-bold">12.</span> When will I get back my test results?
+                  <div className={faq === 12 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The results of the test are typically made available within 24 hours of completion. However, it may take up to 2 – 5 business days after the completion of the test before they are made available at <a href="http://www.ontariosecuritytesting.com" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com</a>.
+                  </div>
+                  <div className={faq === 12 ? "block text-base mt-2" : "hidden"}>
+                    Once you have been confirmed that you have successfully passed the test, you may apply for a license with the Ministry (in accordance with their standards and practices).
+                  </div>
                 </p>
-                <p className="p-4 mb-2 border-2 border-gray-200 text-gray-2  w-full">
-                  <span className="text-red-1 font-bold">13.</span> Do I need to
-                  attend the CPR training if I already have the certification?
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(13)}>
+                  <span className="text-red-1 font-bold">13.</span> When is the expiry date on my license? What is the cost of the license?
+                  <div className={faq === 13 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>The expiry date of the license is set two years from the date of issue. You are required to renew your license every two years. The cost of the license is $80.
+                  </div>
                 </p>
-                <div></div>
+                <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(14)}>
+                  <span className="text-red-1 font-bold">14.</span> I am already certified in First Aid/CPR. Do I still need to attend the CPR training day?
+                  <div className={faq === 14 ? "block text-base mt-2" : "hidden"}>
+                  <span className="text-red-1 font-bold">Ans) </span>No. As of October 1, 2015, all persons holding a current valid certificate from a recognized training provider are only required to attend four days of training and will be exempt from the fifth day.
+                  </div>
+                  <div className={faq === 14 ? "block text-base mt-2" : "hidden"}>
+                    Argus Security must be provided with a copy of your First Aid/CPR certificate.
+                  </div>
+                  <div className={faq === 14 ? "block text-base mt-2" : "hidden"}>
+                    If you are unable to provide us with a copy of your certificate you will be required to attend all five days of training.
+                  </div>
+                </p>
               </div>
               <SideBar />
             </div>
@@ -211,6 +254,5 @@ class Training extends Component {
       </div>
     );
   }
-}
 
-export default Training;
+export default Courses;
