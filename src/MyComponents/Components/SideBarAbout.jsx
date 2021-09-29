@@ -44,7 +44,7 @@ function SideBarAbout() {
           </h1>
         </Link>
       </div>
-      <div className="w-full flex flex-col items-center text-center mx-auto px-6 py-10 bg-gray-200 mt-24 mb-8">
+      <div className="w-full flex flex-col items-center text-center mx-auto px-6 py-10 bg-gray-200 mt-32 mb-8">
         <img src={callus_logo} alt="" className="w-56 -mt-32 mb-2 " />
         <h1 className="text-xl leading-relaxed font-bold text-gray-2 p-2 mb-4">
           Professional Help to get back your peace of mind

@@ -11,7 +11,7 @@ const Mobilenav = ({ open, setOpen }) => {
             : "transition-all opacity-0 duration-500 transform scale-x-0 origin-right"
         }`}
       >
-        <div className="min-h-screen h-full w-screen flex flex-row overflow-scroll font-for-para">
+        <div className="min-h-screen h-full w-screen flex flex-row font-for-para">
           <div className="sm:w-1/2 md:w-7/12 h-auto bg-red-1 bg-opacity-50"></div>
           <div className="w-full sm:w-1/2 md:w-5/12 bg-gray-3 h-screen overflow-scroll">
             <nav className="list-none text-lg mt-16">

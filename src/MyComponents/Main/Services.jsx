@@ -135,10 +135,9 @@ const Services = () => {
                       </p>
                     </div>
                     <div className="w-full md:w-1/2 lg:w-4/12 py-6 lg:py-0">
-                      <video
+                      <img src={image1} alt="services"
                         className="rounded-2xl shadow-button-shadow-2 w-72 mx-auto lg:mx-0 lg:ml-auto"
-                        poster={image1}
-                      ></video>
+                      />
                     </div>
                   </div>
                 </div>
@@ -167,10 +166,9 @@ const Services = () => {
                       </p>
                     </div>
                     <div className="w-full md:w-1/2 lg:w-4/12 py-6 lg:py-0">
-                      <video
+                      <img src={image1} alt="services"
                         className="rounded-2xl shadow-button-shadow-2 w-72 mx-auto lg:mx-0 lg:ml-auto"
-                        poster={image1}
-                      ></video>
+                      />
                     </div>
                   </div>
                 </div>

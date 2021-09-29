@@ -231,18 +231,18 @@ export default function Home() {
             </div>
 
             <div className="p-4 w-96 md:w-1/3">
-              <div className="h-full overflow-hidden ">
+              <div className="h-full overflow-hidden">
                 <div className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner bg-callus bg-no-repeat bg-cover bg-center">
                   <div className="shadow-services"></div>
                 </div>
                 <div className=" bg-client mx-3 md:mx-0 lg:mx-3">
                   <div className="border-r-4 border-l-4 border-white">
                     <h2 className="leading-tight text-base lg:text-lg title-font font-bold text-white mx-4 lg:mx-12 mb-3 bg-red-1 rounded-b-lg px-3 pt-2 pb-3">
-                      GATED COMMUNITY
+                      CORPORATE
                     </h2>
                     <p className="leading-relaxed text-base text-gray-2 px-3 pt-3 pb-6">
-                      NFS marked vehicles, communication between residents &
-                      security staff and efficient use of technology
+                      Risk management, Information security, Corporate
+                      Governance, Compliance and Ethics Programs.
                     </p>
                   </div>
                   <div className="bg-white rounded-b-lg">
@@ -264,11 +264,11 @@ export default function Home() {
                 <div className=" bg-client mx-3 md:mx-0 lg:mx-3">
                   <div className="border-r-4 border-l-4 border-white">
                     <h2 className="leading-tight text-base lg:text-lg title-font font-bold text-white mx-4 lg:mx-12 mb-3 bg-red-1 rounded-b-lg px-3 pt-2 pb-3">
-                      GATED COMMUNITY
+                      RESIDENTIAL
                     </h2>
                     <p className="leading-relaxed text-base text-gray-2 px-3 pt-3 pb-6">
-                      NFS marked vehicles, communication between residents &
-                      security staff and efficient use of technology
+                      Peace of mind, theft deterrent, minimize property damager
+                      and safeguard against trespassing.
                     </p>
                   </div>
                   <div className="bg-white rounded-b-lg">
