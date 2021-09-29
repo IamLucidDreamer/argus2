@@ -20,7 +20,7 @@ function ServiceSlider({ images }) {
             <img
               src={image}
               alt=""
-              className="rounded-2xl shadow-button-shadow-2 w-72 mx-auto"
+              className="rounded-2xl shadow-button-shadow-2 w-72 mx-auto my-3"
             />
           );
         })}

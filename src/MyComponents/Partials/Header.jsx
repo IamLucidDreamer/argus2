@@ -30,7 +30,7 @@ export default function Header() {
                 <img
                   src={Logo}
                   alt="Logo of Argus Security"
-                  className="w-32 my-1 transform hover:scale-105 duration-200"
+                  className="w-32 mt-2 transform hover:scale-105 duration-200"
                 />
               </Link>
               <nav className="flex flex-row items-center">

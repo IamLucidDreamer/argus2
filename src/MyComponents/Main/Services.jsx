@@ -39,7 +39,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div class="flex flex-wrap text-center mb-8">
+          <div class="flex flex-wrap justify-center md:justify-between text-center mb-6">
             <div className="p-4 w-96 md:w-1/3">
               <div className="h-full overflow-hidden ">
                 <div className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner bg-callus bg-no-repeat bg-cover bg-center">
@@ -123,13 +123,13 @@ const Services = () => {
             </div>
 
             <div className={row === 1 ? "block" : "hidden"}>
-              <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+              <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                   <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                     GATED COMMUNITY
                   </h2>
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                    <div className=" w-full lg:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className=" w-full xl:w-8/12 text-left">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         Our security team makes sure that only vehicles and
                         people who enter the area either live there, are
@@ -155,13 +155,13 @@ const Services = () => {
             </div>
 
             <div className={row === 2 ? "block" : "hidden"}>
-              <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+              <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                   <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                     CONSTRUCTION
                   </h2>
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                    <div className=" w-full lg:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className=" w-full xl:w-8/12 text-left">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         What is a construction security guard?
                       </p>
@@ -195,13 +195,13 @@ const Services = () => {
             </div>
 
             <div className={row === 3 ? "block" : "hidden"}>
-              <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+              <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                   <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                     LOSS PREVENTION
                   </h2>
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                    <div className=" w-full lg:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="w-full xl:w-8/12 text-left">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         What is Loss prevention?
                       </p>
@@ -313,13 +313,13 @@ const Services = () => {
             </div>
 
             <div className={row === 4 ? "block" : "hidden"}>
-              <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+              <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                   <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                     Residential
                   </h2>
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                    <div className=" w-full lg:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className=" w-full xl:w-8/12 text-left">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         Why us?
                       </p>
@@ -352,13 +352,13 @@ const Services = () => {
             </div>
 
             <div className={row === 5 ? "block" : "hidden"}>
-              <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+              <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                   <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                     CORPORATE
                   </h2>
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                    <div className=" w-full lg:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className=" w-full xl:w-8/12 text-left">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         Corporate security guards working in the retail industry
                         are employed by large and small stores and shopping
@@ -387,13 +387,13 @@ const Services = () => {
             </div>
 
             <div className={row === 6 ? "block" : "hidden"}>
-              <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+              <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                   <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                     INDUSTRIAL
                   </h2>
-                  <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                    <div className=" w-full lg:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className=" w-full xl:w-8/12 text-left">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         A safe workspace is important for any industry. On site
                         security guards ensures you and your employees have a
@@ -499,13 +499,13 @@ const Services = () => {
           </div>
 
           <div className={row === 7 ? "block" : "hidden"}>
-            <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+            <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
               <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                 <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                   COMMERCIAL
                 </h2>
-                <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                  <div className=" w-full lg:w-8/12 text-left">
+                <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                  <div className=" w-full xl:w-8/12 text-left">
                     <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                       <span>Not satisfied with your current providers?</span>
                       <br />
@@ -535,13 +535,13 @@ const Services = () => {
           </div>
 
           <div className={row === 8 ? "block" : "hidden"}>
-            <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+            <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
               <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                 <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                   MOBILE
                 </h2>
-                <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                  <div className=" w-full lg:w-8/12 text-left">
+                <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                  <div className=" w-full xl:w-8/12 text-left">
                     <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                       There are times when gates, locks, alarm and cameras may
                       not be enough for you to feel as though your premises are
@@ -571,13 +571,13 @@ const Services = () => {
           </div>
 
           <div className={row === 9 ? "block" : "hidden"}>
-            <div className="p-1 ms:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+            <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
               <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
                 <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
                   EVENT SECURITY
                 </h2>
-                <div className="flex flex-col lg:flex-row items-center lg:items-start justify-around">
-                  <div className=" w-full lg:w-8/12 text-left">
+                <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                  <div className=" w-full xl:w-8/12 text-left">
                     <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                       Hosting an Event?
                     </p>

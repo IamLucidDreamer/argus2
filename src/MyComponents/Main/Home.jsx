@@ -40,7 +40,7 @@ export default function Home() {
       <div className="px-4 sm:px-8 md:px-12 2xl:px-0 mx-auto max-w-1366 -mt-12 md:-mt-24 2xl:-mt-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mx-auto">
           <div className="">
-            <h1 className="flex-grow sm:pr-16 text-3xl sm:text-number font-bold font-for-para text-gray-400">
+            <h1 className="flex-grow sm:pr-16 text-3xl sm:text-number font-bold font-for-para text-gray-400 lg:mb-1.5">
               Call Us <br />
             </h1>
             <a
@@ -203,7 +203,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center md:justify-between text-center mb-6 ">
+          <div className="flex flex-wrap justify-center md:justify-between text-center mb-6">
             <div className="p-4 w-96 md:w-1/3">
               <div className="h-full overflow-hidden ">
                 <div className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner bg-callus bg-no-repeat bg-cover bg-center">
@@ -448,12 +448,14 @@ export default function Home() {
               Covid 19 Procedures and much more to safeguard your business.
             </h1>
           </div>
-          <Link
-            to="/covid"
+          <a
+            href="https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html"
+            target="_blank"
+            rel="noreferrer"
             className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner text-center"
           >
             DISCOVER MORE
-          </Link>
+          </a>
         </div>
       </div>
 

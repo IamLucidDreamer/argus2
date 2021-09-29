@@ -9,8 +9,8 @@ const Contact = () => {
   const mapLocation = useSelector((state) => state.contact.mapLocation);
   return (
     <div className="font-for-para">
-      <div className="text-gray-600 body-font bg-no-repeat bg-cover bg-jobsbg">
-        <div className="container mx-auto flex px-5 py-40 items-center justify-center flex-col">
+      <div className="text-gray-600 body-font bg-no-repeat bg-cover bg-jobsbg bg-center">
+        <div className="container mx-auto flex px-5 py-20 md:py-40 items-center justify-center flex-col">
           <div className="text-center lg:w-2/3 w-full">
             <h1 className="title-font sm:text-6xl text-3xl mb-4 font-bold text-white">
               CONTACT
@@ -32,12 +32,12 @@ const Contact = () => {
               </div>
               <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
                 We are experiencing longer than usual response times due to{" "}
-                <span className="text-red-1 underline"> Covid-19</span>. We
+                <a href="https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html" target="_blank" rel="noreferrer" className="text-red-1 hover:underline"> Covid-19</a>. We
                 appreciate your patience and apologize in advance for any delays
                 in responding to your message.{" "}
               </p>
               <hr class="border-1 border-gray-2 w-full mb-6" />
-              <div className="text-lg font-medium">
+              <div className="text-lg md:text-sm lg:text-lg font-medium">
                 <CompanyContact />
               </div>
             </div>
