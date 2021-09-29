@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const Contact = () => {
   const mapLocation = useSelector((state) => state.contact.mapLocation);
+  console.log(mapLocation);
   return (
     <div className="font-for-para">
       <div className="text-gray-600 body-font bg-no-repeat bg-cover bg-jobsbg">
