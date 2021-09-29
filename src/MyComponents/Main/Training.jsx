@@ -156,13 +156,13 @@ const Courses = () => {
                   <span className="text-red-1 font-bold">1.</span> Where do I
                   take the test?
                   <div className={faq === 1 ? "block text-base mt-2" : "hidden"}>
-                  <span className="text-red-1 font-bold">Ans) </span>Testing services for the Ministry of Community Safety and Correctional Services, Private Security Investigator Security Guards Branch is only available through an approved agency called SERCO. Please be cautious of other entities who suggest they can offer testing services. SERCO, operating as Ontario Security Guard and Private Investigator may be contacted by telephone at 1-866-248-2555, 8:00 am to 5:00 pm, Monday to Friday or through their website at: <a href="http://www.ontariosecuritytesting.com" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com </a>
+                  <span className="text-red-1 font-bold">Ans) </span>Testing services for the Ministry of Community Safety and Correctional Services, Private Security Investigator Security Guards Branch is only available through an approved agency called SERCO. Please be cautious of other entities who suggest they can offer testing services. SERCO, operating as Ontario Security Guard and Private Investigator may be contacted by telephone at 1-866-248-2555, 8:00 am to 5:00 pm, Monday to Friday or through their website at: <a href="http://www.ontariosecuritytesting.com" target="_blank" rel="noreferrer" className="text-red-1 hover:underline">www.ontariosecuritytesting.com </a>
                   </div>
                 </p>
                 <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(2)}>
                   <span className="text-red-1 font-bold">2.</span> Is there a website to answer my questions?
                   <div className={faq === 2 ? "block text-base mt-2" : "hidden"}>
-                  <span className="text-red-1 font-bold">Ans) </span>Yes, please visit <a href="http://www.ontariosecuritytesting.com" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com</a> for all inquiries.
+                  <span className="text-red-1 font-bold">Ans) </span>Yes, please visit <a href="http://www.ontariosecuritytesting.com" target="_blank" rel="noreferrer" className="text-red-1 hover:underline">www.ontariosecuritytesting.com</a> for all inquiries.
                   </div>
                 </p>
                 <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(3)}>
@@ -210,7 +210,7 @@ const Courses = () => {
                 <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(10)}>
                   <span className="text-red-1 font-bold">10.</span> How many questions are on the test?
                   <div className={faq === 10 ? "block text-base mt-2" : "hidden"}>
-                  <span className="text-red-1 font-bold">Ans) </span>The test is comprised of 60 multiple choice questions with four possible answers each. The test is supervised by a SERCO ‘Invigilator’, an employee assigned to supervise all test participants to ensure that all rules are adhered to. Please see the SERCO website below for more details: <a href="http://www.ontariosecuritytesting.com/candidate_protocol.html" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com/candidate_protocol.html</a>
+                  <span className="text-red-1 font-bold">Ans) </span>The test is comprised of 60 multiple choice questions with four possible answers each. The test is supervised by a SERCO ‘Invigilator’, an employee assigned to supervise all test participants to ensure that all rules are adhered to. Please see the SERCO website below for more details: <a href="http://www.ontariosecuritytesting.com/candidate_protocol.html" target="_blank" rel="noreferrer" className="text-red-1 hover:underline">www.ontariosecuritytesting.com/candidate_protocol.html</a>
                   </div>
                 </p>
                 <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(11)}>
@@ -222,7 +222,7 @@ const Courses = () => {
                 <p className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl cursor-pointer" onClick={() => setFaq(12)}>
                   <span className="text-red-1 font-bold">12.</span> When will I get back my test results?
                   <div className={faq === 12 ? "block text-base mt-2" : "hidden"}>
-                  <span className="text-red-1 font-bold">Ans) </span>The results of the test are typically made available within 24 hours of completion. However, it may take up to 2 – 5 business days after the completion of the test before they are made available at <a href="http://www.ontariosecuritytesting.com" target="_blank" className="text-red-1 hover:underline">www.ontariosecuritytesting.com</a>.
+                  <span className="text-red-1 font-bold">Ans) </span>The results of the test are typically made available within 24 hours of completion. However, it may take up to 2 – 5 business days after the completion of the test before they are made available at <a href="http://www.ontariosecuritytesting.com" target="_blank" rel="noreferrer" className="text-red-1 hover:underline">www.ontariosecuritytesting.com</a>.
                   </div>
                   <div className={faq === 12 ? "block text-base mt-2" : "hidden"}>
                     Once you have been confirmed that you have successfully passed the test, you may apply for a license with the Ministry (in accordance with their standards and practices).

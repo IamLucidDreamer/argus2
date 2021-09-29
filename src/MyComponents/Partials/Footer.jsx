@@ -59,11 +59,13 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row text-left md:text-center order-first items-start">
             <div className="w-full md:w-3/4 flex flex-wrap md:text-left text-center order-first mx-auto">
               <div className="lg:w-1/3 w-full md:px-8 lg:px-0 pt-4">
+                <Link to="/">
                 <img
                   src={Logo}
                   className="w-28 mx-auto lg:mx-0 my-2"
                   alt="Logo "
                 />
+                </Link>
                 <p className="text-white leading-loose text-center lg:text-left">
                   Your protection is Our Mission. Proudly serving business and
                   residential sector in Ontario.
@@ -232,13 +234,15 @@ const Footer = () => {
                   {showAlert.show ? (
                     <Alert alert={showAlert} rmAlert={setShowAlert} />
                   ) : null}
-                  <div className="bg-contain bg-no-repeat bg-center bg-shape px-6 pt-12 pb-8 ">
-                    <h2 className="title-font font-bold text-white tracking-widest text-lg mb-3 text-center pb-2">
-                      NEWSLETTER
-                    </h2>
-                    <p className="text-white font-medium text-lg mt-2 text-center leading-relaxed">
-                      Signup to get our daily latest security news and updates.
-                    </p>
+                  <div className="px-5">
+                    <div className="bg-contain bg-no-repeat bg-center bg-shape pt-12 pb-8 ">
+                      <h2 className="title-font font-bold text-white tracking-widest text-lg mb-3 text-center pb-2">
+                        NEWSLETTER
+                      </h2>
+                      <p className="text-white font-medium text-lg mt-2 text-center leading-relaxed">
+                        Signup to get our daily latest security news and updates.
+                      </p>
+                    </div>
                   </div>
 
                   <form

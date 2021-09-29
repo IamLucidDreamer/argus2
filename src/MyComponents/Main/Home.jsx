@@ -37,7 +37,7 @@ export default function Home() {
       </div>
 
       {/* Section 2 CAll Us */}
-      <div className="px-4 sm:px-8 md:px-12 2xl:px-0 mx-auto max-w-1366 -mt-12 md:-mt-24">
+      <div className="px-4 sm:px-8 md:px-12 2xl:px-0 mx-auto max-w-1366 -mt-12 md:-mt-24 2xl:-mt-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mx-auto">
           <div className="">
             <h1 className="flex-grow sm:pr-16 text-3xl sm:text-number font-bold font-for-para text-gray-400">
@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <Link
             to="/services"
-            className="flex-shrink-0 font-bold text-white bg-red-1 py-5 px-4 md:px-12 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-lg mt-6 sm:mt-0 hover:shadow-button-inner"
+            className="flex-shrink-0 font-bold text-white bg-red-1 py-5 px-4 md:px-12 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-lg mt-6 sm:mt-0 hover:shadow-button-inner text-center"
           >
             DISCOVER MORE
           </Link>
@@ -450,7 +450,7 @@ export default function Home() {
           </div>
           <Link
             to="/covid"
-            className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner"
+            className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner text-center"
           >
             DISCOVER MORE
           </Link>

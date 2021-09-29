@@ -41,7 +41,7 @@ const Stickynav = () => {
         >
           <div className={open ? "block" : "hidden"}>
             <div className="bg-red-1 w-full fixed top-0 z-50 bg-no-repeat bg-header-bg bg-bottom bg-stretch-x bg-blend-multiply">
-              <div className="hidden lg:block w-full px-4 sm:px-8 lg:px-12 2xl:px-0 mx-auto max-w-1366 text-lg bg-red-1 font-for-para shadow-lg z-50">
+              <div className="hidden lg:block w-full px-4 sm:px-8 lg:px-12 2xl:px-0 mx-auto max-w-1366 text-lg font-for-para shadow-lg z-50">
                 <Link to="/">
                   <img src={Logo} alt="" className="w-24 fixed top-1 left-2" />
                 </Link>
