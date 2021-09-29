@@ -8,7 +8,7 @@ const CompanyContact = () => {
   const contact = useSelector((state) => state.contact);
 
   return (
-    <div className="text-lg md:text-sm">
+    <div className="">
     <a href={`tel:${contact.phoneNumber}`} className="flex flex-row items-center py-1">
        <img src={phone_logo} alt="Phone Logo" className="w-5"/>
         <p className="pl-5">{contact?.phoneNumber}</p>
