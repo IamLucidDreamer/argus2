@@ -12,7 +12,7 @@ export default function MobileHeader({ open, setOpen }) {
             <img
               src={logo}
               alt="Logo of Argus Security"
-              className="w-28 mx-4 my-3 fixed top-1 left-0 z-50"
+              className="w-32 mx-4 my-3 fixed top-1 left-0 z-50"
             />
           </Link>
         </div>

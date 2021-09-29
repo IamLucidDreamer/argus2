@@ -27,7 +27,7 @@ const EmployeeMonth = () => {
         </div>
         <div className="flex flex-col-reverse md:flex-row items-center md:items-end">
           <div className="w-full md:w-1/2 mt-6 md:mt-0 mb-auto">
-            <p className="leading-loose text-lg text-gray-2 mb-6">
+            <p className="leading-relaxed text-lg text-gray-2 mb-6">
               <span className="text-red-1 text-2xl font-semibold">
                 {emp?.empName}
               </span>

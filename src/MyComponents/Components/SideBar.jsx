@@ -28,7 +28,7 @@ const SideBar = () => {
             <span className="mx-0.5 sm:mx-4 md:mx-0.5 xl:mx-4">➔</span> Event Security
           </h1>
         </Link>
-        <Link to="/training">
+        <Link to="/courses">
           <h1 className="rounded-lg py-5 pl-8 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
             <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span> Security License
           </h1>
@@ -39,7 +39,7 @@ const SideBar = () => {
           </h1>
         </Link>
       </div>
-      <div className="w-full flex flex-col items-center text-center mx-auto px-6 py-10 bg-gray-200 mt-24 mb-8">
+      <div className="w-full flex flex-col items-center text-center mx-auto px-6 py-10 bg-gray-200 mt-32 mb-8">
         <img src={callus_logo} alt="" className="w-56 -mt-32 mb-2 " />
         <h1 className="text-xl leading-relaxed font-bold text-gray-2 p-2 mb-4">
           Professional Help to get back your peace of mind

@@ -62,7 +62,7 @@ const Footer = () => {
                 <Link to="/">
                 <img
                   src={Logo}
-                  className="w-28 mx-auto lg:mx-0 my-2"
+                  className="w-32 mx-auto lg:mx-0 my-2"
                   alt="Logo "
                 />
                 </Link>
