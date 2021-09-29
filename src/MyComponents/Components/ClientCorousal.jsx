@@ -105,8 +105,8 @@ const ClientCorousal = () => {
 
   return (
     <div className="bg-client">
-      <div className="px-0 sm:px-8 lg:px-12 2xl:px-0 mx-auto max-w-1366 pt-14 pb-14">
-        <div className="px-4 flex flex-row items-stretch w-full mt-8 md:mt-0 mb-8 lg:justify-center">
+      <div className="px-0 py-8 sm:px-8 lg:px-12 2xl:px-0 mx-auto max-w-1366 md:py-14">
+        <div className="px-4 flex flex-row items-stretch w-full mt-0 mb-4 md:mt-0 sm:mb-8 lg:justify-center">
           <SideLine />
           <h1 className="leading-tight text-3xl lg:text-4xl font-bold text-gray-3">
             Clients
@@ -120,7 +120,7 @@ const ClientCorousal = () => {
                   <img
                     src={`${API}/client/get-photo/${client._id}`}
                     alt=""
-                    className="h-20 sm:h-24 md:h-32 mx-auto object-contain pl-10 pr-10"
+                    className="h-12 px-4 sm:h-16 md:h-20 mx-auto object-contain sm:px-10"
                   />
                 </Link>
               </div>

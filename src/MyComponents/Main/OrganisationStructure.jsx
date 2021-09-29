@@ -17,7 +17,7 @@ export default function OrganisationStructure() {
         </div>
       </div>
 
-      <div className=" bg-no-repeat bg-mapbg bg-center">
+      <div className=" bg-no-repeat bg-mapbg">
         <div className="px-4 sm:px-8 lg:px-12 xl:px-0 max-w-1366 mx-auto">
           <div className="flex flex-wrap my-12">
             <div className=" md:w-1/2 lg:w-2/3 flex flex-col items-start">

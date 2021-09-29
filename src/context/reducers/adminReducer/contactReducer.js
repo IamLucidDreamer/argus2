@@ -8,6 +8,7 @@ const initialState = {
   email: "",
   phoneNumber: "",
   address: "",
+  mapLocation: "",
   contactalert: {
     success: null,
     message: "",
@@ -23,6 +24,7 @@ const contactReducer = (state = initialState, action) => {
         email: action.payload.email,
         phoneNumber: action.payload.phoneNumber,
         address: action.payload.address,
+        mapLocation: action.payload.mapLocation,
       };
     case CONTACT_ALERT:
       return {

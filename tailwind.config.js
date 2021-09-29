@@ -7,7 +7,7 @@ module.exports = {
         hero: "url('argus website/PNG/Insta Argus12.png')",
         footer: "url('argus website/SVG/1. LOGO Vectorssmall 2.svg')",
         mapbg: "url('argus website/SVG/3. World Map (1).svg')",
-        mapbg2: "url('argus website/PNG/World Map Home.png')",
+        mapbg2: "url('argus website/SVG/3. World Map (1).svg')",
         aboutbg: "url('argus website/PNG/Image Thumbnail2.png')",
         servicesbg: "url('argus website/PNG/Image Thumbnail.png')",
         jobsbg: "url('argus website/PNG/Image Thumbnail1.png')",

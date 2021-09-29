@@ -116,7 +116,7 @@
 
 .slick-slide > div > .clientSlider {
   transition: all 1s ease-out;
-  transition-delay: 10s;
+  transition-delay: 15s;
   opacity: 0.4;
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Logo from "./../../argus website/SVG/Logowith shadow.svg";
 import { Link } from "react-router-dom";
-import LogIn from "../User/LogIn";
+import Login from "../DashBoard/Student/Login";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -58,7 +58,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <LogIn open={open} setOpen={setOpen} />
+      <Login open={open} setOpen={setOpen} />
     </div>
   );
 }
