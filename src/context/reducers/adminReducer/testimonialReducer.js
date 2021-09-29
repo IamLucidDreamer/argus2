@@ -1,6 +1,7 @@
 import {
   ADDTESTIMONIAL_LOADING,
   DELETE_TESTIMONIAL,
+  DELETE_TESTIMONIALLOADING,
   SETUPDATE_TESTIMONIAL,
   SET_TESTIMONIAL,
   TESTIMONIAL_ALERT,
@@ -19,6 +20,7 @@ const initialState = {
     message: "",
   },
   addloading: false,
+  deleteloading: false,
 };
 
 const testimonialReducer = (state = initialState, action) => {
@@ -54,6 +56,11 @@ const testimonialReducer = (state = initialState, action) => {
       return {
         ...state,
         addloading: action.payload,
+      };
+    case DELETE_TESTIMONIALLOADING:
+      return {
+        ...state,
+        deleteloading: action.payload,
       };
     default:
       return state;

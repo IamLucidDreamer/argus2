@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import accountable from "./../../argus website/SVG/2. Accountable.svg";
 import { Link } from "react-router-dom";
@@ -9,12 +9,7 @@ import signature from "./../../argus website/SVG/01.svg";
 import section6 from "./../../argus website/PNG/sdm.png";
 import section4img from "./../../argus website/PNG/raw-2_edited.png";
 import section5 from "./../../argus website/PNG/0000000.png";
-import image1 from "./../../argus website/PNG/raw-2_edited.png";
 import camera from "./../../argus website/SVG/3. camera.svg";
-import Header from "./../Partials/Header";
-import HeaderHome from "../Partials/HeaderHome";
-import Stickynav from "./../Partials/Stickynav";
-import MobileHeader from "../Partials/MobileHeader";
 import EmployeeMonth from "../Components/EmployeeMonth";
 import ClientTestimonial from "../Components/ClientTestimonial";
 import ClientCorousal from "../Components/ClientCorousal";
@@ -23,11 +18,6 @@ import SideLine from "../Components/SideLine";
 import { useRef } from "react";
 import useOnScreen from "../../helpers/onScreen";
 import siren from "./../../argus website/SVG/3. Light.svg";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
 
 export default function Home() {
   const contact = useSelector((state) => state.contact);
@@ -47,7 +37,7 @@ export default function Home() {
       </div>
 
       {/* Section 2 CAll Us */}
-      <div className="px-4 sm:px-8 md:px-12 2xl:px-0 mx-auto max-w-1366 -mt-12 md:-mt-24">
+      <div className="px-4 sm:px-8 md:px-12 2xl:px-0 mx-auto max-w-1366 -mt-12 md:-mt-24 2xl:-mt-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mx-auto">
           <div className="">
             <h1 className="flex-grow sm:pr-16 text-3xl sm:text-number font-bold font-for-para text-gray-400">
@@ -60,7 +50,10 @@ export default function Home() {
               {contact.phoneNumber}
             </a>
           </div>
-          <Link to="/services" className="flex-shrink-0 font-bold text-white bg-red-1 py-5 px-4 md:px-12 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-lg mt-6 sm:mt-0 hover:shadow-button-inner">
+          <Link
+            to="/services"
+            className="flex-shrink-0 font-bold text-white bg-red-1 py-5 px-4 md:px-12 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-lg mt-6 sm:mt-0 hover:shadow-button-inner text-center"
+          >
             DISCOVER MORE
           </Link>
         </div>
@@ -371,13 +364,22 @@ export default function Home() {
                   </h1>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-                  <Link to="/about" className="px-6 py-4 text-sm font-bold bg-red-1 border border-black-1 bg-opacity-100 hover:bg-opacity-40 rounded-lg">
+                  <Link
+                    to="/about"
+                    className="px-6 py-4 text-sm font-bold bg-red-1 border border-black-1 bg-opacity-100 hover:bg-opacity-40 rounded-lg"
+                  >
                     ABOUT US
                   </Link>
-                  <Link to="/contact" className="px-6 py-4 text-sm font-bold bg-red-1 border my-4 md:my-0 sm:mx-4 border-black-1 bg-opacity-100 hover:bg-opacity-40 rounded-lg">
+                  <Link
+                    to="/contact"
+                    className="px-6 py-4 text-sm font-bold bg-red-1 border my-4 md:my-0 sm:mx-4 border-black-1 bg-opacity-100 hover:bg-opacity-40 rounded-lg"
+                  >
                     CONTACT US
                   </Link>
-                  <Link to="/organisationstructure"className="px-6 py-4 text-sm font-bold bg-red-1 border border-black-1 bg-opacity-100 hover:bg-opacity-40 rounded-lg">
+                  <Link
+                    to="/organisationstructure"
+                    className="px-6 py-4 text-sm font-bold bg-red-1 border border-black-1 bg-opacity-100 hover:bg-opacity-40 rounded-lg"
+                  >
                     ARGUS HIERARCHY
                   </Link>
                 </div>
@@ -446,7 +448,10 @@ export default function Home() {
               Covid 19 Procedures and much more to safeguard your business.
             </h1>
           </div>
-          <Link to="/covid" className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner">
+          <Link
+            to="/covid"
+            className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner text-center"
+          >
             DISCOVER MORE
           </Link>
         </div>

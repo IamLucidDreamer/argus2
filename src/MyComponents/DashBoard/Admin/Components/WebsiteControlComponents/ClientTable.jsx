@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { API } from "../../../../../api";
@@ -11,6 +11,8 @@ import Loader from "react-loader-spinner";
 export const ClientTable = () => {
   const clients = useSelector((state) => state.client.clients);
   const loading = useSelector((state) => state.client.loading);
+  const deleteloading = useSelector((state) => state.client.deleteloading);
+  const [deleteId, setdeleteId] = useState(null);
   const dispatch = useDispatch();
   return (
     <div className="mx-8 my-8 p-4 bg-white shadow-lg rounded-xl">
@@ -48,9 +50,21 @@ export const ClientTable = () => {
                     className="px-3 py-1 m-2 border-2 border-dashed border-red-1 bg-red-1 text-white rounded-lg hover:text-red-1 hover:bg-opacity-20"
                     onClick={() => {
                       dispatch(deleteClientCarousel(client._id));
+                      setdeleteId(client._id);
                     }}
                   >
-                    Delete
+                    {deleteloading && deleteId === client._id ? (
+                      <div className="w-full flex items-center justify-center">
+                        <Loader
+                          type="ThreeDots"
+                          color="white"
+                          height={30}
+                          width={30}
+                        />
+                      </div>
+                    ) : (
+                      "Delete"
+                    )}
                   </button>
                   <button
                     onClick={() => {

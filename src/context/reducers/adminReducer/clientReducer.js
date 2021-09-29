@@ -3,6 +3,7 @@ import {
   CLIENTCAROUSEL_LOADING,
   CLIENT_CAROUSELALERT,
   DELETECLIENT_CAROUSEL,
+  DELETECLIENT_CAROUSELLOADING,
   SETCLIENT_CAROUSEL,
   SETUPDATE_TESTIMONIAL,
 } from "../../actionTypes";
@@ -19,6 +20,7 @@ const initialState = {
   },
   loading: false,
   addloading: false,
+  deleteloading: false,
 };
 
 const clientReducer = (state = initialState, action) => {
@@ -52,6 +54,11 @@ const clientReducer = (state = initialState, action) => {
       return {
         ...state,
         addloading: action.payload,
+      };
+    case DELETECLIENT_CAROUSELLOADING:
+      return {
+        ...state,
+        deleteloading: action.payload,
       };
     default:
       return state;

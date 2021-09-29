@@ -6,8 +6,8 @@ module.exports = {
       backgroundImage: (theme) => ({
         hero: "url('argus website/PNG/Insta Argus12.png')",
         footer: "url('argus website/SVG/1. LOGO Vectorssmall 2.svg')",
-        mapbg: "url('argus website/SVG/3. World Map.svg')",
-        mapbg2: "url('argus website/PNG/World Map Home.png')",
+        mapbg: "url('argus website/SVG/3. World Map (1).svg')",
+        mapbg2: "url('argus website/SVG/3. World Map (1).svg')",
         aboutbg: "url('argus website/PNG/Image Thumbnail2.png')",
         servicesbg: "url('argus website/PNG/Image Thumbnail.png')",
         jobsbg: "url('argus website/PNG/Image Thumbnail1.png')",
@@ -31,7 +31,7 @@ module.exports = {
         "black-1": "#1c1c1c",
         hover: "#501616",
         client: "#e8eaee",
-        "mobile-nav-border":"#707070"
+        "mobile-nav-border": "#707070",
       },
       fontFamily: {
         "for-heading": [
@@ -71,7 +71,7 @@ module.exports = {
       },
       fontSize: {
         "4xl": "2.85rem",
-        "number": "2.50rem"
+        number: "2.50rem",
       },
       maxWidth: {
         1366: "1230px",
@@ -84,23 +84,23 @@ module.exports = {
       },
       width: {
         "8-px": "8px",
-        },
+      },
       boxShadow: {
         "header-outer-shadow": "3px 3px 6px 1px rgba(0, 0, 0, 0.2)",
         "button-shadow": "3px 3px 6px 1px rgba(0, 0, 0, 0.4)",
         "button-shadow-2": "3px 3px 6px 1px rgba(0, 0, 0, 0.16)",
         "button-shadow-3": "3px 3px 6px 1px rgba(0, 0, 0, 0.08)",
         "button-inner": "inset -3px -3px 6px 1px rgba(0, 0, 0, 0.20)",
-        "speech": "5px 5px 10px 1px rgba(0, 0, 0, 0.16)",
+        speech: "5px 5px 10px 1px rgba(0, 0, 0, 0.16)",
         "speech-2": "5px 3px 10px 1px rgba(0, 0, 0, 0.08)",
-        "services": "inset -3px -3px 10px 1px rgba(0, 0, 0, 0.30)",
+        services: "inset -3px -3px 10px 1px rgba(0, 0, 0, 0.30)",
       },
       backgroundSize: {
         "stretch-x": "100% 100%",
       },
       rotate: {
-         '60': '60deg',
-       }
+        60: "60deg",
+      },
     },
   },
   variants: {

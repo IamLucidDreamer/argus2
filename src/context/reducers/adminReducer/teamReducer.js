@@ -1,6 +1,7 @@
 import {
   ADDTEAM_LOADING,
   DELETE_TEAM,
+  DELETE_TEAMLOADING,
   SETUPDATE_TEAM,
   SET_TEAM,
   TEAM_ALERT,
@@ -19,6 +20,7 @@ const initialState = {
     message: "",
   },
   addloading: false,
+  deleteloading: false,
 };
 
 const teamReducer = (state = initialState, action) => {
@@ -52,6 +54,11 @@ const teamReducer = (state = initialState, action) => {
       return {
         ...state,
         addloading: action.payload,
+      };
+    case DELETE_TEAMLOADING:
+      return {
+        ...state,
+        deleteloading: action.payload,
       };
     default:
       return state;

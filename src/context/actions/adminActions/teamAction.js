@@ -7,6 +7,7 @@ const {
   TEAM_LOADING,
   TEAM_ALERT,
   ADDTEAM_LOADING,
+  DELETE_TEAMLOADING,
 } = require("../../actionTypes");
 
 const setteam = (data) => ({
@@ -38,6 +39,10 @@ const addteamloading = (data) => ({
   type: ADDTEAM_LOADING,
   payload: data,
 });
+const deleteloading = (data) => ({
+  type: DELETE_TEAMLOADING,
+  payload: data,
+});
 
 const getTeam = () => {
   return (dispatch) => {
@@ -62,6 +67,7 @@ const getTeam = () => {
 
 const deleteTeam = (id) => {
   return (dispatch) => {
+    dispatch(deleteloading(true));
     const { token } = isAuthenticated();
     axiosInstance
       .delete(`/team/delete/${id}`, {
@@ -70,10 +76,11 @@ const deleteTeam = (id) => {
         },
       })
       .then((res) => {
+        dispatch(deleteloading(false));
         dispatch(deleteteam(id));
       })
       .catch((err) => {
-        console.log(err);
+        dispatch(deleteloading(false));
       });
   };
 };

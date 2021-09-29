@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import about_image from "./../../argus website/PNG/Video.png";
 import SideBar from "./../Components/SideBar.jsx";
 import AboutPageButtons from "../Components/AboutPageButtons";
-import Header from "./../Partials/Header";
-import Header2 from "./../Partials/Header2";
-import Stickynav from "./../Partials/Stickynav";
-import MobileHeader from "../Partials/MobileHeader";
 import Teams from "../Components/TeamsSection";
 import SideLine from "./../Components/SideLine";
+import SideBarAbout from "../Components/SideBarAbout";
 
 class About extends Component {
   render() {
@@ -116,9 +113,7 @@ class About extends Component {
                 </ul>
                 <div></div>
               </div>
-              <div  className="hidden md:block">
-                <SideBar />
-              </div>
+              <SideBarAbout />
             </div>
           </div>
         </div>

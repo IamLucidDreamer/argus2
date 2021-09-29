@@ -8,6 +8,7 @@ const {
   TESTIMONIAL_LOADING,
   TESTIMONIAL_ALERT,
   ADDTESTIMONIAL_LOADING,
+  DELETE_TESTIMONIALLOADING,
 } = require("../../actionTypes");
 
 const settestimonial = (data) => ({
@@ -40,6 +41,11 @@ const addtestimonialloading = (data) => ({
   payload: data,
 });
 
+const deleteloading = (data) => ({
+  type: DELETE_TESTIMONIALLOADING,
+  payload: data,
+});
+
 const getTestimonial = () => {
   return (dispatch) => {
     dispatch(testimonialloading(true));
@@ -63,6 +69,7 @@ const getTestimonial = () => {
 
 const deleteTestimonial = (id) => {
   return (dispatch) => {
+    dispatch(deleteloading(true));
     const { token } = isAuthenticated();
     axiosInstance
       .delete(`/testimonial/delete/${id}`, {
@@ -72,9 +79,10 @@ const deleteTestimonial = (id) => {
       })
       .then((res) => {
         dispatch(deletetestimonial(id));
+        dispatch(deleteloading(false));
       })
       .catch((err) => {
-        console.log(err);
+        dispatch(deleteloading(false));
       });
   };
 };

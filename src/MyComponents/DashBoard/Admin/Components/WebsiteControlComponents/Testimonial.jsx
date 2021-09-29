@@ -11,20 +11,7 @@ import {
   updateTestimonial,
 } from "../../../../../context/actions/adminActions/testimonialAction";
 import Loader from "react-loader-spinner";
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.client) {
-    errors.client = "*Required";
-  }
-  if (!values.description) {
-    errors.description = "*Required";
-  }
-  if (!values.company) {
-    errors.company = "*Required";
-  }
-  return errors;
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Testimonials() {
   const [showAlert, setShowAlert] = useState({
@@ -32,7 +19,6 @@ export default function Testimonials() {
     message: "",
     success: false,
   });
-  const [testimonialImg, setTestimonialImg] = useState();
   const dispatch = useDispatch();
   const update = useSelector((state) => state.testimonial.update);
   const testimonialalert = useSelector(
@@ -44,10 +30,10 @@ export default function Testimonials() {
   const handleCompressedUpload = (e) => {
     const image = e.target.files[0];
     new Compressor(image, {
-      quality: 0.5,
-      maxWidth: 2000,
+      quality: 0.4,
+      maxWidth: 1500,
       success: (compressedResult) => {
-        setTestimonialImg(compressedResult);
+        setValues({ ...values, testimonialImg: compressedResult });
       },
     });
   };
@@ -71,12 +57,32 @@ export default function Testimonials() {
     }
   }, [dispatch, testimonialalert]);
 
-  const { getFieldProps, handleSubmit, errors, setValues, resetForm } =
+  const validate = (values) => {
+    const errors = {};
+    if (!values.client) {
+      errors.client = "*Required";
+    }
+    if (!values.description) {
+      errors.description = "*Required";
+    }
+    if (!values.company) {
+      errors.company = "*Required";
+    }
+    if (!update.state) {
+      if (!values.testimonialImg) {
+        errors.testimonialImg = "*Required";
+      }
+    }
+    return errors;
+  };
+
+  const { getFieldProps, handleSubmit, errors, setValues, resetForm, values } =
     useFormik({
       initialValues: {
         client: "",
         description: "",
         company: "",
+        testimonialImg: null,
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
@@ -86,10 +92,9 @@ export default function Testimonials() {
         formdata.append("name", values.client);
         formdata.append("description", values.description);
         formdata.append("role", values.company);
-        formdata.append("photo", testimonialImg);
+        formdata.append("photo", values.testimonialImg);
         formdata.append("isApproved", false);
         formdata.append("priority", 0);
-        setTestimonialImg(null);
         if (update.state) {
           dispatch(updateTestimonial(formdata, update.data._id));
         } else {
@@ -104,6 +109,7 @@ export default function Testimonials() {
         client: update.data.name,
         description: update.data.description,
         company: update.data.role,
+        testimonialImg: null,
       });
     }
   }, [setValues, update]);
@@ -174,16 +180,39 @@ export default function Testimonials() {
           </div>
         ) : null}
 
-        <lable className="text-gray-2 mt-4 mb-1">
-          Upload Image of the Client
-        </lable>
-        <input
-          className="p-4 mb-4  border border-black"
-          type="file"
-          accept="image/png, image/jpeg"
-          ref={ref}
-          onChange={(e) => handleCompressedUpload(e)}
-        />
+        <div className="flex flex-col items-center mb-4">
+          <lable className="text-gray-2 mt-4 mb-1">
+            Upload Image of the Client
+          </lable>
+          <div>
+            <input
+              className="p-4  border border-black"
+              type="file"
+              accept="image/png, image/jpeg"
+              ref={ref}
+              onChange={(e) => handleCompressedUpload(e)}
+            />
+            {values.testimonialImg ? (
+              <button
+                onClick={() => {
+                  ref.current.value = "";
+                  setValues({ ...values, testimonialImg: null });
+                }}
+              >
+                <FontAwesomeIcon
+                  icon="window-close"
+                  className="text-2xl ml-2"
+                />
+              </button>
+            ) : null}
+          </div>
+
+          {errors.testimonialImg ? (
+            <div className="w-full text-xs text-red-400">
+              {errors.testimonialImg}
+            </div>
+          ) : null}
+        </div>
         <button
           type="submit"
           className="w-2/3 mx-auto p-4 border text-white bg-red-700 hover:bg-white hover:text-red-700 hover:border-red-700"
@@ -206,7 +235,6 @@ export default function Testimonials() {
             className="w-1/4 mx-auto px-4 py-2 mt-4 border text-white bg-red-700 hover:bg-white hover:text-red-700 hover:border-red-700"
             onClick={() => {
               ref.current.value = "";
-              setTestimonialImg(null);
               resetForm();
               dispatch(setupdatetestimonial({ state: false, data: null }));
             }}

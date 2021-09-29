@@ -16,54 +16,42 @@ const Mobilenav = ({ open, setOpen }) => {
           <div className="w-full sm:w-1/2 md:w-5/12 bg-gray-3 h-screen overflow-scroll">
             <nav className="list-none text-lg mt-16">
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/about"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/about" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     ABOUT
                   </div>
                 </Link>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/services"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/services" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     SERVICES
                   </div>
                 </Link>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/jobs"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/jobs" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     JOBS
                   </div>
                 </Link>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/courses"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/courses" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     COURSES
                   </div>
                 </Link>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/contact"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/contact" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     CONTACT
                   </div>
                 </Link>
               </li>
               <li className="hover:border-white text-white">
-                <Link to="/technology"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/technology" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     TECHNOLOGY
                   </div>
@@ -81,27 +69,21 @@ const Mobilenav = ({ open, setOpen }) => {
                 </div>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/about"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/about" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     STUDENT PORTAL
                   </div>
                 </Link>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/about"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/about" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     CLIENT PORTAL
                   </div>
                 </Link>
               </li>
               <li className="text-white">
-                <Link to="/about"
-                  onClick={() => setOpen(false)}
-                >
+                <Link to="/about" onClick={() => setOpen(false)}>
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     EMPLOYEE PORTAL
                   </div>

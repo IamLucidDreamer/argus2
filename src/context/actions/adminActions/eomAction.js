@@ -8,6 +8,7 @@ const {
   EOM_LOADING,
   EOM_ALERT,
   ADDEOM_LOADING,
+  DELETE_EOMLOADING,
 } = require("../../actionTypes");
 
 const seteom = (data) => ({
@@ -41,6 +42,10 @@ const eomloading = (data) => ({
 
 const addtestimonialloading = (data) => ({
   type: ADDEOM_LOADING,
+  payload: data,
+});
+const deleteloading = (data) => ({
+  type: DELETE_EOMLOADING,
   payload: data,
 });
 
@@ -118,6 +123,7 @@ const createEOM = (data) => {
 
 const deleteEOM = (id) => {
   return (dispatch) => {
+    dispatch(deleteloading(true));
     const { token } = isAuthenticated();
     axiosInstance
       .delete(`/eom/delete/${id}`, {
@@ -126,9 +132,12 @@ const deleteEOM = (id) => {
         },
       })
       .then(() => {
+        dispatch(deleteloading(false));
         dispatch(deleteeom(id));
       })
-      .catch((err) => {});
+      .catch((err) => {
+        dispatch(deleteloading(false));
+      });
   };
 };
 const updateEOM = (data, id) => {

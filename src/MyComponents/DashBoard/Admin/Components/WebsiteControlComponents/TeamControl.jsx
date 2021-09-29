@@ -10,20 +10,7 @@ import {
 } from "../../../../../context/actions/adminActions/teamAction";
 import Loader from "react-loader-spinner";
 import Alert from "../../../../Components/Alert";
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.name) {
-    errors.name = "*Required";
-  }
-  if (!values.description) {
-    errors.description = "*Required";
-  }
-  if (!values.role) {
-    errors.role = "*Required";
-  }
-  return errors;
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function TeamControl() {
   const [showAlert, setShowAlert] = useState({
@@ -31,7 +18,6 @@ export default function TeamControl() {
     message: "",
     success: false,
   });
-  const [teamImg, setTeamImg] = useState();
   const dispatch = useDispatch();
   const update = useSelector((state) => state.team.update);
   const teamalert = useSelector((state) => state.team.teamalert);
@@ -41,10 +27,10 @@ export default function TeamControl() {
   const handleCompressedUpload = (e) => {
     const image = e.target.files[0];
     new Compressor(image, {
-      quality: 0.5,
-      maxWidth: 2000,
+      quality: 0.4,
+      maxWidth: 1500,
       success: (compressedResult) => {
-        setTeamImg(compressedResult);
+        setValues({ ...values, teamImg: compressedResult });
       },
     });
   };
@@ -68,12 +54,32 @@ export default function TeamControl() {
     }
   }, [dispatch, teamalert]);
 
-  const { getFieldProps, handleSubmit, errors, setValues, resetForm } =
+  const validate = (values) => {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "*Required";
+    }
+    if (!values.description) {
+      errors.description = "*Required";
+    }
+    if (!values.role) {
+      errors.role = "*Required";
+    }
+    if (!update.state) {
+      if (!values.teamImg) {
+        errors.teamImg = "*Required";
+      }
+    }
+    return errors;
+  };
+
+  const { getFieldProps, handleSubmit, errors, setValues, resetForm, values } =
     useFormik({
       initialValues: {
         name: "",
         description: "",
         role: "",
+        teamImg: null,
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
@@ -83,8 +89,7 @@ export default function TeamControl() {
         formdata.append("name", values.name);
         formdata.append("role", values.role);
         formdata.append("description", values.description);
-        formdata.append("photo", teamImg);
-        setTeamImg(null);
+        formdata.append("photo", values.teamImg);
         if (update.state) {
           dispatch(updateTeam(formdata, update.data._id));
         } else {
@@ -99,6 +104,7 @@ export default function TeamControl() {
         name: update.data.name,
         description: update.data.description,
         role: update.data.role,
+        teamImg: null,
       });
     }
   }, [setValues, update]);
@@ -165,16 +171,36 @@ export default function TeamControl() {
             {errors.description}
           </div>
         ) : null}
-        <lable className="text-gray-2 mt-4">
-          Upload Image of the Team Member
-        </lable>
-        <input
-          className="p-4 mt-2 mb-4 border border-black"
-          type="file"
-          accept="image/png, image/jpeg"
-          ref={teamRef}
-          onChange={(e) => handleCompressedUpload(e)}
-        />
+        <div className="flex flex-col items-center mb-4">
+          <lable className="text-gray-2 mt-4">
+            Upload Image of the Team Member
+          </lable>
+          <div>
+            <input
+              className="p-4 mt- border border-black"
+              type="file"
+              accept="image/png, image/jpeg"
+              ref={teamRef}
+              onChange={(e) => handleCompressedUpload(e)}
+            />
+            {values.teamImg ? (
+              <button
+                onClick={() => {
+                  teamRef.current.value = "";
+                  setValues({ ...values, teamImg: null });
+                }}
+              >
+                <FontAwesomeIcon
+                  icon="window-close"
+                  className="text-2xl ml-2"
+                />
+              </button>
+            ) : null}
+          </div>
+          {errors.teamImg ? (
+            <div className="w-full text-xs text-red-400">{errors.teamImg}</div>
+          ) : null}
+        </div>
         <button
           type="submit"
           className="w-2/3 mx-auto p-4 border text-white bg-red-700 hover:bg-white hover:text-red-700 hover:border-red-700"
@@ -197,7 +223,6 @@ export default function TeamControl() {
             className="w-1/4 mx-auto px-4 py-2 mt-4 border text-white bg-red-700 hover:bg-white hover:text-red-700 hover:border-red-700"
             onClick={() => {
               teamRef.current.value = "";
-              setTeamImg(null);
               resetForm();
               dispatch(setupdateteam({ state: false, data: null }));
             }}

@@ -23,12 +23,15 @@ import MobilePatrols from "./MyComponents/Main/Technology/MobilePatrols.jsx";
 import OrganisationStructure from "./MyComponents/Main/OrganisationStructure.jsx";
 import HarassementPolicy from "./MyComponents/Main/HarassementPolicy";
 import Personell from "./MyComponents/Main/Personell";
+import ScrollToTop from "./Functions/ScrollToTop";
+
+import SignupForStudents from "./MyComponents/DashBoard/Student/Signup"
+import LoginForStudent from "./MyComponents/DashBoard/Student/Login"
 import StudentHome from "./MyComponents/DashBoard/Student/Home.jsx";
 import StudentCalendar from "./MyComponents/DashBoard/Student/Calendar.jsx";
 import StudentCourse from "./MyComponents/DashBoard/Student/PurchaseCourse.jsx";
 import StudentTraining from "./MyComponents/DashBoard/Student/Training";
 import StudentContact from "./MyComponents/DashBoard/Student/Contact";
-import ScrollToTop from "./Functions/ScrollToTop";
 
 import LoginForAdmin from "./MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin";
 import AdminHome from "./MyComponents/DashBoard/Admin/Home";
@@ -85,6 +88,9 @@ function App() {
           <HomeRoute path="/harassementpolicy" component={HarassementPolicy} />
           <HomeRoute path="/personell" component={Personell} />
 
+
+
+          <HomeRoute path="/dashboard/student/signup" component={SignupForStudents} />
           <StudentRoutes
             path="/dashboard/student/home"
             component={StudentHome}
@@ -105,6 +111,8 @@ function App() {
             path="/dashboard/student/contact"
             component={StudentContact}
           />
+
+
 
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />
           <AdminRoute path="/dashboard/admin/home" component={AdminHome} />

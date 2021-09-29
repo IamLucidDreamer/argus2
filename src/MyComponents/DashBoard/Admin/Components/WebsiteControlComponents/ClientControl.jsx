@@ -11,14 +11,7 @@ import {
 import Compressor from "compressorjs";
 import Alert from "../../../../Components/Alert";
 import Loader from "react-loader-spinner";
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.name) {
-    errors.name = "*Required";
-  }
-  return errors;
-};
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function ClientControls() {
   const [showAlert, setShowAlert] = useState({
@@ -26,7 +19,6 @@ export default function ClientControls() {
     message: "",
     success: false,
   });
-  const [clientImg, setclientImg] = useState();
   const clientRef = useRef();
   const dispatch = useDispatch();
   const update = useSelector((state) => state.client.update);
@@ -56,18 +48,40 @@ export default function ClientControls() {
   const handleCompressedUpload = (e) => {
     const image = e.target.files[0];
     new Compressor(image, {
-      quality: 0.5,
-      maxWidth: 2000,
+      quality: 0.4,
+      maxWidth: 1500,
       success: (compressedResult) => {
-        setclientImg(compressedResult);
+        setValues({
+          ...values,
+          clientImg: compressedResult,
+        });
       },
     });
   };
 
-  const { getFieldProps, handleSubmit, errors, setValues, resetForm } =
+  const validate = (values) => {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "*Required";
+    }
+    if (!values.url) {
+      errors.url = "*Required";
+    }
+
+    if (!update.state) {
+      if (!values.clientImg) {
+        errors.image = "*Required";
+      }
+    }
+    return errors;
+  };
+
+  const { getFieldProps, handleSubmit, errors, setValues, resetForm, values } =
     useFormik({
       initialValues: {
         name: "",
+        url: "",
+        clientImg: null,
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
@@ -75,8 +89,8 @@ export default function ClientControls() {
         resetForm();
         const formdata = new FormData();
         formdata.append("name", values.name);
-        formdata.append("logo", clientImg);
-        setclientImg(null);
+        formdata.append("url", values.url);
+        formdata.append("logo", values.clientImg);
         if (update.state) {
           dispatch(updateClientCarousel(formdata, update.data._id));
         } else {
@@ -89,6 +103,8 @@ export default function ClientControls() {
     if (update.state) {
       setValues({
         name: update.data.name,
+        url: update.data.url,
+        clientImg: null,
       });
     }
   }, [setValues, update]);
@@ -127,17 +143,47 @@ export default function ClientControls() {
         {errors.name ? (
           <div className="w-full text-xs text-red-400">{errors.name}</div>
         ) : null}
-
-        <lable className="text-gray-2 mb-1">
-          Upload Logo of the Client's Company
-        </lable>
         <input
-          className="p-4 mb-4  border border-black"
-          type="file"
-          accept="image/png, image/jpeg"
-          ref={clientRef}
-          onChange={(e) => handleCompressedUpload(e)}
+          className={`w-full ${
+            errors.url ? "border-b-2 border-red-600" : "border-b border-black"
+          } focus:outline-none mt-4 p-1`}
+          type="text"
+          placeholder="URL for the company website"
+          {...getFieldProps("url")}
         />
+        {errors.url ? (
+          <div className="w-full text-xs text-red-400">{errors.url}</div>
+        ) : null}
+        <div className="flex flex-col mb-4 items-center">
+          <lable className="text-gray-2 mb-1 mt-4">
+            Upload Logo of the Client's Company
+          </lable>
+          <div>
+            <input
+              className="p-4 border border-black"
+              type="file"
+              accept="image/png, image/jpeg"
+              ref={clientRef}
+              onChange={(e) => handleCompressedUpload(e)}
+            />
+            {values.clientImg !== null ? (
+              <button
+                onClick={() => {
+                  clientRef.current.value = "";
+                  setValues({ ...values, clientImg: null });
+                }}
+              >
+                <FontAwesomeIcon
+                  icon="window-close"
+                  className="text-2xl ml-2"
+                />
+              </button>
+            ) : null}
+          </div>
+          {errors.image ? (
+            <div className="w-full text-xs text-red-400">{errors.image}</div>
+          ) : null}
+        </div>
 
         <button
           type="submit"
@@ -162,7 +208,6 @@ export default function ClientControls() {
             className="w-1/4 mx-auto px-4 py-2 mt-4 border text-white bg-red-700 hover:bg-white hover:text-red-700 hover:border-red-700"
             onClick={() => {
               clientRef.current.value = "";
-              setclientImg(null);
               resetForm();
               dispatch(setupdateclientcarousel({ state: false, data: null }));
             }}

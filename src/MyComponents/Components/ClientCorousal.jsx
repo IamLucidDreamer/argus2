@@ -5,37 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { useSelector } from "react-redux";
 import { API } from "../../api";
 import SideLine from "./SideLine";
-
-function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        paddingLeft: "50px",
-        transform: "scale(1.5)",
-      }}
-      onClick={onClick}
-    />
-  );
-}
-function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: "block",
-        paddingRight: "150px",
-        transform: "scale(1.5)",
-      }}
-      onClick={onClick}
-    />
-  );
-}
+import { Link } from "react-router-dom";
 
 const ClientCorousal = () => {
   const clients = useSelector((state) => state.client.clients);
@@ -45,7 +15,6 @@ const ClientCorousal = () => {
     autoplaySpeed: 0,
     cssEase: "linear",
     slidesToShow: 1,
-    slidesToScroll: 1,
     variableWidth: true,
     arrows: false,
     centerMode: true,
@@ -54,14 +23,14 @@ const ClientCorousal = () => {
       {
         breakpoint: 1800,
         settings: {
-          centerPadding: "500px",
+          centerPadding: "400px",
         },
       },
 
       {
         breakpoint: 1700,
         settings: {
-          centerPadding: "450px",
+          centerPadding: "400px",
         },
       },
 
@@ -95,14 +64,14 @@ const ClientCorousal = () => {
       {
         breakpoint: 850,
         settings: {
-          centerPadding: "180px",
+          centerPadding: "150px",
         },
       },
 
       {
         breakpoint: 750,
         settings: {
-          centerPadding: "160px",
+          centerPadding: "100px",
         },
       },
 
@@ -136,8 +105,8 @@ const ClientCorousal = () => {
 
   return (
     <div className="bg-client">
-      <div className="px-4 sm:px-8 lg:px-12 2xl:px-0 mx-auto max-w-1366 pt-14 pb-14">
-        <div className="flex flex-row items-stretch w-full mt-8 md:mt-0 mb-8 lg:justify-center">
+      <div className="px-0 py-8 sm:px-8 lg:px-12 2xl:px-0 mx-auto max-w-1366 md:py-14">
+        <div className="px-4 flex flex-row items-stretch w-full mt-0 mb-4 md:mt-0 sm:mb-8 lg:justify-center">
           <SideLine />
           <h1 className="leading-tight text-3xl lg:text-4xl font-bold text-gray-3">
             Clients
@@ -147,11 +116,13 @@ const ClientCorousal = () => {
           {clients.map((client) => {
             return (
               <div key={client._id} className="clientSlider">
-                <img
-                  src={`${API}/client/get-photo/${client._id}`}
-                  alt=""
-                  className="h-32 mx-auto object-contain pl-10 pr-10"
-                />
+                <Link to={{ pathname: `${client.url}` }} target="_blank">
+                  <img
+                    src={`${API}/client/get-photo/${client._id}`}
+                    alt=""
+                    className="h-12 px-4 sm:h-16 md:h-20 mx-auto object-contain sm:px-10"
+                  />
+                </Link>
               </div>
             );
           })}

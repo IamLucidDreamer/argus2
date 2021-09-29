@@ -23,7 +23,7 @@
   transform-origin: bottom;
   transform: scale(1.95);
   transition: all 0.5s ease-in;
-  filter: grayscale(30%) blur(0.7px) opacity(50%);
+  filter: grayscale(30%) blur(0.7px) opacity(70%);
   z-index: 10;
 }
 
@@ -116,11 +116,27 @@
 
 .slick-slide > div > .clientSlider {
   transition: all 1s ease-out;
-  transition-delay: 10s;
+  transition-delay: 15s;
   opacity: 0.4;
 }
 
 .slick-active > div > .clientSlider {
   transition: all 1s ease-out;
   opacity: 1 !important;
+}
+
+@media screen and (max-width: 468px) {
+  .slick-slide > div > .teamSlider {
+    transition: all 0.5s ease-in;
+    position: relative;
+    transform: scale(1.7);
+    filter: grayscale(30%) blur(0.7px) opacity(70%);
+  }
+
+  .slick-center > div > .teamSlider {
+    transform: scale(2.3);
+    position: relative;
+    transition: transform 0.6s ease-out;
+    filter: grayscale(0%) blur(0px) opacity(100%);
+  }
 }

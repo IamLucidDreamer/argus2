@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { API } from "../../../../../api";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,9 @@ import Loader from "react-loader-spinner";
 export const TestimonialTable = () => {
   const testimonial = useSelector((state) => state.testimonial.testimonial);
   const loading = useSelector((state) => state.testimonial.loading);
+  const deleteloading = useSelector((state) => state.testimonial.deleteloading);
   const dispatch = useDispatch();
+  const [deleteId, setdeleteId] = useState(null);
 
   return (
     <div className="mx-8 my-8 p-4 bg-white shadow-lg rounded-xl">
@@ -50,10 +52,22 @@ export const TestimonialTable = () => {
                   <button
                     onClick={() => {
                       dispatch(deleteTestimonial(testimonial._id));
+                      setdeleteId(testimonial._id);
                     }}
                     className="px-3 py-1 m-2 border-2 border-dashed border-red-1 bg-red-1 text-white rounded-lg hover:text-red-1 hover:bg-opacity-20"
                   >
-                    Delete
+                    {deleteloading && deleteId === testimonial._id ? (
+                      <div className="w-full flex items-center justify-center">
+                        <Loader
+                          type="ThreeDots"
+                          color="white"
+                          height={30}
+                          width={30}
+                        />
+                      </div>
+                    ) : (
+                      "Delete"
+                    )}
                   </button>
                   <button
                     onClick={() => {

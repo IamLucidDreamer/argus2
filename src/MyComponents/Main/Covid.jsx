@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import about_image from "./../../argus website/PNG/Video.png";
 import SideBar from "./../Components/SideBar.jsx";
 import AboutPageButtons from "../Components/AboutPageButtons";
-import Header from "./../Partials/Header";
-import Header2 from "./../Partials/Header2";
-import Stickynav from "./../Partials/Stickynav";
-import MobileHeader from "../Partials/MobileHeader";
-import Teams from "../Components/TeamsSection";
 import SideLine from "./../Components/SideLine";
 
 class Covid extends Component {

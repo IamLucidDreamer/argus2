@@ -3,8 +3,8 @@ import { isAuthenticated } from "../../../helpers/auth";
 const { default: axiosInstance } = require("../../../helpers/axiosInstance");
 const {
   SET_CONTACTS,
-  SETCONTACTS_ERROR,
   CONTACT_ALERT,
+  CONTACT_LOADING,
 } = require("../../actionTypes");
 
 const setcontact = (data) => ({
@@ -17,6 +17,11 @@ const contactAlert = (data) => ({
   payload: data,
 });
 
+const loading = (data) => ({
+  type: CONTACT_LOADING,
+  payload: data,
+});
+
 const getContact = () => {
   return (dispatch) => {
     axiosInstance
@@ -24,12 +29,13 @@ const getContact = () => {
       .then((response) => {
         dispatch(setcontact(response.data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   };
 };
 
 const updateContact = (data) => {
   return (dispatch) => {
+    dispatch(loading(true));
     const { token } = isAuthenticated();
     axiosInstance
       .put("/contact/update", data, {
@@ -45,11 +51,13 @@ const updateContact = (data) => {
           })
         );
         dispatch(setcontact(data));
+        dispatch(loading(false));
       })
       .catch((error) => {
         dispatch(
-          contactAlert({ success: true, message: "Error adding successfully" })
+          contactAlert({ success: false, message: "Error updating contact" })
         );
+        dispatch(loading(false));
       });
   };
 };

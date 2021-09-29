@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API } from "../../../../../api";
 import {
@@ -10,6 +10,8 @@ import Loader from "react-loader-spinner";
 export const TeamTable = () => {
   const teamMember = useSelector((state) => state.team.team);
   const loading = useSelector((state) => state.team.loading);
+  const deleteloading = useSelector((state) => state.team.deleteloading);
+  const [deleteId, setDeleteId] = useState(null);
   const dispatch = useDispatch();
   return (
     <div className="mx-8 my-8 p-4 bg-white shadow-lg rounded-xl">
@@ -47,10 +49,22 @@ export const TeamTable = () => {
                     <button
                       onClick={() => {
                         dispatch(deleteTeam(team._id));
+                        setDeleteId(team._id);
                       }}
                       className="px-3 py-1 m-2 border-2 border-dashed border-red-1 bg-red-1 text-white rounded-lg hover:text-red-1 hover:bg-opacity-20"
                     >
-                      Delete
+                      {deleteloading && deleteId === team._id ? (
+                        <div className="w-full flex items-center justify-center">
+                          <Loader
+                            type="ThreeDots"
+                            color="white"
+                            height={30}
+                            width={30}
+                          />
+                        </div>
+                      ) : (
+                        "Delete"
+                      )}
                     </button>
                     <button
                       onClick={() => {

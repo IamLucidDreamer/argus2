@@ -5,6 +5,7 @@ import {
   CLIENTCAROUSEL_LOADING,
   CLIENT_CAROUSELALERT,
   DELETECLIENT_CAROUSEL,
+  DELETECLIENT_CAROUSELLOADING,
   SETCLIENT_CAROUSEL,
   SETUPDATE_TESTIMONIAL,
 } from "../../actionTypes";
@@ -39,6 +40,11 @@ const addclientloading = (data) => ({
   payload: data,
 });
 
+const deleteloading = (data) => ({
+  type: DELETECLIENT_CAROUSELLOADING,
+  payload: data,
+});
+
 const getClientCarousel = () => {
   return (dispatch) => {
     const { token } = isAuthenticated();
@@ -67,6 +73,7 @@ const getClientCarousel = () => {
 
 const deleteClientCarousel = (id) => {
   return (dispatch) => {
+    dispatch(deleteloading(true));
     const { token } = isAuthenticated();
     axiosInstance
       .delete(`/client/delete/${id}`, {
@@ -75,9 +82,11 @@ const deleteClientCarousel = (id) => {
         },
       })
       .then((res) => {
+        dispatch(deleteloading(false));
         dispatch(deleteclientcarousel(id));
       })
       .catch((err) => {
+        dispatch(deleteloading(false));
         console.log(err);
       });
   };
