@@ -37,8 +37,9 @@ const Contact = () => {
                 in responding to your message.{" "}
               </p>
               <hr class="border-1 border-gray-2 w-full mb-6" />
-
-              <CompanyContact />
+              <div className="text-lg font-medium">
+                <CompanyContact />
+              </div>
             </div>
             <ContactForm width="w-full md:w-2/3 mt-5 md:mt-0" />
           </div>
