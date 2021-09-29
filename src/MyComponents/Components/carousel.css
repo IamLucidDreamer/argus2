@@ -79,7 +79,7 @@
 
 .teamSliderMain > .slick-prev {
   top: 75% !important;
-  left: -50px;
+  left: -35px;
   transform: translateX(-50%) translateX(-30px);
   background: #a3a3a4;
   -webkit-clip-path: polygon(0 50%, 100% 0, 100% 100%);
