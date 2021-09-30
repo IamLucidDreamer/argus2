@@ -154,7 +154,7 @@ const Courses = () => {
                 </h1>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(1)}
               >
                 <div className="flex flex-row">
@@ -185,7 +185,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(2)}
               >
                 <div className="flex flex-row">
@@ -209,7 +209,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(3)}
               >
                 <div className="flex flex-row">
@@ -225,7 +225,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(4)}
               >
                 <div className="flex flex-row">
@@ -242,7 +242,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(5)}
               >
                 <div className="flex flex-row">
@@ -259,7 +259,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(6)}
               >
                 <div className="flex flex-row">
@@ -276,7 +276,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(7)}
               >
                 <div className="flex flex-row">
@@ -293,7 +293,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(8)}
               >
                 <div className="flex flex-row">
@@ -309,7 +309,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(9)}
               >
                 <div className="flex flex-row">
@@ -326,7 +326,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(10)}
               >
                 <div className="flex flex-row">
@@ -355,7 +355,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(11)}
               >
                 <div className="flex flex-row">
@@ -377,7 +377,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(12)}
               >
                 <div className="flex flex-row">
@@ -410,7 +410,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(13)}
               >
                 <div className="flex flex-row">
@@ -428,7 +428,7 @@ const Courses = () => {
                 </div>
               </div>
               <div
-                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl"
+                className="p-4 mb-6 border-4 border-gray-200 text-gray-2 w-full text-xl rounded-lg"
                 onClick={() => setFaq(14)}
               >
                 <div className="flex flex-row">

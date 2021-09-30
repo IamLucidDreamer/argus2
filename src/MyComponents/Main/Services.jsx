@@ -125,11 +125,11 @@ const Services = () => {
             <div className={row === 1 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
               <div className={row === 1 ? "block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                    <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                      GATED COMMUNITY
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      GATED COMMUNITY SECURITY
                     </h2>
-                    <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                       <div className=" w-full xl:w-8/12 text-left">
                         <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                           Our security team makes sure that only vehicles and
@@ -159,13 +159,13 @@ const Services = () => {
             <div className={row === 2 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
               <div className={row === 2 ? "block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                    <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                      CONSTRUCTION
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      CONSTRUCTION SECURITY
                     </h2>
-                    <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                       <div className=" w-full xl:w-8/12 text-left">
-                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                        <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
                           What is a construction security guard?
                         </p>
                         <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
@@ -201,13 +201,13 @@ const Services = () => {
             <div className={row === 3 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
               <div className={row === 3 ? "block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                    <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
                       LOSS PREVENTION
                     </h2>
-                    <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                       <div className="w-full xl:w-8/12 text-left">
-                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                        <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
                           What is Loss prevention?
                         </p>
                         <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
@@ -321,13 +321,13 @@ const Services = () => {
             <div className={row === 4 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
               <div className={row === 4 ? "block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                    <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                      Residential
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      RESIDENTIAL SECURITY
                     </h2>
-                    <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                       <div className=" w-full xl:w-8/12 text-left">
-                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                        <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
                           Why us?
                         </p>
                         <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
@@ -362,11 +362,11 @@ const Services = () => {
             <div className={row === 5 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
               <div className={row === 5 ? "block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                    <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                      CORPORATE
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      CORPORATE SECURITY
                     </h2>
-                    <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                       <div className=" w-full xl:w-8/12 text-left">
                         <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                           Corporate security guards working in the retail industry
@@ -399,11 +399,11 @@ const Services = () => {
             <div className={row === 6 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
               <div className={row === 6 ? "block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                    <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                      INDUSTRIAL
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      INDUSTRIAL SECURITY
                     </h2>
-                    <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                       <div className=" w-full xl:w-8/12 text-left">
                         <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                           A safe workspace is important for any industry. On site
@@ -513,15 +513,16 @@ const Services = () => {
           <div className={row === 7 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
             <div className={row === 7 ? "block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                  <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                    COMMERCIAL
+                <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                  <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                    COMMERCIAL SECURITY
                   </h2>
-                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
                     <div className=" w-full xl:w-8/12 text-left">
+                      <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
+                        Not satisfied with your current providers?
+                      </p>
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
-                        <span>Not satisfied with your current providers?</span>
-                        <br />
                         Our experienced Commercial Security team is capable of
                         reducing risks and protect assets. Commercial security
                         guards can protect your business from vandalism, fires,
@@ -551,12 +552,12 @@ const Services = () => {
           <div className={row === 8 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
             <div className={row === 8 ? "block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                  <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
-                    MOBILE
+                <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                  <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                    MOBILE SECURITY
                   </h2>
-                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
-                    <div className=" w-full xl:w-8/12 text-left">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                    <div className=" w-full xl:w-8/12 text-justify">
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         There are times when gates, locks, alarm and cameras may
                         not be enough for you to feel as though your premises are
@@ -589,13 +590,13 @@ const Services = () => {
           <div className={row === 9 ? "transition-all opacity-100 duration-700" : "transition-all opacity-0 duration-700"}>
             <div className={row === 9 ? "block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
-                <div className="rounded-2xl bg-client  px-4 sm:px-12 pt-4 pb-0 sm:py-8">
-                  <h2 className="leading-tight text-2xl title-font font-bold text-gray-2 text-left mt-4 mb-6">
+                <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                  <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
                     EVENT SECURITY
                   </h2>
-                  <div className="flex flex-col xl:flex-row items-center xl:items-start justify-around">
-                    <div className=" w-full xl:w-8/12 text-left">
-                      <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                  <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                    <div className=" w-full xl:w-8/12 text-justify">
+                      <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
                         Hosting an Event?
                       </p>
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
@@ -610,17 +611,12 @@ const Services = () => {
                       <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
                         We, monitor the event, make sure rules are being followed
                         and help provide a sense of protection for attendees and
-                        staff.
-                      </p>
-                      <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
-                        We, maintain order, direct foot traffic, help lost people,
-                        and assist in case of disturbances.
-                      </p>
-                      <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
-                        We, escort attendees out of the event, make sure people
+                        staff.We, maintain order, direct foot traffic, help lost people,
+                        and assist in case of disturbances. We, escort attendees out of the event, make sure people
                         don’t re-enter when they aren’t supposed to and assist
                         someone with health problems to a safe area.
                       </p>
+
                     </div>
                     <ServiceSlider images={images} />
                   </div>
