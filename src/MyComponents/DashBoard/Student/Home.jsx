@@ -1,13 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import SideNav from "./Components/SideNav";
-import ProfileBar from "./Components/ProfileBar";
-import TopElement from "./Components/TopElement";
-import Form1 from "./Components/Form1";
-import Form2 from "./Components/Form2";
-import Form3 from "./Components/Form3";
-import Progress from "./Components/Progress";
+import { SideNav } from "./Components/SideNav";
+import { TopBar } from "./Components/TopBar";
 
 export default function Home() {
-  return <div className="w-full flex flew-col md:flex-row"></div>;
+  return (
+    <div className="w-full flex flew-col md:flex-row">
+      <div className="w-2/12 md:w-72 xl:w-96 bg-red-1 shadow-button-inner">
+        <SideNav />
+      </div>
+      <div className="w-full bg-client">
+        <TopBar />
+      </div>
+    </div>
+  );
 }
