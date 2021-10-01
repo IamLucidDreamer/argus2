@@ -92,7 +92,7 @@ module.exports = {
         "button-shadow-2": "3px 3px 6px 1px rgba(0, 0, 0, 0.16)",
         "button-shadow-3": "3px 3px 6px 1px rgba(0, 0, 0, 0.08)",
         "button-inner": "inset -3px -3px 6px 1px rgba(0, 0, 0, 0.20)",
-        "button-inner-1":"inset 0px -3px 6px 1px rgba(0, 0, 0, 0.20)",
+        "button-inner-1":"inset 0px -3px 6px 1px rgba(0, 0, 0, 0.1)",
         speech: "5px 5px 10px 1px rgba(0, 0, 0, 0.16)",
         "speech-2": "5px 3px 10px 1px rgba(0, 0, 0, 0.08)",
         services: "inset -3px -3px 10px 1px rgba(0, 0, 0, 0.30)",
