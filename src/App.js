@@ -4,7 +4,7 @@ import "./MyComponents/Components/FontAwesomeIcons";
 import AdminRoute from "./MyComponents/DashBoard/Admin/Components/AdminRoutes";
 import StudentRoutes from "./MyComponents/DashBoard/Student/Components/StudentRoutes";
 
-import Covid from "./MyComponents/Main/Covid"
+import Covid from "./MyComponents/Main/Covid";
 import Footer from "./MyComponents/Partials/Footer.jsx";
 import Home from "./MyComponents/Main/Home.jsx";
 import SignUp from "./MyComponents/User/SignUp.jsx";
@@ -25,8 +25,8 @@ import HarassementPolicy from "./MyComponents/Main/HarassementPolicy";
 import Personell from "./MyComponents/Main/Personell";
 import ScrollToTop from "./Functions/ScrollToTop";
 
-import SignupForStudents from "./MyComponents/DashBoard/Student/Signup"
-import LoginForStudent from "./MyComponents/DashBoard/Student/Login"
+import SignupForStudents from "./MyComponents/DashBoard/Student/Signup";
+import LoginForStudent from "./MyComponents/DashBoard/Student/Login";
 import StudentHome from "./MyComponents/DashBoard/Student/Home.jsx";
 import StudentCalendar from "./MyComponents/DashBoard/Student/Calendar.jsx";
 import StudentCourse from "./MyComponents/DashBoard/Student/PurchaseCourse.jsx";
@@ -88,9 +88,10 @@ function App() {
           <HomeRoute path="/harassementpolicy" component={HarassementPolicy} />
           <HomeRoute path="/personell" component={Personell} />
 
-
-
-          <HomeRoute path="/dashboard/student/signup" component={SignupForStudents} />
+          <HomeRoute
+            path="/dashboard/student/signup"
+            component={SignupForStudents}
+          />
           <StudentRoutes
             path="/dashboard/student/home"
             component={StudentHome}
@@ -111,8 +112,6 @@ function App() {
             path="/dashboard/student/contact"
             component={StudentContact}
           />
-
-
 
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />
           <AdminRoute path="/dashboard/admin/home" component={AdminHome} />

@@ -11,7 +11,7 @@ const ProfileBar = () => {
         className="p-2 text-l text-black font-bold ml-auto md:mr-auto md:ml-10"
         onClick={() => {
           signout();
-          history.push("/signup");
+          history.push("/dashboard/student/signup");
         }}
       >
         Logout

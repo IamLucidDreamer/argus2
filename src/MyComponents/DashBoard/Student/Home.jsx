@@ -9,9 +9,5 @@ import Form3 from "./Components/Form3";
 import Progress from "./Components/Progress";
 
 export default function Home() {
-  return (
-    <div className="w-full flex flew-col md:flex-row">
-      
-    </div>
-  );
+  return <div className="w-full flex flew-col md:flex-row"></div>;
 }

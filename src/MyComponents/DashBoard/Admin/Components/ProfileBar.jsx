@@ -10,7 +10,7 @@ export default function ProfileBar() {
       <button
         onClick={() => {
           signout();
-          history.push("/dashboard/admin/login");
+          history.push("/dashboard/student/signup");
         }}
         className="p-2 text-l text-black font-bold ml-auto md:mr-auto md:ml-10"
       >

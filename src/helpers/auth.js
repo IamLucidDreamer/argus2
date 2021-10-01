@@ -9,18 +9,11 @@ export const signup = async (user) => {
         "Content-Type": "application/JSON",
       },
     })
-    .then((response) => {
-      console.log(response);
-      return "hi";
-    })
-    .catch((err) => {
-      console.log(err);
-      return "hi";
-    });
+    .then((response) => {})
+    .catch((err) => {});
 };
 
 export const signin = (user) => {
-  console.log(JSON.stringify(user));
   return fetch(`${API}/signin`, {
     method: "POST",
     headers: {
@@ -32,7 +25,7 @@ export const signin = (user) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {});
 };
 
 export const aunthenticate = (user, next) => {

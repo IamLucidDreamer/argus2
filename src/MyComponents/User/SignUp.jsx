@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import logo from "./../../argus website/PNG/Logo Vectors.png";
-import Header from "../Partials/Header";
-import Header2 from "../Partials/Header2";
-import MobileHeader from "../Partials/MobileHeader";
-import Stickynav from "../Partials/Stickynav";
 import { useFormik } from "formik";
 import Alert from "../Components/Alert";
 import axiosInstance from "../../helpers/axiosInstance";
+import { aunthenticate } from "../../helpers/auth";
+import { useHistory } from "react-router";
+import Loader from "react-loader-spinner";
 
 const validate = (values) => {
   const errors = {};
@@ -26,6 +25,9 @@ const validate = (values) => {
 };
 
 const SignUp = () => {
+  const history = useHistory();
+  const [loading, setLoading] = useState(false);
+
   const [showAlert, setShowAlert] = useState({
     show: false,
     message: "",
@@ -39,22 +41,19 @@ const SignUp = () => {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
+      setLoading(true);
       axiosInstance
-        .post(`/signup`, values, {
-          headers: {
-            Accept: "application/JSON",
-            "Content-Type": "application/JSON",
-          },
-        })
-        .then((response) => {
-          setShowAlert({
-            show: true,
-            message: "Registered successfully",
-            success: true,
+        .post(`/signup`, values)
+        .then(() => {
+          axiosInstance.post("/signin", values).then((response) => {
+            aunthenticate(response.data, () => {});
+            history.push("/dashboard/student/home");
+            setLoading(false);
+            resetForm();
           });
-          resetForm();
         })
         .catch((err) => {
+          setLoading(false);
           setShowAlert({
             show: true,
             message: err.response.data.error,
@@ -67,11 +66,6 @@ const SignUp = () => {
 
   return (
     <div>
-      <Header />
-      <Header2 />
-      <MobileHeader />
-      <Stickynav />
-
       <div className="p-20 h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center bg-hero">
         <div className="content text-3xl text-center md:text-left lg:w-2/3">
           <h1 className="text-5xl text-gray-700 font-bold">Argus Security</h1>
@@ -117,7 +111,19 @@ const SignUp = () => {
               className="w-1/2 bg-red-700 text-white p-3 rounded-lg font-semibold text-lg mt-3"
               type="submit"
             >
-              Next
+              {loading ? (
+                <div className="w-full flex items-center justify-center">
+                  <Loader
+                    type="TailSpin"
+                    color="lightgray"
+                    height={40}
+                    width={40}
+                    radius={0}
+                  />
+                </div>
+              ) : (
+                <>SignUp</>
+              )}
             </button>
             <p className="text-gray-900 font-bold text-center my-2">
               Already Registered?<span className="text-blue-500"> Log In</span>{" "}

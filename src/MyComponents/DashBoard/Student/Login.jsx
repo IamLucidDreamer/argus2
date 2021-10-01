@@ -7,6 +7,8 @@ import { aunthenticate } from "./../../../helpers/auth";
 import { useFormik } from "formik";
 import Alert from "../../Components/Alert";
 import axiosInstance from "../../../helpers/axiosInstance";
+import Loader from "react-loader-spinner";
+
 const validate = (values) => {
   const errors = {};
   if (!values.password) {
@@ -24,6 +26,7 @@ const validate = (values) => {
 
 const LogIn = ({ open, setOpen }) => {
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
 
   const [showAlert, setShowAlert] = useState({
     show: false,
@@ -38,15 +41,17 @@ const LogIn = ({ open, setOpen }) => {
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
+      setLoading(true);
       await axiosInstance
         .post(`/signin`, values)
         .then((response) => {
+          setLoading(false);
           aunthenticate(response.data, () => {});
-          console.log(response);
           history.push("/dashboard/student/home");
           resetForm();
         })
         .catch((err) => {
+          setLoading(false);
           setShowAlert({
             show: true,
             message: err.response.data.error,
@@ -108,13 +113,32 @@ const LogIn = ({ open, setOpen }) => {
                 className="w-1/2 bg-red-700 text-white p-3 rounded-lg font-semibold text-lg mt-3"
                 type="submit"
               >
-                Login
+                {loading ? (
+                  <div className="w-full flex items-center justify-center">
+                    <Loader
+                      type="TailSpin"
+                      color="white"
+                      height={28}
+                      width={28}
+                      radius={0}
+                    />
+                  </div>
+                ) : (
+                  <>Login</>
+                )}
               </button>
               <p className="text-gray-900 font-bold text-center my-2">
                 Not yet Registered ?
-                <Link to="/dashboard/student/signup">
-                  <span className="text-blue-500"> Register</span>
-                </Link>
+                <span
+                  onClick={() => {
+                    history.push("/dashboard/student/signup");
+                    setOpen(false);
+                  }}
+                  className="text-blue-500 cursor-pointer"
+                >
+                  {" "}
+                  Register
+                </span>
               </p>
             </form>
           </div>
