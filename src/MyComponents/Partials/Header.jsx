@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Logo from "./../../argus website/SVG/Logowith shadow.svg";
 import { Link } from "react-router-dom";
 import Login from "../DashBoard/Student/Login";
+import { isAuthenticated } from "../../helpers/auth";
+import { useHistory } from "react-router";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const history = useHistory();
 
   return (
     <div className="shadow-lg sticky">
@@ -36,7 +39,13 @@ export default function Header() {
               <nav className="flex flex-row items-center">
                 <button
                   open={open}
-                  onClick={() => setOpen(true)}
+                  onClick={() => {
+                    if (isAuthenticated().user?.role === 1) {
+                      history.push("/dashboard/student/home");
+                    } else {
+                      setOpen(true);
+                    }
+                  }}
                   className="text-white hover:bg-white font-medium xl:font-bold text-base hover:shadow-button-inner border-4 border-double rounded-lg px-1.5 xl:px-2.5 py-3.5 mr-3 2xl:mr-8  hover:text-red-1"
                 >
                   Student Portal
