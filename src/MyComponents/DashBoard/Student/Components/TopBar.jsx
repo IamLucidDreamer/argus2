@@ -5,7 +5,7 @@ export const TopBar = () => {
   return (
     <div className="">
 
-    <div className="rounded-2xl bg-red-1 pt-3 pb-16 md:py-3 mx-2 mt-2 flex flex-col md:flex-row -mb-12 shadow-button-inner">
+    <div className="rounded-2xl bg-red-1 pt-3 pb-16 md:py-3 mx-2 lg:mx-6 mt-2 flex flex-col md:flex-row -mb-12 shadow-button-inner">
       
       <div className="md:ml-auto flex justify-around">
         <button className="inline-block mx-2 md:mx-4">
