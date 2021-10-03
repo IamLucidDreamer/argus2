@@ -1,12 +1,12 @@
-import { API } from "../api";
-import axiosInstance from "./axiosInstance";
+import { API } from '../api';
+import axiosInstance from './axiosInstance';
 
 export const signup = async (user) => {
   await axiosInstance
     .post(`${API}/signup`, user, {
       headers: {
-        Accept: "application/JSON",
-        "Content-Type": "application/JSON",
+        Accept: 'application/JSON',
+        'Content-Type': 'application/JSON',
       },
     })
     .then((response) => {})
@@ -15,10 +15,10 @@ export const signup = async (user) => {
 
 export const signin = (user) => {
   return fetch(`${API}/signin`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      Accept: "application/JSON",
-      "Content-Type": "application/JSON",
+      Accept: 'application/JSON',
+      'Content-Type': 'application/JSON',
     },
     body: JSON.stringify(user),
   })
@@ -28,20 +28,20 @@ export const signin = (user) => {
     .catch((err) => {});
 };
 
-export const aunthenticate = (user, next) => {
+export const aunthenticate = (data, next) => {
   if (window !== undefined) {
-    localStorage.setItem("jwt", JSON.stringify(user));
+    localStorage.setItem('jwt', JSON.stringify(data));
     next();
   }
 };
 
 export const signout = () => {
-  if (window !== "undefined") {
-    localStorage.removeItem("jwt");
+  if (window !== 'undefined') {
+    localStorage.removeItem('jwt');
   }
 
-  return axiosInstance("/signout")
-    .then(() => console.log("Signout Sucessfully!"))
+  return axiosInstance('/signout')
+    .then(() => console.log('Signout Sucessfully!'))
     .catch((err) => console.log(err));
 };
 
@@ -49,8 +49,8 @@ export const isAuthenticated = () => {
   if (window === undefined) {
     return false;
   }
-  if (localStorage.getItem("jwt")) {
-    const token = JSON.parse(localStorage.getItem("jwt"));
+  if (localStorage.getItem('jwt')) {
+    const token = JSON.parse(localStorage.getItem('jwt'));
     return token;
   } else {
     return false;
