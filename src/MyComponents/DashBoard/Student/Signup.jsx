@@ -141,7 +141,6 @@ const SignUp = ({ setOpen }) => {
                 </div>
               )}
             />
-            <div>Or</div>
             <FacebookLogin
               appId="2085575261607587"
               callback={responseFacebook}
@@ -151,6 +150,7 @@ const SignUp = ({ setOpen }) => {
                 </div>
               )}
             />
+             <div>Or</div>
             <input
               className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
               type="email"

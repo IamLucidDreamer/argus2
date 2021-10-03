@@ -133,7 +133,26 @@ const LogIn = ({ open, setOpen }) => {
                 <Alert alert={showAlert} rmAlert={setShowAlert} />
               ) : null}
               <img src={logo} alt="Logo" className="w-20 mb-3" />
-
+              <GoogleLogin
+                clientId="687463143304-kpg02h4gpk2ul6a4fk3fnsbpp1hg241i.apps.googleusercontent.com"
+                buttonText="Login with Google"
+                onSuccess={googleSuccess}
+                onFailure={googleFailure}
+                cookiePolicy={'single_host_origin'}
+                render={(renderProps) => (
+                  <GoogleButton onClick={renderProps.onClick} />
+                )}
+              />
+              <FacebookLogin
+                appId="2085575261607587"
+                callback={responseFacebook}
+                render={(renderProps) => (
+                  <div>
+                    <FacebookLoginButton onClick={renderProps.onClick} />
+                  </div>
+                )}
+              />
+              <div>Or</div>
               <input
                 className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
                 type="email"
@@ -176,26 +195,6 @@ const LogIn = ({ open, setOpen }) => {
                   <>Login</>
                 )}
               </button>
-              <GoogleLogin
-                clientId="687463143304-kpg02h4gpk2ul6a4fk3fnsbpp1hg241i.apps.googleusercontent.com"
-                buttonText="Login with Google"
-                onSuccess={googleSuccess}
-                onFailure={googleFailure}
-                cookiePolicy={'single_host_origin'}
-                render={(renderProps) => (
-                  <GoogleButton onClick={renderProps.onClick} />
-                )}
-              />
-              <div>Or</div>
-              <FacebookLogin
-                appId="2085575261607587"
-                callback={responseFacebook}
-                render={(renderProps) => (
-                  <div>
-                    <FacebookLoginButton onClick={renderProps.onClick} />
-                  </div>
-                )}
-              />
               <p className="text-gray-900 font-bold text-center my-2">
                 Not yet Registered ?
                 <span
