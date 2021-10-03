@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import Logo from "./../../argus website/SVG/Logowith shadow.svg";
-import { Link } from "react-router-dom";
-import Login from "../DashBoard/Student/Login";
-import { isAuthenticated } from "../../helpers/auth";
-import { useHistory } from "react-router";
+import React, { useState } from 'react';
+import Logo from './../../argus website/SVG/Logowith shadow.svg';
+import { Link } from 'react-router-dom';
+import Login from '../DashBoard/Student/Login';
+import { isAuthenticated } from '../../helpers/auth';
+import { useHistory } from 'react-router';
 
-export default function Header() {
-  const [open, setOpen] = useState(false);
+export default function Header({ open, setOpen }) {
   const history = useHistory();
 
   return (
@@ -40,8 +39,8 @@ export default function Header() {
                 <button
                   open={open}
                   onClick={() => {
-                    if (isAuthenticated().user?.role === 1) {
-                      history.push("/dashboard/student/home");
+                    if (isAuthenticated()) {
+                      history.push('/dashboard/student/home');
                     } else {
                       setOpen(true);
                     }

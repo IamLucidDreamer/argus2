@@ -23,12 +23,15 @@ const StudentRoutes = ({ component: Component, ...rest }) => {
             </div>
           </>
         ) : (
-          <Redirect
-            to={{
-              pathname: '/signup',
-              state: { from: props.location },
-            }}
-          />
+          <>
+            {console.log(isAuthenticated().user?.role === 1)}
+            <Redirect
+              to={{
+                pathname: '/dashboard/student/signup',
+                state: { from: props.location },
+              }}
+            />
+          </>
         )
       }
     />
