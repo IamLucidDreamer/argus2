@@ -1,5 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-export default function Calender() {
-  return <div className="">calendar</div>;
+const Calendar = () => {
+  return (
+    <div>
+      Hello World
+    </div>
+  )
 }
+
+export default Calendar;
