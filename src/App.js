@@ -132,7 +132,7 @@ function App() {
             component={AdminContactControl}
           />
         </switch>
-        <Footer />
+  
       </div>
     </Router>
   );

@@ -6,7 +6,7 @@ import SideLine from "../../Components/SideLine";
 export default function Contact() {
   return (
     <div className="rounded-2xl max-w-1200 mx-8 2xl:mx-auto my-4 bg-white p-4 shadow-button-shadow-3">
-      <div className="flex flex-col md:flex-row items-start mt-14 ">
+      <div className="flex flex-col md:flex-row items-start p-5">
             <div className="p-2 md:p-0 md:pr-6 md:w-1/3 flex flex-col items-start text-lg font-medium text-gray-2">
               <div className="flex flex-row items-stretch w-full mb-6">
                 <SideLine />
@@ -21,7 +21,7 @@ export default function Contact() {
                 in responding to your message.{" "}
               </p>
               <hr class="border-1 border-gray-2 w-full mb-6" />
-              <div className="text-lg md:text-sm lg:text-lg font-medium">
+              <div className="text-xs md:text-sm lg:text-lg font-medium">
                 <CompanyContact />
               </div>
             </div>

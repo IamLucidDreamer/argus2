@@ -16,7 +16,7 @@ const StudentRoutes = ({ component: Component, ...rest }) => {
               <div className="w-2/12 md:w-72 xl:w-96 bg-red-1 shadow-button-inner">
                 <SideNav />
               </div>
-              <div className="w-full bg-client">
+              <div className="w-full bg-dashboard-bg">
                 <TopBar />
                 <Component {...props} />
               </div>

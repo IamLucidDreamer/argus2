@@ -23,6 +23,7 @@ module.exports = {
         logincar: "url(argus website/PNG/2. Hero box.png)",
         handcuffs: "url(argus website/SVG/9. Hancuffs.svg)",
         triangles: "url(argus website/SVG/Know your partner triangles.svg)",
+        "overlay-copy": "url(argus website/PNG/overlay copy.jpg)",
       }),
       colors: {
         "gray-1": "#F1F1F1",
@@ -33,6 +34,8 @@ module.exports = {
         hover: "#501616",
         client: "#e8eaee",
         "mobile-nav-border": "#707070",
+        "dashboard-bg": "#f5f5fb",
+        "bg-card":"#edeef1",
       },
       fontFamily: {
         "for-heading": [
