@@ -29,9 +29,10 @@ import SignupForStudents from './MyComponents/DashBoard/Student/Signup';
 import LoginForStudent from './MyComponents/DashBoard/Student/Login';
 import StudentHome from './MyComponents/DashBoard/Student/Home.jsx';
 import StudentCalendar from './MyComponents/DashBoard/Student/Calendar.jsx';
-import StudentCourse from './MyComponents/DashBoard/Student/PurchaseCourse.jsx';
-import StudentTraining from './MyComponents/DashBoard/Student/Training';
+import StudentPurchase from './MyComponents/DashBoard/Student/PurchaseCourse.jsx';
+import StudentCourse from './MyComponents/DashBoard/Student/Training';
 import StudentContact from './MyComponents/DashBoard/Student/Contact';
+import StudentHistory from './MyComponents/DashBoard/Student/History';
 
 import LoginForAdmin from './MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin';
 import AdminHome from './MyComponents/DashBoard/Admin/Home';
@@ -101,8 +102,8 @@ function App() {
             component={StudentCalendar}
           />
           <StudentRoutes
-            path="/dashboard/student/training"
-            component={StudentTraining}
+            path="/dashboard/student/purchase"
+            component={StudentPurchase}
           />
           <StudentRoutes
             path="/dashboard/student/course"
@@ -111,6 +112,10 @@ function App() {
           <StudentRoutes
             path="/dashboard/student/contact"
             component={StudentContact}
+          />
+          <StudentRoutes
+            path="/dashboard/student/history"
+            component={StudentHistory}
           />
 
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />
