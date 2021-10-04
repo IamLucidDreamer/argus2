@@ -5,8 +5,8 @@ import SideLine from "../../Components/SideLine";
 
 export default function Contact() {
   return (
-    <div className="rounded-2xl max-w-1200 mx-8 2xl:mx-auto my-4 bg-white p-4 shadow-button-shadow-3">
-      <div className="flex flex-col md:flex-row items-start p-5">
+    <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white md:p-4 shadow-button-shadow-3">
+      <div className="flex flex-col md:flex-row items-start p-2 sm::p-5">
             <div className="p-2 md:p-0 md:pr-6 md:w-1/3 flex flex-col items-start text-lg font-medium text-gray-2">
               <div className="flex flex-row items-stretch w-full mb-6">
                 <SideLine />

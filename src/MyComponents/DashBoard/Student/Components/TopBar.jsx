@@ -7,7 +7,7 @@ export const TopBar = () => {
   return (
     <div className="">
 
-    <div className="pt-3 pb-16 md:py-3 flex flex-row">
+    <div className="py-3 flex flex-row">
       
       <div className="ml-auto flex justify-around">
         <button className="inline-block mx-2 md:mx-4 bg-gray-200 hover:bg-red-1 rounded-xl p-2 text-gray-3 hover:text-white">

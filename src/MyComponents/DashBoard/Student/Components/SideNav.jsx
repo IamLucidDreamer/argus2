@@ -7,7 +7,7 @@ import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
 
 export const SideNav = () => {
   return (
-    <div className="bg-red-1 bg-overlay-copy bg-no-repeat bg-left bg-cover bg-blend-multiply">
+    <div className="bg-red-1 bg-overlay-copy bg-no-repeat bg-left bg-cover bg-blend-multiply min-h-screen">
       <div className="pt-8">
         <Link to="/">
           <img src={Logo} alt="Argus Logo" className="w-32 mx-auto mb-8" />
@@ -42,7 +42,7 @@ export const SideNav = () => {
             <span className="hidden md:block">Calender</span>
           </Link>
           <Link
-            to="/dashboard/student/home"
+            to="/dashboard/student/purchase"
             className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
@@ -80,7 +80,7 @@ export const SideNav = () => {
             <span className="hidden md:block">Training</span>
           </Link>
           <Link
-            to="/dashboard/student/home"
+            to="/dashboard/student/history"
             className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
