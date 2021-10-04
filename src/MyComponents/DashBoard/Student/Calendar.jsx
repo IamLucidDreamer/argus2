@@ -29,8 +29,8 @@ const Calendar = () => {
         ]}
         resizable
         defaultView="month"
-        style={{ height: '80vh' }}
-        className="p-2 lg:p-10"
+        style={{ height: '85vh', backgroundColor: 'white' }}
+        className="mx-2 sm:mb-0 lg:mx-10 px-2 py-3 rounded-2xl shadow-button-shadow-3"
       />
     </div>
   );
