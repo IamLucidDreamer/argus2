@@ -31,7 +31,7 @@ const Calendar = () => {
         resizable
         defaultView="month"
         style={{ height: '85vh', backgroundColor: 'white' }}
-        className="mx-2 sm:mb-0 lg:mx-10 px-2 py-3 rounded-2xl shadow-button-shadow-3"
+        className="mx-2 sm:mb-0 lg:mx-10 px-2 md:px-6 py-6 rounded-2xl shadow-button-shadow-3"
       />
     </div>
   );

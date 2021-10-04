@@ -15,7 +15,7 @@ export const SideNav = () => {
         <nav className="w-full text-base font-medium">
           <Link
             to="/dashboard/student/home"
-            className="group flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner"
+            className="group flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <img
