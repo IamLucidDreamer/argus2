@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfilePicture from './../../../../argus website/PNG/IMG_0118.png';
-import { link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { clearStorage } from '../../../../context/actions/authActions/setStorageAction';
 

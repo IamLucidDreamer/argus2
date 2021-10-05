@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from './../../../argus website/PNG/Logo Vectors.png';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // eslint-disable-next-line no-unused-vars
 import { useFormik } from 'formik';

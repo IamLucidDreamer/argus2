@@ -75,10 +75,6 @@
   padding: 5px;
 }
 
-.rbc-row-segment {
-  /* height: 250%; */
-}
-
 .rbc-row-segment > .rbc-event {
   height: 200%;
 }

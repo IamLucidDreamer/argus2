@@ -3,7 +3,7 @@ import {
   Calendar as StudentCalendar,
   momentLocalizer,
 } from 'react-big-calendar';
-import moment, { months } from 'moment';
+import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './calendar.css';
 
