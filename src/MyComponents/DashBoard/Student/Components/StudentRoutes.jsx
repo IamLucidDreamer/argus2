@@ -27,7 +27,7 @@ const StudentRoutes = ({ component: Component, ...rest }) => {
               }}
             />
           ) : (
-            <div className="w-screen flex flew-col md:flex-row overflow-x-hidden">
+            <div className="w-full flex flew-col md:flex-row ">
               <div className="bg-red-1 shadow-button-inner">
                 <SideNav />
               </div>
