@@ -7,25 +7,25 @@ export default function PurchaseCourse() {
   const address = useSelector((state) => state.contact.address);
 
   return (
-    <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 p-2 md:p-4">
+    <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
       <div className="font-for-para">
-          <div className="px-2 sm:px-8 lg:px-12 xl:px-0 max-w-1366 mx-auto">
-          <h1 className="text-3xl md:text-4xl text-center text-gray-3 font-bold mb-6">Purchase Course</h1>
+          <div className="px-2 md:px-0 xl:px-0 max-w-1366 mx-auto">
+          <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">PURCHASE COURSE</h1>
             <div className="flex flex-wrap">
               <div className="flex flex-col items-start">
                 <div className="flex flex-row items-stretch w-full mb-8">
                   <SideLine />
-                  <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                  <h1 className="leading-tight text-3xl font-bold text-gray-3">
                     Road to Success
                   </h1>
                 </div>
-                <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
+                <p className="leading-relaxed text-base font-medium text-gray-2 mb-6">
                   Argus Institute‘s Basic Security Training Course gives you
                   everything you need to prepare for your Ontario Security Guard
                   Licence test. No appointment is required. You may stop by
                   Monday to Friday from 10:00 A.M. until 6 P.M. to register.
                 </p>
-                <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
+                <p className="leading-relaxed text-base font-medium text-gray-2 mb-6">
                   You can also take advantage of our Online Learning Platform
                   that features SelfPaced Online Courses (SPOC), optional live
                   instructor-led sessions within our Virtual Training Room
@@ -35,28 +35,28 @@ export default function PurchaseCourse() {
 
                 <div className="flex flex-row items-stretch w-full mt-8 mb-6">
                   <SideLine />
-                  <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                  <h1 className="leading-tight text-3xl font-bold text-gray-3">
                     Basic Security Traning Course (online) $149.99
                   </h1>
                 </div>
-                <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
+                <p className="leading-relaxed text-base font-medium text-gray-2 mb-6">
                   You can take advantage of our Online Learning Platform that
                   features Self-Paced Online Courses (SPOC), optional live
                   instructor-led sessions within our Virtual Training Room
                   (VTR), and 8 hours of in-classroom First Aid/CPR Level C
                   certification training.
                 </p>
-                <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
+                <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
                   REGISTER
                 </button>
 
                 <div className="flex flex-row items-stretch w-full mt-8 mb-6">
                   <SideLine />
-                  <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                  <h1 className="leading-tight text-3xl font-bold text-gray-3">
                     Basic Security Training Course – (In-class room) $199.99
                   </h1>
                 </div>
-                <ul class="text-gray-2 font-medium text-lg mb-6">
+                <ul class="text-gray-2 font-medium text-base mb-6">
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Course
                     is five days (40 hours) Monday – Friday, 8:30am – 5:00pm
@@ -79,17 +79,17 @@ export default function PurchaseCourse() {
                     run weekly in Brampton.{" "}
                   </li>
                 </ul>
-                <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
+                <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
                   REGISTER
                 </button>
 
                 <div className="flex flex-row items-stretch w-full mt-8 mb-8">
                   <SideLine />
-                  <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                  <h1 className="leading-tight text-3xl font-bold text-gray-3">
                     Basic Security Training Course topics
                   </h1>
                 </div>
-                <ul className="text-gray-2 font-medium text-lg flex flex-col md:flex-row mb-6">
+                <ul className="text-gray-2 font-medium text-base flex flex-col md:flex-row mb-6">
                   <div className="">
                     <li className="flex flex-row items-start my-0.5">
                       <span className="text-red-1 font-bold mr-2">✓</span>{" "}
@@ -137,7 +137,7 @@ export default function PurchaseCourse() {
                 </ul>
                 <div className="flex flex-row items-stretch w-full mt-8 mb-8">
                   <SideLine />
-                  <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                  <h1 className="leading-tight text-3xl font-bold text-gray-3">
                     FAQ
                   </h1>
                 </div>
@@ -146,7 +146,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(1)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 1 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">1.</span>{" "}
                       Where do I take the test?
                     </p>
@@ -190,7 +190,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(2)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 2 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">2.</span> Is
                       there a website to answer my questions?
                     </p>
@@ -226,7 +226,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(3)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 3 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">3.</span> How
                       much does it cost?
                     </p>
@@ -254,7 +254,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(4)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 4 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">4.</span> Does
                       this fee include the cost of my license?
                     </p>
@@ -283,7 +283,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(5)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 5 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">5.</span>{" "}
                       Where do I take the training?
                     </p>
@@ -312,7 +312,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(6)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 6 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">6.</span> Is
                       everything included in the price of the course?
                     </p>
@@ -342,7 +342,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(7)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 7 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">7.</span> What
                       is the cost to the five days of training?
                     </p>
@@ -372,7 +372,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(8)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 8 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">8.</span> If I
                       have to take the test more than once, do I have to pay
                       again each time?
@@ -401,7 +401,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(9)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 9 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">9.</span> Do I
                       have to take the test each time my license is going to
                       expire?
@@ -431,7 +431,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(10)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 10 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">10.</span> Do
                       I have to take the test each time my license is going to
                       expire?How many questions are on the test?
@@ -472,7 +472,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(11)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 11 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">11.</span> How
                       much time is given to complete the test?
                     </p>
@@ -505,7 +505,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(12)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 12 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">12.</span>{" "}
                       When will I get back my test results?
                     </p>
@@ -553,7 +553,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(13)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 13 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">13.</span>{" "}
                       When is the expiry date on my license? What is the cost of
                       the license?
@@ -584,7 +584,7 @@ export default function PurchaseCourse() {
                   onClick={() => setFaq(14)}
                 >
                   <div className="flex flex-row">
-                    <p>
+                    <p className={faq === 14 ? "font-bold" : ""}>
                       <span className="text-red-1 font-bold mr-2">14.</span> I
                       am already certified in First Aid/CPR. Do I still need to
                       attend the CPR training day?
