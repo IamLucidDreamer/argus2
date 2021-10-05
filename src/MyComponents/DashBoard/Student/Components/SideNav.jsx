@@ -61,7 +61,7 @@ export const SideNav = () => {
             <span className="hidden md:block">Purchases</span>
           </Link>
           <Link
-            to="/dashboard/student/home"
+            to="/dashboard/student/course"
             className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
@@ -129,7 +129,7 @@ export const SideNav = () => {
           to="/"
           className="w-11/12 text-lg lg:text-2xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-10 sm:mt-0 hover:shadow-button-inner"
         >
-          Apply Now
+          APPLY NOW
         </Link>
       </div>
       <div className="block md:hidden mt-20">
