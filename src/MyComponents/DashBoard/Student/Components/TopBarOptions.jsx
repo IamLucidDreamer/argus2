@@ -1,9 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { signout } from '../../../../helpers/auth';
+import { clearStorage } from '../../../../context/actions/authActions/setStorageAction';
 
 function TopBarOptions({ options }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   return (
     <div
       className={`z-50 w-56 sm:w-64 absolute right-4 sm:right-10 md:right-4 top-17 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
@@ -27,8 +29,8 @@ function TopBarOptions({ options }) {
         </div>
         <div
           onClick={() => {
+            dispatch(clearStorage());
             history.push('/');
-            signout();
           }}
           className="flex items-center pl-6 py-3.5 hover:bg-red-1 hover:text-white cursor-pointer shadow-button-inner-1 rounded-xl bg-gray-200 mt-3"
         >

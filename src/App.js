@@ -50,9 +50,14 @@ import { getEOM } from './context/actions/adminActions/eomAction';
 import { getClientCarousel } from './context/actions/adminActions/clientsAction';
 import { getTeam } from './context/actions/adminActions/teamAction';
 import HomeRoute from './MyComponents/Main/homeRoutes';
+import { getToken } from './context/actions/authActions/setStorageAction';
+import { getUser } from './context/actions/authActions/getUserAction';
+import { useSelector } from 'react-redux';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getToken());
+    dispatch(getUser());
     dispatch(getContact());
     dispatch(getTestimonial());
     dispatch(getEOM());
@@ -137,7 +142,6 @@ function App() {
             component={AdminContactControl}
           />
         </switch>
-  
       </div>
     </Router>
   );

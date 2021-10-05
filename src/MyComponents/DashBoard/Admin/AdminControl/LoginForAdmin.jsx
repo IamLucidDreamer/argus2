@@ -1,22 +1,28 @@
-import React, { useState } from "react";
-import logo from "../../../../argus website/PNG/Logo Vectors.png";
-import { useHistory } from "react-router-dom";
-import Alert from "../../../Components/Alert";
+import React, { useState } from 'react';
+import logo from '../../../../argus website/PNG/Logo Vectors.png';
+import { useHistory } from 'react-router-dom';
+import Alert from '../../../Components/Alert';
 
 // eslint-disable-next-line no-unused-vars
-import { aunthenticate, signin } from "../../../../helpers/auth";
-import { useFormik } from "formik";
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import axiosInstance from '../../../../helpers/axiosInstance';
+import {
+  setToken,
+  setUserID,
+} from '../../../../context/actions/authActions/setStorageAction';
+import { setUser } from '../../../../context/actions/authActions/getUserAction';
 
 const validate = (values) => {
   const errors = {};
   if (!values.password) {
-    errors.password = "*Required";
+    errors.password = '*Required';
   }
 
   if (!values.email) {
-    errors.email = "*Required";
+    errors.email = '*Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+    errors.email = 'Invalid email address';
   }
 
   return errors;
@@ -24,25 +30,29 @@ const validate = (values) => {
 
 const LoginForAdmin = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
 
   const { getFieldProps, handleSubmit, errors } = useFormik({
     initialValues: {
-      password: "",
-      email: "",
+      password: '',
+      email: '',
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      signin(values)
+      axiosInstance
+        .post('/signin', values)
         .then((data) => {
-          aunthenticate(data, () => {});
+          dispatch(setToken(data?.data?.token));
+          dispatch(setUserID(data?.data?.user?._id));
+          dispatch(setUser(data.data.user));
           resetForm();
-          history.push("/dashboard/admin/home");
+          history.push('/dashboard/admin/home');
         })
         .catch((err) => {
           setShowAlert({
@@ -81,7 +91,7 @@ const LoginForAdmin = () => {
               className="w-full py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1"
               type="email"
               placeholder="Email"
-              {...getFieldProps("email")}
+              {...getFieldProps('email')}
             />
             {errors.email ? (
               <div className="w-full text-xs text-red-500">{errors.email}</div>
@@ -90,7 +100,7 @@ const LoginForAdmin = () => {
               className="w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1"
               type="password"
               placeholder="Password"
-              {...getFieldProps("password")}
+              {...getFieldProps('password')}
             />
             {errors.password ? (
               <div className="w-full text-xs text-red-500">

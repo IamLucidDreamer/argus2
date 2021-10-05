@@ -3,7 +3,7 @@ import {
   Calendar as StudentCalendar,
   momentLocalizer,
 } from 'react-big-calendar';
-import moment from 'moment';
+import moment, { months } from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './calendar.css';
 
@@ -20,18 +20,10 @@ const Calendar = () => {
             start: new Date(new Date().setHours(new Date().getHours() - 7)),
             end: new Date(new Date().setHours(new Date().getHours() - 4)),
           },
-          {
-            id: 1,
-            title: 'Today Event 2',
-            start: new Date(new Date().setHours(new Date().getHours() - 3)),
-            end: new Date(new Date().setHours(new Date().getHours() + 3)),
-            desc: 'hiihihih',
-          },
         ]}
         resizable
         defaultView="month"
-        style={{ height: '85vh', backgroundColor: 'white' }}
-        className="mx-2 sm:mb-0 lg:mx-10 px-2 py-3 rounded-2xl shadow-button-shadow-3"
+        className="student-calender mx-1 sm:mx-2 sm:mb-0 lg:mx-10 p-1 sm:p-4 rounded-2xl shadow-button-shadow-3"
       />
     </div>
   );

@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import Logo from "./../../argus website/SVG/Logowith shadow.svg";
-import { Link } from "react-router-dom";
-import CompanyContact from "../Components/CompanyContact";
-import Alert from "../Components/Alert";
-import { API } from "../../api";
-import axios from "axios";
-import { useFormik } from "formik";
+import React, { useState } from 'react';
+import Logo from './../../argus website/SVG/Logowith shadow.svg';
+import { Link } from 'react-router-dom';
+import CompanyContact from '../Components/CompanyContact';
+import Alert from '../Components/Alert';
+import { useFormik } from 'formik';
+import axiosInstance from '../../helpers/axiosInstance';
 
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
-    errors.email = "*Required";
+    errors.email = '*Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+    errors.email = 'Invalid email address';
   }
 
   return errors;
@@ -21,22 +20,22 @@ const validate = (values) => {
 const Footer = () => {
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
 
   const { getFieldProps, handleSubmit, errors } = useFormik({
     initialValues: {
-      email: "",
+      email: '',
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      await axios
-        .post(`${API}/subscription/save`, values)
+      await axiosInstance
+        .post(`/subscription/save`, values)
         .then((response) => {
           setShowAlert({
             show: true,
-            message: "Subscribed successfully",
+            message: 'Subscribed successfully',
             success: true,
           });
           resetForm();
@@ -60,11 +59,11 @@ const Footer = () => {
             <div className="w-full md:w-3/4 flex flex-wrap md:text-left text-center order-first mx-auto">
               <div className="lg:w-1/3 w-full md:px-8 lg:px-0 pt-4">
                 <Link to="/">
-                <img
-                  src={Logo}
-                  className="w-32 mx-auto lg:mx-0 my-2 transform hover:scale-105 duration-200"
-                  alt="Logo "
-                />
+                  <img
+                    src={Logo}
+                    className="w-32 mx-auto lg:mx-0 my-2 transform hover:scale-105 duration-200"
+                    alt="Logo "
+                  />
                 </Link>
                 <p className="text-white leading-loose text-center lg:text-left">
                   Your protection is Our Mission. Proudly serving business and
@@ -81,70 +80,70 @@ const Footer = () => {
                 </h2>
                 <nav className="list-none mb-10 text-left sn:text-center">
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/about" className="text-white  hover:text-red-1">
                       ➔ About
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link
                       to="/services"
                       className="text-white  hover:text-red-1"
                     >
                       ➔ Our Services
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/" className="text-white  hover:text-red-1">
                       ➔ Covid-19 Plan
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/" className="text-white  hover:text-red-1">
                       ➔ Organization Structure
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/jobs" className="text-white  hover:text-red-1">
                       ➔ Jobs
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/" className="text-white  hover:text-red-1">
                       ➔ Personnel
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link
                       to="/training"
                       className="text-white  hover:text-red-1"
                     >
                       ➔ Training
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link
                       to="/contact"
                       className="text-white  hover:text-red-1"
                     >
                       ➔ Contact Us
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link
                       to="/technology"
                       className="text-white  hover:text-red-1"
                     >
                       ➔ Technology
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                 </nav>
               </div>
@@ -154,76 +153,76 @@ const Footer = () => {
                 </h2>
                 <nav className="list-none mb-10 text-left sn:text-center">
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Gated Community Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Construction Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Parking Enforcement
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Residential Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Corporate Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Industrial Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Private Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Mobile Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                   <li className="my-0.5">
-                    {" "}
+                    {' '}
                     <Link to="/services">
                       <button className="text-white  hover:text-red-1">
                         ➔ Event Security
                       </button>
-                    </Link>{" "}
+                    </Link>{' '}
                   </li>
                 </nav>
               </div>
@@ -240,7 +239,8 @@ const Footer = () => {
                         NEWSLETTER
                       </h2>
                       <p className="text-white font-medium text-lg mt-2 text-center leading-relaxed">
-                        Signup to get our daily latest security news and updates.
+                        Signup to get our daily latest security news and
+                        updates.
                       </p>
                     </div>
                   </div>
@@ -253,7 +253,7 @@ const Footer = () => {
                       type="email"
                       className="w-full myt-4 mb-2 bg-white border border-gray-300 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       placeholder="Enter Email"
-                      {...getFieldProps("email")}
+                      {...getFieldProps('email')}
                     />
                     {errors.email ? (
                       <div className="w-full text-xs text-white text-left">

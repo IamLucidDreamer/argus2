@@ -1,16 +1,20 @@
-import React from "react";
-import { useHistory } from "react-router";
-import { signout } from "../../../../helpers/auth";
-import ProfilePicture from "./../../../../argus website/PNG/IMG_0118.png";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { clearStorage } from '../../../../context/actions/authActions/setStorageAction';
+import ProfilePicture from './../../../../argus website/PNG/IMG_0118.png';
 
 export default function ProfileBar() {
   const history = useHistory();
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   return (
     <div className="w-full my-10 flex flex-col">
       <button
         onClick={() => {
-          signout();
-          history.push("/dashboard/student/signup");
+          dispatch(clearStorage());
+          history.push('/dashboard/student/signup');
         }}
         className="p-2 text-l text-black font-bold ml-auto md:mr-auto md:ml-10"
       >
@@ -22,8 +26,8 @@ export default function ProfileBar() {
           alt="Profile"
           className="mx-auto w-32 h-32 m-4 rounded-full border-4 border-red-1"
         />
-        <h1 className="title-font font-bold text-gray-900">Name Here</h1>
-        <p className="text-sm title-font text-gray-2">Profile ID</p>
+        <h1 className="title-font font-bold text-gray-900">{user?.name}</h1>
+        <p className="text-sm title-font text-gray-2">{user?._id}</p>
       </div>
 
       <div className="my-10 ml-8">

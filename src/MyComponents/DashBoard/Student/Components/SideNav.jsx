@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import icon1 from "./../../../../argus website/SVG/L1.svg";
-import hiring from "./../../../../argus website/SVG/We are hiring.svg";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import icon1 from './../../../../argus website/SVG/L1.svg';
+import hiring from './../../../../argus website/SVG/We are hiring.svg';
 
-import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
+import Logo from './../../../../argus website/SVG/Logowith shadow.svg';
 
 export const SideNav = () => {
   return (
@@ -32,11 +32,15 @@ export const SideNav = () => {
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <svg
-                className="w-7 h-7"s
+                className="w-7 h-7"
+                s
                 viewBox="-32 0 512 512"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M124 328c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H124zm324-216v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z" fill="currentColor"/>
+                <path
+                  d="M124 328c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H124zm324-216v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
+                  fill="currentColor"
+                />
               </svg>
             </span>
             <span className="hidden md:block">Calender</span>
@@ -122,7 +126,7 @@ export const SideNav = () => {
       <div className="hidden w-10/12 md:flex flex-col items-center text-center px-2 py-4 bg-gray-200 mt-36 mb-8 mx-auto rounded-xl">
         <img src={hiring} alt="" className="w-36 -mt-24 mb-2 " />
         <h1 className="text-sm lg:text-base leading-relaxed font-medium text-gray-2 p-1 mb-4">
-          Start your career with{" "}
+          Start your career with{' '}
           <span className="font-bold">Argus Security</span> Today
         </h1>
         <Link

@@ -1,14 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 
 const Mobilenav = ({ open, setOpen }) => {
+  const history = useHistory();
+  const user = useSelector((state) => state.user.user);
   return (
     <>
       <div
         className={`z-40 absolute ${
           open
-            ? "transition-all opacity-100 duration-500 transform scale-x-100 origin-right"
-            : "transition-all opacity-0 duration-500 transform scale-x-0 origin-right"
+            ? 'transition-all opacity-100 duration-500 transform scale-x-100 origin-right'
+            : 'transition-all opacity-0 duration-500 transform scale-x-0 origin-right'
         }`}
       >
         <div className="min-h-screen h-full w-screen flex flex-row font-for-para">
@@ -69,11 +72,19 @@ const Mobilenav = ({ open, setOpen }) => {
                 </div>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
-                <Link to="/about" onClick={() => setOpen(false)}>
+                <div
+                  onClick={() => {
+                    if (user?.role === 1) {
+                      history.push('/dashboard/student/home');
+                    } else {
+                      setOpen(true);
+                    }
+                  }}
+                >
                   <div className="border-l-8 py-2.5 pl-10 border-opacity-0 hover:border-opacity-100 hover:bg-black font-bold">
                     STUDENT PORTAL
                   </div>
-                </Link>
+                </div>
               </li>
               <li className="border-b border-mobile-nav-border hover:border-white text-white">
                 <Link to="/about" onClick={() => setOpen(false)}>

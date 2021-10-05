@@ -1,11 +1,10 @@
-import { isAuthenticated } from "../../../helpers/auth";
+import axiosInstance from '../../../helpers/axiosInstance';
 
-const { default: axiosInstance } = require("../../../helpers/axiosInstance");
 const {
   SET_CONTACTS,
   CONTACT_ALERT,
   CONTACT_LOADING,
-} = require("../../actionTypes");
+} = require('../../actionTypes');
 
 const setcontact = (data) => ({
   type: SET_CONTACTS,
@@ -25,7 +24,7 @@ const loading = (data) => ({
 const getContact = () => {
   return (dispatch) => {
     axiosInstance
-      .get("/contact/get")
+      .get('/contact/get')
       .then((response) => {
         dispatch(setcontact(response.data));
       })
@@ -36,9 +35,9 @@ const getContact = () => {
 const updateContact = (data) => {
   return (dispatch) => {
     dispatch(loading(true));
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
-      .put("/contact/update", data, {
+      .put('/contact/update', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,15 +46,15 @@ const updateContact = (data) => {
         dispatch(
           contactAlert({
             success: true,
-            message: "Contact updated successfully",
-          })
+            message: 'Contact updated successfully',
+          }),
         );
         dispatch(setcontact(data));
         dispatch(loading(false));
       })
       .catch((error) => {
         dispatch(
-          contactAlert({ success: false, message: "Error updating contact" })
+          contactAlert({ success: false, message: 'Error updating contact' }),
         );
         dispatch(loading(false));
       });

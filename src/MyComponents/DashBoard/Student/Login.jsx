@@ -3,7 +3,6 @@ import logo from './../../../argus website/PNG/Logo Vectors.png';
 import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // eslint-disable-next-line no-unused-vars
-import { aunthenticate } from './../../../helpers/auth';
 import { useFormik } from 'formik';
 import Alert from '../../Components/Alert';
 import axiosInstance from '../../../helpers/axiosInstance';
@@ -12,6 +11,15 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import GoogleButton from 'react-google-button';
+import { useDispatch } from 'react-redux';
+import {
+  isAuthenticated,
+  setUser,
+} from '../../../context/actions/authActions/getUserAction';
+import {
+  setToken,
+  setUserID,
+} from '../../../context/actions/authActions/setStorageAction';
 
 const validate = (values) => {
   const errors = {};
@@ -31,6 +39,7 @@ const validate = (values) => {
 const LogIn = ({ open, setOpen }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const [showAlert, setShowAlert] = useState({
     show: false,
@@ -50,7 +59,10 @@ const LogIn = ({ open, setOpen }) => {
         .post(`/signin`, values)
         .then((response) => {
           setLoading(false);
-          aunthenticate(response.data, () => {});
+          dispatch(setUser(response?.data?.user));
+          dispatch(setUserID(response?.data?.user?._id));
+          dispatch(setToken(response?.data?.token));
+          dispatch(isAuthenticated('true'));
           history.push('/dashboard/student/home');
           resetForm();
         })
@@ -67,10 +79,15 @@ const LogIn = ({ open, setOpen }) => {
   });
 
   const googleSuccess = async (res) => {
+    setLoading(true);
     await axiosInstance
       .post('/googlelogin', { idToken: res.tokenId })
       .then((response) => {
-        aunthenticate(response.data, () => {});
+        setLoading(false);
+        dispatch(setUser(response?.data?.user));
+        dispatch(setUserID(response?.data?.user?._id));
+        dispatch(setToken(response?.data?.token));
+        dispatch(isAuthenticated('true'));
         history.push('/dashboard/student/home');
       })
       .catch((err) => {
@@ -84,6 +101,7 @@ const LogIn = ({ open, setOpen }) => {
   };
 
   const googleFailure = () => {
+    setLoading(false);
     setShowAlert({
       show: true,
       message: 'Login failed try again',
@@ -91,14 +109,18 @@ const LogIn = ({ open, setOpen }) => {
     });
   };
   const responseFacebook = async (res) => {
-    console.log(res);
+    setLoading(true);
     await axiosInstance
       .post('/facebooklogin', {
         userId: res.userID,
         access_token: res.accessToken,
       })
       .then((response) => {
-        aunthenticate(response.data, () => {});
+        setLoading(false);
+        dispatch(setUser(response?.data?.user));
+        dispatch(setUserID(response?.data?.user?._id));
+        dispatch(setToken(response?.data?.token));
+        dispatch(isAuthenticated('true'));
         history.push('/dashboard/student/home');
       })
       .catch((err) => {

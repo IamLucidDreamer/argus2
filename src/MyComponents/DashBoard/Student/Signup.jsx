@@ -3,13 +3,21 @@ import logo from './../../../argus website/PNG/Logo Vectors.png';
 import { useFormik } from 'formik';
 import Alert from '../../Components/Alert';
 import axiosInstance from '../../../helpers/axiosInstance';
-import { aunthenticate } from '../../../helpers/auth';
 import { useHistory } from 'react-router';
 import Loader from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GoogleButton from 'react-google-button';
+import { useDispatch } from 'react-redux';
+import {
+  isAuthenticated,
+  setUser,
+} from '../../../context/actions/authActions/getUserAction';
+import {
+  setToken,
+  setUserID,
+} from '../../../context/actions/authActions/setStorageAction';
 
 const validate = (values) => {
   const errors = {};
@@ -31,6 +39,7 @@ const validate = (values) => {
 const SignUp = ({ setOpen }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const [showAlert, setShowAlert] = useState({
     show: false,
@@ -51,7 +60,10 @@ const SignUp = ({ setOpen }) => {
         .then(() => {
           axiosInstance.post('/signin', values).then((response) => {
             setLoading(false);
-            aunthenticate(response.data, () => {});
+            dispatch(setUser(response?.data?.user));
+            dispatch(setUserID(response?.data?.user?._id));
+            dispatch(setToken(response?.data?.token));
+            dispatch(isAuthenticated('true'));
             history.push('/dashboard/student/home');
             resetForm();
           });
@@ -72,7 +84,11 @@ const SignUp = ({ setOpen }) => {
     await axiosInstance
       .post('/googlelogin', { idToken: res.tokenId })
       .then((response) => {
-        aunthenticate(response.data, () => {});
+        setLoading(false);
+        dispatch(setUser(response?.data?.user));
+        dispatch(setUserID(response?.data?.user?._id));
+        dispatch(setToken(response?.data?.token));
+        dispatch(isAuthenticated('true'));
         history.push('/dashboard/student/home');
       })
       .catch((err) => {
@@ -86,6 +102,7 @@ const SignUp = ({ setOpen }) => {
   };
 
   const googleFailure = () => {
+    setLoading(false);
     setShowAlert({
       show: true,
       message: 'Login failed try again',
@@ -101,7 +118,11 @@ const SignUp = ({ setOpen }) => {
         access_token: res.accessToken,
       })
       .then((response) => {
-        aunthenticate(response.data, () => {});
+        setLoading(false);
+        dispatch(setUser(response?.data?.user));
+        dispatch(setUserID(response?.data?.user?._id));
+        dispatch(setToken(response?.data?.token));
+        dispatch(isAuthenticated('true'));
         history.push('/dashboard/student/home');
       })
       .catch((err) => {
@@ -150,7 +171,7 @@ const SignUp = ({ setOpen }) => {
                 </div>
               )}
             />
-             <div>Or</div>
+            <div>Or</div>
             <input
               className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
               type="email"

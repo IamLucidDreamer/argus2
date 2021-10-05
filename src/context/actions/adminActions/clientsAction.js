@@ -1,5 +1,4 @@
-import { isAuthenticated } from "../../../helpers/auth";
-import axiosInstance from "../../../helpers/axiosInstance";
+import axiosInstance from '../../../helpers/axiosInstance';
 import {
   ADDCLIENT_LOADING,
   CLIENTCAROUSEL_LOADING,
@@ -8,7 +7,7 @@ import {
   DELETECLIENT_CAROUSELLOADING,
   SETCLIENT_CAROUSEL,
   SETUPDATE_TESTIMONIAL,
-} from "../../actionTypes";
+} from '../../actionTypes';
 
 const setclientcarousel = (data) => ({
   type: SETCLIENT_CAROUSEL,
@@ -47,10 +46,10 @@ const deleteloading = (data) => ({
 
 const getClientCarousel = () => {
   return (dispatch) => {
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     dispatch(clientcarouselloading(true));
     axiosInstance
-      .get("/client/get-all", {
+      .get('/client/get-all', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,8 +59,8 @@ const getClientCarousel = () => {
           setclientcarousel(
             res?.data.sort((p1, p2) => {
               return new Date(p2.updatedAt) - new Date(p1.updatedAt);
-            })
-          )
+            }),
+          ),
         );
         dispatch(clientcarouselloading(false));
       })
@@ -74,7 +73,8 @@ const getClientCarousel = () => {
 const deleteClientCarousel = (id) => {
   return (dispatch) => {
     dispatch(deleteloading(true));
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
+
     axiosInstance
       .delete(`/client/delete/${id}`, {
         headers: {
@@ -95,9 +95,10 @@ const deleteClientCarousel = (id) => {
 const addClientCarousel = (data) => {
   return (dispatch) => {
     dispatch(addclientloading(true));
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
+
     axiosInstance
-      .post("/client/create", data, {
+      .post('/client/create', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -108,8 +109,8 @@ const addClientCarousel = (data) => {
         dispatch(
           clientcarouselAlert({
             success: true,
-            message: "Client added successfully",
-          })
+            message: 'Client added successfully',
+          }),
         );
       })
       .catch((err) => {
@@ -117,8 +118,8 @@ const addClientCarousel = (data) => {
         dispatch(
           clientcarouselAlert({
             success: false,
-            message: "Error adding client",
-          })
+            message: 'Error adding client',
+          }),
         );
       });
   };
@@ -127,7 +128,7 @@ const addClientCarousel = (data) => {
 const updateClientCarousel = (data, id) => {
   return (dispatch) => {
     dispatch(addclientloading(true));
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
       .put(`/client/update/${id}`, data, {
         headers: {
@@ -140,8 +141,8 @@ const updateClientCarousel = (data, id) => {
         dispatch(
           clientcarouselAlert({
             success: true,
-            message: "Client updated successfully",
-          })
+            message: 'Client updated successfully',
+          }),
         );
         dispatch(setupdateclientcarousel({ state: false, data: null }));
       })
@@ -150,8 +151,8 @@ const updateClientCarousel = (data, id) => {
         dispatch(
           clientcarouselAlert({
             success: false,
-            message: "Error updating client",
-          })
+            message: 'Error updating client',
+          }),
         );
         dispatch(setupdateclientcarousel({ state: false, data: null }));
       });

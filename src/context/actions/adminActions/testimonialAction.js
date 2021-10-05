@@ -1,6 +1,4 @@
-import { isAuthenticated } from "../../../helpers/auth";
-
-const { default: axiosInstance } = require("../../../helpers/axiosInstance");
+import axiosInstance from '../../../helpers/axiosInstance';
 const {
   SET_TESTIMONIAL,
   DELETE_TESTIMONIAL,
@@ -9,7 +7,7 @@ const {
   TESTIMONIAL_ALERT,
   ADDTESTIMONIAL_LOADING,
   DELETE_TESTIMONIALLOADING,
-} = require("../../actionTypes");
+} = require('../../actionTypes');
 
 const settestimonial = (data) => ({
   type: SET_TESTIMONIAL,
@@ -50,14 +48,14 @@ const getTestimonial = () => {
   return (dispatch) => {
     dispatch(testimonialloading(true));
     axiosInstance
-      .get("/testimonial/get-all")
+      .get('/testimonial/get-all')
       .then((res) => {
         dispatch(
           settestimonial(
             res?.data.sort((p1, p2) => {
               return new Date(p2.updatedAt) - new Date(p1.updatedAt);
-            })
-          )
+            }),
+          ),
         );
         dispatch(testimonialloading(false));
       })
@@ -70,7 +68,7 @@ const getTestimonial = () => {
 const deleteTestimonial = (id) => {
   return (dispatch) => {
     dispatch(deleteloading(true));
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
       .delete(`/testimonial/delete/${id}`, {
         headers: {
@@ -89,10 +87,10 @@ const deleteTestimonial = (id) => {
 
 const addTestimonial = (data) => {
   return (dispatch) => {
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     dispatch(addtestimonialloading(true));
     axiosInstance
-      .post("/testimonial/create", data, {
+      .post('/testimonial/create', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,8 +101,8 @@ const addTestimonial = (data) => {
         dispatch(
           testimonailAlert({
             success: true,
-            message: "Testimonial added successfully",
-          })
+            message: 'Testimonial added successfully',
+          }),
         );
       })
       .catch((err) => {
@@ -112,8 +110,8 @@ const addTestimonial = (data) => {
         dispatch(
           testimonailAlert({
             success: false,
-            message: "Error adding testimonial",
-          })
+            message: 'Error adding testimonial',
+          }),
         );
       });
   };
@@ -121,7 +119,7 @@ const addTestimonial = (data) => {
 
 const updateTestimonial = (data, id) => {
   return (dispatch) => {
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     dispatch(addtestimonialloading(true));
     axiosInstance
       .put(`/testimonial/update/${id}`, data, {
@@ -135,8 +133,8 @@ const updateTestimonial = (data, id) => {
         dispatch(
           testimonailAlert({
             success: true,
-            message: "Testimonial updated successfully",
-          })
+            message: 'Testimonial updated successfully',
+          }),
         );
         dispatch(setupdatetestimonial({ state: false, data: null }));
       })
@@ -145,8 +143,8 @@ const updateTestimonial = (data, id) => {
         dispatch(
           testimonailAlert({
             success: false,
-            message: "Error updating testimonial",
-          })
+            message: 'Error updating testimonial',
+          }),
         );
         dispatch(setupdatetestimonial({ state: false, data: null }));
       });

@@ -1,5 +1,4 @@
-import { isAuthenticated } from "../../../helpers/auth";
-import axiosInstance from "../../../helpers/axiosInstance";
+import axiosInstance from '../../../helpers/axiosInstance';
 const {
   SET_TEAM,
   DELETE_TEAM,
@@ -8,7 +7,7 @@ const {
   TEAM_ALERT,
   ADDTEAM_LOADING,
   DELETE_TEAMLOADING,
-} = require("../../actionTypes");
+} = require('../../actionTypes');
 
 const setteam = (data) => ({
   type: SET_TEAM,
@@ -48,14 +47,14 @@ const getTeam = () => {
   return (dispatch) => {
     dispatch(teamloading(true));
     axiosInstance
-      .get("/team/get-all")
+      .get('/team/get-all')
       .then((res) => {
         dispatch(
           setteam(
             res?.data.sort((p1, p2) => {
               return new Date(p2.updatedAt) - new Date(p1.updatedAt);
-            })
-          )
+            }),
+          ),
         );
         dispatch(teamloading(false));
       })
@@ -68,7 +67,7 @@ const getTeam = () => {
 const deleteTeam = (id) => {
   return (dispatch) => {
     dispatch(deleteloading(true));
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
       .delete(`/team/delete/${id}`, {
         headers: {
@@ -87,10 +86,10 @@ const deleteTeam = (id) => {
 
 const addTeam = (data) => {
   return (dispatch) => {
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     dispatch(addteamloading(true));
     axiosInstance
-      .post("/team/create", data, {
+      .post('/team/create', data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -101,8 +100,8 @@ const addTeam = (data) => {
         dispatch(
           teamAlert({
             success: true,
-            message: "Team member added successfully",
-          })
+            message: 'Team member added successfully',
+          }),
         );
       })
       .catch((err) => {
@@ -110,8 +109,8 @@ const addTeam = (data) => {
         dispatch(
           teamAlert({
             success: false,
-            message: "Error adding team member",
-          })
+            message: 'Error adding team member',
+          }),
         );
       });
   };
@@ -119,7 +118,7 @@ const addTeam = (data) => {
 
 const updateTeam = (data, id) => {
   return (dispatch) => {
-    const { token } = isAuthenticated();
+    const token = JSON.parse(localStorage.getItem('jwt'));
     dispatch(addteamloading(true));
     axiosInstance
       .put(`/team/update/${id}`, data, {
@@ -133,8 +132,8 @@ const updateTeam = (data, id) => {
         dispatch(
           teamAlert({
             success: true,
-            message: "Team member updated successfully",
-          })
+            message: 'Team member updated successfully',
+          }),
         );
         dispatch(setupdateteam({ state: false, data: null }));
       })
@@ -143,8 +142,8 @@ const updateTeam = (data, id) => {
         dispatch(
           teamAlert({
             success: false,
-            message: "Error updating team member",
-          })
+            message: 'Error updating team member',
+          }),
         );
         dispatch(setupdateteam({ state: false, data: null }));
       });
