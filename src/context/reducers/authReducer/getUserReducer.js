@@ -2,7 +2,7 @@ import { IS_AUTH, SET_JWT, SET_USERDETAILS } from '../../actionTypes';
 
 const initialState = {
   user: {},
-  token: '',
+  token: null,
   isAuth: 'loading',
 };
 

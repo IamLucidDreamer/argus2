@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 export default function Header({ open, setOpen }) {
   const history = useHistory();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
   return (
     <div className="shadow-lg sticky">
       <div className="bg-red-1 shadow-header-outer-shadow">
@@ -39,7 +39,8 @@ export default function Header({ open, setOpen }) {
                 <button
                   open={open}
                   onClick={() => {
-                    if (user?.role === 1) {
+                    console.log(user);
+                    if (user.isAuth === 'true') {
                       history.push('/dashboard/student/home');
                     } else {
                       setOpen(true);

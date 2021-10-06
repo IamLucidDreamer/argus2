@@ -2,7 +2,14 @@ import React from 'react';
 import ProfilePicture from './../../../../argus website/PNG/IMG_0118.png';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { clearStorage } from '../../../../context/actions/authActions/setStorageAction';
+import {
+  clearStorage,
+  setToken,
+} from '../../../../context/actions/authActions/setStorageAction';
+import {
+  isAuthenticated,
+  setUser,
+} from '../../../../context/actions/authActions/getUserAction';
 
 const ProfileBar = () => {
   const history = useHistory();
@@ -13,6 +20,9 @@ const ProfileBar = () => {
         className="p-2 text-l text-black font-bold ml-auto md:mr-auto md:ml-10"
         onClick={() => {
           dispatch(clearStorage());
+          dispatch(isAuthenticated('false'));
+          dispatch(setUser({}));
+          dispatch(setToken(null));
           history.push('/dashboard/student/signup');
         }}
       >
