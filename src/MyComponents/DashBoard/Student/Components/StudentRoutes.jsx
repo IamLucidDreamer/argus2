@@ -10,6 +10,7 @@ import { TopBar } from './TopBar';
 const StudentRoutes = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  console.log(user);
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);

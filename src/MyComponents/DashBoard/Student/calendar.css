@@ -1,6 +1,8 @@
 .student-calender {
   height: 87vh;
   background-color: white;
+  font-family: Helvetica;
+  font-size: 15px;
 }
 
 .rbc-today {
@@ -8,17 +10,29 @@
 }
 
 .rbc-btn-group > button {
-  background-color: rgba(186, 9, 19, var(--tw-bg-opacity));
-  color: white;
+  background-color: lightgray;
+  box-shadow: none !important;
   border-radius: 10px;
   outline-width: none;
   border: 0px;
   margin: 5px;
   text-transform: uppercase !important;
+  font-size: 13px;
+}
+
+.rbc-btn-group > button:hover {
+  background-color: rgba(186, 9, 19, 0.9);
+  color: white;
 }
 
 .rbc-active {
-  color: black !important;
+  background-color: lightgray !important;
+  box-shadow: none !important;
+}
+
+.rbc-active:hover {
+  background-color: rgba(186, 9, 19, 0.9) !important;
+  color: white !important;
 }
 
 .rbc-allday-cell {
@@ -34,6 +48,19 @@
 .rbc-toolbar {
   flex-wrap: nowrap;
 }
+
+.rbc-btn-group:first-child {
+  padding-right: 30px;
+}
+
+.rbc-btn-group:last-child button:nth-child(2) {
+  display: none;
+}
+
+/* .rbc-btn-group:last-child button:nth-child() {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+} */
 
 .rbc-off-range-bg {
   background-color: lightgray;
@@ -95,6 +122,10 @@
 }
 
 @media screen and (max-width: 750px) {
+  .rbc-btn-group:first-child {
+    padding-right: 0px;
+  }
+
   .rbc-btn-group {
     transform: scale(0.9) !important;
   }

@@ -3,7 +3,14 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import profile from '../../../../argus website/PNG/IMG_0118.png';
 import { Link } from 'react-router-dom';
-import { clearStorage } from '../../../../context/actions/authActions/setStorageAction';
+import {
+  clearStorage,
+  setToken,
+} from '../../../../context/actions/authActions/setStorageAction';
+import {
+  isAuthenticated,
+  setUser,
+} from '../../../../context/actions/authActions/getUserAction';
 
 function TopBarOptions({ options }) {
   const history = useHistory();
@@ -55,6 +62,10 @@ function TopBarOptions({ options }) {
         <Link
           onClick={() => {
             dispatch(clearStorage());
+            dispatch(isAuthenticated('false'));
+            dispatch(setUser({}));
+            dispatch(setToken(null));
+
             history.push('/');
           }}
         >
