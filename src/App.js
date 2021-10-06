@@ -33,6 +33,8 @@ import StudentPurchase from './MyComponents/DashBoard/Student/PurchaseCourse.jsx
 import StudentCourse from './MyComponents/DashBoard/Student/Training';
 import StudentContact from './MyComponents/DashBoard/Student/Contact';
 import StudentHistory from './MyComponents/DashBoard/Student/History';
+import ChangePassword from "./MyComponents/DashBoard/Student/ChangePassword"
+import Mypurchases from "./MyComponents/DashBoard/Student/MyPurchases"
 
 import LoginForAdmin from './MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin';
 import AdminHome from './MyComponents/DashBoard/Admin/Home';
@@ -121,6 +123,14 @@ function App() {
           <StudentRoutes
             path="/dashboard/student/history"
             component={StudentHistory}
+          />
+           <StudentRoutes
+            path="/dashboard/student/changepassword"
+            component={ChangePassword}
+          />
+          <StudentRoutes
+            path="/dashboard/student/mypurchases"
+            component={Mypurchases}
           />
 
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />
