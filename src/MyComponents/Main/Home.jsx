@@ -438,7 +438,7 @@ export default function Home() {
           <div className="flex flex-row items-stretch w-full mt-8 md:mt-0 mb-2 md:mb-0">
             <span
               ref={ref1}
-              className={`h-auto min-w-8 w-8-px max-w-8 bg-white mr-7 ${
+              className={`h-auto min-w-8 w-8-px max-w-8 bg-white mr-7 rounded-full ${
                 isWhiteLineVisible
                   ? "transition ease-out delay-300 duration-500 transform origin-top scale-100"
                   : "transition ease-out delay-750 duration-500 transform origin-top scale-0"

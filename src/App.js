@@ -55,6 +55,7 @@ import HomeRoute from './MyComponents/Main/homeRoutes';
 import { getToken } from './context/actions/authActions/setStorageAction';
 import { getUser } from './context/actions/authActions/getUserAction';
 import { useSelector } from 'react-redux';
+import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -131,6 +132,10 @@ function App() {
           <StudentRoutes
             path="/dashboard/student/mypurchases"
             component={Mypurchases}
+          />
+          <StudentRoutes
+            path="/dashboard/student/documents"
+            component={UploadDocs}
           />
 
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />

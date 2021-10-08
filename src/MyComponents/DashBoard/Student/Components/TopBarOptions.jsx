@@ -47,7 +47,7 @@ function TopBarOptions({ options }) {
             My Transcripts
           </h1>
         </Link>
-        <Link to="/services">
+        <Link to="/dashboard/student/documents">
           <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
             <span className="mx-0.5 sm:mx-4 md:mx-0.5 xl:mx-4">➔</span> Upload
             Documents

@@ -23,7 +23,7 @@ const Calendar = () => {
         ]}
         resizable
         defaultView="month"
-        className="student-calender mx-1 sm:mx-2 sm:mb-0 lg:mx-10 p-1 sm:p-4 rounded-2xl shadow-button-shadow-3 overflow-hidden"
+        className="student-calender rounded-2xl"
       />
     </div>
   );
