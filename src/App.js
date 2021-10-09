@@ -57,6 +57,7 @@ import { getToken } from './context/actions/authActions/setStorageAction';
 import { getUser } from './context/actions/authActions/getUserAction';
 import { useSelector } from 'react-redux';
 import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
+import MyTranscripts from './MyComponents/DashBoard/Student/MyTranscripts';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -133,6 +134,10 @@ function App() {
           <StudentRoutes
             path="/dashboard/student/mypurchases"
             component={Mypurchases}
+          />
+          <StudentRoutes
+            path="/dashboard/student/mytranscripts"
+            component={MyTranscripts}
           />
           <StudentRoutes
             path="/dashboard/student/documents"
