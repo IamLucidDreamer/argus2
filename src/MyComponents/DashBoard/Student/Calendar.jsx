@@ -16,7 +16,7 @@ const Calendar = () => {
         events={[
           {
             id: 0,
-            title: 'CPR/Medical Training',
+            title: 'CPR/Medical ',
             start: new Date(new Date().setHours(new Date().getHours() - 7)),
             end: new Date(new Date().setHours(new Date().getHours() - 4)),
           },

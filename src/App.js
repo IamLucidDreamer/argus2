@@ -42,6 +42,7 @@ import AdminHomeControls from './MyComponents/DashBoard/Admin/HomePageControls';
 import AdminStatistics from './MyComponents/DashBoard/Admin/Statistics';
 import AdminCourseControl from './MyComponents/DashBoard/Admin/CourseControl';
 import AdminContactControl from './MyComponents/DashBoard/Admin/ContactFormMessages';
+import AdminLmsHome from "./MyComponents/DashBoard/Admin/LmsHome"
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -138,10 +139,14 @@ function App() {
             component={UploadDocs}
           />
 
+
+
+          {/* Administrator Routes */}
+
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />
           <AdminRoute path="/dashboard/admin/home" component={AdminHome} />
           <AdminRoute
-            path="/dashboard/admin/homecontrols"
+            path="/dashboard/admin/websitecontrols"
             component={AdminHomeControls}
           />
           <AdminRoute
@@ -156,6 +161,12 @@ function App() {
             path="/dashboard/admin/contactformmessages"
             component={AdminContactControl}
           />
+          <AdminRoute
+            path="/dashboard/admin/lms/home"
+            component={AdminLmsHome}
+          />
+
+
         </switch>
       </div>
     </Router>

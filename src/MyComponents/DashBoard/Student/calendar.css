@@ -19,6 +19,8 @@
   margin: 5px;
   text-transform: uppercase !important;
   font-size: 13px;
+  color: #868696;
+  font-weight: bold;
 }
 
 .rbc-btn-group > button:hover {
