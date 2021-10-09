@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import SideLine from "../../Components/SideLine";
 
 export default function Training() {
@@ -94,7 +95,7 @@ export default function Training() {
     </div>
 
     <div className="w-full flex justify-center">
-      <button className="mx-auto font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-12">START TRAINING</button>
+      <Link to="/dashboard/student/modules" className="mx-auto font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-12">START TRAINING</Link>
     </div>
     </div>
   );

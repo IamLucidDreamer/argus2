@@ -58,6 +58,8 @@ import { getUser } from './context/actions/authActions/getUserAction';
 import { useSelector } from 'react-redux';
 import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
 import MyTranscripts from './MyComponents/DashBoard/Student/MyTranscripts';
+import Modules from './MyComponents/DashBoard/Student/Modules';
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -143,6 +145,10 @@ function App() {
             path="/dashboard/student/documents"
             component={UploadDocs}
           />
+          <StudentRoutes
+            path="/dashboard/student/modules"
+            component={Modules}
+          />
 
 
 
@@ -170,6 +176,7 @@ function App() {
             path="/dashboard/admin/lms/home"
             component={AdminLmsHome}
           />
+          
 
 
         </switch>
