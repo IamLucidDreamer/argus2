@@ -1,19 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { getUser } from '../../../../context/actions/authActions/getUserAction';
 import { SideNav } from './SideNav';
 import { TopBar } from './TopBar';
 
 const StudentRoutes = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('jwt'));
-  useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
   return (
     <Route
       {...rest}
