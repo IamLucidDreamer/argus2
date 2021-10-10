@@ -2,11 +2,12 @@
   height: 87vh;
   background-color: white;
   font-family: Helvetica;
-  font-size: 18px;
+  font-size: 15px;
+  color: #868696;
 }
 
 .rbc-today {
-  background-color: rgba(186, 9, 19, 0.3);
+  background-color: rgba(186, 9, 19, 0);
 }
 
 .rbc-btn-group > button {
@@ -19,6 +20,7 @@
   text-transform: uppercase !important;
   font-size: 13px;
   color: #868696;
+  font-weight: bold;
 }
 
 .rbc-btn-group > button:hover {

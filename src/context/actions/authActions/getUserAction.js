@@ -1,5 +1,6 @@
 import axiosInstance from '../../../helpers/axiosInstance';
 import { IS_AUTH, SET_USERDETAILS } from '../../actionTypes';
+import { clearStorage } from './setStorageAction';
 
 const setUser = (data) => ({
   type: SET_USERDETAILS,
@@ -28,6 +29,7 @@ const getUser = () => {
       })
       .catch(() => {
         dispatch(isAuthenticated('false'));
+        dispatch(clearStorage());
       });
   };
 };

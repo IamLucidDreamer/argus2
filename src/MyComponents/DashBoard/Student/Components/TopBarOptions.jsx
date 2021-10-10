@@ -34,27 +34,27 @@ function TopBarOptions({ options }) {
           <h1>Profile ID</h1>
         </div>
       </div>
-      <div className="text-gray-2 text-xl font-bold bg-gray-200 rounded-b-xl">
-        <Link to="/services">
-          <h1 className="rounded-lg py-5 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
+      <div className="text-gray-2 text-base font-bold bg-gray-200 rounded-b-xl">
+        <Link to="/dashboard/student/mypurchases">
+          <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
             <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{' '}
             My Purchases
           </h1>
         </Link>
-        <Link to="/services">
-          <h1 className="rounded-lg py-5 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
+        <Link to="/dashboard/student/mytranscripts">
+          <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
             <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{' '}
             My Transcripts
           </h1>
         </Link>
-        <Link to="/services">
-          <h1 className="rounded-lg py-5 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
+        <Link to="/dashboard/student/documents">
+          <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
             <span className="mx-0.5 sm:mx-4 md:mx-0.5 xl:mx-4">➔</span> Upload
             Documents
           </h1>
         </Link>
-        <Link to="/courses">
-          <h1 className="rounded-lg py-5 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
+        <Link to="/dashboard/student/changepassword">
+          <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
             <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{' '}
             Change Password
           </h1>
@@ -69,7 +69,7 @@ function TopBarOptions({ options }) {
             history.push('/');
           }}
         >
-          <h1 className="rounded-lg py-5 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
+          <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner">
             <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{' '}
             Logout
           </h1>

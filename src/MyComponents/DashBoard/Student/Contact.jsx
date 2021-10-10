@@ -21,7 +21,7 @@ export default function Contact() {
                 appreciate your patience and apologize in advance for any delays
                 in responding to your message.{" "}
               </p>
-              <hr class="border-1 border-gray-2 w-full mb-6" />
+              <span class="w-full mb-6 h-1 bg-gray-200 rounded-full" />
               <div className="text-xs sm:text-base font-medium">
                 <CompanyContact />
               </div>

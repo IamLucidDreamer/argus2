@@ -33,6 +33,8 @@ import StudentPurchase from './MyComponents/DashBoard/Student/PurchaseCourse.jsx
 import StudentCourse from './MyComponents/DashBoard/Student/Training';
 import StudentContact from './MyComponents/DashBoard/Student/Contact';
 import StudentHistory from './MyComponents/DashBoard/Student/History';
+import ChangePassword from "./MyComponents/DashBoard/Student/ChangePassword"
+import Mypurchases from "./MyComponents/DashBoard/Student/MyPurchases"
 
 import LoginForAdmin from './MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin';
 import AdminHome from './MyComponents/DashBoard/Admin/Home';
@@ -40,6 +42,7 @@ import AdminHomeControls from './MyComponents/DashBoard/Admin/HomePageControls';
 import AdminStatistics from './MyComponents/DashBoard/Admin/Statistics';
 import AdminCourseControl from './MyComponents/DashBoard/Admin/CourseControl';
 import AdminContactControl from './MyComponents/DashBoard/Admin/ContactFormMessages';
+import AdminLmsHome from "./MyComponents/DashBoard/Admin/LmsHome"
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -53,6 +56,10 @@ import HomeRoute from './MyComponents/Main/homeRoutes';
 import { getToken } from './context/actions/authActions/setStorageAction';
 import { getUser } from './context/actions/authActions/getUserAction';
 import { useSelector } from 'react-redux';
+import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
+import MyTranscripts from './MyComponents/DashBoard/Student/MyTranscripts';
+import Modules from './MyComponents/DashBoard/Student/Modules';
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -122,11 +129,35 @@ function App() {
             path="/dashboard/student/history"
             component={StudentHistory}
           />
+           <StudentRoutes
+            path="/dashboard/student/changepassword"
+            component={ChangePassword}
+          />
+          <StudentRoutes
+            path="/dashboard/student/mypurchases"
+            component={Mypurchases}
+          />
+          <StudentRoutes
+            path="/dashboard/student/mytranscripts"
+            component={MyTranscripts}
+          />
+          <StudentRoutes
+            path="/dashboard/student/documents"
+            component={UploadDocs}
+          />
+          <StudentRoutes
+            path="/dashboard/student/modules"
+            component={Modules}
+          />
+
+
+
+          {/* Administrator Routes */}
 
           <Route path="/dashboard/admin/login" component={LoginForAdmin} />
           <AdminRoute path="/dashboard/admin/home" component={AdminHome} />
           <AdminRoute
-            path="/dashboard/admin/homecontrols"
+            path="/dashboard/admin/websitecontrols"
             component={AdminHomeControls}
           />
           <AdminRoute
@@ -141,6 +172,13 @@ function App() {
             path="/dashboard/admin/contactformmessages"
             component={AdminContactControl}
           />
+          <AdminRoute
+            path="/dashboard/admin/lms/home"
+            component={AdminLmsHome}
+          />
+          
+
+
         </switch>
       </div>
     </Router>

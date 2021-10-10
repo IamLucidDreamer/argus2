@@ -52,7 +52,7 @@ export default function Home() {
           </div>
           <Link
             to="/services"
-            className="flex-shrink-0 font-bold text-white bg-red-1 py-5 px-4 md:px-12 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-lg mt-6 sm:mt-0 hover:shadow-button-inner text-center"
+            className="flex-shrink-0 font-bold text-white bg-red-1 py-5 px-4 md:px-12 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-lg mt-6 sm:mt-0 hover:shadow-button-inner-1 text-center"
           >
             DISCOVER MORE
           </Link>
@@ -221,7 +221,7 @@ export default function Home() {
                   </div>
                   <div className="bg-white rounded-b-lg">
                     <Link to="/services">
-                      <button className="w-full p-4 text-gray-2 font-bold bg-white hover:bg-red-1 hover:text-white rounded-lg hover:shadow-button-inner">
+                      <button className="w-full p-4 text-gray-2 font-bold bg-white hover:bg-red-1 hover:text-white rounded-lg hover:shadow-button-inner-1">
                         Read More
                       </button>
                     </Link>
@@ -247,7 +247,7 @@ export default function Home() {
                   </div>
                   <div className="bg-white rounded-b-lg">
                     <Link to="/services">
-                      <button className="w-full p-4 text-gray-2 font-bold bg-white hover:bg-red-1 hover:text-white rounded-lg hover:shadow-button-inner">
+                      <button className="w-full p-4 text-gray-2 font-bold bg-white hover:bg-red-1 hover:text-white rounded-lg hover:shadow-button-inner-1">
                         Read More
                       </button>
                     </Link>
@@ -273,7 +273,7 @@ export default function Home() {
                   </div>
                   <div className="bg-white rounded-b-lg">
                     <Link to="/services">
-                      <button className="w-full p-4 text-gray-2 font-bold bg-white hover:bg-red-1 hover:text-white rounded-lg hover:shadow-button-inner">
+                      <button className="w-full p-4 text-gray-2 font-bold bg-white hover:bg-red-1 hover:text-white rounded-lg hover:shadow-button-inner-1">
                         Read More
                       </button>
                     </Link>
@@ -438,7 +438,7 @@ export default function Home() {
           <div className="flex flex-row items-stretch w-full mt-8 md:mt-0 mb-2 md:mb-0">
             <span
               ref={ref1}
-              className={`h-auto min-w-8 w-8-px max-w-8 bg-white mr-7 ${
+              className={`h-auto min-w-8 w-8-px max-w-8 bg-white mr-7 rounded-full ${
                 isWhiteLineVisible
                   ? "transition ease-out delay-300 duration-500 transform origin-top scale-100"
                   : "transition ease-out delay-750 duration-500 transform origin-top scale-0"
@@ -452,7 +452,7 @@ export default function Home() {
             href="https://www.canada.ca/en/public-health/services/diseases/coronavirus-disease-covid-19.html"
             target="_blank"
             rel="noreferrer"
-            className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner text-center"
+            className="flex-shrink-0 font-bold text-white py-5 px-12 focus:outline-none hover:bg-white border-4 border-double border-white hover:text-red-1 rounded-lg text-lg mt-6 mb-8 md:mt-0 md:mb-0 hover:shadow-button-inner-1 text-center"
           >
             DISCOVER MORE
           </a>

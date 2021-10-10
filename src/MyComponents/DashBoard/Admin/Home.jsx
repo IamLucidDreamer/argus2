@@ -8,9 +8,8 @@ export default function Home() {
       <div className="w-2/12 bg-red-1">
         <SideNav />
       </div>
-      <div className="w-full md:w-10/12 bg-gray-1 flex flex-col-reverse md:flex-row">
         <div className="w-full">
-
+        <ProfileBar />
 
         <section class="text-gray-600 body-font">
             <div class="px-5 py-12 mx-auto">
@@ -62,13 +61,6 @@ export default function Home() {
               </div>
             </div>
           </section>
-          
-
-        </div>
-
-        <div className="w-full md:w-4/12 bg-white">
-          <ProfileBar />
-        </div>
       </div>
     </div>
   );
