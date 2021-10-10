@@ -10,6 +10,7 @@ import { TopBar } from './TopBar';
 const StudentRoutes = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const token = JSON.parse(localStorage.getItem('jwt'));
   console.log(user);
   useEffect(() => {
     dispatch(getUser());
@@ -20,7 +21,8 @@ const StudentRoutes = ({ component: Component, ...rest }) => {
       render={(props) => (
         <>
           {user?.isAuth === 'false' ||
-          (user?.isAuth === 'true' && user?.user?.role !== 1) ? (
+          (user?.isAuth === 'true' && user?.user?.role !== 1) ||
+          !token ? (
             <Redirect
               to={{
                 pathname: '/dashboard/student/signup',
