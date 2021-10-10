@@ -7,7 +7,7 @@ export default function SideNav() {
     <div className="bg-red-1 bg-overlay-copy bg-no-repeat bg-left bg-cover bg-blend-multiply min-h-screen">
       <div className="pt-8">
         <Link to="/">
-          <img src={Logo} alt="Argus Logo" className="w-32 mx-auto mb-8" />
+          <img src={Logo} alt="Argus Logo" className="w-24 md:w-32 mx-auto mb-8" />
         </Link>
         <nav className="w-full text-base font-medium">
           <Link
