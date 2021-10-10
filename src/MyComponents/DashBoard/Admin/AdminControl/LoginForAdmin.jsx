@@ -11,7 +11,10 @@ import {
   setToken,
   setUserID,
 } from '../../../../context/actions/authActions/setStorageAction';
-import { setUser } from '../../../../context/actions/authActions/getUserAction';
+import {
+  isAuthenticated,
+  setUser,
+} from '../../../../context/actions/authActions/getUserAction';
 
 const validate = (values) => {
   const errors = {};
@@ -51,6 +54,7 @@ const LoginForAdmin = () => {
           dispatch(setToken(data?.data?.token));
           dispatch(setUserID(data?.data?.user?._id));
           dispatch(setUser(data.data.user));
+          dispatch(isAuthenticated('true'));
           resetForm();
           history.push('/dashboard/admin/home');
         })
@@ -61,7 +65,6 @@ const LoginForAdmin = () => {
             success: false,
           });
           resetForm();
-          console.log(err);
         });
     },
   });

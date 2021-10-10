@@ -7,14 +7,14 @@ import { getContact } from '../../../../context/actions/adminActions/contactActi
 import { getTeam } from '../../../../context/actions/adminActions/teamAction';
 import { getTestimonial } from '../../../../context/actions/adminActions/testimonialAction';
 import { getEOMAdmin } from '../../../../context/actions/adminActions/eomAction';
-import { getUser } from '../../../../context/actions/authActions/getUserAction';
 import { useSelector } from 'react-redux';
 
 const AdminRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const dispatch = useDispatch();
+  console.log(user);
   useEffect(() => {
-    dispatch(getUser());
     dispatch(getEOMAdmin());
     dispatch(getTestimonial());
     dispatch(getContact());
@@ -27,7 +27,8 @@ const AdminRoute = ({ component: Component, ...rest }) => {
       render={(props) => (
         <>
           {user?.isAuth === 'false' ||
-          (user?.isAuth === 'true' && user?.user?.role !== 2) ? (
+          (user?.isAuth === 'true' && user?.user?.role !== 2) ||
+          !token ? (
             <Redirect
               to={{
                 pathname: '/dashboard/admin/login',
