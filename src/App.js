@@ -59,6 +59,9 @@ import { useSelector } from 'react-redux';
 import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
 import MyTranscripts from './MyComponents/DashBoard/Student/MyTranscripts';
 import Modules from './MyComponents/DashBoard/Student/Modules';
+import LmsInstructor from './MyComponents/DashBoard/Admin/LmsInstructor';
+import LmsStudent from './MyComponents/DashBoard/Admin/LmsStudent';
+import LmsLicense from './MyComponents/DashBoard/Admin/LmsLicense';
 
 function App() {
   const dispatch = useDispatch();
@@ -175,6 +178,18 @@ function App() {
           <AdminRoute
             path="/dashboard/admin/lms/home"
             component={AdminLmsHome}
+          />
+          <AdminRoute
+            path="/dashboard/admin/lms/license"
+            component={LmsLicense}
+          />
+          <AdminRoute
+            path="/dashboard/admin/lms/student"
+            component={LmsStudent}
+          />
+          <AdminRoute
+            path="/dashboard/admin/lms/instructor"
+            component={LmsInstructor}
           />
           
 

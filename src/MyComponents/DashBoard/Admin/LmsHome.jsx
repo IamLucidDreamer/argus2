@@ -1,7 +1,7 @@
 import React from 'react'
 import SideNav from './Components/SideNav';
 import ProfileBar from './Components/ProfileBar';
-import NavLms from './Components/WebsiteControlComponents/NavLms';
+import NavLms from './Components/LMS/NavLms';
 
 
 const LmsHome = () => {
