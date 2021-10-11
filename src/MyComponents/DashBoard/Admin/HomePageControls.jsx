@@ -17,40 +17,40 @@ export default function Home() {
   const [eomRefresh, seteomRefresh] = useState();
 
   return (
-    <div className="w-full flex flew-col md:flex-row">
+    <div className="w-full flex flew-col md:flex-row bg-client">
       <div className="w-52 md:w-72 bg-red-1">
         <SideNav />
       </div>
         <div className="w-full">
           <ProfileBar />
-          <div>
+          <div className="w-full bg-white m-4 rounded-xl">
             <nav className="flex flex-col sm:flex-row justify-evenly my-2">
               <button
-                className="rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
+                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
                 onClick={() => setShow(1)}
               >
                 Testimonial
               </button>
               <button
-                className="rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
+                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
                 onClick={() => setShow(2)}
               >
                 Employee of the Month
               </button>
               <button
-                className="rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
+                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
                 onClick={() => setShow(3)}
               >
                 Company Contact
               </button>
               <button
-                className="rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
+                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
                 onClick={() => setShow(4)}
               >
                 Clients
               </button>
               <button
-                className="rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
+                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
                 onClick={() => setShow(5)}
               >
                 Team

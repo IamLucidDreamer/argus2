@@ -110,7 +110,7 @@ export default function ClientControls() {
   }, [setValues, update]);
 
   return (
-    <div className="mx-8 my-8 p-4 bg-white shadow-lg rounded-xl">
+    <div className="my-8 p-4 bg-white shadow-lg rounded-xl">
       <div className="flex items-center">
         <svg
           class="w-8 h-8 rounded-lg bg-gray-3 text-white p-2"

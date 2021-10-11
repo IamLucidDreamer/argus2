@@ -15,7 +15,7 @@ export const ClientTable = () => {
   const [deleteId, setdeleteId] = useState(null);
   const dispatch = useDispatch();
   return (
-    <div className="mx-8 my-8 p-4 bg-white shadow-lg rounded-xl">
+    <div className="my-8 p-4 bg-white shadow-lg rounded-xl">
       {/* Card of table */}
       {loading ? (
         <div className="w-full flex items-center justify-center">
