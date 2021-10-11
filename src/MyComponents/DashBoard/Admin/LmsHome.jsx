@@ -17,7 +17,7 @@ const LmsHome = () => {
         <ProfileBar />
         <NavLms />
         <h1 className="text-center text-3xl sm:text-4xl font-bold my-6">Class Management</h1>
-        <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-2 my-6 rounded-2xl">
+        <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto my-6 rounded-2xl">
           <nav className="flex flex-col md:flex-row text-gray-3 text-lg items-center">
             <button onClick={() => setShow(1)} className="w-52 md:w-1/4 shadow-button-shadow-2 py-4 rounded-2xl font-bold hover:shadow-none">Class Overview</button>
             <button onClick={() =>setShow(2)} className="w-52 md:w-1/4 shadow-button-shadow-2 py-4 rounded-2xl font-bold hover:shadow-none">Class Material</button>
