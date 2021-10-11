@@ -46,7 +46,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Calender</span>
+            <span className="hidden md:block">ACtivity</span>
           </Link>
           <Link
             to="/dashboard/student/calendar"
@@ -65,7 +65,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Calender</span>
+            <span className="hidden md:block">Shift planning</span>
           </Link>
           <Link
             to="/dashboard/student/calendar"
@@ -84,7 +84,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Calender</span>
+            <span className="hidden md:block">Employee Management</span>
           </Link>
           <Link
             to="/dashboard/student/calendar"
@@ -103,7 +103,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Calender</span>
+            <span className="hidden md:block">Location Management</span>
           </Link>
           <Link
             to="/dashboard/admin/lms/home"
@@ -179,7 +179,7 @@ export default function SideNav() {
                 ></path>
               </svg>
             </span>
-            <span className="hidden md:block">History</span>
+            <span className="hidden md:block">Reports</span>
           </Link>
           <Link
             to="/dashboard/student/contact"
@@ -198,7 +198,7 @@ export default function SideNav() {
                 ></path>
               </svg>
             </span>
-            <span className="hidden md:block">Contact</span>
+            <span className="hidden md:block">Backup</span>
           </Link>
         </nav>
       </div>
