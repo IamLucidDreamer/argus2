@@ -57,7 +57,7 @@ const CourseCompletion = () => {
             <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
-                <div className="w-5/12 h-full bg-yellow-500 rounded-2xl"></div>
+                <div className="w-7/12 h-full bg-yellow-500 rounded-2xl"></div>
               </div>
               <h1 className="text-sm pl-2 text-yellow-500">60%</h1>
             </div>
