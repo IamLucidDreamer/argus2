@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import icon1 from './../../../../argus website/SVG/L1.svg';
 import hiring from './../../../../argus website/SVG/We are hiring.svg';
-
 import Logo from './../../../../argus website/SVG/Logowith shadow.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SideNav = () => {
   return (

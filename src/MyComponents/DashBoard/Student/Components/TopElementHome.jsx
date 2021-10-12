@@ -2,7 +2,7 @@ import React from 'react'
 
 export const TopElementHome = () => {
     return (
-    <div className="w-full max-w-1200 mx-auto px-4 md:px-8 pt-8">
+    <div className="w-full max-w-1366 mx-auto px-4 md:px-8 pt-8">
       <div className="p-4 md:p-10 rounded-2xl flex items-center justify-between bg-pink-100 shadow-lg mt-5">
         <div className="px-4 w-full md:w-8/12">
             <h1 className="text-2xl pb-4 font-bold text-pink-400 ">Welcome back Name!</h1>

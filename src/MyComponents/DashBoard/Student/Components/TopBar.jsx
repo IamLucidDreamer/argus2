@@ -11,7 +11,7 @@ export const TopBar = () => {
     <div className="max-w-1200 mx-auto">
       <div className="pt-3 flex flex-row">
         <div className="ml-auto flex justify-around items-center">
-          <div className="text-xl mx-1 sm:mr-4 text-gray-3">12/12/1221</div>
+          <div className="text-xl mx-1 sm:mr-4 text-gray-3">${new Date().getDay}/12/1221</div>
 
           <button
             onClick={() => {
