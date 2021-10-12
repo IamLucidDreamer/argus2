@@ -4,7 +4,7 @@ import SideLine from "../../Components/SideLine";
 
 export default function Training() {
   return (
-    <div>
+    <div className="font-for-para">
 
 
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-8 bg-white shadow-button-shadow-3 px-2 md:px-8 py-4">
