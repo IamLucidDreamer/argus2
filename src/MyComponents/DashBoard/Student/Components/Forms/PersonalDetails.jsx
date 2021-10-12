@@ -21,8 +21,26 @@ const PersonalDetails = () => {
                     <h1 className="text-lg text-gray-3 font-bold mx-5">Personal Details</h1>
                 </div>
                 
-                <form className="flex flex-col">                
-                    <label    />
+                <form className="flex flex-col text-black font-bold">                
+                    <label> Date of Birth</label>
+                    <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    <div className="flex flex-row items-center justify-between">
+                        <div className="flex flex-col w-5/12">
+                            <label> Height</label>
+                            <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                        </div>
+                        <div className="flex flex-col w-5/12">
+                            <label> Weight</label>
+                            <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                        </div>
+                    </div>
+                    <label> Eye Color</label>
+                        <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    <label> Hair Color</label>
+                    <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    <label> Gender</label>
+                    <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    
                     <button className= "mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1">Update</button>
                 </form>
             </div>
