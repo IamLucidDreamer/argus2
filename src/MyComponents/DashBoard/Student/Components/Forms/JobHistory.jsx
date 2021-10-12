@@ -18,7 +18,7 @@ const JobHistory = () => {
                             />
                         </svg>
                     </span>
-                    <h1 className="text-lg text-gray-3 font-bold mx-5">Background Declaration</h1>
+                    <h1 className="text-lg text-gray-3 font-bold mx-5">Job History</h1>
                 </div>
                 
                 <form className="flex flex-col text-black font-bold">                

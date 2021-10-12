@@ -18,19 +18,19 @@ const JobSearch = () => {
                             />
                         </svg>
                     </span>
-                    <h1 className="text-lg text-gray-3 font-bold mx-5">Contact Details</h1>
+                    <h1 className="text-lg text-gray-3 font-bold mx-5">Job Search</h1>
                 </div>
                 
                 <form className="flex flex-col text-black font-bold">                
-                    <label> Category</label>
+                    <label> Are you looking for a job?</label>
                     <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
-                    <label> Company Name</label>
+                    <label> Email me about new opportunities?</label>
                     <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
-                    <label> Address</label>
+                    <label> Preferred City of Employment</label>
                     <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
-                    <label> Employment Duration</label>
+                    <label> Availability</label>
                     <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
-                    <label> Reason for Leaving</label>
+                    <label> Wage Range</label>
                     <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
                     
                     <button className= "mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1">Add</button>
