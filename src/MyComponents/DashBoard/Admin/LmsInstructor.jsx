@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import CurrentInstructor from "./Components/LMS/Form/CurrentInstructor";
+import InstructorAttendance from "./Components/LMS/Form/InstructorAttendance";
 import NavLms from "./Components/LMS/NavLms";
 import ProfileBar from "./Components/ProfileBar";
 import SideNav from "./Components/SideNav";
@@ -25,10 +27,10 @@ const LmsInstructor = () => {
           </nav>
           <div className="p-4">
             <div className={show === 1 ? "block" : "hidden"}>
-                1
+              <CurrentInstructor/>
             </div>
             <div className={show === 2 ? "block" : "hidden"}>
-              2
+              <InstructorAttendance/>
             </div>
             <div className={show === 3 ? "block" : "hidden"}>
               3
