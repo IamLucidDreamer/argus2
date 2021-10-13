@@ -1,4 +1,8 @@
 import React, {useState} from 'react'
+import Attendance from './Components/LMS/Form/Attendance';
+import CurrentStudens from './Components/LMS/Form/CurrentStudens';
+import HistoryLMS from './Components/LMS/Form/HistoryLMS';
+import ProfileSearch from './Components/LMS/Form/ProfileSearch';
 import NavLms from './Components/LMS/NavLms';
 import ProfileBar from './Components/ProfileBar';
 import SideNav from './Components/SideNav';
@@ -25,16 +29,16 @@ const LmsStudent = () => {
           </nav>
           <div className="p-4">
             <div className={show === 1 ? "block" : "hidden"}>
-                1
+              <ProfileSearch />
             </div>
             <div className={show === 2 ? "block" : "hidden"}>
-              2
+              <CurrentStudens />
             </div>
             <div className={show === 3 ? "block" : "hidden"}>
-              3
+              <Attendance />
             </div>
             <div className={show === 4 ? "block" : "hidden"}>
-              4
+              <HistoryLMS />
             </div>
           </div>
         </div>
