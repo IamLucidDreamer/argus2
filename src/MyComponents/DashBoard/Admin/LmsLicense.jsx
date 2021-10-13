@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import Basket from './Components/LMS/Form/Basket';
+import DocumentApproval from './Components/LMS/Form/DocumentApproval';
+import LicensedEmployee from './Components/LMS/Form/LicensedEmployee';
 import NavLms from './Components/LMS/NavLms';
 import ProfileBar from './Components/ProfileBar';
 import SideNav from './Components/SideNav';
@@ -25,16 +28,16 @@ export const LmsLicense = () => {
           </nav>
           <div className="p-4">
             <div className={show === 1 ? "block" : "hidden"}>
-                1
+              <DocumentApproval />
             </div>
             <div className={show === 2 ? "block" : "hidden"}>
-              2
+              <Basket />
             </div>
             <div className={show === 3 ? "block" : "hidden"}>
-              3
+              <LicensedEmployee />
             </div>
             <div className={show === 4 ? "block" : "hidden"}>
-              4
+              <h1 className="text-5xl">Link to the Ministries Website</h1>
             </div>
           </div>
         </div>
