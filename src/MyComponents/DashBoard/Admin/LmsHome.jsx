@@ -5,6 +5,7 @@ import NavLms from './Components/LMS/NavLms';
 import ClassOverview from './Components/LMS/Form/ClassOverview';
 import EnrollStudent from './Components/LMS/Form/EnrollStudent';
 import Message from '../Admin/Components/LMS/Form/Message';
+import ClassMaterial from './Components/LMS/Form/ClassMaterial';
 
 
 const LmsHome = () => {
@@ -32,7 +33,7 @@ const LmsHome = () => {
                 <ClassOverview />
             </div>
             <div className={show === 2 ? "block" : "hidden"}>
-              2
+              <ClassMaterial />
             </div>
             <div className={show === 3 ? "block" : "hidden"}>
               <EnrollStudent/>

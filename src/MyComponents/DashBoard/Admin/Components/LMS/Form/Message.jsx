@@ -14,15 +14,15 @@ const Message = () => {
       </div>
       <div className={message ? "block" : "hidden"}>
       <form className="flex flex-wrap justify-center items-center text-lg font-bold">
-            <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
                 <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12"/>
                 <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0"/>
             </div>
-            <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
                 <input type="date" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12"/>
                 <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0"/>
             </div>
-            <textarea type="textarea" placeholder="Message" className="bg-client p-5 w-full lg:w-10/12 mt-8 lg:mt-4 h-80"/>
+            <textarea type="textarea" placeholder="Message" className="bg-client p-5 w-full lg:w-11/12 mt-8 lg:mt-4 h-80"/>
             <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">Send Message</button>
         </form>
       </div>
