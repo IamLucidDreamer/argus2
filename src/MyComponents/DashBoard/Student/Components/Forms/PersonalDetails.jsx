@@ -18,30 +18,30 @@ const PersonalDetails = () => {
                             />
                         </svg>
                     </span>
-                    <h1 className="text-lg text-gray-3 font-bold mx-5">Personal Details</h1>
+                    <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">Personal Details</h1>
                 </div>
                 
-                <form className="flex flex-col text-black font-bold">                
+                <form className="flex flex-col text-gray-2 font-bold placeholder-red-1">                
                     <label> Date of Birth</label>
-                    <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4 " type="date"/>
                     <div className="flex flex-row items-center justify-between">
                         <div className="flex flex-col w-5/12">
                             <label> Height</label>
-                            <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                            <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" placeholder="180 cm" type="number" min="0" max="280"/>
                         </div>
                         <div className="flex flex-col w-5/12">
                             <label> Weight</label>
-                            <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                            <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" placeholder="160 lbs" type="number" min="0" max="500"/>
                         </div>
                     </div>
                     <label> Eye Color</label>
-                        <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                        <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4"/>
                     <label> Hair Color</label>
-                    <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4"/>
                     <label> Gender</label>
-                    <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4"/>
+                    <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4"/>
                     
-                    <button className= "mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1">Update</button>
+                    <button className= "mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner">UPDATE</button>
                 </form>
             </div>
         </div>

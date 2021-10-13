@@ -17,7 +17,7 @@ function TopBarOptions({ options }) {
   const dispatch = useDispatch();
   return (
     <div
-      className={`z-50 w-64 sm:w-72 absolute right-4 sm:right-10 md:right-12 top-20 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
+      className={`z-50 w-64 sm:w-72 absolute top-20 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
         options
           ? 'transition-all duration-300 opacity-100 inline-block'
           : 'transition-all duration-300 opacity-0 invisible'

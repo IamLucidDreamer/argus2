@@ -10,7 +10,7 @@ function Notify({ notify }) {
 
   return (
     <div
-      className={`z-50 w-72 sm:w-96 absolute right-4 sm:right-10 md:right-12 top-20 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
+      className={`z-50 w-72 sm:w-96 absolute right-4 sm:right-10 md:right-12 2xl:right-44 top-20 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
         notify
           ? "transition-all duration-300 opacity-100 inline-block"
           : "transition-all duration-300 opacity-0 invisible"

@@ -9,7 +9,7 @@ import { TopElementHome } from './Components/TopElementHome';
 
 const Home = () => {
   return (
-    <div>
+    <div className="font-for-para">
       <TopElementHome />
       <div className="flex flex-wrap items-stretch w-full max-w-1366 mx-auto"> 
         <PersonalDetails />

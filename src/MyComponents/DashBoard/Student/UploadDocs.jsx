@@ -7,21 +7,21 @@ const UploadDocs = () => {
         UPLOAD DOCUMENTS
       </h1>
       <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
-        <h1 className="text-center w-full lg:w-7/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+        <h1 className="text-center w-full lg:w-4/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Document
         </h1>
-        <h1 className="text-center lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
-          Status
+        <h1 className="text-center w-full lg:w-6/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+          Description
         </h1>
       </div>
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
-        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+        <div className="flex flow-col items-center justify-center text-center lg:w-4/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa dsadsfadsf</h1>
+        </div>
+        <h1 className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
           at natus aut delectus.
         </h1>
-        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-          <h1>Thisasd dasasdfa</h1>
-        </div>
         <svg
           className="w-1/12 h-14 mx-auto lg:my-auto m-2 text-gray-3 hover:text-red-1"
           viewBox="-32 0 512 512"
@@ -33,15 +33,14 @@ const UploadDocs = () => {
           />
         </svg>
       </div>
-      <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
-        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+        <div className="flex flow-col items-center justify-center text-center lg:w-4/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa dsadsfadsf</h1>
+        </div>
+        <h1 className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
           at natus aut delectus.
         </h1>
-        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-          <h1>Thisasd dasasdfa</h1>
-        </div>
         <svg
           className="w-1/12 h-14 mx-auto lg:my-auto m-2 text-gray-3 hover:text-red-1"
           viewBox="-32 0 512 512"
