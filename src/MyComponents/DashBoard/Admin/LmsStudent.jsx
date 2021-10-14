@@ -16,7 +16,7 @@ const LmsStudent = () => {
       <div className="w-36 md:w-72 bg-red-1">
         <SideNav />
       </div>
-      <div className="w-full">
+      <div className="w-10/12">
         <ProfileBar />
         <NavLms />
         <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-72 md:mt-0 mb-10 md:my-16 rounded-2xl">
