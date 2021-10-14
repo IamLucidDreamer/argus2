@@ -20,12 +20,12 @@ const Message = () => {
             </div>
             <input type="text" placeholder="Subject Line" className="bg-client p-5 w-full lg:w-11/12 mt-8 lg:my-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
             <textarea type="textarea" placeholder="Message" className="bg-client p-5 w-full lg:w-11/12 mt-8 lg:mt-4 h-80 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
-            <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">ADD DELAY of 5 sec SEND MESSAGE</button>
+            <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">ADD DELAY of 60 sec SEND MESSAGE</button>
         </form>
       </div>
 
       <h1 className="text-xl font-bold my-4">Message Board</h1>
-      <div className="border-b-3 border-client text-sm py-2 px-4 leading-snug text-gray-2 mb-4">
+      <div className="border-b-3 border-client text-lg py-2 px-4 leading-snug text-gray-2 mb-4">
         <div className="flex my-2">
           <img
             className="w-12 h-12 mr-3 rounded-lg"
@@ -48,7 +48,7 @@ const Message = () => {
           12/12/2020 12:!2
         </div>
       </div>
-      <div className="border-b-3 border-client text-sm py-2 px-4 leading-snug text-gray-2 mb-4">
+      <div className="border-b-3 border-client text-lg py-2 px-4 leading-snug text-gray-2 mb-4">
         <div className="flex my-2">
           <img
             className="w-12 h-12 mr-3 rounded-lg"
@@ -71,7 +71,7 @@ const Message = () => {
           12/12/2020 12:!2
         </div>
       </div>
-      <div className="border-b-3 border-client text-sm py-2 px-4 leading-snug text-gray-2 mb-4">
+      <div className="border-b-3 border-client text-lg py-2 px-4 leading-snug text-gray-2 mb-4">
         <div className="flex my-2">
           <img
             className="w-12 h-12 mr-3 rounded-lg"
