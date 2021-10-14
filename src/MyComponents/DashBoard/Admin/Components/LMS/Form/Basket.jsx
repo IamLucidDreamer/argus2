@@ -15,8 +15,8 @@ const Basket = () => {
         }}
         className={`w-1/2 pt-4 pb-3 font-bold ${
         basket
-          ? "border-b-4 border-white"
-          : "border-b-4 border-red-1 hover:border-white"
+          ? "no-underline"
+          : "underline"
       }`}>
           Basket
         </button>

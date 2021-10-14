@@ -3,7 +3,7 @@ import React from "react";
 const DocumentApproval = () => {
   return (
     <div>
-      <button className="px-4 py-2 bg-red-1 text-white font-bold rounded-2xl m-3 hover:text-red-1 hover:bg-white border-2 border-red-1">Filter</button>
+      <button className="flex ml-auto px-4 py-2 bg-red-1 text-white font-bold rounded-2xl m-3 hover:text-red-1 hover:bg-white border-2 border-red-1">Filter</button>
       <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
         <h1 className="text-center w-full lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Student ID
