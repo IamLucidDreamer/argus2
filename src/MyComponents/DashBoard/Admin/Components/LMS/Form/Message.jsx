@@ -9,7 +9,7 @@ const Message = () => {
     <div>
       <div className="flex">
         <button onClick={() => setMessage(!message)} className="mx-auto my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">
-          New Message
+          NEW MESSAGE
         </button>
       </div>
       <div className={message ? "block" : "hidden"}>
@@ -20,7 +20,7 @@ const Message = () => {
             </div>
             <input type="text" placeholder="Subject Line" className="bg-client p-5 w-full lg:w-11/12 mt-8 lg:my-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
             <textarea type="textarea" placeholder="Message" className="bg-client p-5 w-full lg:w-11/12 mt-8 lg:mt-4 h-80 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
-            <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">Send Message</button>
+            <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">ADD DELAY of 5 sec SEND MESSAGE</button>
         </form>
       </div>
 
