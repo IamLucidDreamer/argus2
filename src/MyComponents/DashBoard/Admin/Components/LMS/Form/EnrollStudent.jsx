@@ -3,9 +3,6 @@ import React from "react";
 const EnrollStudent = () => {
   return (
     <div>
-      <h1 className="text-2xl text-center my-4 leading-tight title-font font-bold text-white w-48 sm:w-72 mx-auto bg-red-1 rounded-xl pt-2 pb-3">
-        Enroll Student
-      </h1>
       <div class="bg-white flex items-center rounded-full shadow-lg w-full lg:w-1/2 mx-auto border-3 border-gray-2 my-10">
         <input
           class="rounded-l-full w-full py-2 px-6 text-gray-700 leading-tight focus:outline-none"
@@ -33,14 +30,14 @@ const EnrollStudent = () => {
       </div>
       <form className="flex flex-wrap justify-center items-center text-lg font-bold">
             <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-                <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12"/>
-                <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0"/>
+                <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
+                <input type="text" placeholder="LAST Name" className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
             </div>
             <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-                <input type="date" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12"/>
-                <input type="text" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0"/>
+                <input type="date" placeholder="First Name" className="bg-client p-5 w-full lg:w-5/12 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
+                <input type="text" placeholder="Search Class According to the dates and enroll the student into that specific class" className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
             </div>
-            <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">Enroll</button>
+            <button className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg">ENROLL</button>
         </form>
     </div>
   );

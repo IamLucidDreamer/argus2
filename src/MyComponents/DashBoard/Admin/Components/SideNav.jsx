@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "./../../../../argus website/PNG/Logo Vectors.png";
+import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
 
 export default function SideNav() {
   return (
@@ -46,7 +46,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">ACtivity</span>
+            <span className="hidden md:block">Activity</span>
           </Link>
           <Link
             to="/dashboard/student/calendar"
@@ -65,7 +65,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Shift planning</span>
+            <span className="hidden md:block">Shifts</span>
           </Link>
           <Link
             to="/dashboard/student/calendar"
@@ -84,7 +84,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Employee Management</span>
+            <span className="hidden md:block">Employees</span>
           </Link>
           <Link
             to="/dashboard/student/calendar"
@@ -103,7 +103,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Location Management</span>
+            <span className="hidden md:block">Locations</span>
           </Link>
           <Link
             to="/dashboard/admin/lms/home"
@@ -122,7 +122,7 @@ export default function SideNav() {
                 />
               </svg>
             </span>
-            <span className="hidden md:block">Learning Management</span>
+            <span className="hidden md:block">LMS</span>
           </Link>
           <Link
             to="/dashboard/student/purchase"
@@ -141,7 +141,7 @@ export default function SideNav() {
                 ></path>
               </svg>
             </span>
-            <span className="hidden md:block">Client Management</span>
+            <span className="hidden md:block">Clients</span>
           </Link>
           <Link
             to="/dashboard/admin/websitecontrols"
@@ -160,7 +160,7 @@ export default function SideNav() {
                 ></path>
               </svg>
             </span>
-            <span className="hidden md:block">Website Control</span>
+            <span className="hidden md:block">Website</span>
           </Link>
           <Link
             to="/dashboard/student/history"
