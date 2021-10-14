@@ -7,7 +7,7 @@ export default function useOnScreen(ref) {
     setIntersecting(entry.isIntersecting)
   );
 
-  useEffect(() => {
+  useEffect(()=> {
     observer.observe(ref.current);
     // Remove the observer as soon as the component is unmounted
     return () => {

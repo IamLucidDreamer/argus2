@@ -32,6 +32,7 @@ const LicensedEmployee = () => {
           <h1 className="font-bold">23:00</h1>
         </div>
       </div>
+      <h1>Add Spacing between all the cards on mbikle screen.</h1>
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
         <div className="flex flex-col justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
           <h1 className="font-bold">123456789010</h1>
