@@ -8,16 +8,16 @@ const Basket = () => {
 
     return (
       <div>
-      <div className="flex flex-row items-center text-red-1 text-xl">
+      <div className="flex flex-col sm:flex-row items-center justify-around text-red-1 text-lg">
         <button 
         onClick={() => {
           setBasket(true);
           setDownload(false)
         }}
-        className={`w-1/2 pt-4 pb-3 font-bold ${
+        className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/5 pt-4 pb-0.5 font-bold ${
         basket
-          ? "border-b-4 border-red-1"
-          : "border-b-4 border-white hover:border-gray-2"
+          ? "border-b-4 border-red-1 text-red-1"
+          : "border-b-4 border-white hover:border-gray-2 text-gray-2"
       }`}>
           MANAGE BASKETS
         </button>
@@ -26,10 +26,10 @@ const Basket = () => {
           setDownload(true);
           setBasket(false);
         }}
-        className={`w-1/2 pt-4 pb-3 font-bold ${
+        className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/5 pt-4 pb-0.5 font-bold ${
           download
-            ? "border-b-4 border-red-1"
-            : "border-b-4 border-white hover:border-gray-2"
+            ? "border-b-4 border-red-1 text-red-1"
+            : "border-b-4 border-white hover:border-gray-2 text-gray-2"
         }`}>
           DOWNLOADED
         </button>
