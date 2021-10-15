@@ -11,10 +11,10 @@ const LmsInstructor = () => {
 
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
-      <div className="w-36 md:w-72 bg-red-1">
+      <div className="w-36 md:w-56 lg:w-60 xl:w-64 bg-red-1">
         <SideNav />
       </div>
-      <div className="w-full">
+      <div className="w-9/12 sm:w-10/12">
         <ProfileBar />
         <NavLms />
         <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-36 md:mt-0 mb-10 md:my-16 rounded-2xl">
