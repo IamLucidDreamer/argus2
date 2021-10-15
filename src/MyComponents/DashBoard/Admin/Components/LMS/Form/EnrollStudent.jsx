@@ -8,8 +8,20 @@ const EnrollStudent = () => {
                 <input type="text" placeholder="Class ID Dropdown" className="bg-client p-5 w-full lg:w-5/12 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"/>
             </div>
         </form>
-        <button className="flex ml-auto px-4 py-2 bg-red-1 text-white font-bold rounded-2xl my-3 hover:text-red-1 hover:bg-white border-2 border-red-1">Filter</button>
-        <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
+      <div className="flex flex-col-reverse md:flex-row justify-between m-2">
+        <div className="flex flex-row items-center text-gray-2 font-bold mx-auto md:mx-0">
+          <div className="w-10 h-10 rounded-xl bg-red-1 mr-1"></div>
+          <h1 className="mx-1 hover:underline">2</h1>
+          <h1 className="mx-1 hover:underline">3</h1>
+          <h1 className="mx-1 hover:underline">4</h1>
+          <h1 className="mx-1 hover:underline">5</h1>
+          <h1 className="mx-1 hover:underline">10</h1>
+          <h1 className="mx-1 hover:underline">100</h1>
+          <div className="w-10 h-10 rounded-xl bg-red-1 ml-1"></div>
+        </div>
+        <button className="px-4 py-2 bg-red-1 text-white font-bold rounded-2xl hover:text-red-1 hover:bg-white border-2 border-red-1 mb-4 md:mb-0">Filter</button>
+      </div>
+      <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
         <h1 className="text-center w-full lg:w-1/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Select
         </h1>
