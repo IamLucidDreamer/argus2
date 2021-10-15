@@ -102,6 +102,7 @@ module.exports = {
         "speech-2": "5px 3px 10px 1px rgba(0, 0, 0, 0.08)",
         services: "inset -3px -3px 10px 1px rgba(0, 0, 0, 0.30)",
         cards : "0px 0px 10px 1px rgba(0, 0, 0, 0.16)",
+        LMS : "3px 3px 6px 1px rgba(0, 0, 0, 0.30)",
       },
       backgroundSize: {
         "stretch-x": "100% 100%",
