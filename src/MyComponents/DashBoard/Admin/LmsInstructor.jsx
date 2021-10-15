@@ -19,8 +19,8 @@ const LmsInstructor = () => {
         <NavLms />
         <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-36 md:mt-0 mb-10 md:my-16 rounded-2xl">
           <nav className="flex flex-col md:flex-row text-gray-3 text-lg items-center">
-            <button onClick={() =>setShow(1)} className={`w-full md:w-1/2 py-4 rounded-2xl font-bold -mt-28 md:-mt-8 bg-white hover:shadow-none ${show ===1 ? 'shadow-none' : "shadow-button-shadow-2"}`}>Current Instructors</button>
-            <button onClick={() =>setShow(2)} className={`w-full md:w-1/2 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-none ${show ===2 ? 'shadow-none' : "shadow-button-shadow-2"}`}>Manage Instructors</button>
+            <button onClick={() =>setShow(1)} className={`w-full md:w-1/2 py-4 rounded-2xl font-bold -mt-28 md:-mt-8 lg:mr-1 bg-white hover:shadow-button-shadow-3 ${show ===1 ? 'shadow-none' : "shadow-button-shadow-2"}`}>Current Instructors</button>
+            <button onClick={() =>setShow(2)} className={`w-full md:w-1/2 py-4 rounded-2xl font-bold mt-4 md:-mt-8 lg:ml-1 bg-white hover:shadow-button-shadow-3 ${show ===2 ? 'shadow-none' : "shadow-button-shadow-2"}`}>Manage Instructors</button>
           </nav>
           <div className="p-4">
             <div className={show === 1 ? "block" : "hidden"}>
