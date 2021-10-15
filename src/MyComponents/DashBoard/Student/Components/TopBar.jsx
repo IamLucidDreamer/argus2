@@ -9,7 +9,8 @@ export const TopBar = () => {
 
   return (
     <div className="max-w-1200 mx-auto">
-      <div className="pt-3 flex flex-row">
+      <div className="pt-3 flex flex-row justify-between items-center">
+      <h1 className="ml-9 text-2xl text-gray-3 font-bold font-for-para">Welcome back, <span className="text-red-1">Tejinder Singh</span></h1>
         <div className="ml-auto flex justify-around items-center">
           <div className="text-xl mx-1 sm:mr-4 text-gray-3">${new Date().getDay}/12/1221</div>
 

@@ -49,35 +49,35 @@ const Stickynav = () => {
                 <nav class="flex flex-wrap items-center text-base font-for-para font-bold">
                   <Link
                     to="/about"
-                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-20 hover:bg-hover"
+                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-0 hover:bg-opacity-100"
                   >
                     ABOUT
                   </Link>
 
                   <Link
                     to="/services"
-                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-20 hover:bg-hover"
+                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-0 hover:bg-opacity-100"
                   >
                     SERVICES
                   </Link>
 
                   <Link
                     to="/jobs"
-                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-20 hover:bg-hover"
+                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-0 hover:bg-opacity-100"
                   >
                     JOBS
                   </Link>
 
                   <Link
                     to="/courses"
-                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-20 hover:bg-hover"
+                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-0 hover:bg-opacity-100"
                   >
                     COURSE
                   </Link>
 
                   <Link
                     to="/contact"
-                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-20 hover:bg-hover"
+                    className="w-1/5 text-white py-4 text-center bg-hover bg-opacity-0 hover:bg-opacity-100"
                   >
                     CONTACT
                   </Link>
