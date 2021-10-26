@@ -13,7 +13,6 @@ const AdminRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
   const token = JSON.parse(localStorage.getItem('jwt'));
   const dispatch = useDispatch();
-  console.log(user);
   useEffect(() => {
     dispatch(getEOMAdmin());
     dispatch(getTestimonial());

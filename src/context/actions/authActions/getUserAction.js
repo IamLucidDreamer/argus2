@@ -24,7 +24,7 @@ const getUser = () => {
         },
       })
       .then((res) => {
-        dispatch(setUser(res.data));
+        dispatch(setUser(res.data.data));
         dispatch(isAuthenticated('true'));
       })
       .catch(() => {
@@ -34,4 +34,42 @@ const getUser = () => {
   };
 };
 
-export { getUser, setUser, isAuthenticated };
+const updateUser = (resetForm, values, activityDetails) => {
+  return (dispatch) => {
+    const token = JSON.parse(localStorage.getItem('jwt'));
+    axiosInstance
+      .put('/user/update', values, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(getUser());
+        dispatch(userActivity(activityDetails));
+        resetForm();
+      })
+      .catch((err) => {});
+  };
+};
+
+const userActivity = (activityDetails, userName) => {
+  return (dispatch) => {
+    const token = JSON.parse(localStorage.getItem('jwt'));
+    const id = JSON.parse(localStorage.getItem('id'));
+    axiosInstance
+      .post(
+        `/user-activity/create/${id}`,
+        {
+          activityDetails: activityDetails,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => console.log(res));
+  };
+};
+
+export { getUser, setUser, isAuthenticated, updateUser, userActivity };

@@ -33,8 +33,8 @@ import StudentPurchase from './MyComponents/DashBoard/Student/PurchaseCourse.jsx
 import StudentCourse from './MyComponents/DashBoard/Student/Training';
 import StudentContact from './MyComponents/DashBoard/Student/Contact';
 import StudentHistory from './MyComponents/DashBoard/Student/History';
-import ChangePassword from "./MyComponents/DashBoard/Student/ChangePassword"
-import Mypurchases from "./MyComponents/DashBoard/Student/MyPurchases"
+import ChangePassword from './MyComponents/DashBoard/Student/ChangePassword';
+import Mypurchases from './MyComponents/DashBoard/Student/MyPurchases';
 
 import LoginForAdmin from './MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin';
 import AdminHome from './MyComponents/DashBoard/Admin/Home';
@@ -42,7 +42,7 @@ import AdminHomeControls from './MyComponents/DashBoard/Admin/HomePageControls';
 import AdminStatistics from './MyComponents/DashBoard/Admin/Statistics';
 import AdminCourseControl from './MyComponents/DashBoard/Admin/CourseControl';
 import AdminContactControl from './MyComponents/DashBoard/Admin/ContactFormMessages';
-import AdminLmsHome from "./MyComponents/DashBoard/Admin/LmsHome"
+import AdminLmsHome from './MyComponents/DashBoard/Admin/LmsHome';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -66,8 +66,8 @@ import LmsLicense from './MyComponents/DashBoard/Admin/LmsLicense';
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getToken());
     dispatch(getUser());
+    dispatch(getToken());
     dispatch(getContact());
     dispatch(getTestimonial());
     dispatch(getEOM());
@@ -75,6 +75,8 @@ function App() {
     dispatch(getTeam());
   }, [dispatch]);
 
+  const user = useSelector((state) => state.user);
+  console.log(user);
   return (
     <Router>
       <div className="App">
@@ -132,7 +134,7 @@ function App() {
             path="/dashboard/student/history"
             component={StudentHistory}
           />
-           <StudentRoutes
+          <StudentRoutes
             path="/dashboard/student/changepassword"
             component={ChangePassword}
           />
@@ -152,8 +154,6 @@ function App() {
             path="/dashboard/student/modules"
             component={Modules}
           />
-
-
 
           {/* Administrator Routes */}
 
@@ -191,9 +191,6 @@ function App() {
             path="/dashboard/admin/lms/instructor"
             component={LmsInstructor}
           />
-          
-
-
         </switch>
       </div>
     </Router>

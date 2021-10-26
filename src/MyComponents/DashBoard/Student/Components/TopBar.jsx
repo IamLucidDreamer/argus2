@@ -1,18 +1,32 @@
-import React, { useState } from "react";
-import ProfilePicture from "./../../../../argus website/PNG/IMG_0118.png";
-import TopBarOptions from "./TopBarOptions";
-import Notify from "./Notify";
+import React, { useState } from 'react';
+import ProfilePicture from './../../../../argus website/PNG/IMG_0118.png';
+import TopBarOptions from './TopBarOptions';
+import Notify from './Notify';
+import { useSelector } from 'react-redux';
 
 export const TopBar = () => {
   const [topbarOptions, setTopbarOptions] = useState(false);
   const [notify, setNotify] = useState(false);
+  const user = useSelector((state) => state.user.user);
 
   return (
     <div className="max-w-1200 mx-auto">
       <div className="pt-3 flex flex-row justify-between items-center">
-      <h1 className="ml-9 text-2xl text-gray-3 font-bold font-for-para">Welcome back, <span className="text-red-1">Tejinder Singh</span></h1>
+        <h1 className="ml-9 text-2xl text-gray-3 font-bold font-for-para">
+          Welcome back
+          {user?.name ? (
+            <span>
+              ,{' '}
+              <span className="text-red-1">
+                {user?.name + ' ' + user?.lastname}
+              </span>
+            </span>
+          ) : null}
+        </h1>
         <div className="ml-auto flex justify-around items-center">
-          <div className="text-xl mx-1 sm:mr-4 text-gray-3">${new Date().getDay}/12/1221</div>
+          <div className="text-xl mx-1 sm:mr-4 text-gray-3">
+            {new Date().toLocaleDateString('en-GB')}
+          </div>
 
           <button
             onClick={() => {

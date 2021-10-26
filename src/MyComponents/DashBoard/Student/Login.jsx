@@ -91,10 +91,11 @@ const LogIn = ({ open, setOpen }) => {
         history.push('/dashboard/student/home');
       })
       .catch((err) => {
+        console.log(err);
         setLoading(false);
         setShowAlert({
           show: true,
-          message: err.response.data.error,
+          message: err?.response?.data?.error,
           success: false,
         });
       });
