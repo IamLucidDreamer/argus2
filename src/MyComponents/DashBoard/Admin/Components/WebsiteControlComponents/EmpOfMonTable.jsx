@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { API } from "../../../../../api";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { API } from '../../../../../api';
 import {
   deleteEOM,
   setupdateeom,
-} from "../../../../../context/actions/adminActions/eomAction";
-import Loader from "react-loader-spinner";
+} from '../../../../../context/actions/adminActions/eomAction';
+import Loader from 'react-loader-spinner';
 
 export const EmpOfMonTable = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,6 @@ export const EmpOfMonTable = () => {
   const loading = useSelector((state) => state.eom.loading);
   const deleteloading = useSelector((state) => state.eom.deleteloading);
   const [deleteId, setdeleteId] = useState(null);
-
   return (
     <div className="mx-8 my-8 p-4 bg-white shadow-lg rounded-xl">
       {/* Card of table */}
@@ -27,7 +26,7 @@ export const EmpOfMonTable = () => {
           {eom.map((data) => {
             let skills;
             if (data?.skills) {
-              skills = data?.skills[0].split(",");
+              skills = data?.skills[0].split(',');
             }
             return (
               <div
@@ -69,7 +68,7 @@ export const EmpOfMonTable = () => {
                         />
                       </div>
                     ) : (
-                      "Delete"
+                      'Delete'
                     )}
                   </button>
                   <button

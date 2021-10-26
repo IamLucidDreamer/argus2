@@ -5,21 +5,16 @@ import JobHistory from './Components/Forms/JobHistory';
 import PersonalDetails from './Components/Forms/PersonalDetails';
 import ContactDetails from './Components/Forms/ContactDetails';
 import JobSearch from './Components/Forms/JobSearch';
-import { TopElementHome } from './Components/TopElementHome';
-import { useSelector } from 'react-redux';
 
 const Home = () => {
-  const user = useSelector((state) => state.user.user);
   return (
     <div className="font-for-para">
       <div className="flex flex-wrap items-stretch w-full max-w-1366 mx-auto">
-        {user.dateOfBirth ? null : <PersonalDetails />}
-        {}
+        <PersonalDetails />
         <CourseCompletion />
-        {user.hasCriminalRecord !== null ? null : <BackgroundDetails />}
-        {user.companyName ? null : <JobHistory />}
-        {user.country ? null : <ContactDetails />}
-
+        <BackgroundDetails />
+        <JobHistory />
+        <ContactDetails />
         <JobSearch />
       </div>
     </div>

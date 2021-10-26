@@ -71,7 +71,7 @@ const getEOMAdmin = () => {
         },
       })
       .then((res) => {
-        dispatch(seteomAdmin(res.data));
+        dispatch(seteomAdmin(res.data.data));
         dispatch(eomloading(false));
       })
       .catch((err) => {

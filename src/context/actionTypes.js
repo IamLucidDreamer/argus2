@@ -38,3 +38,5 @@ export const DELETE_TEAMLOADING = 'DELETE_TEAMLOADING';
 export const SET_USERDETAILS = 'SET_USERDETAILS';
 export const SET_JWT = 'SET_JWT';
 export const IS_AUTH = 'IS_AUTH';
+
+export const GET_STUDENTS = 'GET_STUDENTS';

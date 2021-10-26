@@ -5,6 +5,7 @@ import { contactReducer } from './reducers/adminReducer/contactReducer';
 import { eomReducer } from './reducers/adminReducer/eomReducer';
 import { testimonialReducer } from './reducers/adminReducer/testimonialReducer';
 import { getUserReducer } from './reducers/authReducer/getUserReducer';
+import { studentReducer } from './reducers/adminReducer/studentReducer';
 
 const rootReducer = combineReducers({
   contact: contactReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   client: clientReducer,
   team: teamReducer,
   user: getUserReducer,
+  students: studentReducer,
 });
 
 export default rootReducer;
