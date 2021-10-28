@@ -33,6 +33,7 @@ const CurrentStudens = () => {
       Header: 'Phone No.',
     },
     {
+      id: 'Registration',
       accessor: 'createdAt',
       Header: 'Registration',
     },
@@ -77,7 +78,13 @@ const CurrentStudens = () => {
       >
         Filter
       </button>
-      <Table data={students} columns={columns} show={show} setShow={setShow} />
+      <Table
+        data={students}
+        columns={columns}
+        show={show}
+        setShow={setShow}
+        justList={true}
+      />
     </div>
   );
 };

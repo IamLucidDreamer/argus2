@@ -26,7 +26,7 @@ const getContact = () => {
     axiosInstance
       .get('/contact/get')
       .then((response) => {
-        dispatch(setcontact(response.data));
+        dispatch(setcontact(response.data.data));
       })
       .catch((err) => {});
   };

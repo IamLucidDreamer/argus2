@@ -51,7 +51,7 @@ const getTeam = () => {
       .then((res) => {
         dispatch(
           setteam(
-            res?.data.sort((p1, p2) => {
+            res?.data?.data?.sort((p1, p2) => {
               return new Date(p2.updatedAt) - new Date(p1.updatedAt);
             }),
           ),

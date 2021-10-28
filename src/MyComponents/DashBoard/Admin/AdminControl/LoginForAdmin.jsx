@@ -53,7 +53,7 @@ const LoginForAdmin = () => {
         .then((data) => {
           dispatch(setToken(data?.data?.token));
           dispatch(setUserID(data?.data?.user?._id));
-          dispatch(setUser(data.data.user));
+          dispatch(setUser(data?.data?.user));
           dispatch(isAuthenticated('true'));
           resetForm();
           history.push('/dashboard/admin/home');
@@ -61,7 +61,7 @@ const LoginForAdmin = () => {
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: err.response.data.error,
+            message: err?.response?.data?.error,
             success: false,
           });
           resetForm();

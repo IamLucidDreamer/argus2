@@ -1,9 +1,15 @@
-import React from 'react';
-import { useRowSelect, useTable, useFilters, usePagination } from 'react-table';
+import React, { useEffect, useState } from 'react';
+import {
+  useGlobalFilter,
+  useRowSelect,
+  useTable,
+  useFilters,
+  usePagination,
+  useAsyncDebounce,
+} from 'react-table';
 import { Pagination } from '@mui/material';
 
 import './reactTable.css';
-import SelectColumnFilter from '../../helpers/TableFilter';
 
 function DefaultColumnFilter() {
   return null;
@@ -31,8 +37,40 @@ const IndeterminateCheckbox = React.forwardRef(
   },
 );
 
-function Table({ columns, data, show, setShow }) {
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length;
+  const [value, setValue] = React.useState(globalFilter);
+  const onChange = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined);
+  }, 200);
+
+  return (
+    <span className="font-semibold">
+      Search:{' '}
+      <input
+        className={`ml-2 px-2 py-1 focus:outline-none rounded-md focus:ring-1 ring-red-1 `}
+        value={value || ''}
+        onChange={(e) => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+        placeholder={`Search ${count} records...`}
+        style={{
+          fontSize: '1.1rem',
+          border: '1px solid gray',
+        }}
+      />
+    </span>
+  );
+}
+
+function Table({ columns, data, show, setShow, justList }) {
   // Use the state and functions returned from useTable to build your UI
+  const [selected, setSelected] = useState();
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -51,18 +89,13 @@ function Table({ columns, data, show, setShow }) {
     // which has only the rows for the active page
 
     // The rest of these things are super handy, too ;)
-    canPreviousPage,
-    canNextPage,
-    pageOptions,
     pageCount,
     gotoPage,
     setAllFilters,
-    nextPage,
-    previousPage,
-    setPageSize,
+    state,
     preGlobalFilteredRows,
     setGlobalFilter,
-    state: { pageSize },
+    state: { pageSize, selectedRowIds },
   } = useTable(
     {
       columns,
@@ -71,32 +104,47 @@ function Table({ columns, data, show, setShow }) {
       initialState: { pageSize: 5 },
     },
     useFilters,
+    useGlobalFilter,
     usePagination,
     useRowSelect,
     (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        // Let's make a column for selection
-        {
-          id: 'selection',
-          // The header can use the table's getToggleAllRowsSelectedProps method
-          // to render a checkbox
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          // The cell can use the individual row's getToggleRowSelectedProps method
-          // to the render a checkbox
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
+      if (!justList) {
+        hooks.visibleColumns.push((columns) => [
+          // Let's make a column for selection
+          {
+            id: 'selection',
+            // The header can use the table's getToggleAllRowsSelectedProps method
+            // to render a checkbox
+            Header: ({ getToggleAllRowsSelectedProps }) => (
+              <div>
+                <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+              </div>
+            ),
+            // The cell can use the individual row's getToggleRowSelectedProps method
+            // to the render a checkbox
+            Cell: ({ row }) => (
+              <div>
+                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+              </div>
+            ),
+          },
+          ...columns,
+        ]);
+      }
     },
   );
+
+  useEffect(() => {
+    var keys = Object.keys(selectedRowIds);
+    var downloads = new Array();
+    keys.forEach(function (item, index) {
+      downloads.push(data[item]._id);
+    });
+
+    setSelected(downloads);
+  }, [selectedRowIds]);
+
+  console.log(selected);
 
   // Render the UI for your table
   return (
@@ -134,7 +182,7 @@ function Table({ columns, data, show, setShow }) {
         </div>
       </div>
 
-      <div className="pagination">
+      <div className="pagination flex">
         <Pagination
           count={pageCount}
           shape="rounded"
@@ -142,6 +190,11 @@ function Table({ columns, data, show, setShow }) {
             gotoPage(value - 1);
           }}
         />
+        {/* <GlobalFilter
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={state.globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        /> */}
       </div>
       <table {...getTableProps()}>
         <thead>
@@ -172,7 +225,11 @@ function Table({ columns, data, show, setShow }) {
                       cell.column.id === 'City' ||
                       cell.column.id === 'Country' ||
                       cell.column.id === 'Province' ? null : (
-                        <div> {cell.render('Cell')}</div>
+                        <div>
+                          {cell.column.id === 'Registration'
+                            ? new Date(cell.value).toDateString()
+                            : cell.render('Cell')}
+                        </div>
                       )}
                     </td>
                   );

@@ -8,6 +8,7 @@ import Stickynav from '../Partials/Stickynav';
 import Mobilenav from '../Partials/Mobilenav';
 import MobileHeader from '../Partials/MobileHeader';
 import Header2 from '../Partials/Header2';
+import Footer from '../Partials/Footer';
 
 const HomeRoute = ({ component: Component, ...rest }) => {
   const navRef = useRef();
@@ -33,6 +34,7 @@ const HomeRoute = ({ component: Component, ...rest }) => {
             <Stickynav />
             <MobileHeader open={navOpen} setOpen={setnavOpen} />
             <Component open={loginOpen} setOpen={setLoginOpen} {...props} />
+            <Footer />
           </div>
         )}
       />

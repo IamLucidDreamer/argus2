@@ -53,7 +53,7 @@ const getEOM = () => {
     axiosInstance
       .get('/eom/get')
       .then((res) => {
-        dispatch(seteom(res.data));
+        dispatch(seteom(res.data.data));
       })
       .catch((err) => {});
   };
