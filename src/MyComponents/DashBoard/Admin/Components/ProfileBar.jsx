@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { clearStorage } from '../../../../context/actions/authActions/setStorageAction';
-import profile from './../../../../argus website/PNG/IMG_0118.png';
-import { setToken } from '../../../../context/actions/authActions/setStorageAction';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import { clearStorage } from "../../../../context/actions/authActions/setStorageAction";
+import profile from "./../../../../argus website/PNG/IMG_0118.png";
+import { setToken } from "../../../../context/actions/authActions/setStorageAction";
 import {
   isAuthenticated,
   setUser,
-} from '../../../../context/actions/authActions/getUserAction';
-import { Link } from 'react-router-dom';
+} from "../../../../context/actions/authActions/getUserAction";
+import { Link } from "react-router-dom";
 
 export default function ProfileBar() {
   const history = useHistory();
@@ -22,7 +22,7 @@ export default function ProfileBar() {
       <div className="pt-3 flex flex-row">
         <div className="ml-auto flex justify-around items-center">
           <div className="text-xl mx-1 sm:mr-4 text-gray-3">
-            {new Date().toLocaleDateString('en-GB')}
+            {new Date().toLocaleDateString("en-GB")}
           </div>
 
           <button
@@ -49,8 +49,8 @@ export default function ProfileBar() {
       <div
         className={`z-50 w-64 sm:w-72 absolute right-4 sm:right-10 md:right-12 top-20 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
           option
-            ? 'transition-all duration-300 opacity-100 inline-block'
-            : 'transition-all duration-300 opacity-0 invisible'
+            ? "transition-all duration-300 opacity-100 inline-block"
+            : "transition-all duration-300 opacity-0 invisible"
         }`}
       >
         <div className="bg-gray-3 flex flex-row items-center rounded-t-xl">
@@ -65,28 +65,28 @@ export default function ProfileBar() {
           </div>
         </div>
         <div className="text-gray-2 text-base font-bold bg-gray-200 rounded-b-xl">
-          <Link to="/dashboard/student/changepassword">
+          <Link to="/dashboard/admin/changepassword">
             <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
               <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">
                 ➔
-              </span>{' '}
+              </span>{" "}
               Change Password
             </h1>
           </Link>
           <Link
             onClick={() => {
               dispatch(clearStorage());
-              dispatch(isAuthenticated('false'));
+              dispatch(isAuthenticated("false"));
               dispatch(setUser({}));
               dispatch(setToken(null));
 
-              history.push('/');
+              history.push("/");
             }}
           >
             <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner">
               <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">
                 ➔
-              </span>{' '}
+              </span>{" "}
               Logout
             </h1>
           </Link>
