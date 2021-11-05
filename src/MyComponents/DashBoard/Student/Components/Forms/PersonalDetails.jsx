@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   getUser,
@@ -7,7 +7,7 @@ import {
 } from '../../../../../context/actions/authActions/getUserAction';
 import axiosInstance from '../../../../../helpers/axiosInstance';
 
-const PersonalDetails = () => {
+const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
@@ -33,7 +33,7 @@ const PersonalDetails = () => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
       dateOfBirth: '',
       gender: '',
@@ -47,6 +47,17 @@ const PersonalDetails = () => {
       dispatch(updateUser(resetForm, values, 'Personal Details updated'));
     },
   });
+
+  useEffect(() => {
+    setValues({
+      dateOfBirth: user?.dateOfBirth,
+      gender: user?.gender,
+      weight: user?.weight,
+      height: user?.height,
+      eyeColor: user?.eyeColor,
+      hairColor: user?.hairColor,
+    });
+  }, [user, setValues]);
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">

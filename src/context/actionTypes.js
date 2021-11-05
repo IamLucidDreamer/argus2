@@ -39,4 +39,18 @@ export const SET_USERDETAILS = 'SET_USERDETAILS';
 export const SET_JWT = 'SET_JWT';
 export const IS_AUTH = 'IS_AUTH';
 
+export const GET_USERS = 'GET_USERS';
 export const GET_STUDENTS = 'GET_STUDENTS';
+export const GET_INSTRUCTORS = 'GET_INSTRUCTORS';
+export const GET_EMPLOYEE = 'GET_EMPLOYEE';
+
+export const GET_CLASSES = 'GET_CLASSES';
+export const ADD_CLASS = 'ADD_CLASS';
+export const ENROLL_CLASS = 'ENROLL_CLASS';
+export const DELETE_CLASS = 'DELETE_CLASS';
+
+export const GET_BASKET = 'GET_BASKET';
+export const ADD_BASKET = 'ADD_BASKET';
+export const ENROLL_BASKET = 'ENROLL_BASKET';
+export const DELETE_BASKET = 'DELETE_BASKET';
+export const UPDATEBASKET_STATUS = 'UPDATEBASKET_STATUS';

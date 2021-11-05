@@ -1,12 +1,12 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
 
-const JobHistory = () => {
+const JobHistory = ({ user }) => {
   const dispatch = useDispatch();
 
-  const { getFieldProps, handleSubmit, errors, values } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
       category: '',
       companyName: '',
@@ -18,6 +18,16 @@ const JobHistory = () => {
       dispatch(updateUser(resetForm, values, 'Job history updated'));
     },
   });
+
+  useEffect(() => {
+    setValues({
+      category: user?.category,
+      companyName: user?.companyName,
+      companyAddress: user?.companyAddress,
+      employeeDuration: user?.employeeDuration,
+      reasonForLeaving: user?.reasonForLeaving,
+    });
+  }, [user, setValues]);
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">

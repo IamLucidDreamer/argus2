@@ -5,8 +5,9 @@ import SelectColumnFilter from '../../../../../../helpers/TableFilter';
 import Table from '../../../../../Components/reactTable';
 
 const CurrentStudens = () => {
-  const students = useSelector((state) => state.students.students);
+  const students = useSelector((state) => state.users.students);
   const [show, setShow] = useState(false);
+  const [selected, setSelected] = useState([]);
 
   students.forEach((element) => {
     for (const key in element) {
@@ -84,6 +85,7 @@ const CurrentStudens = () => {
         show={show}
         setShow={setShow}
         justList={true}
+        setSelected={setSelected}
       />
     </div>
   );

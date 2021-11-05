@@ -68,9 +68,8 @@ function GlobalFilter({
   );
 }
 
-function Table({ columns, data, show, setShow, justList }) {
+function Table({ columns, data, show, setShow, justList, setSelected }) {
   // Use the state and functions returned from useTable to build your UI
-  const [selected, setSelected] = useState();
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -135,16 +134,14 @@ function Table({ columns, data, show, setShow, justList }) {
   );
 
   useEffect(() => {
-    var keys = Object.keys(selectedRowIds);
-    var downloads = new Array();
+    let keys = Object.keys(selectedRowIds);
+    let downloads = [];
     keys.forEach(function (item, index) {
-      downloads.push(data[item]._id);
+      downloads.push({ studentId: data[item]?._id });
     });
 
     setSelected(downloads);
-  }, [selectedRowIds]);
-
-  console.log(selected);
+  }, [selectedRowIds, setSelected, data]);
 
   // Render the UI for your table
   return (

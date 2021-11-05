@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   getUser,
@@ -7,7 +7,7 @@ import {
 } from '../../../../../context/actions/authActions/getUserAction';
 import axiosInstance from '../../../../../helpers/axiosInstance';
 
-const ContactDetails = () => {
+const ContactDetails = ({ user }) => {
   const dispatch = useDispatch();
 
   const validate = (values) => {
@@ -50,7 +50,7 @@ const ContactDetails = () => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
       country: '',
       province: '',
@@ -68,6 +68,21 @@ const ContactDetails = () => {
       dispatch(updateUser(resetForm, values, 'Contact Details updated'));
     },
   });
+
+  useEffect(() => {
+    setValues({
+      country: user?.country,
+      province: user?.province,
+      streetNumber: user?.streetNumber,
+      city: user?.city,
+      street: user?.street,
+      postalCode: user?.postalCode,
+      suite: user?.suite,
+      homePhone: user?.homePhone,
+      phone: user?.phone,
+      email: user?.email,
+    });
+  }, [user, setValues]);
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">

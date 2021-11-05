@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   getUser,
@@ -7,7 +7,7 @@ import {
 } from '../../../../../context/actions/authActions/getUserAction';
 import axiosInstance from '../../../../../helpers/axiosInstance';
 
-const BackgroundDetails = () => {
+const BackgroundDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
@@ -30,7 +30,7 @@ const BackgroundDetails = () => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
       hasCriminalRecord: '',
       hasVechicle: '',
@@ -43,6 +43,16 @@ const BackgroundDetails = () => {
       dispatch(updateUser(resetForm, values, 'BackGround Details updated'));
     },
   });
+
+  useEffect(() => {
+    setValues({
+      hasCriminalRecord: user.hasCriminalRecord,
+      hasVechicle: user.hasVechicle,
+      hasLicenseToDrive: user.hasLicenseToDrive,
+      levelOfEducation: user.levelOfEducation,
+      languagesKnown: user.languagesKnown,
+    });
+  }, [user, setValues]);
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">

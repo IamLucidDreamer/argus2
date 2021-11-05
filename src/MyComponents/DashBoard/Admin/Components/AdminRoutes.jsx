@@ -8,14 +8,18 @@ import { getTeam } from '../../../../context/actions/adminActions/teamAction';
 import { getTestimonial } from '../../../../context/actions/adminActions/testimonialAction';
 import { getEOMAdmin } from '../../../../context/actions/adminActions/eomAction';
 import { useSelector } from 'react-redux';
-import { getStudents } from '../../../../context/actions/adminActions/studentAction';
+import { getUsers } from '../../../../context/actions/lmsActions/userAction';
+import { get_Class } from '../../../../context/actions/lmsActions/classActions';
+import { get_Basket } from '../../../../context/actions/lmsActions/basketActions';
 
 const AdminRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
   const token = JSON.parse(localStorage.getItem('jwt'));
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getStudents());
+    dispatch(get_Class());
+    dispatch(get_Basket());
+    dispatch(getUsers());
     dispatch(getEOMAdmin());
     dispatch(getTestimonial());
     dispatch(getContact());
