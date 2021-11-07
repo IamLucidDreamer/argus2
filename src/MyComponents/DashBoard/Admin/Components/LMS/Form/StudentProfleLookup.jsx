@@ -73,7 +73,7 @@ const PersonalDetails = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-lg">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -98,7 +98,7 @@ const PersonalDetails = () => {
           className="flex flex-col text-gray-2 font-bold placeholder-red-1"
         >
           <div className="flex flex-col">
-            <label> Name Of the Person</label>
+            <label> Name</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
@@ -273,7 +273,7 @@ const BackgroundDetails = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-lg">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -465,7 +465,7 @@ const ContactDetails = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-lg">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -631,7 +631,7 @@ const JobHistory = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-lg">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -782,7 +782,7 @@ const JobSearch = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-lg">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -802,9 +802,21 @@ const JobSearch = () => {
 
         <form className="flex flex-col text-gray-2 font-bold">
           <label> Are you looking for a job?</label>
-          <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" />
+          <select className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4">
+            <option value="" disabled selected>
+              Select
+            </option>
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+          </select>
           <label> Email me about new opportunities?</label>
-          <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" />
+          <select className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4">
+            <option value="" disabled selected>
+              Select
+            </option>
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+          </select>
           <label> Preferred City of Employment</label>
           <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" />
           <label> Availability</label>
