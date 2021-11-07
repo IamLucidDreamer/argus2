@@ -30,6 +30,14 @@ const Message = () => {
 
   const users = useSelector((state) => state.users.users);
 
+  users.forEach((element) => {
+    for (const key in element) {
+      if (element[key] === null) {
+        element[key] = '';
+      }
+    }
+  });
+
   const token = JSON.parse(localStorage.getItem('jwt'));
   useEffect(() => {
     setMsgLoading(true);

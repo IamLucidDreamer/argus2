@@ -3,8 +3,15 @@ import React, { useState } from 'react';
 import ClassStudents from './ClassStudents';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
-const ClassList = ({ c, editclass, selectedClass }) => {
-  const [showStudents, setShowStudents] = useState(false);
+const ClassList = ({
+  c,
+  editclass,
+  selectedClass,
+  selectedClassShow,
+  setSelectedClassShow,
+  index,
+}) => {
+  console.log(selectedClassShow);
   return (
     <div>
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
@@ -25,10 +32,16 @@ const ClassList = ({ c, editclass, selectedClass }) => {
         </div>
         <div
           onClick={() => {
-            setShowStudents(!showStudents);
+            if (selectedClassShow === index) {
+              setSelectedClassShow(null);
+            } else {
+              setSelectedClassShow(index);
+            }
           }}
           className={`${
-            showStudents ? 'bg-red-1 text-white' : 'bg-white text-gray-2'
+            selectedClassShow === index
+              ? 'bg-red-1 text-white'
+              : 'bg-white text-gray-2'
           } flex flex-col cursor-pointer justify-center text-center lg:w-2/12 px-3 py-3  rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg hover:bg-red-1 hover:text-white font-bold`}
         >
           <h1 className="">
@@ -54,7 +67,7 @@ const ClassList = ({ c, editclass, selectedClass }) => {
       </div>
       <div
         className={`${
-          showStudents ? 'block' : 'hidden'
+          selectedClassShow === index ? 'block' : 'hidden'
         } border-t-3 border-b-3 lg:border-none border-red-1 lg:shadow-cards rounded-2xl my-5 pt-4 lg:px-3`}
       >
         <ClassStudents c={c} />

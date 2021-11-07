@@ -14,6 +14,7 @@ const ClassOverview = () => {
   const [pageData, setpageData] = useState([]);
   const [edit, setEdit] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedClassShow, setSelectedClassShow] = useState(null);
 
   const [showAlert, setShowAlert] = useState({
     show: false,
@@ -70,13 +71,16 @@ const ClassOverview = () => {
               Edit
             </h1>
           </div>
-          {pageData.map((c) => {
+          {pageData.map((c, index) => {
             return (
               <>
                 <ClassList
                   c={c}
                   editclass={setEdit}
                   selectedClass={setSelectedClass}
+                  selectedClassShow={selectedClassShow}
+                  setSelectedClassShow={setSelectedClassShow}
+                  index={index}
                 />
               </>
             );

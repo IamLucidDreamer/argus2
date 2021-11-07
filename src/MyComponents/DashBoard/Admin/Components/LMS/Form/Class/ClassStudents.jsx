@@ -22,6 +22,14 @@ const ClassStudents = ({ c }) => {
     );
   }, [c.students, token, students]);
 
+  data.forEach((element) => {
+    for (const key in element) {
+      if (element[key] === null) {
+        element[key] = '';
+      }
+    }
+  });
+
   const removeStudents = (e) => {
     e.preventDefault();
     let rm = [];
