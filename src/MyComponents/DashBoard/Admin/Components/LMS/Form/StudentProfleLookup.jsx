@@ -6,15 +6,26 @@ import {
   updateUser,
 } from "../../../../../../context/actions/authActions/getUserAction";
 import axiosInstance from "../../../../../../helpers/axiosInstance";
+import Profile from "../../../../../../argus website/PNG/IMG_0118.png";
 
 export default function StudentProfleLookup() {
   return (
     <div>
-      <PersonalDetails />
-      <BackgroundDetails />
-      <ContactDetails />
-      <JobHistory />
-      <JobSearch />
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 flex flex-col md:flex-row items-center justify-between text-gray-3">
+        <div className="flex items-center flex-col md:flex-row">
+          <img src={Profile} className="rounded-full" alt="" />
+          <h1 className="text-3xl font-bold p-2 md:p-4">Name of the Student</h1>
+        </div>
+        <h1 className="text-3xl font-bold">12323148023948</h1>
+      </div>
+      <div className="flex flex-wrap">
+        <PersonalDetails />
+        <BackgroundDetails />
+        <ContactDetails />
+        <JobHistory />
+        <JobSearch />
+        <Documents />
+      </div>
     </div>
   );
 }
@@ -62,7 +73,7 @@ const PersonalDetails = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -87,6 +98,20 @@ const PersonalDetails = () => {
           className="flex flex-col text-gray-2 font-bold placeholder-red-1"
         >
           <div className="flex flex-col">
+            <label> Name</label>
+            <input
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              type="name"
+              placeholder="Name Here"
+              {...getFieldProps("dateOfBirth")}
+            />
+            {errors.dateOfBirth ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.dateOfBirth}
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
             <label> Date of Birth</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
@@ -101,7 +126,7 @@ const PersonalDetails = () => {
           </div>
           <div className="flex flex-row items-center justify-between mt-4">
             <div className="flex flex-col w-5/12">
-              <label> Height</label>
+              <label> Height (In cm)</label>
               <input
                 className="border-b-2 border-client focus:border-red-1 focus:outline-none"
                 placeholder="180 cm"
@@ -117,7 +142,7 @@ const PersonalDetails = () => {
               ) : null}
             </div>
             <div className="flex flex-col w-5/12">
-              <label> Weight</label>
+              <label> Weight (In lbs)</label>
               <input
                 className="border-b-2 border-client focus:border-red-1 focus:outline-none"
                 placeholder="160 lbs"
@@ -135,10 +160,21 @@ const PersonalDetails = () => {
           </div>
           <div className="flex flex-col mt-4">
             <label> Eye Color</label>
-            <input
+            <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("eyeColor")}
-            />
+            >
+              <option value="" disabled selected>
+                Select Eye Color
+              </option>
+              <option value="brown">Brown</option>
+              <option value="hazel">Hazel</option>
+              <option value="brown">Brown</option>
+              <option value="amber">Amber</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="others">Others</option>
+            </select>
             {errors.eyeColor ? (
               <div className="w-full text-xs text-red-400">
                 {errors.eyeColor}
@@ -147,10 +183,20 @@ const PersonalDetails = () => {
           </div>
           <div className="flex flex-col mt-4">
             <label> Hair Color</label>
-            <input
+            <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("hairColor")}
-            />
+            >
+              <option value="" disabled selected>
+                Select Hair Color
+              </option>
+              <option value="black">Black</option>
+              <option value="brown">Brown</option>
+              <option value="blond">Blond</option>
+              <option value="red">Red</option>
+              <option value="white/gray">White / Gray</option>
+              <option value="others">Others</option>
+            </select>
             {errors.hairColor ? (
               <div className="w-full text-xs text-red-400">
                 {errors.hairColor}
@@ -227,7 +273,7 @@ const BackgroundDetails = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -242,22 +288,24 @@ const BackgroundDetails = () => {
               />
             </svg>
           </span>
-          <h1 className="text-lg text-gray-3 font-bold mx-5">
+          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
             Background Declaration
           </h1>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-black font-bold"
+          className="flex flex-col text-gray-2 font-bold"
         >
           <div className="flex flex-col">
             <label> Do you have a criminal record ?</label>
             <select
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("hasCriminalRecord")}
             >
-              <option value="" disabled selected></option>
+              <option value="" disabled selected>
+                Select
+              </option>
               <option value="YES">Yes</option>
               <option value="NO">No</option>
             </select>
@@ -271,10 +319,12 @@ const BackgroundDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Do you own a vehicle ?</label>
             <select
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("hasVechicle")}
             >
-              <option value="" disabled selected></option>
+              <option value="" disabled selected>
+                Select
+              </option>
               <option value="YES">Yes</option>
               <option value="NO">No</option>
             </select>
@@ -288,10 +338,12 @@ const BackgroundDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Are you fully licensed to drive ?</label>
             <select
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("hasLicenseToDrive")}
             >
-              <option value="" disabled selected></option>
+              <option value="" disabled selected>
+                Select
+              </option>
               <option value="YES">Yes</option>
               <option value="NO">No</option>
             </select>
@@ -304,10 +356,20 @@ const BackgroundDetails = () => {
           </div>
           <div className="flex flex-col mt-4">
             <label> What is your highest level of Education?</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+            <select
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("levelOfEducation")}
-            />
+            >
+              <option value="" disabled selected>
+                Select
+              </option>
+              <option value="phd">Phd</option>
+              <option value="master">Master's</option>
+              <option value="bachelor's">Bachelor's</option>
+              <option value="highschool+2">High School + 2</option>
+              <option value="highschool">High School</option>
+              <option value="other">Other</option>
+            </select>
             {errors.levelOfEducation ? (
               <div className="w-full text-xs text-red-400">
                 {errors.levelOfEducation}
@@ -317,7 +379,7 @@ const BackgroundDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Spoken Languages</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("languagesKnown[0]")}
             />
             {errors.languagesKnown ? (
@@ -329,9 +391,9 @@ const BackgroundDetails = () => {
 
           <button
             type="submit"
-            className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
+            className="mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
-            Update
+            UPDATE
           </button>
         </form>
       </div>
@@ -403,7 +465,7 @@ const ContactDetails = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -418,18 +480,18 @@ const ContactDetails = () => {
               />
             </svg>
           </span>
-          <h1 className="text-lg text-gray-3 font-bold mx-5">
+          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
             Contact Details
           </h1>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-black font-bold"
+          className="flex flex-col text-gray-2 font-bold"
         >
           <div className="flex flex-col">
             <label> Country</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("country")}
             />
             {errors.country ? (
@@ -441,7 +503,7 @@ const ContactDetails = () => {
           <div className="flex flex-col mt-4">
             <label> State/Province</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("province")}
             />
             {errors.province ? (
@@ -453,7 +515,7 @@ const ContactDetails = () => {
           <div className="flex flex-col mt-4">
             <label> City</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("city")}
             />
             {errors.city ? (
@@ -463,7 +525,7 @@ const ContactDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Street</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("street")}
             />
             {errors.street ? (
@@ -474,7 +536,7 @@ const ContactDetails = () => {
             <label> Street Number</label>
             <input
               type="number"
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("streetNumber")}
             />
             {errors.streetNumber ? (
@@ -486,7 +548,7 @@ const ContactDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Suite</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("suite")}
             />
             {errors.suite ? (
@@ -496,7 +558,7 @@ const ContactDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Postal Code</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("postalCode")}
             />
             {errors.postalCode ? (
@@ -509,7 +571,7 @@ const ContactDetails = () => {
             <label> Home Phone</label>
             <input
               type="number"
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("homePhone")}
             />
             {errors.homePhone ? (
@@ -522,7 +584,7 @@ const ContactDetails = () => {
             <label> Call Phone</label>
             <input
               type="number"
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("phone")}
             />
             {errors.phone ? (
@@ -532,7 +594,7 @@ const ContactDetails = () => {
           <div className="flex flex-col mt-4">
             <label> Email</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("email")}
             />
             {errors.email ? (
@@ -541,9 +603,9 @@ const ContactDetails = () => {
           </div>
           <button
             type="submit"
-            className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
+            className="mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
-            Update
+            UPDATE
           </button>
         </form>
       </div>
@@ -569,7 +631,7 @@ const JobHistory = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -589,12 +651,12 @@ const JobHistory = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-black font-bold"
+          className="flex flex-col text-gray-2 font-bold"
         >
           <div className="flex flex-col">
             <label> Category</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("category")}
             />
             {errors.category ? (
@@ -606,7 +668,7 @@ const JobHistory = () => {
           <div className="flex flex-col mt-4">
             <label> Company Name</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("companyName")}
             />
             {errors.companyName ? (
@@ -618,7 +680,7 @@ const JobHistory = () => {
           <div className="flex flex-col mt-4">
             <label> Address</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("companyAddress")}
             />
             {errors.companyAddress ? (
@@ -631,14 +693,14 @@ const JobHistory = () => {
             <label> Employment Duration</label>
             <div className="w-full flex">
               <input
-                className="mr-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
+                className="mr-2 w-full border-b-2 border-client focus:border-red-1 focus:outline-none"
                 placeholder="from"
                 type="date"
                 {...getFieldProps("employeeDuration.from")}
               />
               <label> To</label>
               <input
-                className="ml-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
+                className="ml-2 w-full border-b-2 border-client focus:border-red-1 focus:outline-none"
                 placeholder="to"
                 type="date"
                 {...getFieldProps("employeeDuration.to")}
@@ -648,7 +710,7 @@ const JobHistory = () => {
           <div className="flex flex-col mt-4">
             <label> Reason for Leaving</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps("reasonForLeaving")}
             />
             {errors.reasonForLeaving ? (
@@ -660,9 +722,9 @@ const JobHistory = () => {
 
           <button
             type="submit"
-            className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
+            className="mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
-            Add
+            UPDATE
           </button>
         </form>
       </div>
@@ -720,7 +782,7 @@ const JobSearch = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 border-4 rounded-2xl">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -738,22 +800,188 @@ const JobSearch = () => {
           <h1 className="text-lg text-gray-3 font-bold mx-5">Job Search</h1>
         </div>
 
-        <form className="flex flex-col text-black font-bold">
+        <form className="flex flex-col text-gray-2 font-bold">
           <label> Are you looking for a job?</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
+          <select className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4">
+            <option value="" disabled selected>
+              Select
+            </option>
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+          </select>
           <label> Email me about new opportunities?</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
+          <select className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4">
+            <option value="" disabled selected>
+              Select
+            </option>
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+          </select>
           <label> Preferred City of Employment</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
+          <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" />
           <label> Availability</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
+          <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" />
           <label> Wage Range</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
+          <input className="border-b-2 border-client focus:border-red-1 focus:outline-none mb-4" />
 
-          <button className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1">
-            Add
+          <button className="mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner">
+            UPDATE
           </button>
         </form>
+      </div>
+    </div>
+  );
+};
+
+const Documents = () => {
+  return (
+    <div className="w-full">
+      <h1 className="text-center text-gray-3 text-3xl font-bold my-6">
+        Documents
+      </h1>
+      <div className="hidden lg:flex flex-col md:flex-row text-lg items-stretch mb-2">
+        <h1 className="text-center w-full md:w-3/12 lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+          Date
+        </h1>
+        <h1 className="text-center w-full md:w-6/12 lg:w-7/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+          Description
+        </h1>
+        <h1 className="text-center w-full md:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+          Status
+        </h1>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
+      </div>
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+        <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+          <h1 className="">(yy/mm/dd)</h1>
+          <h1 className="font-bold">23:00</h1>
+        </div>
+        <h1 className="lg:w-7/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit
+        </h1>
+        <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+          <h1>Thisasd dasasdfa</h1>
+        </div>
       </div>
     </div>
   );
