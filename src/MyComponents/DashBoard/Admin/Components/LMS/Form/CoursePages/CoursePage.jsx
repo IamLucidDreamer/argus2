@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import ProfileBar from '../../../ProfileBar';
-import SideNav from '../../../SideNav';
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import ProfileBar from "../../../ProfileBar";
+import SideNav from "../../../SideNav";
 
 export const CoursePage = () => {
   const { courseId } = useParams();
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [module, setModule] = useState([]);
   const history = useHistory();
   useEffect(() => {
@@ -29,24 +29,37 @@ export const CoursePage = () => {
       </div>
       <div className="w-9/12 sm:w-10/12">
         <ProfileBar />
-        <div className="bg-white p-4 py-10 shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-36 md:mt-0 mb-10 md:my-16 rounded-2xl">
-          <div className="p-2 mb-4">
-            <h1 className="text-xl">
-              <span className="text-gray-2 font-bold mr-3">Course Name:</span>
-              {module?.Course?.name}
-            </h1>
-            <h1 className="text-xl">
-              <span className="text-gray-2 font-bold mr-3">
+        <div className="bg-white px-4 pb-10 shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-36 md:mt-0 mb-10 md:my-16 rounded-2xl">
+          <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
+            COURSE
+          </h1>
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="p-2 mb-4">
+              <h1 className="text-2xl text-gray-2 ">
+                Course Name:
+                <span className="font-bold ml-3">{module?.Course?.name}</span>
+              </h1>
+              <h1 className="text-2xl text-gray-2">
                 Course Description:
-              </span>
-              {module?.Course?.description}
-            </h1>
-            <h1 className="text-xl">
-              <span className="text-gray-2 font-bold mr-3">
+                <span className="font-bold ml-3">
+                  {module?.Course?.description}
+                </span>
+              </h1>
+              <h1 className="text-2xl text-gray-2">
                 Course Duration:
-              </span>
-              {module?.Course?.duration}
-            </h1>
+                <span className="font-bold ml-3">
+                  {module?.Course?.duration}
+                </span>
+              </h1>
+            </div>
+            <div className="">
+              <button className="font-bold px-8 py-3 bg-green-1 text-white text-xl rounded-2xl hover:bg-white hover:text-green-1 border-2 border-green-1 m-2">
+                Update
+              </button>
+              <button className="font-bold px-8 py-3 bg-red-1 text-white text-xl rounded-2xl hover:bg-white hover:text-red-1 border-2 border-red-1 m-2">
+                Delete
+              </button>
+            </div>
           </div>
           <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
             <h1 className="text-center w-full lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
@@ -65,15 +78,15 @@ export const CoursePage = () => {
           {module?.Module?.map((c) => {
             return (
               <>
-                <div
-                  onClick={() => {
-                    history.push(
-                      `/dashboard/admin/lms/course/${courseId}/module/${c._id}`,
-                    );
-                  }}
-                  className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1"
-                >
-                  <h1 className="lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+                <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+                  <h1
+                    onClick={() => {
+                      history.push(
+                        `/dashboard/admin/lms/course/${courseId}/module/${c._id}`
+                      );
+                    }}
+                    className="lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 hover:text-white font-bold cursor-pointer"
+                  >
                     {c?.name}
                   </h1>
                   <div className="flex flex-col justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
@@ -83,7 +96,7 @@ export const CoursePage = () => {
                     <h1 className="">{c?.description}</h1>
                   </div>
                   <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                    <h1>{new Date(c?.createdAt).toLocaleString('en-Us')}</h1>
+                    <h1>{new Date(c?.createdAt).toLocaleString("en-Us")}</h1>
                   </div>
                 </div>
               </>
