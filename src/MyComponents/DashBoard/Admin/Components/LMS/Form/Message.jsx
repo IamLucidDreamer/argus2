@@ -27,7 +27,9 @@ const Message = () => {
   });
   const [refreshMsg, setRefreshMsg] = useState(null);
   const [msgLoading, setMsgLoading] = useState(false);
-
+  const [timeLeft, setTimeLeft] = useState(null);
+  let timeout;
+  let interval;
   const users = useSelector((state) => state.users.users);
 
   users.forEach((element) => {
@@ -127,34 +129,47 @@ const Message = () => {
       selected.forEach((element) => {
         recipients.push({ userId: element.studentId });
       });
-      axiosInstance
-        .post(
-          `/message/create`,
-          { subject: message.subject, message: message.message, recipients },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+      const startTime = Date.now();
+      timeout = setTimeout(() => {
+        axiosInstance
+          .post(
+            `/message/create`,
+            { subject: message.subject, message: message.message, recipients },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
             },
-          },
-        )
-        .then((res) => {
-          setPage(1);
-          setRefreshMsg(res);
-          setMessage({ subject: '', message: '' });
-          setMessageInput(false);
-          setShowAlert({
-            show: true,
-            message: 'Message added successfully',
-            success: true,
+          )
+          .then((res) => {
+            setPage(1);
+            setRefreshMsg(res);
+            setMessage({ subject: '', message: '' });
+            setMessageInput(false);
+            setShowAlert({
+              show: true,
+              message: 'Message added successfully',
+              success: true,
+            });
+            setTimeLeft(null);
+            clearInterval(interval);
+          })
+          .catch((err) => {
+            setShowAlert({
+              show: true,
+              message: 'Error adding message',
+              success: false,
+            });
+            setTimeLeft(null);
+            clearInterval(interval);
           });
-        })
-        .catch((err) => {
-          setShowAlert({
-            show: true,
-            message: 'Error adding message',
-            success: false,
-          });
-        });
+      }, 6000);
+
+      interval = setInterval(() => {
+        setTimeLeft(
+          `${Math.ceil((6000 - (Date.now() - startTime)) / 1000)} sec`,
+        );
+      }, 1000);
     } else {
       setShowAlert({
         show: true,
@@ -219,14 +234,27 @@ const Message = () => {
               />
             </div>
           </div>
-          <button
-            onClick={(e) => {
-              sendMessage(e);
-            }}
-            className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
-          >
-            ADD DELAY of 60 sec SEND MESSAGE
-          </button>
+          {!timeLeft ? (
+            <button
+              onClick={(e) => {
+                sendMessage(e);
+              }}
+              className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            >
+              ADD MESSAGE
+            </button>
+          ) : null}
+          {timeLeft ? (
+            <button
+              onClick={(e) => {
+                clearTimeout(timeout);
+                setTimeLeft(null);
+              }}
+              className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            >
+              {timeLeft}
+            </button>
+          ) : null}
         </div>
       </div>
 
