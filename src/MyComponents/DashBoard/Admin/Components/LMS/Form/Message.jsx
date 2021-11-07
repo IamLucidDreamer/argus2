@@ -163,11 +163,11 @@ const Message = () => {
             setTimeLeft(null);
             clearInterval(interval);
           });
-      }, 6000);
+      }, 60000);
 
       interval = setInterval(() => {
         setTimeLeft(
-          `${Math.ceil((6000 - (Date.now() - startTime)) / 1000)} sec`,
+          `${Math.ceil((60000 - (Date.now() - startTime)) / 1000)} sec`,
         );
       }, 1000);
     } else {
