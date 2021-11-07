@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import ProfileBar from '../../../ProfileBar';
-import SideNav from '../../../SideNav';
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import ProfileBar from "../../../ProfileBar";
+import SideNav from "../../../SideNav";
 
 export const ChapterPage = () => {
   const { courseId, chapterId } = useParams();
   const history = useHistory();
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [chapter, setChapter] = useState([]);
   useEffect(() => {
     axiosInstance
@@ -29,24 +29,33 @@ export const ChapterPage = () => {
       </div>
       <div className="w-9/12 sm:w-10/12">
         <ProfileBar />
-        <div className="bg-white p-4 py-10 shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-36 md:mt-0 mb-10 md:my-16 rounded-2xl">
-          <div className="p-2 mb-4">
-            <h1 className="text-xl">
-              <span className="text-gray-2 font-bold mr-3">Chapter Name:</span>
-              {chapter?.name}
-            </h1>
-            <h1 className="text-xl">
-              <span className="text-gray-2 font-bold mr-3">
+        <div className="bg-white px-4 pb-10 shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-36 md:mt-0 mb-10 md:my-16 rounded-2xl">
+          <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
+            CHAPTER
+          </h1>
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="p-2 mb-4">
+              <h1 className="text-2xl text-gray-2">
+                Chapter Name:
+                <span className="font-bold ml-3">{chapter?.name}</span>
+              </h1>
+              <h1 className="text-2xl text-gray-2">
                 Chapter Description:
-              </span>
-              {chapter?.description}
-            </h1>
-            <h1 className="text-xl">
-              <span className="text-gray-2 font-bold mr-3">
+                <span className="font-bold ml-3">{chapter?.description}</span>
+              </h1>
+              <h1 className="text-2xl text-gray-2">
                 Chapter Duration:
-              </span>
-              {chapter?.duration}
-            </h1>
+                <span className="font-bold ml-3">{chapter?.duration}</span>
+              </h1>
+            </div>
+            <div className="">
+              <button className="font-bold px-8 py-3 bg-green-1 text-white text-xl rounded-2xl hover:bg-white hover:text-green-1 border-2 border-green-1 m-2">
+                Update
+              </button>
+              <button className="font-bold px-8 py-3 bg-red-1 text-white text-xl rounded-2xl hover:bg-white hover:text-red-1 border-2 border-red-1 m-2">
+                Delete
+              </button>
+            </div>
           </div>
           {chapter?.slides?.map((c) => {
             return (
@@ -83,25 +92,25 @@ export const ChapterPage = () => {
                         </h1>
                         <h1 className="text-xl">
                           <span className="text-gray-2 font-bold mr-3">
-                            {'A)'}
+                            {"A)"}
                           </span>
                           {c?.optionA}
                         </h1>
                         <h1 className="text-xl">
                           <span className="text-gray-2 font-bold mr-3">
-                            {'B)'}
+                            {"B)"}
                           </span>
                           {c?.optionB}
                         </h1>
                         <h1 className="text-xl">
                           <span className="text-gray-2 font-bold mr-3">
-                            {'C)'}
+                            {"C)"}
                           </span>
                           {c?.optionC}
                         </h1>
                         <h1 className="text-xl">
                           <span className="text-gray-2 font-bold mr-3">
-                            {'D)'}
+                            {"D)"}
                           </span>
                           {c?.optionD}
                         </h1>

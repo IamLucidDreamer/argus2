@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import axiosInstance from '../../../../../../helpers/axiosInstance';
-import AddChapter from './Course/AddChapter';
-import AddCourse from './Course/AddCourse';
-import AddModule from './Course/AddModule';
-import AddSlide from './Course/AddSlide';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import axiosInstance from "../../../../../../helpers/axiosInstance";
+import AddChapter from "./Course/AddChapter";
+import AddCourse from "./Course/AddCourse";
+import AddModule from "./Course/AddModule";
+import AddSlide from "./Course/AddSlide";
 
 export const ClassMaterial = () => {
   const [button, setButton] = useState({
@@ -13,7 +13,7 @@ export const ClassMaterial = () => {
     chapter: false,
     slide: false,
   });
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [course, setCourse] = useState([]);
   const [courseRefresh, setCourseRefresh] = useState(null);
 
@@ -21,7 +21,7 @@ export const ClassMaterial = () => {
 
   useEffect(() => {
     axiosInstance
-      .get('/material/getAllCourses', {
+      .get("/material/getAllCourses", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -117,13 +117,13 @@ export const ClassMaterial = () => {
       {course?.map((c) => {
         return (
           <>
-            <div
-              onClick={() => {
-                history.push(`/dashboard/admin/lms/course/${c._id}`);
-              }}
-              className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1"
-            >
-              <h1 className="lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">
+            <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+              <h1
+                onClick={() => {
+                  history.push(`/dashboard/admin/lms/course/${c._id}`);
+                }}
+                className="lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 hover:text-white font-bold cursor-pointer"
+              >
                 {c?.name}
               </h1>
               <div className="flex flex-col justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
@@ -133,7 +133,7 @@ export const ClassMaterial = () => {
                 <h1 className="">{c?.description}</h1>
               </div>
               <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                <h1>{new Date(c?.createdAt).toLocaleString('en-Us')}</h1>
+                <h1>{new Date(c?.createdAt).toLocaleString("en-Us")}</h1>
               </div>
             </div>
           </>
