@@ -75,7 +75,6 @@ const ClassOverview = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-center text-lg my-3">Dates Here</h1>
       <Pagination
         className="p-1 mb-4"
         count={Math.ceil(classList.length / 5)}

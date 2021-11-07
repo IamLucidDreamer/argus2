@@ -3,7 +3,6 @@ import ClassStudents from './ClassStudents';
 
 const ClassList = ({ c }) => {
   const [showStudents, setShowStudents] = useState(false);
-
   return (
     <div>
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
@@ -23,7 +22,7 @@ const ClassList = ({ c }) => {
             showStudents ? 'bg-red-1 text-white' : 'bg-white text-gray-2'
           } flex flex-col cursor-pointer justify-center text-center lg:w-2/12 px-3 py-3  rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg hover:bg-red-1 hover:text-white font-bold`}
         >
-          <h1 className="">Show enrolled students</h1>
+          <h1 className="">No of spots/No of students enrolled</h1>
         </div>
         <div className="flex flex-col justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
           <h1 className="">{c?.location}</h1>

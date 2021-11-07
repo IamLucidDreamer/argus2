@@ -2,37 +2,23 @@ import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 
 const DocumentApproval = () => {
-  // const [docsList, setDocsList] = useState([]);
+  const [docsList, setDocsList] = useState([]);
 
-  // useEffect(() => {
-  //   const token = JSON.parse(localStorage.getItem('jwt'));
-  //   axiosInstance
-  //     .get(`/docs/get-users?page=1&limit=10000000`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       setDocsList(res.data.data.docs);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // docsList?.forEach((element) => {
-  //   for (const key in element) {
-  //     if (element[key].contentType) {
-  //       console.log({ data: element[key], id: element['userId'] });
-  //     }
-  //   }
-  //   element?.docs?.forEach((data) => {
-  //   if (data.contentType !== '') {
-  //   setDocsList([
-  //   ...docsList,
-  //   { data, studentId: element?.userId, docId: element?._id },
-  //   ]);
-  //   }
-  //   });
-  // });
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('jwt'));
+    axiosInstance
+      .get(`/docs2/getAllDocs`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setDocsList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>

@@ -18,7 +18,6 @@ const AdminRoute = ({ component: Component, ...rest }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(get_Class());
-    dispatch(get_Basket());
     dispatch(getUsers());
     dispatch(getEOMAdmin());
     dispatch(getTestimonial());
