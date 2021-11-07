@@ -48,6 +48,7 @@ export const GET_CLASSES = 'GET_CLASSES';
 export const ADD_CLASS = 'ADD_CLASS';
 export const ENROLL_CLASS = 'ENROLL_CLASS';
 export const DELETE_CLASS = 'DELETE_CLASS';
+export const GET_CLASSESLOADING = 'GET_CLASSESLOADING';
 
 export const GET_BASKET = 'GET_BASKET';
 export const ADD_BASKET = 'ADD_BASKET';

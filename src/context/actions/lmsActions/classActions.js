@@ -4,6 +4,7 @@ import {
   DELETE_CLASS,
   ENROLL_CLASS,
   GET_CLASSES,
+  GET_CLASSESLOADING,
 } from '../../actionTypes';
 
 const getClass = (data) => ({
@@ -25,18 +26,29 @@ const deleteClass = (data) => ({
   type: DELETE_CLASS,
   payload: data,
 });
+const getClassLoading = (data) => ({
+  type: GET_CLASSESLOADING,
+  payload: data,
+});
 
 const token = JSON.parse(localStorage.getItem('jwt'));
 
 const get_Class = () => {
   return (dispatch) => {
+    dispatch(getClassLoading(true));
     axiosInstance
       .get('/class/get-all', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => dispatch(getClass(res?.data?.data)));
+      .then((res) => {
+        dispatch(getClass(res?.data?.data));
+        dispatch(getClassLoading(false));
+      })
+      .catch((err) => {
+        dispatch(getClassLoading(false));
+      });
   };
 };
 

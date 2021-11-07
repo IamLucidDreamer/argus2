@@ -1,33 +1,26 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { get_Class } from '../../../../../../../context/actions/lmsActions/classActions';
 import axiosInstance from '../../../../../../../helpers/axiosInstance';
 import SelectColumnFilter from '../../../../../../../helpers/TableFilter';
 import Table from '../../../../../../Components/reactTable';
 
 const ClassStudents = ({ c }) => {
+  const dispatch = useDispatch();
   const [selected, setSelected] = useState([]);
   const [data, setData] = useState([]);
-  const [refresh, setRefresh] = useState(null);
   const [show, setShow] = useState(false);
 
   const students = useSelector((state) => state.users.students);
   const token = JSON.parse(localStorage.getItem('jwt'));
 
   useEffect(() => {
-    axiosInstance
-      .get(`/class/get/${c._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setData(
-          students.filter(({ _id: id1 }) =>
-            res.data.data.students.some(({ studentId: id2 }) => id2 === id1),
-          ),
-        );
-      });
-  }, [c._id, students, token, refresh]);
+    setData(
+      students.filter(({ _id: id1 }) =>
+        c.students.some(({ studentId: id2 }) => id2 === id1),
+      ),
+    );
+  }, [c.students, token, students]);
 
   const removeStudents = (e) => {
     e.preventDefault();
@@ -46,7 +39,7 @@ const ClassStudents = ({ c }) => {
         },
       )
       .then((res) => {
-        setRefresh(res);
+        dispatch(get_Class());
       })
       .catch();
   };
@@ -107,7 +100,7 @@ const ClassStudents = ({ c }) => {
     <>
       {data.length === 0 ? (
         <p className="text-gray-2 text-center text-xl pb-4 font-semibold">
-          No students enroll first
+          No students enrolled
         </p>
       ) : (
         <>

@@ -1,7 +1,8 @@
-import { ADD_CLASS, GET_CLASSES } from '../../actionTypes';
+import { ADD_CLASS, GET_CLASSES, GET_CLASSESLOADING } from '../../actionTypes';
 
 const initialState = {
   class: [],
+  loading: false,
 };
 
 const classReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const classReducer = (state = initialState, action) => {
       return {
         ...state,
         class: [action.payload, ...state.class],
+      };
+    case GET_CLASSESLOADING:
+      return {
+        ...state,
+        loading: action.payload,
       };
     default:
       return state;

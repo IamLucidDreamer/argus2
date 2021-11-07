@@ -5,6 +5,8 @@ import Table from '../../../../../Components/reactTable';
 import Select from 'react-select';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 import Alert from '../../../../../Components/Alert';
+import { useDispatch } from 'react-redux';
+import { get_Class } from '../../../../../../context/actions/lmsActions/classActions';
 
 const EnrollStudent = () => {
   const students = useSelector((state) => state.users.students);
@@ -15,6 +17,7 @@ const EnrollStudent = () => {
     message: '',
     success: false,
   });
+  const dispatch = useDispatch();
 
   let options = [];
   classList.forEach((element) => {
@@ -91,31 +94,45 @@ const EnrollStudent = () => {
 
   const enroll = (e) => {
     e.preventDefault();
-    axiosInstance
-      .put(
-        `/class/enroll/${selectedClass.value}`,
-        { students: selected },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+    if (
+      selected.length <=
+      classList.filter((f) => f._id === selectedClass?.value)[0]?.noOfSpots
+    ) {
+      axiosInstance
+        .put(
+          `/class/enroll/${selectedClass.value}`,
+          { students: selected },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        },
-      )
-      .then((res) => {
-        setSelectedClass(null);
-        setShowAlert({
-          show: true,
-          message: 'Students enrolled successfully',
-          success: true,
+        )
+        .then((res) => {
+          setSelectedClass(null);
+          dispatch(get_Class());
+          setShowAlert({
+            show: true,
+            message: 'Students enrolled successfully',
+            success: true,
+          });
+        })
+        .catch((err) => {
+          setShowAlert({
+            show: true,
+            message: 'Students enrolled failed',
+            success: false,
+          });
         });
-      })
-      .catch((err) => {
-        setShowAlert({
-          show: true,
-          message: 'Students enrolled failed',
-          success: false,
-        });
+    } else {
+      setShowAlert({
+        show: true,
+        message: `Only ${
+          classList.filter((f) => f._id === selectedClass?.value)[0]?.noOfSpots
+        } spots available`,
+        success: false,
       });
+    }
   };
 
   return (
