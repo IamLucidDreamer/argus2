@@ -234,7 +234,7 @@ function DocsTable({
                           }}
                           className={
                             cell.column.id === 'Student Name'
-                              ? 'hover:bg-red-1 hover:text-white'
+                              ? 'hover:bg-red-1 hover:text-white cursor-pointer'
                               : ''
                           }
                         >
