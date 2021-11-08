@@ -163,7 +163,7 @@ const FooterControl = () => {
           )}
         </button>
       </form>
-      <div className="w-full md:w-6/12 px-6 border-2 border-red-1 mx-auto">
+      <div className="w-full md:w-6/12 px-6 border-2 border-red-1 mx-auto rounded-xl">
         <CompanyContact />
       </div>
     </div>
