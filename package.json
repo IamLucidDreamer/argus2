@@ -38,6 +38,7 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
+    "smart-timeout": "^2.6.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

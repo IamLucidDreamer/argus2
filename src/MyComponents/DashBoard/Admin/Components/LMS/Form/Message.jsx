@@ -7,6 +7,7 @@ import Table from '../../../../../Components/reactTable';
 import SelectColumnFilter from '../../../../../../helpers/TableFilter';
 import { useSelector } from 'react-redux';
 import Loader from 'react-loader-spinner';
+import Timeout from 'smart-timeout';
 
 const Message = () => {
   const [messageInput, setMessageInput] = useState(false);
@@ -27,9 +28,6 @@ const Message = () => {
   });
   const [refreshMsg, setRefreshMsg] = useState(null);
   const [msgLoading, setMsgLoading] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(null);
-  let timeout;
-  let interval;
   const users = useSelector((state) => state.users.users);
 
   users.forEach((element) => {
@@ -129,47 +127,44 @@ const Message = () => {
       selected.forEach((element) => {
         recipients.push({ userId: element.studentId });
       });
-      const startTime = Date.now();
-      timeout = setTimeout(() => {
-        axiosInstance
-          .post(
-            `/message/create`,
-            { subject: message.subject, message: message.message, recipients },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
+      Timeout.set(
+        'message',
+        () => {
+          axiosInstance
+            .post(
+              `/message/create`,
+              {
+                subject: message.subject,
+                message: message.message,
+                recipients,
               },
-            },
-          )
-          .then((res) => {
-            setPage(1);
-            setRefreshMsg(res);
-            setMessage({ subject: '', message: '' });
-            setMessageInput(false);
-            setShowAlert({
-              show: true,
-              message: 'Message added successfully',
-              success: true,
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            )
+            .then((res) => {
+              setPage(1);
+              setRefreshMsg(res);
+              setMessage({ subject: '', message: '' });
+              setMessageInput(false);
+              setShowAlert({
+                show: true,
+                message: 'Message added successfully',
+                success: true,
+              });
+            })
+            .catch((err) => {
+              setShowAlert({
+                show: true,
+                message: 'Error adding message',
+                success: false,
+              });
             });
-            setTimeLeft(null);
-            clearInterval(interval);
-          })
-          .catch((err) => {
-            setShowAlert({
-              show: true,
-              message: 'Error adding message',
-              success: false,
-            });
-            setTimeLeft(null);
-            clearInterval(interval);
-          });
-      }, 60000);
-
-      interval = setInterval(() => {
-        setTimeLeft(
-          `${Math.ceil((60000 - (Date.now() - startTime)) / 1000)} sec`,
-        );
-      }, 1000);
+        },
+        6000,
+      );
     } else {
       setShowAlert({
         show: true,
@@ -234,27 +229,20 @@ const Message = () => {
               />
             </div>
           </div>
-          {!timeLeft ? (
-            <button
-              onClick={(e) => {
+          <button
+            onClick={(e) => {
+              if (Timeout.pending('message')) {
+                Timeout.clear('message');
+              } else {
                 sendMessage(e);
-              }}
-              className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
-            >
-              ADD MESSAGE
-            </button>
-          ) : null}
-          {timeLeft ? (
-            <button
-              onClick={(e) => {
-                clearTimeout(timeout);
-                setTimeLeft(null);
-              }}
-              className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
-            >
-              {timeLeft}
-            </button>
-          ) : null}
+              }
+            }}
+            className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+          >
+            {Timeout.pending('message')
+              ? `${Math.ceil(Timeout.remaining('message') / 1000)} sec`
+              : 'ADD MESSAGE'}
+          </button>
         </div>
       </div>
 
