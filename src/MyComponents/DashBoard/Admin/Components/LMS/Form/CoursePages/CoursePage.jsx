@@ -1,14 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router";
-import axiosInstance from "../../../../../../../helpers/axiosInstance";
-import ProfileBar from "../../../ProfileBar";
-import SideNav from "../../../SideNav";
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
+import Alert from '../../../../../../Components/Alert';
+import ProfileBar from '../../../ProfileBar';
+import SideNav from '../../../SideNav';
+import EditCourse from '../Course/EditCourse';
 
 export const CoursePage = () => {
   const { courseId } = useParams();
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const [module, setModule] = useState([]);
+  const [show, setShow] = useState(false);
+  const [refresh, setRefresh] = useState(null);
   const history = useHistory();
+  const [showAlert, setShowAlert] = useState({
+    show: false,
+    message: '',
+    success: false,
+  });
+
   useEffect(() => {
     axiosInstance
       .get(`/material/getCourse/${courseId}`, {
@@ -20,10 +30,17 @@ export const CoursePage = () => {
         setModule(res.data.data);
       })
       .catch();
-  }, [token, courseId]);
+  }, [token, courseId, refresh]);
 
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
+      <EditCourse
+        show={show}
+        setShow={setShow}
+        setRefresh={setRefresh}
+        data={module}
+        setShowAlert={setShowAlert}
+      />
       <div className="w-36 md:w-56 lg:w-60 xl:w-64 bg-red-1">
         <SideNav />
       </div>
@@ -33,6 +50,10 @@ export const CoursePage = () => {
           <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
             COURSE
           </h1>
+          {showAlert.show ? (
+            <Alert alert={showAlert} rmAlert={setShowAlert} />
+          ) : null}
+
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="p-2 mb-4">
               <h1 className="text-2xl text-gray-2 ">
@@ -53,10 +74,34 @@ export const CoursePage = () => {
               </h1>
             </div>
             <div className="">
-              <button className="font-bold px-8 py-3 bg-green-1 text-white text-xl rounded-2xl hover:bg-white hover:text-green-1 border-2 border-green-1 m-2">
+              <button
+                onClick={() => setShow(true)}
+                className="font-bold px-8 py-3 bg-green-1 text-white text-xl rounded-2xl hover:bg-white hover:text-green-1 border-2 border-green-1 m-2"
+              >
                 Update
               </button>
-              <button className="font-bold px-8 py-3 bg-red-1 text-white text-xl rounded-2xl hover:bg-white hover:text-red-1 border-2 border-red-1 m-2">
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  axiosInstance
+                    .delete(`/material/deleteCourse/${module?.Course?._id}`, {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    })
+                    .then(() => {
+                      history.goBack();
+                    })
+                    .catch((err) => {
+                      setShowAlert({
+                        show: true,
+                        message: 'Error deleting course',
+                        success: false,
+                      });
+                    });
+                }}
+                className="font-bold px-8 py-3 bg-red-1 text-white text-xl rounded-2xl hover:bg-white hover:text-red-1 border-2 border-red-1 m-2"
+              >
                 Delete
               </button>
             </div>
@@ -82,7 +127,7 @@ export const CoursePage = () => {
                   <h1
                     onClick={() => {
                       history.push(
-                        `/dashboard/admin/lms/course/${courseId}/module/${c._id}`
+                        `/dashboard/admin/lms/course/${courseId}/module/${c._id}`,
                       );
                     }}
                     className="lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 hover:text-white font-bold cursor-pointer"
@@ -96,7 +141,7 @@ export const CoursePage = () => {
                     <h1 className="">{c?.description}</h1>
                   </div>
                   <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                    <h1>{new Date(c?.createdAt).toLocaleString("en-Us")}</h1>
+                    <h1>{new Date(c?.createdAt).toLocaleString('en-Us')}</h1>
                   </div>
                 </div>
               </>
