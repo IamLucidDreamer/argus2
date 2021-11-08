@@ -18,7 +18,7 @@ const LmsStudent = () => {
       </div>
       <div className="w-9/12 sm:w-10/12">
         <ProfileBar />
-        <NavLms />
+        <NavLms active={3} />
         <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-72 md:mt-0 mb-10 md:my-16 rounded-2xl">
           <nav className="flex flex-col md:flex-row text-gray-3 text-lg items-center">
             <button

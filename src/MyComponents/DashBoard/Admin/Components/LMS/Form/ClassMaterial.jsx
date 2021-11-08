@@ -16,6 +16,7 @@ export const ClassMaterial = () => {
   const token = JSON.parse(localStorage.getItem("jwt"));
   const [course, setCourse] = useState([]);
   const [courseRefresh, setCourseRefresh] = useState(null);
+  const [active, setActive] = useState(0);
 
   const history = useHistory();
 
@@ -34,56 +35,76 @@ export const ClassMaterial = () => {
 
   return (
     <div>
-      <div className="w-full flex justify-evenly">
+      <div className="w-full flex justify-evenly my-4">
         <button
-          onClick={() =>
+          onClick={() => {
             setButton({
               course: !button.course,
               module: false,
               chapter: false,
               slide: false,
-            })
-          }
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            });
+            setActive(1);
+          }}
+          className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
+            active === 1
+              ? "bg-white text-red-1 shadow-none"
+              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+          }`}
         >
           ADD COURSE
         </button>
         <button
-          onClick={() =>
+          onClick={() => {
             setButton({
               course: false,
               module: !button.module,
               chapter: false,
               slide: false,
-            })
-          }
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            });
+            setActive(2);
+          }}
+          className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
+            active === 2
+              ? "bg-white text-red-1 shadow-none"
+              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+          }`}
         >
           ADD MODULE
         </button>
         <button
-          onClick={() =>
+          onClick={() => {
             setButton({
               course: false,
               module: false,
               chapter: !button.chapter,
               slide: false,
-            })
-          }
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            });
+            setActive(3);
+          }}
+          className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
+            active === 3
+              ? "bg-white text-red-1 shadow-none"
+              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+          }`}
         >
           ADD CHAPTER
         </button>
         <button
-          onClick={() =>
+          onClick={() => {
             setButton({
               course: false,
               module: false,
               chapter: false,
               slide: !button.slide,
-            })
-          }
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            });
+            setActive(4);
+          }}
+          className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
+            active === 4
+              ? "bg-white text-red-1 shadow-none"
+              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+          }`}
         >
           ADD SLIDE
         </button>

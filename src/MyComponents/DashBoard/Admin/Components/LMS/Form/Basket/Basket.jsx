@@ -1,11 +1,11 @@
-import { Pagination } from '@mui/material';
-import React, { useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import BasketList from './BasketList';
-import Table from '../../../../../../Components/reactTable';
-import SelectColumnFilter from '../../../../../../../helpers/TableFilter';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Alert from '../../../../../../Components/Alert';
+import { Pagination } from "@mui/material";
+import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import BasketList from "./BasketList";
+import Table from "../../../../../../Components/reactTable";
+import SelectColumnFilter from "../../../../../../../helpers/TableFilter";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Alert from "../../../../../../Components/Alert";
 
 const Basket = () => {
   const [basket, setBasket] = useState(true);
@@ -21,22 +21,22 @@ const Basket = () => {
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
   const students = useSelector((state) => state.users.students);
   const basketData = useSelector((state) => state.basket.basket).filter(
-    (f) => f?.status === 'PENDING',
+    (f) => f?.status === "PENDING"
   );
   const downloadedData = useSelector((state) => state.basket.basket).filter(
-    (f) => f?.status === 'DOWNLOADED',
+    (f) => f?.status === "DOWNLOADED"
   );
 
   const addBasket = (e) => {
     e.preventDefault();
-    const token = JSON.parse(localStorage.getItem('jwt'));
-    const id = JSON.parse(localStorage.getItem('id'));
+    const token = JSON.parse(localStorage.getItem("jwt"));
+    const id = JSON.parse(localStorage.getItem("id"));
     axiosInstance
       .post(
         `/bucket/create/${id}`,
@@ -45,7 +45,7 @@ const Basket = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
         setAddBasketRes({
@@ -57,52 +57,52 @@ const Basket = () => {
 
   const headCells = [
     {
-      id: 'Student ID',
-      accessor: '_id',
-      Header: 'Student ID',
+      id: "Student ID",
+      accessor: "_id",
+      Header: "Student ID",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      accessor: 'name',
-      Header: 'Student Name',
+      accessor: "name",
+      Header: "Student Name",
     },
     {
-      accessor: 'phone',
-      Header: 'Phone No.',
+      accessor: "phone",
+      Header: "Phone No.",
     },
     {
-      id: 'Registration',
-      accessor: 'createdAt',
-      Header: 'Registration',
+      id: "Registration",
+      accessor: "createdAt",
+      Header: "Registration",
     },
     {
-      id: 'City',
-      accessor: 'city',
-      Header: 'City',
+      id: "City",
+      accessor: "city",
+      Header: "City",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Country',
-      accessor: 'country',
-      Header: 'Country',
+      id: "Country",
+      accessor: "country",
+      Header: "Country",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Province',
-      accessor: 'province',
-      Header: 'Province',
+      id: "Province",
+      accessor: "province",
+      Header: "Province",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Gender',
-      accessor: 'gender',
-      Header: 'Gender',
+      id: "Gender",
+      accessor: "gender",
+      Header: "Gender",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
   ];
   const columns = useMemo(() => headCells, []);
@@ -119,10 +119,10 @@ const Basket = () => {
             setBasket(true);
             setDownload(false);
           }}
-          className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/5 pt-4 pb-0.5 font-bold ${
+          className={`w-11/12 md:w-1/4  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             basket
-              ? 'border-b-4 border-red-1 text-red-1'
-              : 'border-b-4 border-white hover:border-gray-2 text-gray-2'
+              ? "bg-white text-red-1 shadow-none"
+              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
           }`}
         >
           MANAGE BASKETS
@@ -132,17 +132,17 @@ const Basket = () => {
             setDownload(true);
             setBasket(false);
           }}
-          className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/5 pt-4 pb-0.5 font-bold ${
+          className={`w-11/12 md:w-1/4  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             download
-              ? 'border-b-4 border-red-1 text-red-1'
-              : 'border-b-4 border-white hover:border-gray-2 text-gray-2'
+              ? "bg-white text-red-1 shadow-none"
+              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
           }`}
         >
           DOWNLOADED
         </button>
       </div>
 
-      <div className={basket ? 'block my-6' : 'hidden'}>
+      <div className={basket ? "block my-6" : "hidden"}>
         <Pagination
           className="p-1 mb-4"
           count={Math.ceil(basketData.length / 5)}
@@ -195,7 +195,7 @@ const Basket = () => {
             Add Basket
           </button>
         </div>
-        <div className={`${addBasketRes.show ? 'block' : 'hidden'}`}>
+        <div className={`${addBasketRes.show ? "block" : "hidden"}`}>
           <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
             <h1 className="text-center w-full lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
               Basket ID
@@ -220,11 +220,11 @@ const Basket = () => {
               </h1>
               <h1 className="font-bold">
                 {new Date(addBasketRes.value?.createdAt).toLocaleString(
-                  'en-US',
+                  "en-US",
                   {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  },
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  }
                 )}
               </h1>
             </div>
@@ -263,7 +263,7 @@ const Basket = () => {
         </div>
       </div>
 
-      <div className={download ? 'block my-6' : 'hidden'}>
+      <div className={download ? "block my-6" : "hidden"}>
         <Pagination
           className="p-1 mb-4"
           count={Math.ceil(downloadedData.length / 5)}
