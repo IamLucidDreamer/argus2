@@ -15,71 +15,120 @@ export default function Home() {
   const [show, setShow] = useState(1);
   const [refresh, setrefresh] = useState();
   const [eomRefresh, seteomRefresh] = useState();
+  const [page, setPage] = useState(1);
 
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
-      <div className="w-52 md:w-72 bg-red-1">
+      <div className="w-36 md:w-56 lg:w-60 xl:w-64 bg-red-1">
         <SideNav />
       </div>
-        <div className="w-full">
-          <ProfileBar />
-          <div className="w-full bg-white m-4 rounded-xl">
-            <nav className="flex flex-col sm:flex-row justify-evenly my-2">
-              <button
-                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
-                onClick={() => setShow(1)}
-              >
-                Testimonial
-              </button>
-              <button
-                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
-                onClick={() => setShow(2)}
-              >
-                Employee of the Month
-              </button>
-              <button
-                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
-                onClick={() => setShow(3)}
-              >
-                Company Contact
-              </button>
-              <button
-                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
-                onClick={() => setShow(4)}
-              >
-                Clients
-              </button>
-              <button
-                className="w-56 md:w-1/5 rounded-2xl text-xl py-4 px-5 bg-white shadow-lg hover:bg-red-1 hover:text-white"
-                onClick={() => setShow(5)}
-              >
-                Team
-              </button>
-            </nav>
-            <div className={show === 1 ? "block" : "hidden"}>
-              <Testimonials setrefresh={setrefresh} />
-              <TestimonialTable refresh={refresh} setrefresh={setrefresh} />
-            </div>
-            <div className={show === 2 ? "block" : "hidden"}>
-              <EmpOfMon seteomRefresh={seteomRefresh} />
-              <EmpOfMonTable
-                eomRefresh={eomRefresh}
-                seteomRefresh={seteomRefresh}
-              />
-            </div>
-            <div className={show === 3 ? "block" : "hidden"}>
-              <FooterControl />
-            </div>
-            <div className={show === 4 ? "block" : "hidden"}>
-              <ClientControl />
-              <ClientTable />
-            </div>
-            <div className={show === 5 ? "block" : "hidden"}>
-              <TeamControl />
-              <TeamTable />
-            </div>
+      <div className="w-9/12 sm:w-10/12">
+        <ProfileBar />
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <button
+            onClick={() => {
+              setPage(1);
+              setShow(1);
+            }}
+            className={`w-11/12 md:w-1/4 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
+              page === 1
+                ? "bg-white text-red-1 shadow-none"
+                : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+            }`}
+          >
+            HOME
+          </button>
+          <button
+            onClick={() => {
+              setPage(2);
+              setShow(3);
+            }}
+            className={`w-11/12 md:w-1/4 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
+              page === 2
+                ? "bg-white text-red-1 shadow-none"
+                : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+            }`}
+          >
+            OTHERS
+          </button>
+        </div>
+        <div className="bg-white shadow-button-shadow-2 max-w-1366 mx-3 2xl:mx-auto mt-72 mb-10 md:my-16 rounded-2xl">
+          <nav
+            className={`flex flex-col sm:flex-row justify-evenly my-2 text-lg ${
+              page === 1 ? "block" : "hidden"
+            }`}
+          >
+            <button
+              onClick={() => setShow(1)}
+              className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
+                show === 1 ? "shadow-none" : "shadow-button-shadow-2"
+              }`}
+            >
+              Testimonial
+            </button>
+            <button
+              onClick={() => setShow(2)}
+              className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
+                show === 2 ? "shadow-none" : "shadow-button-shadow-2"
+              }`}
+            >
+              Employee of the Month
+            </button>
+            <button
+              onClick={() => setShow(4)}
+              className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
+                show === 4 ? "shadow-none" : "shadow-button-shadow-2"
+              }`}
+            >
+              Clients
+            </button>
+          </nav>
+          <nav
+            className={`flex flex-col sm:flex-row justify-evenly my-2 ${
+              page === 2 ? "block" : "hidden"
+            }`}
+          >
+            <button
+              onClick={() => setShow(3)}
+              className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
+                show === 3 ? "shadow-none" : "shadow-button-shadow-2"
+              }`}
+            >
+              Company Contact
+            </button>
+            <button
+              onClick={() => setShow(5)}
+              className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
+                show === 5 ? "shadow-none" : "shadow-button-shadow-2"
+              }`}
+            >
+              Team
+            </button>
+          </nav>
+          <div className={show === 1 ? "block" : "hidden"}>
+            <Testimonials setrefresh={setrefresh} />
+            <TestimonialTable refresh={refresh} setrefresh={setrefresh} />
+          </div>
+          <div className={show === 2 ? "block" : "hidden"}>
+            <EmpOfMon seteomRefresh={seteomRefresh} />
+            <EmpOfMonTable
+              eomRefresh={eomRefresh}
+              seteomRefresh={seteomRefresh}
+            />
+          </div>
+          <div className={show === 3 ? "block" : "hidden"}>
+            <FooterControl />
+          </div>
+          <div className={show === 4 ? "block" : "hidden"}>
+            <ClientControl />
+            <ClientTable />
+          </div>
+          <div className={show === 5 ? "block" : "hidden"}>
+            <TeamControl />
+            <TeamTable />
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }
