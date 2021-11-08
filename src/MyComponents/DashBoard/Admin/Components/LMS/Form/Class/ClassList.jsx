@@ -11,7 +11,6 @@ const ClassList = ({
   setSelectedClassShow,
   index,
 }) => {
-  console.log(selectedClassShow);
   return (
     <div>
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
