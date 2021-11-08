@@ -17,10 +17,10 @@ const ManageCoupons = () => {
             COUPONS
           </h1>
           <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
-            <h1 className="text-center w-full lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+            <h1 className="text-center w-full lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
               Coupon ID
             </h1>
-            <h1 className="text-center w-full lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+            <h1 className="text-center w-full lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
               Coupon Code
             </h1>
             <h1 className="text-center lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
@@ -28,6 +28,9 @@ const ManageCoupons = () => {
             </h1>
             <h1 className="text-center lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
               Usage
+            </h1>
+            <h1 className="text-center lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+              Discount
             </h1>
             <h1 className="text-center lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
               Delete
@@ -76,6 +79,21 @@ const ManageCoupons = () => {
                   />
                 </div>
               </div>
+              <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+                <div className="w-full lg:w-5/12">
+                  <input
+                    type="Number"
+                    placeholder="Discount Percentage"
+                    className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="my-8 w-56 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+              >
+                ADD COUPON
+              </button>
             </form>
           </div>
         </div>

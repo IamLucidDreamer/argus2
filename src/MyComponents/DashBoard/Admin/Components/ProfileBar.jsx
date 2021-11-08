@@ -65,6 +65,14 @@ export default function ProfileBar() {
           </div>
         </div>
         <div className="text-gray-2 text-base font-bold bg-gray-200 rounded-b-xl">
+          <Link to="/dashboard/admin/coupon">
+            <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
+              <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">
+                ➔
+              </span>{" "}
+              Manage Coupons
+            </h1>
+          </Link>
           <Link to="/dashboard/admin/changepassword">
             <h1 className="rounded-lg py-4 pl-2 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
               <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">
