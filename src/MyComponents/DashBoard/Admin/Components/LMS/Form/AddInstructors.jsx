@@ -54,7 +54,7 @@ const AddInstructors = () => {
         },
       )
       .then((res) => {
-        setUser(res?.data?.data?.filter((f) => f.role !== 4));
+        setUser(res?.data?.data?.filter((f) => f.role !== 4 && f.role !== 2));
         setLoading(false);
       })
       .catch((err) => {
@@ -231,6 +231,7 @@ const AddInstructors = () => {
                         success: true,
                       });
                       dispatch(getUsers());
+                      setUser([]);
                     })
                     .catch((err) => {
                       setShowAlert({

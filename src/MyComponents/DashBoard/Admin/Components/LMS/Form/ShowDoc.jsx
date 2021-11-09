@@ -4,6 +4,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 import Alert from '../../../../../Components/Alert';
 import Loader from 'react-loader-spinner';
+import { base64StringToBlob } from 'blob-util';
 
 const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
@@ -18,6 +19,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
   const [b64, setB64] = useState(null);
 
   const [loading, setLoading] = useState(false);
+  const [blob, setBlob] = useState(null);
 
   useEffect(() => {
     setLoading(true);
@@ -31,12 +33,17 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
         setLoading(false);
         setDocData(res.data.data);
         setB64(Buffer.from(res?.data?.data?.data).toString('base64'));
+        setBlob(
+          window?.URL?.createObjectURL(
+            base64StringToBlob(b64, docData?.contentType),
+          ),
+        );
       })
       .catch((err) => {
         setLoading(false);
         setShow(false);
       });
-  }, [data?._id, token, refresh, setShow]);
+  }, [data?._id, token, refresh, setShow, b64, docData?.contentType]);
 
   return (
     <div
@@ -63,19 +70,32 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                 <CloseRoundedIcon fontSize="large" />
               </IconButton>
             </div>
-            <div>
+            <div className="w-full">
               {showAlert.show ? (
                 <div className="mr-16 mt-4 ml-4">
                   <Alert alert={showAlert} rmAlert={setShowAlert} />
                 </div>
               ) : null}
               <div className="flex w-full p-6">
-                <div className="w-1/2 mr-4 flex items-center">
+                <div className="w-1/2 mr-4 flex flex-col items-center justify-center">
                   <img
-                    className=""
+                    className="mb-2"
                     src={`data:image/png;base64,${b64}`}
                     alt=""
                   />
+                  <a
+                    className="font-bold px-6 py-2 bg-red-1 text-white text-xl rounded-xl hover:bg-white hover:text-red-1 border-2 border-red-1"
+                    download={`${docData?.name}(${docData?.userId}_${
+                      docData?.username
+                    }).${
+                      docData?.contentType === 'application/pdf'
+                        ? 'pdf'
+                        : 'jpeg'
+                    }`}
+                    href={blob}
+                  >
+                    Download
+                  </a>
                 </div>
                 <div className="w-1/2 mt-10">
                   <div className="p-2 mb-4">
