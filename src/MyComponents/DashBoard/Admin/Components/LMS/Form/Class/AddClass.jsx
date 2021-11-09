@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../../../../../../helpers/axiosInstance';
 import Select from 'react-select';
 import { addClass } from '../../../../../../../context/actions/lmsActions/classActions';
@@ -7,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Alert from '../../../../../../Components/Alert';
 
-const AddClass = () => {
+const AddClass = ({ classOptions, locationOptions }) => {
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const [showAlert, setShowAlert] = useState({
     show: false,
     message: '',
@@ -19,10 +20,26 @@ const AddClass = () => {
   const instructor = useSelector((state) => state.users.instructors);
 
   let options = [];
-  instructor.forEach((element) => {
+  instructor?.forEach((element) => {
     options.push({
       value: element._id,
       label: element.name + '(' + element._id + ')',
+    });
+  });
+
+  let classOpt = [];
+  classOptions?.forEach((element) => {
+    classOpt.push({
+      value: element?.text,
+      label: element?.text,
+    });
+  });
+
+  let locationOpt = [];
+  locationOptions?.forEach((element) => {
+    locationOpt.push({
+      value: element?.text,
+      label: element?.text,
     });
   });
 
@@ -43,42 +60,42 @@ const AddClass = () => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors, setErrors } = useFormik({
-    initialValues: {
-      classname: '',
-      date: '',
-      location: '',
-      noOfSpots: 0,
-      students: [],
-    },
-    validate,
-    onSubmit: async (values, { resetForm }) => {
-      const token = JSON.parse(localStorage.getItem('jwt'));
-      axiosInstance
-        .post(`/class/create/${selectedIns.value}`, values, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setSelectedIns(null);
-          resetForm();
-          dispatch(addClass(res.data.data));
-          setShowAlert({
-            show: true,
-            message: 'Class Added Successfully',
-            success: true,
+  const { getFieldProps, handleSubmit, errors, setErrors, setValues, values } =
+    useFormik({
+      initialValues: {
+        classname: '',
+        date: '',
+        location: '',
+        noOfSpots: 0,
+        students: [],
+      },
+      validate,
+      onSubmit: async (values, { resetForm }) => {
+        axiosInstance
+          .post(`/class/create/${selectedIns.value}`, values, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            setSelectedIns(null);
+            resetForm();
+            dispatch(addClass(res.data.data));
+            setShowAlert({
+              show: true,
+              message: 'Class Added Successfully',
+              success: true,
+            });
+          })
+          .catch((err) => {
+            setShowAlert({
+              show: true,
+              message: 'Error adding class',
+              success: false,
+            });
           });
-        })
-        .catch((err) => {
-          setShowAlert({
-            show: true,
-            message: 'Error adding class',
-            success: false,
-          });
-        });
-    },
-  });
+      },
+    });
 
   return (
     <div>
@@ -94,12 +111,30 @@ const AddClass = () => {
       >
         <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
           <div className="w-full lg:w-5/12">
-            <input
-              type="text"
-              placeholder="Class Name DropDown"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('classname')}
-            />
+            <div className="bg-client p-4 w-full rounded-xl">
+              <Select
+                placeholder="Select class"
+                className="w-full"
+                options={classOpt}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: 'lightgray',
+                    primary: '#BA0913',
+                  },
+                })}
+                value={
+                  values.classname !== ''
+                    ? { value: values.classname, label: values.classname }
+                    : null
+                }
+                onChange={(selectedOption) => {
+                  setValues({ ...values, classname: selectedOption.value });
+                }}
+              />
+            </div>
 
             {errors.classname ? (
               <div className="w-full text-xs text-red-400">
@@ -148,12 +183,31 @@ const AddClass = () => {
             ) : null}
           </div>
           <div className="w-full lg:w-5/12">
-            <input
-              type="text"
-              placeholder="Location DropDown"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('location')}
-            />
+            <div className="bg-client p-4 w-full rounded-xl">
+              <Select
+                placeholder="Select class"
+                className="w-full"
+                options={locationOpt}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: 'lightgray',
+                    primary: '#BA0913',
+                  },
+                })}
+                value={
+                  values.location !== ''
+                    ? { value: values.location, label: values.location }
+                    : null
+                }
+                onChange={(selectedOption) => {
+                  setValues({ ...values, location: selectedOption.value });
+                }}
+              />
+            </div>
+
             {errors.location ? (
               <div className="w-full text-xs text-red-400">
                 {errors.location}

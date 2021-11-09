@@ -6,7 +6,13 @@ import { get_Class } from '../../../../../../../context/actions/lmsActions/class
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
+const EditClass = ({
+  selectedClass,
+  setEdit,
+  setShowAlert,
+  classOptions,
+  locationOptions,
+}) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
 
   const [selectedIns, setSelectedIns] = useState(null);
@@ -21,6 +27,22 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
     });
   });
 
+  let classOpt = [];
+  classOptions?.forEach((element) => {
+    classOpt.push({
+      value: element?.text,
+      label: element?.text,
+    });
+  });
+
+  let locationOpt = [];
+  locationOptions?.forEach((element) => {
+    locationOpt.push({
+      value: element?.text,
+      label: element?.text,
+    });
+  });
+
   const validate = (values) => {
     const errors = {};
     if (!values.classname) {
@@ -32,9 +54,6 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
     if (!values.location) {
       errors.location = '*Required';
     }
-    if (!selectedIns) {
-      errors.selectedIns = '*Required';
-    }
     return errors;
   };
 
@@ -45,6 +64,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
     setValues,
     setErrors,
     resetForm,
+    values,
   } = useFormik({
     initialValues: {
       classname: '',
@@ -105,7 +125,6 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
       noOfSpots: selectedClass?.noOfSpots,
       students: [],
     });
-    setErrors({});
   }, [selectedClass, setValues]);
 
   const deleteClass = (e) => {
@@ -144,12 +163,30 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
       >
         <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
           <div className="w-full lg:w-5/12">
-            <input
-              type="text"
-              placeholder="Class Name DropDown"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('classname')}
-            />
+            <div className="bg-client p-4 w-full rounded-xl">
+              <Select
+                placeholder="Select class"
+                className="w-full"
+                options={classOpt}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: 'lightgray',
+                    primary: '#BA0913',
+                  },
+                })}
+                value={
+                  values.classname !== ''
+                    ? { value: values.classname, label: values.classname }
+                    : null
+                }
+                onChange={(selectedOption) => {
+                  setValues({ ...values, classname: selectedOption.value });
+                }}
+              />
+            </div>
 
             {errors.classname ? (
               <div className="w-full text-xs text-red-400">
@@ -199,12 +236,30 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
             ) : null}
           </div>
           <div className="w-full lg:w-5/12">
-            <input
-              type="text"
-              placeholder="Location DropDown"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('location')}
-            />
+            <div className="bg-client p-4 w-full rounded-xl">
+              <Select
+                placeholder="Select class"
+                className="w-full"
+                options={locationOpt}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: 'lightgray',
+                    primary: '#BA0913',
+                  },
+                })}
+                value={
+                  values.location !== ''
+                    ? { value: values.location, label: values.location }
+                    : null
+                }
+                onChange={(selectedOption) => {
+                  setValues({ ...values, location: selectedOption.value });
+                }}
+              />
+            </div>
             {errors.location ? (
               <div className="w-full text-xs text-red-400">
                 {errors.location}

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 
-const AttendanceList = ({ data }) => {
+const AttendanceList = ({ data, className }) => {
   const [studentAttendence, setStudentAttendence] = useState(data?.attendence);
   const token = JSON.parse(localStorage.getItem('jwt'));
   const students = useSelector((state) => state.users.students);
   let student = students.filter((f) => f._id === data?.studentId)[0];
   const [note, setNote] = useState(data?.note);
 
+  console.log(className);
   useEffect(() => {
     setNote(data?.note);
   }, [data?.note]);
@@ -17,8 +18,8 @@ const AttendanceList = ({ data }) => {
     e.preventDefault();
     axiosInstance
       .put(
-        `/class/attendence/${data._id}`,
-        { attendence, note },
+        `/class/attendence/${data._id}/${student?._id}`,
+        { attendence, note, className },
         {
           headers: {
             Authorization: `Bearer ${token}`,

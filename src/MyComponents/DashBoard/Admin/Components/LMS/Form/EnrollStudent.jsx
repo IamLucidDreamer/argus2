@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import SelectColumnFilter from '../../../../../../helpers/TableFilter';
 import Table from '../../../../../Components/reactTable';
@@ -7,11 +7,13 @@ import axiosInstance from '../../../../../../helpers/axiosInstance';
 import Alert from '../../../../../Components/Alert';
 import { useDispatch } from 'react-redux';
 import { get_Class } from '../../../../../../context/actions/lmsActions/classActions';
+import { getUsers } from '../../../../../../context/actions/lmsActions/userAction';
 
 const EnrollStudent = () => {
   const students = useSelector((state) => state.users.students);
   const classList = useSelector((state) => state.class.class);
   const [selectedClass, setSelectedClass] = useState(null);
+  const [studentsToShow, setStudentsToShow] = useState([]);
   const [showAlert, setShowAlert] = useState({
     show: false,
     message: '',
@@ -30,7 +32,19 @@ const EnrollStudent = () => {
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState([]);
 
-  students.forEach((element) => {
+  useEffect(() => {
+    setStudentsToShow(
+      students.filter(
+        (f) =>
+          !f?.classAttended?.includes(
+            classList.filter((f) => f._id === selectedClass?.value)[0]
+              ?.classname,
+          ),
+      ),
+    );
+  }, [selectedClass, classList, students]);
+
+  studentsToShow.forEach((element) => {
     for (const key in element) {
       if (element[key] === null) {
         element[key] = '';
@@ -101,7 +115,12 @@ const EnrollStudent = () => {
       axiosInstance
         .put(
           `/class/enroll/${selectedClass.value}`,
-          { students: selected },
+          {
+            students: selected,
+            classname: classList.filter(
+              (f) => f._id === selectedClass?.value,
+            )[0].classname,
+          },
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -111,6 +130,7 @@ const EnrollStudent = () => {
         .then((res) => {
           setSelectedClass(null);
           dispatch(get_Class());
+          dispatch(getUsers());
           setShowAlert({
             show: true,
             message: 'Students enrolled successfully',
@@ -142,62 +162,66 @@ const EnrollStudent = () => {
           <Alert alert={showAlert} rmAlert={setShowAlert} />
         ) : null}
         <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-          <Select
-            placeholder="Select Class"
-            className="bg-client p-5 w-full lg:w-5/12 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-            options={options}
-            theme={(theme) => ({
-              ...theme,
-              borderRadius: 0,
-              colors: {
-                ...theme.colors,
-                primary25: 'lightgray',
-                primary: '#BA0913',
-              },
-            })}
-            value={selectedClass}
-            onChange={(selectedOption) => {
-              setSelectedClass(selectedOption);
-            }}
-          />
+          <div className="bg-client w-full lg:w-5/12 p-5 rounded-xl">
+            <Select
+              placeholder="Select Class"
+              className=" w-full"
+              options={options}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'lightgray',
+                  primary: '#BA0913',
+                },
+              })}
+              value={selectedClass}
+              onChange={(selectedOption) => {
+                setSelectedClass(selectedOption);
+              }}
+            />
+          </div>
         </div>
       </form>
-      <div className="relative">
-        <button
-          onClick={() => {
-            setShow(!show);
-          }}
-          className="right-0 -top-5 absolute w-max px-4 py-2 bg-red-1 text-white font-bold rounded-2xl m-3 hover:text-red-1 hover:bg-white border-2 border-red-1"
-        >
-          Filter
-        </button>
-        <Table
-          data={students}
-          columns={columns}
-          show={show}
-          setShow={setShow}
-          justList={false}
-          setSelected={setSelected}
-        />
-        <div className="flex">
+      {selectedClass ? (
+        <div className="relative">
           <button
-            onClick={(e) => {
-              if (selectedClass) {
-                enroll(e);
-              } else {
-                setShowAlert({
-                  show: true,
-                  message: 'Select a class',
-                  success: false,
-                });
-              }
+            onClick={() => {
+              setShow(!show);
             }}
-            className="mx-auto my-6 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            className="right-0 -top-5 absolute w-max px-4 py-2 bg-red-1 text-white font-bold rounded-2xl m-3 hover:text-red-1 hover:bg-white border-2 border-red-1"
           >
-            ENROLL
+            Filter
           </button>
+          <Table
+            data={studentsToShow}
+            columns={columns}
+            show={show}
+            setShow={setShow}
+            justList={false}
+            setSelected={setSelected}
+          />
+          <div className="flex">
+            <button
+              onClick={(e) => {
+                if (selectedClass) {
+                  enroll(e);
+                } else {
+                  setShowAlert({
+                    show: true,
+                    message: 'Select a class',
+                    success: false,
+                  });
+                }
+              }}
+              className="mx-auto my-6 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            >
+              ENROLL
+            </button>
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

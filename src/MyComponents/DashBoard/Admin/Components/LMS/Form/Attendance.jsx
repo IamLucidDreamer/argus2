@@ -107,7 +107,15 @@ const Attendance = () => {
                 </h1>
               </div>
               {pageData?.map((s) => {
-                return <AttendanceList data={s} />;
+                return (
+                  <AttendanceList
+                    data={s}
+                    className={
+                      classList.filter((f) => f._id === selectedClass?.value)[0]
+                        .classname
+                    }
+                  />
+                );
               })}
             </>
           )}

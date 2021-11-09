@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import SideNav from "./Components/SideNav";
-import ProfileBar from "./Components/ProfileBar";
-import NavLms from "./Components/LMS/NavLms";
-import ClassOverview from "./Components/LMS/Form/Class/ClassOverview";
-import EnrollStudent from "./Components/LMS/Form/EnrollStudent";
-import Message from "../Admin/Components/LMS/Form/Message";
-import ClassMaterial from "./Components/LMS/Form/ClassMaterial";
+import React, { useEffect, useState } from 'react';
+import SideNav from './Components/SideNav';
+import ProfileBar from './Components/ProfileBar';
+import NavLms from './Components/LMS/NavLms';
+import ClassOverview from './Components/LMS/Form/Class/ClassOverview';
+import EnrollStudent from './Components/LMS/Form/EnrollStudent';
+import Message from '../Admin/Components/LMS/Form/Message';
+import ClassMaterial from './Components/LMS/Form/ClassMaterial';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../../context/actions/lmsActions/userAction';
+import { get_Class } from '../../../context/actions/lmsActions/classActions';
 
 const LmsHome = () => {
   const [show, setShow] = useState(1);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(get_Class());
+    dispatch(getUsers());
+  }, [dispatch]);
 
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
@@ -23,7 +32,7 @@ const LmsHome = () => {
             <button
               onClick={() => setShow(1)}
               className={`w-full md:w-1/4 py-4 rounded-2xl font-bold -mt-64 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
-                show === 1 ? "shadow-none" : "shadow-button-shadow-2"
+                show === 1 ? 'shadow-none' : 'shadow-button-shadow-2'
               }`}
             >
               Overview
@@ -31,7 +40,7 @@ const LmsHome = () => {
             <button
               onClick={() => setShow(2)}
               className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 lg:mr-1 lg:ml-2 bg-white hover:shadow-button-shadow-3 ${
-                show === 2 ? "shadow-none" : "shadow-button-shadow-2"
+                show === 2 ? 'shadow-none' : 'shadow-button-shadow-2'
               }`}
             >
               Material
@@ -39,7 +48,7 @@ const LmsHome = () => {
             <button
               onClick={() => setShow(3)}
               className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 lg:ml-1 lg:mr-2 bg-white hover:shadow-button-shadow-3 ${
-                show === 3 ? "shadow-none" : "shadow-button-shadow-2"
+                show === 3 ? 'shadow-none' : 'shadow-button-shadow-2'
               }`}
             >
               Enroll
@@ -47,23 +56,23 @@ const LmsHome = () => {
             <button
               onClick={() => setShow(4)}
               className={`w-full md:w-1/4 py-4 rounded-2xl font-bold mt-4 md:-mt-8 bg-white hover:shadow-button-shadow-3 ${
-                show === 4 ? "shadow-none" : "shadow-button-shadow-2"
+                show === 4 ? 'shadow-none' : 'shadow-button-shadow-2'
               }`}
             >
               Messages
             </button>
           </nav>
           <div className="p-4">
-            <div className={show === 1 ? "block" : "hidden"}>
+            <div className={show === 1 ? 'block' : 'hidden'}>
               <ClassOverview />
             </div>
-            <div className={show === 2 ? "block" : "hidden"}>
+            <div className={show === 2 ? 'block' : 'hidden'}>
               <ClassMaterial />
             </div>
-            <div className={show === 3 ? "block" : "hidden"}>
+            <div className={show === 3 ? 'block' : 'hidden'}>
               <EnrollStudent />
             </div>
-            <div className={show === 4 ? "block" : "hidden"}>
+            <div className={show === 4 ? 'block' : 'hidden'}>
               <Message />
             </div>
           </div>
