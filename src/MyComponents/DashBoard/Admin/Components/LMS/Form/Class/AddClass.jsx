@@ -1,59 +1,60 @@
-import { useFormik } from 'formik';
-import React, { useState } from 'react';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Select from 'react-select';
-import { addClass } from '../../../../../../../context/actions/lmsActions/classActions';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import Alert from '../../../../../../Components/Alert';
+import { useFormik } from "formik";
+import React, { useState } from "react";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Select from "react-select";
+import { addClass } from "../../../../../../../context/actions/lmsActions/classActions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import Alert from "../../../../../../Components/Alert";
+import ManageClassName from "./ManageClassName";
 
 const AddClass = () => {
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
   const [selectedIns, setSelectedIns] = useState(null);
   const dispatch = useDispatch();
   const instructor = useSelector((state) => state.users.instructors);
-
+  const [showClass, setShowClass] = useState(false);
   let options = [];
   instructor.forEach((element) => {
     options.push({
       value: element._id,
-      label: element.name + '(' + element._id + ')',
+      label: element.name + "(" + element._id + ")",
     });
   });
 
   const validate = (values) => {
     const errors = {};
     if (!values.classname) {
-      errors.classname = '*Required';
+      errors.classname = "*Required";
     }
     if (!values.date) {
-      errors.date = '*Required';
+      errors.date = "*Required";
     }
     if (!values.location) {
-      errors.location = '*Required';
+      errors.location = "*Required";
     }
     if (!selectedIns) {
-      errors.selectedIns = '*Required';
+      errors.selectedIns = "*Required";
     }
     return errors;
   };
 
   const { getFieldProps, handleSubmit, errors, setErrors } = useFormik({
     initialValues: {
-      classname: '',
-      date: '',
-      location: '',
+      classname: "",
+      date: "",
+      location: "",
       noOfSpots: 0,
       students: [],
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      const token = JSON.parse(localStorage.getItem('jwt'));
+      const token = JSON.parse(localStorage.getItem("jwt"));
       axiosInstance
         .post(`/class/create/${selectedIns.value}`, values, {
           headers: {
@@ -66,14 +67,14 @@ const AddClass = () => {
           dispatch(addClass(res.data.data));
           setShowAlert({
             show: true,
-            message: 'Class Added Successfully',
+            message: "Class Added Successfully",
             success: true,
           });
         })
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: 'Error adding class',
+            message: "Error adding class",
             success: false,
           });
         });
@@ -82,6 +83,7 @@ const AddClass = () => {
 
   return (
     <div>
+      <ManageClassName setShow={setShowClass} show={showClass} />
       <div className="px-11">
         {showAlert.show ? (
           <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -98,7 +100,7 @@ const AddClass = () => {
               type="text"
               placeholder="Class Name DropDown"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('classname')}
+              {...getFieldProps("classname")}
             />
 
             {errors.classname ? (
@@ -118,14 +120,14 @@ const AddClass = () => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
+                    primary25: "lightgray",
+                    primary: "#BA0913",
                   },
                 })}
                 value={selectedIns}
                 onChange={(selectedOption) => {
                   setSelectedIns(selectedOption);
-                  setErrors({ ...errors, selectedIns: '' });
+                  setErrors({ ...errors, selectedIns: "" });
                 }}
               />
             </div>
@@ -141,7 +143,7 @@ const AddClass = () => {
             <input
               type="datetime-local"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('date')}
+              {...getFieldProps("date")}
             />
             {errors.date ? (
               <div className="w-full text-xs text-red-400">{errors.date}</div>
@@ -152,7 +154,7 @@ const AddClass = () => {
               type="text"
               placeholder="Location DropDown"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('location')}
+              {...getFieldProps("location")}
             />
             {errors.location ? (
               <div className="w-full text-xs text-red-400">
@@ -167,15 +169,16 @@ const AddClass = () => {
               type="number"
               placeholder="Number of Spots"
               className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('noOfSpots')}
+              {...getFieldProps("noOfSpots")}
             />
           </div>
           <div className="w-full lg:w-5/12">
-            <input
-              type="number"
-              placeholder="Number of Spots"
-              className="bg-client invisible p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-            />
+            <button
+              onClick={() => setShowClass(true)}
+              className="my-8 w-full bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+            >
+              Manage Class / Location
+            </button>
           </div>
         </div>
         <button

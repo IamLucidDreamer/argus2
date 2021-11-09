@@ -1,13 +1,13 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Select from 'react-select';
-import { get_Class } from '../../../../../../../context/actions/lmsActions/classActions';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Select from "react-select";
+import { get_Class } from "../../../../../../../context/actions/lmsActions/classActions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
 
   const [selectedIns, setSelectedIns] = useState(null);
   const dispatch = useDispatch();
@@ -17,23 +17,23 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
   instructor.forEach((element) => {
     options.push({
       value: element._id,
-      label: element.name + '(' + element._id + ')',
+      label: element.name + "(" + element._id + ")",
     });
   });
 
   const validate = (values) => {
     const errors = {};
     if (!values.classname) {
-      errors.classname = '*Required';
+      errors.classname = "*Required";
     }
     if (!values.date) {
-      errors.date = '*Required';
+      errors.date = "*Required";
     }
     if (!values.location) {
-      errors.location = '*Required';
+      errors.location = "*Required";
     }
     if (!selectedIns) {
-      errors.selectedIns = '*Required';
+      errors.selectedIns = "*Required";
     }
     return errors;
   };
@@ -47,9 +47,9 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
     resetForm,
   } = useFormik({
     initialValues: {
-      classname: '',
-      date: '',
-      location: '',
+      classname: "",
+      date: "",
+      location: "",
       noOfSpots: 0,
       students: [],
     },
@@ -69,7 +69,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         )
         .then((res) => {
           setSelectedIns(null);
@@ -77,7 +77,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
           dispatch(get_Class());
           setShowAlert({
             show: true,
-            message: 'Class Updated Successfully',
+            message: "Class Updated Successfully",
             success: true,
           });
           setEdit(false);
@@ -85,7 +85,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: 'Error updating class',
+            message: "Error updating class",
             success: false,
           });
         });
@@ -96,7 +96,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
     setSelectedIns({
       value: selectedClass?.instructorId,
       label:
-        selectedClass?.instructorName + '(' + selectedClass?.instructorId + ')',
+        selectedClass?.instructorName + "(" + selectedClass?.instructorId + ")",
     });
     setValues({
       classname: selectedClass?.classname,
@@ -122,7 +122,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
         dispatch(get_Class());
         setShowAlert({
           show: true,
-          message: 'Class Deleted Successfully',
+          message: "Class Deleted Successfully",
           success: true,
         });
         setEdit(false);
@@ -130,7 +130,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
       .catch(() => {
         setShowAlert({
           show: true,
-          message: 'Error deleting class',
+          message: "Error deleting class",
           success: false,
         });
       });
@@ -148,7 +148,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
               type="text"
               placeholder="Class Name DropDown"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('classname')}
+              {...getFieldProps("classname")}
             />
 
             {errors.classname ? (
@@ -168,14 +168,14 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
+                    primary25: "lightgray",
+                    primary: "#BA0913",
                   },
                 })}
                 value={selectedIns}
                 onChange={(selectedOption) => {
                   setSelectedIns(selectedOption);
-                  setErrors({ ...errors, selectedIns: '' });
+                  setErrors({ ...errors, selectedIns: "" });
                 }}
               />
             </div>
@@ -192,7 +192,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
             <input
               type="datetime-local"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('date')}
+              {...getFieldProps("date")}
             />
             {errors.date ? (
               <div className="w-full text-xs text-red-400">{errors.date}</div>
@@ -203,7 +203,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
               type="text"
               placeholder="Location DropDown"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('location')}
+              {...getFieldProps("location")}
             />
             {errors.location ? (
               <div className="w-full text-xs text-red-400">
@@ -218,7 +218,7 @@ const EditClass = ({ selectedClass, setEdit, setShowAlert }) => {
               type="number"
               placeholder="Number of Spots"
               className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('noOfSpots')}
+              {...getFieldProps("noOfSpots")}
             />
           </div>
           <div className="w-full lg:w-5/12">
