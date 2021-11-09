@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import Loader from 'react-loader-spinner';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 import Table from '../../../../../../MyComponents/Components/reactTable';
 
@@ -13,10 +14,14 @@ const ProfileSearch = () => {
     city: '',
   });
   const [user, setUser] = useState([]);
+  const [selected, setSelected] = useState([]);
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
     const query = {};
+    setLoading(true);
     for (let key in searchParams) {
       if (searchParams[key] !== '') {
         if (key === 'createdAt') {
@@ -39,12 +44,13 @@ const ProfileSearch = () => {
         },
       )
       .then((res) => {
-        setUser(res.data.data);
+        setUser(res.data.data.filter((f) => f.role === 1));
+        setLoading(false);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setLoading(false);
+      });
   };
-
-  console.log(user);
 
   const headCells = [
     {
@@ -174,7 +180,28 @@ const ProfileSearch = () => {
           SEARCH
         </button>
       </form>
-      <Table data={user} columns={columns} justList={true} />
+      {loading ? (
+        <div className="w-full flex items-center justify-center">
+          <Loader type="TailSpin" color="#BA0913" height={60} width={60} />
+        </div>
+      ) : (
+        <>
+          {user.length !== 0 ? (
+            <Table
+              data={user}
+              columns={columns}
+              justList={true}
+              setSelected={setSelected}
+              show={show}
+              setShow={setShow}
+            />
+          ) : (
+            <p className="w-full text-center text-xl font-bold text-gray-400">
+              No user
+            </p>
+          )}
+        </>
+      )}
     </div>
   );
 };
