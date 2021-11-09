@@ -24,7 +24,7 @@ export default function Home() {
       </div>
       <div className="w-9/12 sm:w-10/12">
         <ProfileBar />
-        <div className="flex flex-col md:flex-row items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between mx-auto max-w-1500">
           <button
             onClick={() => {
               setPage(1);
@@ -84,7 +84,7 @@ export default function Home() {
             </button>
           </nav>
           <nav
-            className={`flex flex-col sm:flex-row justify-evenly my-2 ${
+            className={`flex flex-col sm:flex-row justify-evenly my-2 text-lg ${
               page === 2 ? "block" : "hidden"
             }`}
           >
