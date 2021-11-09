@@ -99,7 +99,7 @@ const DocumentApproval = () => {
       ) : (
         <>
           {docsList.length === 0 ? (
-            <p className="text-xl font-bold text-gray-400">
+            <p className="text-xl font-bold text-gray-400 w-full text-center">
               No Documents to Show
             </p>
           ) : (
