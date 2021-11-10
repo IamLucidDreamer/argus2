@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
+import { useHistory } from 'react-router';
 import axiosInstance from '../../../helpers/axiosInstance';
 
 const Course = () => {
   const token = JSON.parse(localStorage.getItem('jwt'));
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const history = useHistory();
+
   useEffect(() => {
     setLoading(true);
     axiosInstance
@@ -65,7 +69,14 @@ const Course = () => {
                 return (
                   <>
                     <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
-                      <div className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2 text-xl  mx-1 my-1 lg:my-0 hover:bg-red-1 font-bold hover:text-white cursor-pointer">
+                      <div
+                        onClick={() =>
+                          history.push(
+                            `/dashboard/student/course/${c?._id}/module`,
+                          )
+                        }
+                        className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2 text-xl  mx-1 my-1 lg:my-0 hover:bg-red-1 font-bold hover:text-white cursor-pointer"
+                      >
                         <div className="flex flex-col">
                           <span>{c?.name}</span>
                           <span className="font-semibold text-lg">

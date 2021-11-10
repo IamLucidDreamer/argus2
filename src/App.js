@@ -60,7 +60,6 @@ import { getUser } from './context/actions/authActions/getUserAction';
 import { useSelector } from 'react-redux';
 import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
 import MyTranscripts from './MyComponents/DashBoard/Student/MyTranscripts';
-import Modules from './MyComponents/DashBoard/Student/Modules';
 import LmsInstructor from './MyComponents/DashBoard/Admin/LmsInstructor';
 import LmsStudent from './MyComponents/DashBoard/Admin/LmsStudent';
 import LmsLicense from './MyComponents/DashBoard/Admin/LmsLicense';
@@ -69,6 +68,8 @@ import ModulePage from './MyComponents/DashBoard/Admin/Components/LMS/Form/Cours
 import ChapterPage from './MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/ChapterPage';
 import PaymentPage from './MyComponents/DashBoard/Student/PaymentPage';
 import Course from './MyComponents/DashBoard/Student/Course';
+import Modules from './MyComponents/DashBoard/Student/Modules';
+import Chapter from './MyComponents/DashBoard/Student/Chapter';
 
 function App() {
   const dispatch = useDispatch();
@@ -157,7 +158,20 @@ function App() {
             path="/dashboard/student/documents"
             component={UploadDocs}
           />
-          <StudentRoutes path="/dashboard/student/course" component={Course} />
+          <StudentRoutes
+            exact
+            path="/dashboard/student/course"
+            component={Course}
+          />
+          <StudentRoutes
+            exact
+            path="/dashboard/student/course/:courseId/module"
+            component={Modules}
+          />
+          <StudentRoutes
+            path="/dashboard/student/course/:courseId/module/:moduleId/chapter"
+            component={Chapter}
+          />
 
           {/* Administrator Routes */}
 
