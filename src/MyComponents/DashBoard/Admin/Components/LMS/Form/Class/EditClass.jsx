@@ -5,6 +5,8 @@ import Select from 'react-select';
 import { get_Class } from '../../../../../../../context/actions/lmsActions/classActions';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { IconButton } from '@mui/material';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const EditClass = ({
   selectedClass,
@@ -12,6 +14,8 @@ const EditClass = ({
   setShowAlert,
   classOptions,
   locationOptions,
+  show,
+  setShow,
 }) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
 
@@ -156,152 +160,164 @@ const EditClass = ({
   };
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3"
-      >
-        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-          <div className="w-full lg:w-5/12">
-            <div className="bg-client p-4 w-full rounded-xl">
-              <Select
-                placeholder="Select class"
-                className="w-full"
-                options={classOpt}
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 0,
-                  colors: {
-                    ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
-                  },
-                })}
-                value={
-                  values.classname !== ''
-                    ? { value: values.classname, label: values.classname }
-                    : null
-                }
-                onChange={(selectedOption) => {
-                  setValues({ ...values, classname: selectedOption.value });
-                }}
+    <div
+      className={`${
+        show ? 'block' : 'hidden'
+      } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
+    >
+      <div className="bg-white rounded-lg w-3/4 lg:w-1/2">
+        <div className="w-full flex justify-end p-4">
+          <IconButton onClick={() => setShow(false)}>
+            <CloseRoundedIcon fontSize="large" />
+          </IconButton>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3"
+        >
+          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+            <div className="w-full lg:w-5/12">
+              <div className="bg-client p-4 w-full rounded-xl">
+                <Select
+                  placeholder="Select class"
+                  className="w-full"
+                  options={classOpt}
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'lightgray',
+                      primary: '#BA0913',
+                    },
+                  })}
+                  value={
+                    values.classname !== ''
+                      ? { value: values.classname, label: values.classname }
+                      : null
+                  }
+                  onChange={(selectedOption) => {
+                    setValues({ ...values, classname: selectedOption.value });
+                  }}
+                />
+              </div>
+
+              {errors.classname ? (
+                <div className="w-full text-xs text-red-400">
+                  {errors.classname}
+                </div>
+              ) : null}
+            </div>
+            <div className="w-full lg:w-5/12">
+              <div className="bg-client p-4 w-full rounded-xl">
+                <Select
+                  placeholder="Select Instructor"
+                  className="w-full"
+                  options={options}
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'lightgray',
+                      primary: '#BA0913',
+                    },
+                  })}
+                  value={selectedIns}
+                  onChange={(selectedOption) => {
+                    setSelectedIns(selectedOption);
+                    setErrors({ ...errors, selectedIns: '' });
+                  }}
+                />
+              </div>
+
+              {errors.selectedIns ? (
+                <div className="w-full text-xs text-red-400">
+                  {errors.selectedIns}
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+            <div className="w-full lg:w-5/12">
+              <input
+                type="datetime-local"
+                className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+                {...getFieldProps('date')}
+              />
+              {errors.date ? (
+                <div className="w-full text-xs text-red-400">{errors.date}</div>
+              ) : null}
+            </div>
+            <div className="w-full lg:w-5/12">
+              <div className="bg-client p-4 w-full rounded-xl">
+                <Select
+                  placeholder="Select class"
+                  className="w-full"
+                  options={locationOpt}
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      primary25: 'lightgray',
+                      primary: '#BA0913',
+                    },
+                  })}
+                  value={
+                    values.location !== ''
+                      ? { value: values.location, label: values.location }
+                      : null
+                  }
+                  onChange={(selectedOption) => {
+                    setValues({ ...values, location: selectedOption.value });
+                  }}
+                />
+              </div>
+              {errors.location ? (
+                <div className="w-full text-xs text-red-400">
+                  {errors.location}
+                </div>
+              ) : null}
+            </div>
+          </div>
+          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+            <div className="w-full lg:w-5/12">
+              <input
+                type="number"
+                placeholder="Number of Spots"
+                className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+                {...getFieldProps('noOfSpots')}
               />
             </div>
-
-            {errors.classname ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.classname}
-              </div>
-            ) : null}
-          </div>
-          <div className="w-full lg:w-5/12">
-            <div className="bg-client p-4 w-full rounded-xl">
-              <Select
-                placeholder="Select Instructor"
-                className="w-full"
-                options={options}
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 0,
-                  colors: {
-                    ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
-                  },
-                })}
-                value={selectedIns}
-                onChange={(selectedOption) => {
-                  setSelectedIns(selectedOption);
-                  setErrors({ ...errors, selectedIns: '' });
-                }}
+            <div className="w-full lg:w-5/12">
+              <input
+                type="number"
+                placeholder="Number of Spots"
+                className="bg-client invisible p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
               />
             </div>
+          </div>
+          <div className="flex justify-around w-1/2">
+            <button
+              onClick={(e) => {
+                deleteClass(e);
+              }}
+              className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+            >
+              DELETE CLASS
+            </button>
 
-            {errors.selectedIns ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.selectedIns}
-              </div>
-            ) : null}
+            <button
+              type="submit"
+              className="my-8 w-56 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+            >
+              EDIT CLASS
+            </button>
           </div>
-        </div>
-        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-          <div className="w-full lg:w-5/12">
-            <input
-              type="datetime-local"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('date')}
-            />
-            {errors.date ? (
-              <div className="w-full text-xs text-red-400">{errors.date}</div>
-            ) : null}
-          </div>
-          <div className="w-full lg:w-5/12">
-            <div className="bg-client p-4 w-full rounded-xl">
-              <Select
-                placeholder="Select class"
-                className="w-full"
-                options={locationOpt}
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 0,
-                  colors: {
-                    ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
-                  },
-                })}
-                value={
-                  values.location !== ''
-                    ? { value: values.location, label: values.location }
-                    : null
-                }
-                onChange={(selectedOption) => {
-                  setValues({ ...values, location: selectedOption.value });
-                }}
-              />
-            </div>
-            {errors.location ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.location}
-              </div>
-            ) : null}
-          </div>
-        </div>
-        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-          <div className="w-full lg:w-5/12">
-            <input
-              type="number"
-              placeholder="Number of Spots"
-              className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps('noOfSpots')}
-            />
-          </div>
-          <div className="w-full lg:w-5/12">
-            <input
-              type="number"
-              placeholder="Number of Spots"
-              className="bg-client invisible p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-            />
-          </div>
-        </div>
-        <div className="flex justify-around w-1/2">
-          <button
-            onClick={(e) => {
-              deleteClass(e);
-            }}
-            className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
-          >
-            DELETE CLASS
-          </button>
-
-          <button
-            type="submit"
-            className="my-8 w-56 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
-          >
-            EDIT CLASS
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

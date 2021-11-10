@@ -1,11 +1,10 @@
-import { DeleteOutline } from '@mui/icons-material';
-import React, { useState } from 'react';
+import React from 'react';
 import ClassStudents from './ClassStudents';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton } from '@mui/material';
 const ClassList = ({
   c,
-  editclass,
+  setShow,
   selectedClass,
   selectedClassShow,
   setSelectedClassShow,
@@ -56,7 +55,7 @@ const ClassList = ({
         <div className="flex flow-col items-center justify-center text-center lg:w-1/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
           <IconButton
             onClick={() => {
-              editclass(true);
+              setShow(true);
               selectedClass(c);
             }}
           >

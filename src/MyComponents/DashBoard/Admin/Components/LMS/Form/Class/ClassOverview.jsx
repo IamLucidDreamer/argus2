@@ -14,11 +14,11 @@ const ClassOverview = () => {
   const loading = useSelector((state) => state.class.loading);
   const [page, setPage] = useState(1);
   const [pageData, setpageData] = useState([]);
-  const [edit, setEdit] = useState(false);
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedClassShow, setSelectedClassShow] = useState(null);
   const [classOptions, setClassOptions] = useState([]);
   const [locationOptions, setLocationOptions] = useState([]);
+  const [show, setShow] = useState(false);
 
   const [showAlert, setShowAlert] = useState({
     show: false,
@@ -56,6 +56,15 @@ const ClassOverview = () => {
 
   return (
     <div>
+      <EditClass
+        selectedClass={selectedClass}
+        setShowAlert={setShowAlert}
+        classOptions={classOptions}
+        locationOptions={locationOptions}
+        show={show}
+        setShow={setShow}
+      />
+
       {loading ? (
         <>
           <div className="w-full flex items-center justify-center">
@@ -110,7 +119,7 @@ const ClassOverview = () => {
                   <>
                     <ClassList
                       c={c}
-                      editclass={setEdit}
+                      setShow={setShow}
                       selectedClass={setSelectedClass}
                       selectedClassShow={selectedClassShow}
                       setSelectedClassShow={setSelectedClassShow}
@@ -134,15 +143,6 @@ const ClassOverview = () => {
       </div>
       {newclass ? (
         <AddClass
-          classOptions={classOptions}
-          locationOptions={locationOptions}
-        />
-      ) : null}
-      {edit ? (
-        <EditClass
-          selectedClass={selectedClass}
-          setEdit={setEdit}
-          setShowAlert={setShowAlert}
           classOptions={classOptions}
           locationOptions={locationOptions}
         />
