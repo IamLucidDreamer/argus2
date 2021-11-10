@@ -1,27 +1,27 @@
-import { useFormik } from 'formik';
-import React from 'react';
-import axiosInstance from '../../../../../helpers/axiosInstance';
+import { useFormik } from "formik";
+import React from "react";
+import axiosInstance from "../../../../../helpers/axiosInstance";
 
 const JobSearch = () => {
   const validate = (values) => {
     const errors = {};
     if (!values.dateOfBirth) {
-      errors.dateOfBirth = '*Required';
+      errors.dateOfBirth = "*Required";
     }
     if (!values.gender) {
-      errors.gender = '*Required';
+      errors.gender = "*Required";
     }
     if (!values.weight) {
-      errors.weight = '*Required';
+      errors.weight = "*Required";
     }
     if (!values.height) {
-      errors.height = '*Required';
+      errors.height = "*Required";
     }
     if (!values.eyeColor) {
-      errors.eyeColor = '*Required';
+      errors.eyeColor = "*Required";
     }
     if (!values.hairColor) {
-      errors.hairColor = '*Required';
+      errors.hairColor = "*Required";
     }
 
     return errors;
@@ -29,18 +29,18 @@ const JobSearch = () => {
 
   const { getFieldProps, handleSubmit, errors } = useFormik({
     initialValues: {
-      dateOfBirth: '',
-      gender: '',
-      weight: '',
-      height: '',
-      eyeColor: '',
-      hairColor: '',
+      dateOfBirth: "",
+      gender: "",
+      weight: "",
+      height: "",
+      eyeColor: "",
+      hairColor: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      const token = JSON.parse(localStorage.getItem('jwt'));
+      const token = JSON.parse(localStorage.getItem("jwt"));
       axiosInstance
-        .put('/user/update', values, {
+        .put("/user/update", values, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -52,7 +52,7 @@ const JobSearch = () => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg

@@ -1,11 +1,11 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   getUser,
   updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
+} from "../../../../../context/actions/authActions/getUserAction";
+import axiosInstance from "../../../../../helpers/axiosInstance";
 
 const ContactDetails = ({ user }) => {
   const dispatch = useDispatch();
@@ -13,38 +13,38 @@ const ContactDetails = ({ user }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.country) {
-      errors.country = '*Required';
+      errors.country = "*Required";
     }
     if (!values.province) {
-      errors.province = '*Required';
+      errors.province = "*Required";
     }
     if (!values.streetNumber) {
-      errors.streetNumber = '*Required';
+      errors.streetNumber = "*Required";
     }
     if (!values.city) {
-      errors.city = '*Required';
+      errors.city = "*Required";
     }
     if (!values.street) {
-      errors.street = '*Required';
+      errors.street = "*Required";
     }
     if (!values.postalCode) {
-      errors.postalCode = '*Required';
+      errors.postalCode = "*Required";
     }
     if (!values.suite) {
-      errors.suite = '*Required';
+      errors.suite = "*Required";
     }
     if (!values.homePhone) {
-      errors.homePhone = '*Required';
+      errors.homePhone = "*Required";
     } else if (values.homePhone > 15 && values.homePhone < 6) {
-      errors.homePhone = 'Number should be in range 6-15';
+      errors.homePhone = "Number should be in range 6-15";
     }
     if (!values.phone) {
-      errors.phone = '*Required';
+      errors.phone = "*Required";
     } else if (values.phone > 15 && values.phone < 6) {
-      errors.phone = 'Number should be in range 6-15';
+      errors.phone = "Number should be in range 6-15";
     }
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = "Invalid email address";
     }
 
     return errors;
@@ -52,20 +52,20 @@ const ContactDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      country: '',
-      province: '',
-      streetNumber: '',
-      city: '',
-      street: '',
-      postalCode: '',
-      suite: '',
-      homePhone: '',
-      phone: '',
-      email: '',
+      country: "",
+      province: "",
+      streetNumber: "",
+      city: "",
+      street: "",
+      postalCode: "",
+      suite: "",
+      homePhone: "",
+      phone: "",
+      email: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, 'Contact Details updated'));
+      dispatch(updateUser(resetForm, values, "Contact Details updated"));
     },
   });
 
@@ -86,7 +86,7 @@ const ContactDetails = ({ user }) => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -113,7 +113,7 @@ const ContactDetails = ({ user }) => {
             <label> Country</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('country')}
+              {...getFieldProps("country")}
             />
             {errors.country ? (
               <div className="w-full text-xs text-red-400">
@@ -125,7 +125,7 @@ const ContactDetails = ({ user }) => {
             <label> State/Province</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('province')}
+              {...getFieldProps("province")}
             />
             {errors.province ? (
               <div className="w-full text-xs text-red-400">
@@ -137,7 +137,7 @@ const ContactDetails = ({ user }) => {
             <label> City</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('city')}
+              {...getFieldProps("city")}
             />
             {errors.city ? (
               <div className="w-full text-xs text-red-400">{errors.city}</div>
@@ -147,7 +147,7 @@ const ContactDetails = ({ user }) => {
             <label> Street</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('street')}
+              {...getFieldProps("street")}
             />
             {errors.street ? (
               <div className="w-full text-xs text-red-400">{errors.street}</div>
@@ -158,7 +158,7 @@ const ContactDetails = ({ user }) => {
             <input
               type="number"
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('streetNumber')}
+              {...getFieldProps("streetNumber")}
             />
             {errors.streetNumber ? (
               <div className="w-full text-xs text-red-400">
@@ -170,7 +170,7 @@ const ContactDetails = ({ user }) => {
             <label> Suite</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('suite')}
+              {...getFieldProps("suite")}
             />
             {errors.suite ? (
               <div className="w-full text-xs text-red-400">{errors.suite}</div>
@@ -180,7 +180,7 @@ const ContactDetails = ({ user }) => {
             <label> Postal Code</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('postalCode')}
+              {...getFieldProps("postalCode")}
             />
             {errors.postalCode ? (
               <div className="w-full text-xs text-red-400">
@@ -193,7 +193,7 @@ const ContactDetails = ({ user }) => {
             <input
               type="number"
               className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('homePhone')}
+              {...getFieldProps("homePhone")}
             />
             {errors.homePhone ? (
               <div className="w-full text-xs text-red-400">
@@ -206,7 +206,7 @@ const ContactDetails = ({ user }) => {
             <input
               type="number"
               className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('phone')}
+              {...getFieldProps("phone")}
             />
             {errors.phone ? (
               <div className="w-full text-xs text-red-400">{errors.phone}</div>
@@ -216,7 +216,7 @@ const ContactDetails = ({ user }) => {
             <label> Email</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('email')}
+              {...getFieldProps("email")}
             />
             {errors.email ? (
               <div className="w-full text-xs text-red-400">{errors.email}</div>

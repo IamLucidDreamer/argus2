@@ -1,14 +1,14 @@
 import React from "react";
 
-const Modules = () => {
+const Chapter = () => {
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
       <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
-        MODULES
+        Chapter
       </h1>
       <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
         <h1 className="text-center w-full lg:w-6/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
-          Course
+          Chapter
         </h1>
         <h1 className="text-center lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Started
@@ -33,7 +33,7 @@ const Modules = () => {
           <h1 className="">Percentage Bar</h1>
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-          <h1>Thisasd dasasdfa</h1>
+          <h1>Incomplete / Complete</h1>
         </div>
       </div>
       <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>
@@ -50,11 +50,11 @@ const Modules = () => {
           <h1 className="">Percentage Bar</h1>
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-          <h1>Thisasd dasasdfa</h1>
+          <h1>Incomplete / Complete</h1>
         </div>
       </div>
     </div>
   );
 };
 
-export default Modules;
+export default Chapter;

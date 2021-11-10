@@ -3,7 +3,7 @@ import React from "react";
 const CourseCompletion = () => {
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -24,7 +24,9 @@ const CourseCompletion = () => {
         <div className="flex flex-col text-black font-bold">
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-5/12 h-full bg-red-1 rounded-2xl"></div>
@@ -34,7 +36,9 @@ const CourseCompletion = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-9/12 h-full bg-green-600 rounded-2xl"></div>
@@ -44,7 +48,9 @@ const CourseCompletion = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-5/12 h-full bg-red-1 rounded-2xl"></div>
@@ -54,7 +60,9 @@ const CourseCompletion = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-7/12 h-full bg-yellow-500 rounded-2xl"></div>
@@ -64,7 +72,9 @@ const CourseCompletion = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-5/12 h-full bg-red-1 rounded-2xl"></div>
@@ -74,7 +84,9 @@ const CourseCompletion = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-5/12 h-full bg-red-1 rounded-2xl"></div>
@@ -84,7 +96,9 @@ const CourseCompletion = () => {
           </div>
           <div className="flex flex-wrap justify-center items-center border-b-2 border-black py-4">
             <h1>Unit 1 - </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">Name of the Chapter</p>
+            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
+              Name of the Chapter
+            </p>
             <div className="flex items-center w-full sm:w-5/12">
               <div className="bg-client w-full rounded-2xl h-2">
                 <div className="w-5/12 h-full bg-red-1 rounded-2xl"></div>

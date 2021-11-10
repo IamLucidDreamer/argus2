@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import icon1 from './../../../../argus website/SVG/L1.svg';
-import hiring from './../../../../argus website/SVG/We are hiring.svg';
-import Logo from './../../../../argus website/SVG/Logowith shadow.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { Link } from "react-router-dom";
+import icon1 from "./../../../../argus website/SVG/L1.svg";
+import hiring from "./../../../../argus website/SVG/We are hiring.svg";
+import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const SideNav = () => {
   return (
@@ -65,7 +65,7 @@ export const SideNav = () => {
             <span className="hidden md:block">Purchases</span>
           </Link>
           <Link
-            to="/dashboard/student/course"
+            to="/dashboard/student/training"
             className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
@@ -126,7 +126,7 @@ export const SideNav = () => {
       <div className="hidden w-10/12 md:flex flex-col items-center text-center px-2 py-4 bg-gray-200 mt-36 mb-8 mx-auto rounded-xl">
         <img src={hiring} alt="" className="w-36 -mt-24 mb-2 " />
         <h1 className="text-sm lg:text-base leading-relaxed font-medium text-gray-2 p-1 mb-4">
-          Start your career with{' '}
+          Start your career with{" "}
           <span className="font-bold">Argus Security</span> Today
         </h1>
         <Link

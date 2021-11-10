@@ -42,7 +42,7 @@ const ManageCoupons = () => {
               onClick={() => setAddCoupon(!addCoupon)}
               className="mx-auto my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
             >
-              NEW CLASS
+              NEW COUPON
             </button>
           </div>
           <div className={addCoupon ? "block" : "hidden"}>
@@ -85,6 +85,13 @@ const ManageCoupons = () => {
                     type="Number"
                     placeholder="Discount Percentage"
                     className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+                  />
+                </div>
+                <div className="w-full lg:w-5/12">
+                  <input
+                    type="Number"
+                    placeholder="Discount Percentage"
+                    className="bg-client invisible p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   />
                 </div>
               </div>

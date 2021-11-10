@@ -6,6 +6,7 @@ import { addClass } from '../../../../../../../context/actions/lmsActions/classA
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Alert from '../../../../../../Components/Alert';
+import ManageClassName from './ManageClassName';
 
 const AddClass = ({ classOptions, locationOptions }) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
@@ -18,7 +19,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
   const [selectedIns, setSelectedIns] = useState(null);
   const dispatch = useDispatch();
   const instructor = useSelector((state) => state.users.instructors);
-
+  const [showClass, setShowClass] = useState(false);
   let options = [];
   instructor?.forEach((element) => {
     options.push({
@@ -99,6 +100,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
 
   return (
     <div>
+      <ManageClassName setShow={setShowClass} show={showClass} />
       <div className="px-11">
         {showAlert.show ? (
           <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -225,11 +227,12 @@ const AddClass = ({ classOptions, locationOptions }) => {
             />
           </div>
           <div className="w-full lg:w-5/12">
-            <input
-              type="number"
-              placeholder="Number of Spots"
-              className="bg-client invisible p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-            />
+            <button
+              onClick={() => setShowClass(true)}
+              className="my-8 w-full bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+            >
+              Manage Class / Location
+            </button>
           </div>
         </div>
         <button
