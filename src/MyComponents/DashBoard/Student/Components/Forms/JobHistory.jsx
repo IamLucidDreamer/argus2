@@ -1,21 +1,21 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../../../context/actions/authActions/getUserAction";
 
 const JobHistory = ({ user }) => {
   const dispatch = useDispatch();
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      category: '',
-      companyName: '',
-      companyAddress: '',
-      employeeDuration: { from: '', to: '' },
-      reasonForLeaving: '',
+      category: "",
+      companyName: "",
+      companyAddress: "",
+      employeeDuration: { from: "", to: "" },
+      reasonForLeaving: "",
     },
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, 'Job history updated'));
+      dispatch(updateUser(resetForm, values, "Job history updated"));
     },
   });
 
@@ -31,7 +31,7 @@ const JobHistory = ({ user }) => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -57,7 +57,7 @@ const JobHistory = ({ user }) => {
             <label> Category</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('category')}
+              {...getFieldProps("category")}
             />
             {errors.category ? (
               <div className="w-full text-xs text-red-400">
@@ -69,7 +69,7 @@ const JobHistory = ({ user }) => {
             <label> Company Name</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('companyName')}
+              {...getFieldProps("companyName")}
             />
             {errors.companyName ? (
               <div className="w-full text-xs text-red-400">
@@ -81,7 +81,7 @@ const JobHistory = ({ user }) => {
             <label> Address</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('companyAddress')}
+              {...getFieldProps("companyAddress")}
             />
             {errors.companyAddress ? (
               <div className="w-full text-xs text-red-400">
@@ -96,14 +96,14 @@ const JobHistory = ({ user }) => {
                 className="mr-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
                 placeholder="from"
                 type="date"
-                {...getFieldProps('employeeDuration.from')}
+                {...getFieldProps("employeeDuration.from")}
               />
               <label> To</label>
               <input
                 className="ml-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
                 placeholder="to"
                 type="date"
-                {...getFieldProps('employeeDuration.to')}
+                {...getFieldProps("employeeDuration.to")}
               />
             </div>
           </div>
@@ -111,7 +111,7 @@ const JobHistory = ({ user }) => {
             <label> Reason for Leaving</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('reasonForLeaving')}
+              {...getFieldProps("reasonForLeaving")}
             />
             {errors.reasonForLeaving ? (
               <div className="w-full text-xs text-red-400">

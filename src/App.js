@@ -60,7 +60,7 @@ import { getUser } from "./context/actions/authActions/getUserAction";
 import { useSelector } from "react-redux";
 import UploadDocs from "./MyComponents/DashBoard/Student/UploadDocs";
 import MyTranscripts from "./MyComponents/DashBoard/Student/MyTranscripts";
-import Modules from "./MyComponents/DashBoard/Student/Modules";
+import Course from "./MyComponents/DashBoard/Student/Course";
 import LmsInstructor from "./MyComponents/DashBoard/Admin/LmsInstructor";
 import LmsStudent from "./MyComponents/DashBoard/Admin/LmsStudent";
 import LmsLicense from "./MyComponents/DashBoard/Admin/LmsLicense";
@@ -128,7 +128,7 @@ function App() {
             component={StudentPurchase}
           />
           <StudentRoutes
-            path="/dashboard/student/course"
+            path="/dashboard/student/training"
             component={StudentCourse}
           />
           <StudentRoutes
@@ -155,10 +155,7 @@ function App() {
             path="/dashboard/student/documents"
             component={UploadDocs}
           />
-          <StudentRoutes
-            path="/dashboard/student/modules"
-            component={Modules}
-          />
+          <StudentRoutes path="/dashboard/student/course" component={Course} />
 
           {/* Administrator Routes */}
 

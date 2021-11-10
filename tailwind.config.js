@@ -35,8 +35,9 @@ module.exports = {
         client: "#e8eaee",
         "mobile-nav-border": "#707070",
         "dashboard-bg": "#f5f5fb",
-        "bg-card":"#edeef1",
-        "green-1": "#15c277"
+        "bg-card": "#edeef1",
+        "green-1": "#15c277",
+        "yellow-1": "#EBC700",
       },
       fontFamily: {
         "for-heading": [
@@ -91,18 +92,21 @@ module.exports = {
       width: {
         "8-px": "8px",
       },
+      height: {
+        box: "30rem",
+      },
       boxShadow: {
         "header-outer-shadow": "3px 3px 6px 1px rgba(0, 0, 0, 0.2)",
         "button-shadow": "3px 3px 6px 1px rgba(0, 0, 0, 0.4)",
         "button-shadow-2": "3px 3px 6px 1px rgba(0, 0, 0, 0.16)",
         "button-shadow-3": "3px 3px 6px 1px rgba(0, 0, 0, 0.08)",
         "button-inner": "inset -3px -3px 6px 1px rgba(0, 0, 0, 0.20)",
-        "button-inner-1":"inset 0px -3px 6px 1px rgba(0, 0, 0, 0.1)",
+        "button-inner-1": "inset 0px -3px 6px 1px rgba(0, 0, 0, 0.1)",
         speech: "5px 5px 10px 1px rgba(0, 0, 0, 0.16)",
         "speech-2": "5px 3px 10px 1px rgba(0, 0, 0, 0.08)",
         services: "inset -3px -3px 10px 1px rgba(0, 0, 0, 0.30)",
-        cards : "0px 0px 10px 1px rgba(0, 0, 0, 0.16)",
-        LMS : "3px 3px 6px 1px rgba(0, 0, 0, 0.30)",
+        cards: "0px 0px 10px 1px rgba(0, 0, 0, 0.16)",
+        LMS: "3px 3px 6px 1px rgba(0, 0, 0, 0.30)",
       },
       backgroundSize: {
         "stretch-x": "100% 100%",

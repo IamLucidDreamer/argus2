@@ -1,33 +1,33 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   getUser,
   updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
+} from "../../../../../context/actions/authActions/getUserAction";
+import axiosInstance from "../../../../../helpers/axiosInstance";
 
 const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.dateOfBirth) {
-      errors.dateOfBirth = '*Required';
+      errors.dateOfBirth = "*Required";
     }
     if (!values.gender) {
-      errors.gender = '*Required';
+      errors.gender = "*Required";
     }
     if (!values.weight) {
-      errors.weight = '*Required';
+      errors.weight = "*Required";
     }
     if (!values.height) {
-      errors.height = '*Required';
+      errors.height = "*Required";
     }
     if (!values.eyeColor) {
-      errors.eyeColor = '*Required';
+      errors.eyeColor = "*Required";
     }
     if (!values.hairColor) {
-      errors.hairColor = '*Required';
+      errors.hairColor = "*Required";
     }
 
     return errors;
@@ -35,16 +35,16 @@ const PersonalDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      dateOfBirth: '',
-      gender: '',
-      weight: '',
-      height: '',
-      eyeColor: '',
-      hairColor: '',
+      dateOfBirth: "",
+      gender: "",
+      weight: "",
+      height: "",
+      eyeColor: "",
+      hairColor: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, 'Personal Details updated'));
+      dispatch(updateUser(resetForm, values, "Personal Details updated"));
     },
   });
 
@@ -61,7 +61,7 @@ const PersonalDetails = ({ user }) => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-96 overflow-y-scroll">
+      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
         <div className="flex items-center mb-4">
           <span className="inline-block text-red-1">
             <svg
@@ -86,11 +86,25 @@ const PersonalDetails = ({ user }) => {
           className="flex flex-col text-gray-2 font-bold placeholder-red-1"
         >
           <div className="flex flex-col">
+            <label> Name</label>
+            <input
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              type="name"
+              placeholder="Name Here"
+              {...getFieldProps("dateOfBirth")}
+            />
+            {errors.dateOfBirth ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.dateOfBirth}
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
             <label> Date of Birth</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="date"
-              {...getFieldProps('dateOfBirth')}
+              {...getFieldProps("dateOfBirth")}
             />
             {errors.dateOfBirth ? (
               <div className="w-full text-xs text-red-400">
@@ -100,14 +114,14 @@ const PersonalDetails = ({ user }) => {
           </div>
           <div className="flex flex-row items-center justify-between mt-4">
             <div className="flex flex-col w-5/12">
-              <label> Height</label>
+              <label> Height (In cm)</label>
               <input
                 className="border-b-2 border-client focus:border-red-1 focus:outline-none"
                 placeholder="180 cm"
                 type="number"
                 min="0"
                 max="280"
-                {...getFieldProps('height')}
+                {...getFieldProps("height")}
               />
               {errors.height ? (
                 <div className="w-full text-xs text-red-400">
@@ -116,14 +130,14 @@ const PersonalDetails = ({ user }) => {
               ) : null}
             </div>
             <div className="flex flex-col w-5/12">
-              <label> Weight</label>
+              <label> Weight (In lbs)</label>
               <input
                 className="border-b-2 border-client focus:border-red-1 focus:outline-none"
                 placeholder="160 lbs"
                 type="number"
                 min="0"
                 max="500"
-                {...getFieldProps('weight')}
+                {...getFieldProps("weight")}
               />
               {errors.weight ? (
                 <div className="w-full text-xs text-red-400">
@@ -134,10 +148,21 @@ const PersonalDetails = ({ user }) => {
           </div>
           <div className="flex flex-col mt-4">
             <label> Eye Color</label>
-            <input
+            <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('eyeColor')}
-            />
+              {...getFieldProps("eyeColor")}
+            >
+              <option value="" disabled selected>
+                Select Eye Color
+              </option>
+              <option value="brown">Brown</option>
+              <option value="hazel">Hazel</option>
+              <option value="brown">Brown</option>
+              <option value="amber">Amber</option>
+              <option value="blue">Blue</option>
+              <option value="green">Green</option>
+              <option value="others">Others</option>
+            </select>
             {errors.eyeColor ? (
               <div className="w-full text-xs text-red-400">
                 {errors.eyeColor}
@@ -146,10 +171,20 @@ const PersonalDetails = ({ user }) => {
           </div>
           <div className="flex flex-col mt-4">
             <label> Hair Color</label>
-            <input
+            <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('hairColor')}
-            />
+              {...getFieldProps("hairColor")}
+            >
+              <option value="" disabled selected>
+                Select Hair Color
+              </option>
+              <option value="black">Black</option>
+              <option value="brown">Brown</option>
+              <option value="blond">Blond</option>
+              <option value="red">Red</option>
+              <option value="white/gray">White / Gray</option>
+              <option value="others">Others</option>
+            </select>
             {errors.hairColor ? (
               <div className="w-full text-xs text-red-400">
                 {errors.hairColor}
@@ -160,7 +195,7 @@ const PersonalDetails = ({ user }) => {
             <label> Gender</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('gender')}
+              {...getFieldProps("gender")}
             >
               <option value="" disabled selected>
                 Select gender
