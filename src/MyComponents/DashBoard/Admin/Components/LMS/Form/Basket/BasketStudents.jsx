@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { get_Basket } from '../../../../../../../context/actions/lmsActions/basketActions';
 import axiosInstance from '../../../../../../../helpers/axiosInstance';
 import SelectColumnFilter from '../../../../../../../helpers/TableFilter';
 import Table from '../../../../../../Components/reactTable';
@@ -7,49 +8,41 @@ import Table from '../../../../../../Components/reactTable';
 const BasketStudents = ({ b }) => {
   const [selected, setSelected] = useState([]);
   const [data, setData] = useState([]);
-  const [refresh, setRefresh] = useState(null);
   const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
 
-  const students = useSelector((state) => state.users.students);
+  const users = useSelector((state) => state.users.users);
   const token = JSON.parse(localStorage.getItem('jwt'));
 
   useEffect(() => {
-    axiosInstance
-      .get(`/bucket/get/${b._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setData(
-          students.filter(({ _id: id1 }) =>
-            res.data.data.students.some(({ studentId: id2 }) => id2 === id1),
-          ),
-        );
-      });
-  }, [b._id, students, token, refresh]);
+    setData(
+      users.filter(({ _id: id1 }) =>
+        b?.students?.some(({ studentId: id2 }) => id2 === id1),
+      ),
+    );
+  }, [b, users]);
 
-  //   const removeStudents = (e) => {
-  //     e.preventDefault();
-  //     let rm = [];
-  //     selected.forEach((element) => {
-  //       rm.push(element.studentId);
-  //     });
-  //     axiosInstance
-  //       .put(
-  //         `/class/remove-student/${b._id}`,
-  //         { students: rm },
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         },
-  //       )
-  //       .then((res) => {
-  //         setRefresh(res);
-  //       })
-  //       .catch();
-  //   };
+  const removeStudents = (e) => {
+    e.preventDefault();
+    let rm = [];
+    selected.forEach((element) => {
+      rm.push(element.studentId);
+    });
+    axiosInstance
+      .put(
+        `/bucket/remove-student/${b._id}`,
+        { students: rm },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        dispatch(get_Basket());
+      })
+      .catch();
+  };
 
   const headCells = [
     {
@@ -132,7 +125,7 @@ const BasketStudents = ({ b }) => {
           </div>
           <div className="flex">
             <button
-              //   onClick={(e) => removeStudents(e)}
+              onClick={(e) => removeStudents(e)}
               className="mx-auto mt-2 mb-4 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
             >
               REMOVE

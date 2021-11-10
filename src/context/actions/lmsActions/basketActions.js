@@ -2,7 +2,6 @@ import axiosInstance from '../../../helpers/axiosInstance';
 import {
   ADD_BASKET,
   DELETE_BASKET,
-  ENROLL_BASKET,
   GET_BASKET,
   UPDATEBASKET_STATUS,
 } from '../../actionTypes';
@@ -14,11 +13,6 @@ const getBasket = (data) => ({
 
 const addBasket = (data) => ({
   type: ADD_BASKET,
-  payload: data,
-});
-
-const enrollBasket = (data) => ({
-  type: ENROLL_BASKET,
   payload: data,
 });
 
@@ -42,7 +36,10 @@ const get_Basket = () => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => dispatch(getBasket(res?.data?.data)));
+      .then((res) => {
+        console.log(res);
+        dispatch(getBasket(res?.data?.data));
+      });
   };
 };
 
@@ -63,5 +60,25 @@ const update_Status = (id) => {
       });
   };
 };
+const enroll_Basket = (id, data) => {
+  return (dispatch) => {
+    axiosInstance
+      .put(`/bucket/enroll/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(get_Basket);
+      });
+  };
+};
 
-export { get_Basket, addBasket, updateStatus, update_Status };
+export {
+  get_Basket,
+  addBasket,
+  updateStatus,
+  update_Status,
+  enroll_Basket,
+  deleteBasket,
+};

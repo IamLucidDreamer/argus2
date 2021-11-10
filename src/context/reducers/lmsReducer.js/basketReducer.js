@@ -1,4 +1,9 @@
-import { ADD_BASKET, GET_BASKET, UPDATEBASKET_STATUS } from '../../actionTypes';
+import {
+  ADD_BASKET,
+  DELETE_BASKET,
+  GET_BASKET,
+  UPDATEBASKET_STATUS,
+} from '../../actionTypes';
 
 const initialState = {
   basket: [],
@@ -30,6 +35,11 @@ const basketReducer = (state = initialState, action) => {
             return b;
           }
         }),
+      };
+    case DELETE_BASKET:
+      return {
+        ...state,
+        basket: [...state.basket.filter((f) => f._id !== action.payload)],
       };
     default:
       return state;

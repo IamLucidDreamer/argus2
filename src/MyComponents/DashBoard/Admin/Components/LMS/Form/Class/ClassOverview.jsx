@@ -82,6 +82,7 @@ const ClassOverview = () => {
                 shape="rounded"
                 onChange={(event, value) => {
                   setPage(value);
+                  setSelectedClassShow(null);
                 }}
               />
               <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
