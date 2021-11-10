@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SideNav from './Components/SideNav';
 import ProfileBar from './Components/ProfileBar';
 import NavLms from './Components/LMS/NavLms';
@@ -6,18 +6,9 @@ import ClassOverview from './Components/LMS/Form/Class/ClassOverview';
 import EnrollStudent from './Components/LMS/Form/EnrollStudent';
 import Message from '../Admin/Components/LMS/Form/Message';
 import ClassMaterial from './Components/LMS/Form/ClassMaterial';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../../context/actions/lmsActions/userAction';
-import { get_Class } from '../../../context/actions/lmsActions/classActions';
 
 const LmsHome = () => {
   const [show, setShow] = useState(1);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(get_Class());
-    dispatch(getUsers());
-  }, [dispatch]);
 
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
