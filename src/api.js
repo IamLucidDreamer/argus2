@@ -1,1 +1,1 @@
-exports.API = 'https://argus-backendzedd.herokuapp.com/api';
+exports.API = 'http://localhost:8000/api';

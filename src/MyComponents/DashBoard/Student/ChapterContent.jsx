@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import axiosInstance from '../../../helpers/axiosInstance';
 import Slider from 'react-slick';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 import { API } from '../../../api';
+import Countdown from 'react-countdown';
+import MCQ from './MCQ';
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
-    <div
-      className="slick-arrow slick-next"
-      style={{ color: 'black' }}
-      onClick={onClick}
-    >
+    <div className="slick-arrow slick-next" style={{ color: 'black' }}>
       <IconButton onClick={onClick}>
-        <NavigateNextRoundedIcon color="black" fontSize="large" />
+        <NavigateNextRoundedIcon color="black" style={{ fontSize: '60px' }} />
       </IconButton>
     </div>
   );
 }
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <div
       className="slick-arrow slick-prev"
       style={{
         color: 'black',
-        paddingRight: '10px',
+        left: '-60px',
       }}
     >
       <IconButton onClick={onClick}>
-        <NavigateBeforeRoundedIcon color="black" fontSize="large" />
+        <NavigateBeforeRoundedIcon color="black" style={{ fontSize: '60px' }} />
       </IconButton>
     </div>
   );
@@ -125,13 +123,28 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
     ],
   };
 
+  const time = Date.now() + currentChapter?.duration * 60000;
+
+  const renderer = ({ minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+    } else {
+      // Render a countdown
+      return (
+        <span className="text-3xl font-bold text-gray-400 left-0 pl-6 pt-6 absolute">
+          {minutes}:{seconds}
+        </span>
+      );
+    }
+  };
+
   return (
     <div
       className={`${
         show ? 'block' : 'hidden'
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
-      <div className="bg-white flex flex-col items-center rounded-lg w-3/4 lg:w-1/2">
+      <div className="bg-white flex flex-col items-center rounded-lg w-3/4 lg:w-3/4 h-3/4 relative">
         <div className="w-full flex justify-end p-4">
           <IconButton
             onClick={() => {
@@ -142,23 +155,33 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
             <CloseRoundedIcon fontSize="large" />
           </IconButton>
         </div>
+        <Countdown date={new Date(time)} renderer={renderer} />
         <div className="w-5/6">
           <Slider {...settings} className="w-full">
             {slides.map((data) => {
+              console.log(data);
               return (
                 <div
                   key={data._id}
-                  className="pt-10 px-2 pb-32 sm:pb-20 flex flex-row justify-center"
+                  className="p-6 flex flex-row justify-center items-center"
                 >
-                  <img
-                    className="w-1/2"
-                    src={`${API}/material/getSlideImg/${courseId}/${currentChapter?._id}/${data?._id}`}
-                    alt=""
-                  />
-                  <div className="w-1/2">
-                    <h1>{data?.title}</h1>
-                    <p>{data?.text}</p>
-                  </div>
+                  {data?.question === null ? (
+                    <div className="flex">
+                      <div className="w-1/2 h-full flex items-center justify-center">
+                        <img
+                          className="w-full"
+                          src={`${API}/material/getSlideImg/${courseId}/${currentChapter?._id}/${data?._id}`}
+                          alt=""
+                        />
+                      </div>
+                      <div className="">
+                        <h1>{data?.title}</h1>
+                        <p>{data?.text}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <MCQ data={data} />
+                  )}
                 </div>
               );
             })}
