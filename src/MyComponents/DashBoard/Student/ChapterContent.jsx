@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { IconButton } from '@mui/material';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import { useHistory, useParams } from 'react-router';
-import axiosInstance from '../../../helpers/axiosInstance';
-import Slider from 'react-slick';
-import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
-import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
-import { API } from '../../../api';
+import React, { useEffect, useState } from "react";
+import { IconButton } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useHistory, useParams } from "react-router";
+import axiosInstance from "../../../helpers/axiosInstance";
+import Slider from "react-slick";
+import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
+import NavigateBeforeRoundedIcon from "@mui/icons-material/NavigateBeforeRounded";
+import { API } from "../../../api";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
       className="slick-arrow slick-next"
-      style={{ color: 'black' }}
+      style={{ color: "black" }}
       onClick={onClick}
     >
       <IconButton onClick={onClick}>
@@ -28,8 +28,8 @@ function SamplePrevArrow(props) {
     <div
       className="slick-arrow slick-prev"
       style={{
-        color: 'black',
-        paddingRight: '10px',
+        color: "black",
+        paddingRight: "10px",
       }}
     >
       <IconButton onClick={onClick}>
@@ -40,7 +40,7 @@ function SamplePrevArrow(props) {
 }
 
 const ChapterContent = ({ show, setShow, currentChapter }) => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const { courseId } = useParams();
 
   const [slides, setSlides] = useState([]);
@@ -74,7 +74,7 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
       {
         breakpoint: 1700,
         settings: {
-          centerPadding: '350px',
+          centerPadding: "350px",
           nextArrow: <SampleNextArrow />,
           prevArrow: <SamplePrevArrow />,
         },
@@ -82,7 +82,7 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
       {
         breakpoint: 1500,
         settings: {
-          centerPadding: '300px',
+          centerPadding: "300px",
           nextArrow: <SampleNextArrow />,
           prevArrow: <SamplePrevArrow />,
         },
@@ -90,35 +90,35 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
       {
         breakpoint: 1200,
         settings: {
-          centerPadding: '250px',
+          centerPadding: "250px",
           arrows: false,
         },
       },
       {
         breakpoint: 950,
         settings: {
-          centerPadding: '200px',
+          centerPadding: "200px",
           arrows: false,
         },
       },
       {
         breakpoint: 850,
         settings: {
-          centerPadding: '170px',
+          centerPadding: "170px",
           arrows: false,
         },
       },
       {
         breakpoint: 700,
         settings: {
-          centerPadding: '50px',
+          centerPadding: "50px",
           arrows: false,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          centerPadding: '10px',
+          centerPadding: "10px",
           arrows: false,
         },
       },
@@ -128,10 +128,10 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
   return (
     <div
       className={`${
-        show ? 'block' : 'hidden'
+        show ? "block" : "hidden"
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
-      <div className="bg-white flex flex-col items-center rounded-lg w-3/4 lg:w-1/2">
+      <div className="bg-white flex flex-col items-center rounded-lg w-3/4">
         <div className="w-full flex justify-end p-4">
           <IconButton
             onClick={() => {
@@ -146,18 +146,17 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
           <Slider {...settings} className="w-full">
             {slides.map((data) => {
               return (
-                <div
-                  key={data._id}
-                  className="pt-10 px-2 pb-32 sm:pb-20 flex flex-row justify-center"
-                >
-                  <img
-                    className="w-1/2"
-                    src={`${API}/material/getSlideImg/${courseId}/${currentChapter?._id}/${data?._id}`}
-                    alt=""
-                  />
-                  <div className="w-1/2">
-                    <h1>{data?.title}</h1>
-                    <p>{data?.text}</p>
+                <div key={data._id} className="flex flex-row justify-center">
+                  <div className="pt-10 px-2 pb-32 sm:pb-20  w-full flex flex-row">
+                    <img
+                      className="w-1/2"
+                      src={`${API}/material/getSlideImg/${courseId}/${currentChapter?._id}/${data?._id}`}
+                      alt=""
+                    />
+                    <div className="w-1/2">
+                      <h1>{data?.title}</h1>
+                      <p>{data?.text}</p>
+                    </div>
                   </div>
                 </div>
               );

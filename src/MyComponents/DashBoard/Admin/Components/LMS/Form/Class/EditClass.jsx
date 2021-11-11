@@ -1,12 +1,12 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Select from 'react-select';
-import { get_Class } from '../../../../../../../context/actions/lmsActions/classActions';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { IconButton } from '@mui/material';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Select from "react-select";
+import { get_Class } from "../../../../../../../context/actions/lmsActions/classActions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { IconButton } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 const EditClass = ({
   selectedClass,
@@ -17,7 +17,7 @@ const EditClass = ({
   show,
   setShow,
 }) => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
 
   const [selectedIns, setSelectedIns] = useState(null);
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const EditClass = ({
   instructor.forEach((element) => {
     options.push({
       value: element._id,
-      label: element.name + '(' + element._id + ')',
+      label: element.name + "(" + element._id + ")",
     });
   });
 
@@ -50,13 +50,13 @@ const EditClass = ({
   const validate = (values) => {
     const errors = {};
     if (!values.classname) {
-      errors.classname = '*Required';
+      errors.classname = "*Required";
     }
     if (!values.date) {
-      errors.date = '*Required';
+      errors.date = "*Required";
     }
     if (!values.location) {
-      errors.location = '*Required';
+      errors.location = "*Required";
     }
     return errors;
   };
@@ -71,9 +71,9 @@ const EditClass = ({
     values,
   } = useFormik({
     initialValues: {
-      classname: '',
-      date: '',
-      location: '',
+      classname: "",
+      date: "",
+      location: "",
       noOfSpots: 0,
       students: [],
     },
@@ -93,7 +93,7 @@ const EditClass = ({
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         )
         .then((res) => {
           setSelectedIns(null);
@@ -101,7 +101,7 @@ const EditClass = ({
           dispatch(get_Class());
           setShowAlert({
             show: true,
-            message: 'Class Updated Successfully',
+            message: "Class Updated Successfully",
             success: true,
           });
           setEdit(false);
@@ -109,7 +109,7 @@ const EditClass = ({
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: 'Error updating class',
+            message: "Error updating class",
             success: false,
           });
         });
@@ -120,7 +120,7 @@ const EditClass = ({
     setSelectedIns({
       value: selectedClass?.instructorId,
       label:
-        selectedClass?.instructorName + '(' + selectedClass?.instructorId + ')',
+        selectedClass?.instructorName + "(" + selectedClass?.instructorId + ")",
     });
     setValues({
       classname: selectedClass?.classname,
@@ -145,7 +145,7 @@ const EditClass = ({
         dispatch(get_Class());
         setShowAlert({
           show: true,
-          message: 'Class Deleted Successfully',
+          message: "Class Deleted Successfully",
           success: true,
         });
         setEdit(false);
@@ -153,7 +153,7 @@ const EditClass = ({
       .catch(() => {
         setShowAlert({
           show: true,
-          message: 'Error deleting class',
+          message: "Error deleting class",
           success: false,
         });
       });
@@ -162,7 +162,7 @@ const EditClass = ({
   return (
     <div
       className={`${
-        show ? 'block' : 'hidden'
+        show ? "block" : "hidden"
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
       <div className="bg-white rounded-lg w-3/4 lg:w-1/2">
@@ -188,12 +188,12 @@ const EditClass = ({
                     borderRadius: 0,
                     colors: {
                       ...theme.colors,
-                      primary25: 'lightgray',
-                      primary: '#BA0913',
+                      primary25: "lightgray",
+                      primary: "#BA0913",
                     },
                   })}
                   value={
-                    values.classname !== ''
+                    values.classname !== ""
                       ? { value: values.classname, label: values.classname }
                       : null
                   }
@@ -220,14 +220,14 @@ const EditClass = ({
                     borderRadius: 0,
                     colors: {
                       ...theme.colors,
-                      primary25: 'lightgray',
-                      primary: '#BA0913',
+                      primary25: "lightgray",
+                      primary: "#BA0913",
                     },
                   })}
                   value={selectedIns}
                   onChange={(selectedOption) => {
                     setSelectedIns(selectedOption);
-                    setErrors({ ...errors, selectedIns: '' });
+                    setErrors({ ...errors, selectedIns: "" });
                   }}
                 />
               </div>
@@ -244,7 +244,7 @@ const EditClass = ({
               <input
                 type="datetime-local"
                 className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-                {...getFieldProps('date')}
+                {...getFieldProps("date")}
               />
               {errors.date ? (
                 <div className="w-full text-xs text-red-400">{errors.date}</div>
@@ -261,12 +261,12 @@ const EditClass = ({
                     borderRadius: 0,
                     colors: {
                       ...theme.colors,
-                      primary25: 'lightgray',
-                      primary: '#BA0913',
+                      primary25: "lightgray",
+                      primary: "#BA0913",
                     },
                   })}
                   value={
-                    values.location !== ''
+                    values.location !== ""
                       ? { value: values.location, label: values.location }
                       : null
                   }
@@ -288,7 +288,7 @@ const EditClass = ({
                 type="number"
                 placeholder="Number of Spots"
                 className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-                {...getFieldProps('noOfSpots')}
+                {...getFieldProps("noOfSpots")}
               />
             </div>
             <div className="w-full lg:w-5/12">
@@ -299,7 +299,7 @@ const EditClass = ({
               />
             </div>
           </div>
-          <div className="flex justify-around w-1/2">
+          <div className="flex justify-around w-full">
             <button
               onClick={(e) => {
                 deleteClass(e);
