@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import ClassList from './ClassList';
-import { Pagination } from '@mui/material';
-import Loader from 'react-loader-spinner';
-import AddClass from './AddClass';
-import EditClass from './EditClass';
-import Alert from '../../../../../../Components/Alert';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import ClassList from "./ClassList";
+import { Pagination } from "@mui/material";
+import Loader from "react-loader-spinner";
+import AddClass from "./AddClass";
+import EditClass from "./EditClass";
+import Alert from "../../../../../../Components/Alert";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
 const ClassOverview = () => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [newclass, setnewclass] = useState(false);
   const classList = useSelector((state) => state.class.class);
   const loading = useSelector((state) => state.class.loading);
@@ -22,7 +22,7 @@ const ClassOverview = () => {
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
@@ -32,7 +32,7 @@ const ClassOverview = () => {
 
   useEffect(() => {
     axiosInstance
-      .get('/constant/getAll?name=Class', {
+      .get("/constant/getAll?name=Class", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -44,7 +44,7 @@ const ClassOverview = () => {
 
   useEffect(() => {
     axiosInstance
-      .get('/constant/getAll?name=Location', {
+      .get("/constant/getAll?name=Location", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -79,7 +79,7 @@ const ClassOverview = () => {
             </p>
           ) : (
             <>
-              {' '}
+              {" "}
               <div className="px-1">
                 {showAlert.show ? (
                   <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -125,6 +125,7 @@ const ClassOverview = () => {
                       setSelectedClassShow={setSelectedClassShow}
                       index={index}
                     />
+                    <div className="block lg:hidden py-2.5"></div>
                   </>
                 );
               })}

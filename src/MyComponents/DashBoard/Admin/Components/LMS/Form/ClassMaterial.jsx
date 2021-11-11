@@ -125,20 +125,20 @@ export const ClassMaterial = () => {
         <h1 className="text-center w-full lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Course
         </h1>
-        <h1 className="text-center lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
-          Duration
-        </h1>
-        <h1 className="text-center lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+        <h1 className="text-center lg:w-6/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Course Description
         </h1>
-        <h1 className="text-center lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+        <h1 className="text-center lg:w-1/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
+          Duration
+        </h1>
+        <h1 className="text-center lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Created
         </h1>
       </div>
       {course?.map((c) => {
         return (
           <>
-            <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+            <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
               <h1
                 onClick={() => {
                   history.push(`/dashboard/admin/lms/course/${c._id}`);
@@ -147,16 +147,18 @@ export const ClassMaterial = () => {
               >
                 {c?.name}
               </h1>
-              <div className="flex flex-col justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+              <div className="flex flex-col justify-center text-center lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
+                <h1 className="text-left">{c?.description}</h1>
+              </div>
+              <div className="flex flex-col justify-center text-center lg:w-1/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
                 <h1 className="font-bold">{c?.duration} min</h1>
               </div>
-              <div className="flex flex-col justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                <h1 className="">{c?.description}</h1>
-              </div>
-              <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+
+              <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
                 <h1>{new Date(c?.createdAt).toLocaleString("en-Us")}</h1>
               </div>
             </div>
+            <div className="block lg:hidden py-2.5"></div>
           </>
         );
       })}

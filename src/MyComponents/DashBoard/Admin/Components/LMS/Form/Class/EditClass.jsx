@@ -165,7 +165,7 @@ const EditClass = ({
         show ? "block" : "hidden"
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
-      <div className="bg-white rounded-lg w-3/4 lg:w-1/2">
+      <div className="bg-white rounded-lg w-11/12 lg:w-1/2">
         <div className="w-full flex justify-end p-4">
           <IconButton onClick={() => setShow(false)}>
             <CloseRoundedIcon fontSize="large" />
@@ -174,9 +174,9 @@ const EditClass = ({
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3"
+          className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3 px-4 scale-90 md:scale-100"
         >
-          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly mb-3 lg:my-4">
             <div className="w-full lg:w-5/12">
               <div className="bg-client p-4 w-full rounded-xl">
                 <Select
@@ -209,7 +209,7 @@ const EditClass = ({
                 </div>
               ) : null}
             </div>
-            <div className="w-full lg:w-5/12">
+            <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
               <div className="bg-client p-4 w-full rounded-xl">
                 <Select
                   placeholder="Select Instructor"
@@ -239,7 +239,7 @@ const EditClass = ({
               ) : null}
             </div>
           </div>
-          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly lg:mb-4">
             <div className="w-full lg:w-5/12">
               <input
                 type="datetime-local"
@@ -250,7 +250,7 @@ const EditClass = ({
                 <div className="w-full text-xs text-red-400">{errors.date}</div>
               ) : null}
             </div>
-            <div className="w-full lg:w-5/12">
+            <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
               <div className="bg-client p-4 w-full rounded-xl">
                 <Select
                   placeholder="Select class"
@@ -282,12 +282,12 @@ const EditClass = ({
               ) : null}
             </div>
           </div>
-          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-            <div className="w-full lg:w-5/12">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-evenly lg:mb-4">
+            <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
               <input
                 type="number"
                 placeholder="Number of Spots"
-                className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+                className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                 {...getFieldProps("noOfSpots")}
               />
             </div>
@@ -295,7 +295,7 @@ const EditClass = ({
               <input
                 type="number"
                 placeholder="Number of Spots"
-                className="bg-client invisible p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+                className="bg-client hidden md:invisible p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
               />
             </div>
           </div>
@@ -304,14 +304,14 @@ const EditClass = ({
               onClick={(e) => {
                 deleteClass(e);
               }}
-              className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+              className="my-8 w-1/2 lg:w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg text-base md:text-xl"
             >
               DELETE CLASS
             </button>
 
             <button
               type="submit"
-              className="my-8 w-56 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+              className="my-8 w-1/2 lg:w-56 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg text-base md:text-xl"
             >
               EDIT CLASS
             </button>

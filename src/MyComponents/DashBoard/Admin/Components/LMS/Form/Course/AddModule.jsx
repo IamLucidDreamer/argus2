@@ -1,13 +1,13 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Alert from '../../../../../../Components/Alert';
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import Select from "react-select";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Alert from "../../../../../../Components/Alert";
 
 const AddModule = ({ button, setButton, course }) => {
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
@@ -22,13 +22,13 @@ const AddModule = ({ button, setButton, course }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = '*Required';
+      errors.name = "*Required";
     }
     if (!values.description) {
-      errors.description = '*Required';
+      errors.description = "*Required";
     }
     if (!values.courseId) {
-      errors.courseId = '*Required';
+      errors.courseId = "*Required";
     }
 
     return errors;
@@ -36,15 +36,15 @@ const AddModule = ({ button, setButton, course }) => {
 
   const { getFieldProps, setFieldValue, handleSubmit, errors } = useFormik({
     initialValues: {
-      name: '',
-      description: '',
-      courseId: '',
+      name: "",
+      description: "",
+      courseId: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      const token = JSON.parse(localStorage.getItem('jwt'));
+      const token = JSON.parse(localStorage.getItem("jwt"));
       axiosInstance
-        .post('/material/addModule', values, {
+        .post("/material/addModule", values, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -54,14 +54,14 @@ const AddModule = ({ button, setButton, course }) => {
           setSelectedCourse(null);
           setShowAlert({
             show: true,
-            message: 'Module added successfully',
+            message: "Module added successfully",
             success: true,
           });
         })
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: 'Error adding module',
+            message: "Error adding module",
             success: false,
           });
         });
@@ -69,7 +69,7 @@ const AddModule = ({ button, setButton, course }) => {
   });
 
   return (
-    <div className={`${button ? 'block' : 'hidden'}`}>
+    <div className={`${button ? "block" : "hidden"}`}>
       <div className="px-11">
         {showAlert.show ? (
           <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -81,7 +81,7 @@ const AddModule = ({ button, setButton, course }) => {
       >
         <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
           <div className="w-full lg:w-5/12">
-            <div className="bg-client p-3 w-full">
+            <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2">
               <Select
                 placeholder="Select Course"
                 className="w-full bg-client"
@@ -91,13 +91,13 @@ const AddModule = ({ button, setButton, course }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
+                    primary25: "lightgray",
+                    primary: "#BA0913",
                   },
                 })}
                 value={selectedCourse}
                 onChange={(selectedOption) => {
-                  setFieldValue('courseId', selectedOption.value);
+                  setFieldValue("courseId", selectedOption.value);
                   setSelectedCourse(selectedOption);
                 }}
               />
@@ -112,8 +112,8 @@ const AddModule = ({ button, setButton, course }) => {
             <input
               type="text"
               placeholder="Module Name"
-              className="bg-client p-5 w-full"
-              {...getFieldProps('name')}
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+              {...getFieldProps("name")}
             />
             {errors.name ? (
               <div className="w-full text-xs text-red-400">{errors.name}</div>
@@ -124,8 +124,8 @@ const AddModule = ({ button, setButton, course }) => {
           <textarea
             type="textarea"
             placeholder="Module description"
-            className="bg-client p-5 w-full mt-8 lg:mt-4 h-60"
-            {...getFieldProps('description')}
+            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
+            {...getFieldProps("description")}
           />
           {errors.description ? (
             <div className="w-full text-xs text-red-400">
@@ -135,7 +135,7 @@ const AddModule = ({ button, setButton, course }) => {
         </div>
         <button
           type="submit"
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+          className="mt-4 mb-12 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
         >
           ADD MODULE
         </button>
