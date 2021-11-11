@@ -109,9 +109,9 @@ const AddClass = ({ classOptions, locationOptions }) => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3"
+        className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3 scale-90 md:scale-100"
       >
-        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly mb-3 lg:my-4">
           <div className="w-full lg:w-5/12">
             <div className="bg-client p-4 w-full rounded-xl">
               <Select
@@ -144,7 +144,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
               </div>
             ) : null}
           </div>
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
             <div className="bg-client p-4 w-full rounded-xl">
               <Select
                 placeholder="Select Instructor"
@@ -173,7 +173,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
             ) : null}
           </div>
         </div>
-        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly lg:mb-4">
           <div className="w-full lg:w-5/12">
             <input
               type="datetime-local"
@@ -184,7 +184,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
               <div className="w-full text-xs text-red-400">{errors.date}</div>
             ) : null}
           </div>
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
             <div className="bg-client p-4 w-full rounded-xl">
               <Select
                 placeholder="Select Location"
@@ -217,19 +217,19 @@ const AddClass = ({ classOptions, locationOptions }) => {
             ) : null}
           </div>
         </div>
-        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
-          <div className="w-full lg:w-5/12">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-evenly lg:mb-4">
+          <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
             <input
               type="number"
               placeholder="Number of Spots"
-              className="bg-client p-5 w-full  mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
               {...getFieldProps("noOfSpots")}
             />
           </div>
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
             <button
               onClick={() => setShowClass(true)}
-              className="my-8 w-full bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+              className="my-4 lg:my-0 w-full bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
             >
               Manage Class / Location
             </button>

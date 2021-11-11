@@ -76,7 +76,7 @@ const AddCourse = ({ button, setButton, setCourseRefresh }) => {
             <input
               type="text"
               placeholder="Enter Course Name"
-              className="bg-client p-5 w-full"
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
               {...getFieldProps("name")}
             />
             {errors.name ? (
@@ -88,7 +88,7 @@ const AddCourse = ({ button, setButton, setCourseRefresh }) => {
             <input
               type="Number"
               placeholder="Course price"
-              className="bg-client p-5 w-full"
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
               {...getFieldProps("price")}
             />
             {errors.price ? (
@@ -100,7 +100,7 @@ const AddCourse = ({ button, setButton, setCourseRefresh }) => {
           <textarea
             type="textarea"
             placeholder="Course description"
-            className="bg-client p-5 w-full  mt-8 lg:mt-4 h-60"
+            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
             {...getFieldProps("description")}
           />
           {errors.description ? (
@@ -111,7 +111,7 @@ const AddCourse = ({ button, setButton, setCourseRefresh }) => {
         </div>
         <button
           type="submit"
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+          className="mt-4 mb-12 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
         >
           ADD COURSE
         </button>

@@ -1,15 +1,15 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Alert from '../../../../../../Components/Alert';
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import Select from "react-select";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Alert from "../../../../../../Components/Alert";
 
 const AddChapter = ({ button, setButton, course }) => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
@@ -42,19 +42,19 @@ const AddChapter = ({ button, setButton, course }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = '*Required';
+      errors.name = "*Required";
     }
     if (!values.description) {
-      errors.description = '*Required';
+      errors.description = "*Required";
     }
     if (!values.courseId) {
-      errors.courseId = '*Required';
+      errors.courseId = "*Required";
     }
     if (!values.moduleId) {
-      errors.moduleId = '*Required';
+      errors.moduleId = "*Required";
     }
     if (!values.duration) {
-      errors.duration = '*Required';
+      errors.duration = "*Required";
     }
 
     return errors;
@@ -70,16 +70,16 @@ const AddChapter = ({ button, setButton, course }) => {
     values,
   } = useFormik({
     initialValues: {
-      name: '',
-      description: '',
-      courseId: '',
-      moduleId: '',
-      duration: '',
+      name: "",
+      description: "",
+      courseId: "",
+      moduleId: "",
+      duration: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
       axiosInstance
-        .post('/material/addChapter', values, {
+        .post("/material/addChapter", values, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -90,14 +90,14 @@ const AddChapter = ({ button, setButton, course }) => {
           setSelectedModule(null);
           setShowAlert({
             show: true,
-            message: 'Chapter added successfully',
+            message: "Chapter added successfully",
             success: true,
           });
         })
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: 'Error adding chapter',
+            message: "Error adding chapter",
             success: false,
           });
         });
@@ -105,7 +105,7 @@ const AddChapter = ({ button, setButton, course }) => {
   });
 
   return (
-    <div className={`${button ? 'block' : 'hidden'}`}>
+    <div className={`${button ? "block" : "hidden"}`}>
       <div className="px-11">
         {showAlert.show ? (
           <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -118,7 +118,7 @@ const AddChapter = ({ button, setButton, course }) => {
       >
         <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
           <div className="w-full lg:w-5/12">
-            <div className="bg-client p-3 w-full">
+            <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2">
               <Select
                 placeholder="Select Course"
                 className="w-full"
@@ -128,13 +128,13 @@ const AddChapter = ({ button, setButton, course }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
+                    primary25: "lightgray",
+                    primary: "#BA0913",
                   },
                 })}
                 value={selectedCourse}
                 onChange={(selectedOption) => {
-                  setFieldValue('courseId', selectedOption.value);
+                  setFieldValue("courseId", selectedOption.value);
                   setSelectedCourse(selectedOption);
                 }}
               />
@@ -146,7 +146,7 @@ const AddChapter = ({ button, setButton, course }) => {
             ) : null}
           </div>
           <div className="w-full lg:w-5/12">
-            <div className="bg-client p-3 w-full">
+            <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2">
               <Select
                 placeholder="Select Module"
                 className=" w-full"
@@ -156,13 +156,13 @@ const AddChapter = ({ button, setButton, course }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: 'lightgray',
-                    primary: '#BA0913',
+                    primary25: "lightgray",
+                    primary: "#BA0913",
                   },
                 })}
                 value={selectedModule}
                 onChange={(selectedOption) => {
-                  setFieldValue('moduleId', selectedOption.value);
+                  setFieldValue("moduleId", selectedOption.value);
                   setSelectedModule(selectedOption);
                 }}
               />
@@ -179,8 +179,8 @@ const AddChapter = ({ button, setButton, course }) => {
             <input
               type="text"
               placeholder="Chapter Name"
-              className="bg-client p-5 w-full mt-8 lg:mt-0"
-              {...getFieldProps('name')}
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+              {...getFieldProps("name")}
             />
             {errors.name ? (
               <div className="w-full text-xs text-red-400">{errors.name}</div>
@@ -190,8 +190,8 @@ const AddChapter = ({ button, setButton, course }) => {
             <input
               type="number"
               placeholder="Chapter Duration"
-              className="bg-client p-5 w-full  mt-8 lg:mt-0"
-              {...getFieldProps('duration')}
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+              {...getFieldProps("duration")}
             />
             {errors.duration ? (
               <div className="w-full text-xs text-red-400">
@@ -204,8 +204,8 @@ const AddChapter = ({ button, setButton, course }) => {
           <textarea
             type="textarea"
             placeholder="Chapter description"
-            className="bg-client p-5 w-full mt-8 lg:mt-4 h-60"
-            {...getFieldProps('description')}
+            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
+            {...getFieldProps("description")}
           />
           {errors.descriptions ? (
             <div className="w-full text-xs text-red-400">
@@ -216,7 +216,7 @@ const AddChapter = ({ button, setButton, course }) => {
 
         <button
           type="submit"
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+          className="mt-4 mb-12 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
         >
           ADD CHAPTER
         </button>

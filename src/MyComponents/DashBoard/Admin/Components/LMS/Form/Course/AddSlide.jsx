@@ -1,17 +1,17 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Compressor from 'compressorjs';
-import { useFormik } from 'formik';
-import React, { useEffect, useRef, useState } from 'react';
-import Select from 'react-select';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import Alert from '../../../../../../Components/Alert';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Compressor from "compressorjs";
+import { useFormik } from "formik";
+import React, { useEffect, useRef, useState } from "react";
+import Select from "react-select";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import Alert from "../../../../../../Components/Alert";
 
 const AddSlide = ({ button, setButton, course }) => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
@@ -51,7 +51,7 @@ const AddSlide = ({ button, setButton, course }) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         )
         .then((res) => {
           setChapter(res?.data?.data?.Chapters);
@@ -74,35 +74,35 @@ const AddSlide = ({ button, setButton, course }) => {
   const validate = (values) => {
     const errors = {};
 
-    if (slideType?.value === '1') {
+    if (slideType?.value === "1") {
       if (!values.title) {
-        errors.title = '*Required';
+        errors.title = "*Required";
       }
       if (!values.text) {
-        errors.text = '*Required';
+        errors.text = "*Required";
       }
       if (!values.image) {
-        errors.image = '*Required';
+        errors.image = "*Required";
       }
     }
-    if (slideType?.value === '2') {
+    if (slideType?.value === "2") {
       if (!values.question) {
-        errors.question = '*Required';
+        errors.question = "*Required";
       }
       if (!values.optionA) {
-        errors.optionA = '*Required';
+        errors.optionA = "*Required";
       }
       if (!values.optionB) {
-        errors.optionB = '*Required';
+        errors.optionB = "*Required";
       }
       if (!values.optionC) {
-        errors.optionC = '*Required';
+        errors.optionC = "*Required";
       }
       if (!values.optionD) {
-        errors.optionD = '*Required';
+        errors.optionD = "*Required";
       }
       if (!values.correctOpt) {
-        errors.correctOpt = '*Required';
+        errors.correctOpt = "*Required";
       }
     }
     return errors;
@@ -132,17 +132,17 @@ const AddSlide = ({ button, setButton, course }) => {
     validate,
     onSubmit: async (values, { resetForm }) => {
       if (selectedCourse && selectedModule && selectedChapter) {
-        if (slideType?.value === '1') {
+        if (slideType?.value === "1") {
           const formdata = new FormData();
-          formdata.append('title', values.title);
-          formdata.append('text', values.text);
-          formdata.append('image', values.image);
-          formdata.append('chapterId', selectedChapter?.value);
-          if (!(values.position === null || values.position === '')) {
-            formdata.append('position', values.position - 1);
+          formdata.append("title", values.title);
+          formdata.append("text", values.text);
+          formdata.append("image", values.image);
+          formdata.append("chapterId", selectedChapter?.value);
+          if (!(values.position === null || values.position === "")) {
+            formdata.append("position", values.position - 1);
           }
           axiosInstance
-            .put('/material/addSlide', formdata, {
+            .put("/material/addSlide", formdata, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -152,21 +152,21 @@ const AddSlide = ({ button, setButton, course }) => {
               resetForm();
               setShowAlert({
                 show: true,
-                message: 'Slide added successfully',
+                message: "Slide added successfully",
                 success: true,
               });
             })
             .catch((err) => {
               setShowAlert({
                 show: true,
-                message: 'Error adding slide',
+                message: "Error adding slide",
                 success: false,
               });
             });
-        } else if (slideType?.value === '2') {
+        } else if (slideType?.value === "2") {
           axiosInstance
             .put(
-              '/material/addQuestion',
+              "/material/addQuestion",
               {
                 question: values.question,
                 optionA: values.optionA,
@@ -176,7 +176,7 @@ const AddSlide = ({ button, setButton, course }) => {
                 correctOpt: values.correctOpt,
                 chapterId: selectedChapter?.value,
                 position:
-                  values.position === null || values.position === ''
+                  values.position === null || values.position === ""
                     ? null
                     : values.position - 1,
               },
@@ -184,20 +184,20 @@ const AddSlide = ({ button, setButton, course }) => {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-              },
+              }
             )
             .then((res) => {
               resetForm();
               setShowAlert({
                 show: true,
-                message: 'Question slide added successfully',
+                message: "Question slide added successfully",
                 success: true,
               });
             })
             .catch((err) => {
               setShowAlert({
                 show: true,
-                message: 'Error adding question slide',
+                message: "Error adding question slide",
                 success: false,
               });
             });
@@ -205,7 +205,7 @@ const AddSlide = ({ button, setButton, course }) => {
       } else {
         setShowAlert({
           show: true,
-          message: 'Select all fields',
+          message: "Select all fields",
           success: false,
         });
       }
@@ -224,7 +224,7 @@ const AddSlide = ({ button, setButton, course }) => {
   };
 
   return (
-    <div className={`${button ? 'block' : 'hidden'}`}>
+    <div className={`${button ? "block" : "hidden"}`}>
       <div className="px-11">
         {showAlert.show ? (
           <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -236,7 +236,7 @@ const AddSlide = ({ button, setButton, course }) => {
         className="flex flex-wrap justify-center items-center text-lg font-bold"
       >
         <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
-          <div className="bg-client p-3 w-full lg:w-5/12">
+          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
             <Select
               placeholder="Select course"
               className="w-full"
@@ -246,8 +246,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={selectedCourse}
@@ -256,7 +256,7 @@ const AddSlide = ({ button, setButton, course }) => {
               }}
             />
           </div>
-          <div className="bg-client p-3 w-full lg:w-5/12">
+          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
             <Select
               placeholder="Select module"
               className="w-full"
@@ -266,8 +266,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={selectedModule}
@@ -278,7 +278,7 @@ const AddSlide = ({ button, setButton, course }) => {
           </div>
         </div>
         <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
-          <div className="bg-client p-3 w-full lg:w-5/12">
+          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
             <Select
               placeholder="Select chapter"
               className="w-full"
@@ -288,8 +288,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={selectedChapter}
@@ -298,21 +298,21 @@ const AddSlide = ({ button, setButton, course }) => {
               }}
             />
           </div>
-          <div className="bg-client p-3 w-full lg:w-5/12">
+          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
             <Select
               placeholder="Select type"
               className="w-full"
               options={[
-                { value: '1', label: 'Normal Slide' },
-                { value: '2', label: 'Question' },
+                { value: "1", label: "Normal Slide" },
+                { value: "2", label: "Question" },
               ]}
               theme={(theme) => ({
                 ...theme,
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={slideType}
@@ -325,15 +325,15 @@ const AddSlide = ({ button, setButton, course }) => {
           </div>
         </div>
 
-        {slideType?.value === '1' ? (
+        {slideType?.value === "1" ? (
           <>
             <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
               <div className="w-full lg:mx-12">
                 <input
                   type="text"
                   placeholder="Title"
-                  className="bg-client p-5 w-full mt-8 lg:mt-0"
-                  {...getFieldProps('title')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("title")}
                 />
                 {errors.title ? (
                   <div className="w-full text-xs text-red-400">
@@ -345,12 +345,12 @@ const AddSlide = ({ button, setButton, course }) => {
 
             <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
               <div className=" w-full lg:w-5/12">
-                <div className="flex bg-client p-5">
+                <div className="flex ">
                   <input
                     type="file"
                     accept="image/png, image/jpeg,image/jpg"
                     placeholder="Slide image"
-                    className="w-full mt-8 lg:mt-0"
+                    className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
                     ref={imageRef}
                     onChange={(e) => {
                       handleCompressedUpload(e);
@@ -380,8 +380,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="number"
                   placeholder="Position"
-                  className="bg-client p-5 w-full  mt-8 lg:mt-0"
-                  {...getFieldProps('position')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("position")}
                 />
               </div>
             </div>
@@ -389,8 +389,8 @@ const AddSlide = ({ button, setButton, course }) => {
               <textarea
                 type="textarea"
                 placeholder="Slide text"
-                className="bg-client p-5 w-full mt-8 lg:mt-4 h-60"
-                {...getFieldProps('text')}
+                className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
+                {...getFieldProps("text")}
               />
               {errors.text ? (
                 <div className="w-full text-xs text-red-400">{errors.text}</div>
@@ -399,16 +399,16 @@ const AddSlide = ({ button, setButton, course }) => {
           </>
         ) : null}
 
-        {slideType?.value === '2' ? (
+        {slideType?.value === "2" ? (
           <>
-            {' '}
+            {" "}
             <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
               <div className="w-full lg:mx-12">
                 <input
                   type="text"
                   placeholder="Question"
-                  className="bg-client p-5 w-full mt-8 lg:mt-0"
-                  {...getFieldProps('question')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("question")}
                 />
                 {errors.question ? (
                   <div className="w-full text-xs text-red-400">
@@ -422,8 +422,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="text"
                   placeholder="Option A"
-                  className="bg-client p-5 w-full mt-8 lg:mt-0"
-                  {...getFieldProps('optionA')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("optionA")}
                 />
                 {errors.optionA ? (
                   <div className="w-full text-xs text-red-400">
@@ -435,8 +435,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="text"
                   placeholder="Option B"
-                  className="bg-client p-5 w-full  mt-8 lg:mt-0"
-                  {...getFieldProps('optionB')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("optionB")}
                 />
                 {errors.optionB ? (
                   <div className="w-full text-xs text-red-400">
@@ -450,8 +450,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="text"
                   placeholder="Option C"
-                  className="bg-client p-5 w-full mt-8 lg:mt-0"
-                  {...getFieldProps('optionC')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("optionC")}
                 />
                 {errors.optionC ? (
                   <div className="w-full text-xs text-red-400">
@@ -463,8 +463,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="text"
                   placeholder="Option D"
-                  className="bg-client p-5 w-full  mt-8 lg:mt-0"
-                  {...getFieldProps('optionD')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("optionD")}
                 />
                 {errors.optionD ? (
                   <div className="w-full text-xs text-red-400">
@@ -475,12 +475,20 @@ const AddSlide = ({ button, setButton, course }) => {
             </div>
             <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
               <div className="w-full lg:w-5/12">
-                <input
+                <select
                   type="text"
                   placeholder="Correct Option"
-                  className="bg-client p-5 w-full mt-8 lg:mt-0"
-                  {...getFieldProps('correctOpt')}
-                />
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("correctOpt")}
+                >
+                  <option value="" disabled selected>
+                    Select Correct Option
+                  </option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                </select>
                 {errors.correctOpt ? (
                   <div className="w-full text-xs text-red-400">
                     {errors.correctOpt}
@@ -491,8 +499,8 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="number"
                   placeholder="Position"
-                  className="bg-client p-5 w-full  mt-8 lg:mt-0"
-                  {...getFieldProps('position')}
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  {...getFieldProps("position")}
                 />
               </div>
             </div>
@@ -501,7 +509,7 @@ const AddSlide = ({ button, setButton, course }) => {
 
         <button
           type="submit"
-          className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
+          className="mt-4 mb-12 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
         >
           ADD SLIDE
         </button>
