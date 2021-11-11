@@ -3,8 +3,12 @@ import Loader from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import { getProgress } from '../../../context/actions/userActions';
+import {
+  getProgress,
+  setCurrentCourse,
+} from '../../../context/actions/userActions';
 import axiosInstance from '../../../helpers/axiosInstance';
+import CourseListCard from './CourseListCard';
 
 const Course = () => {
   const token = JSON.parse(localStorage.getItem('jwt'));
@@ -32,10 +36,6 @@ const Course = () => {
         setLoading(false);
       });
   }, [token]);
-
-  useEffect(() => {
-    dispatch(getProgress());
-  }, [dispatch]);
 
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
@@ -68,7 +68,7 @@ const Course = () => {
                   Status
                 </h1>
               </div>
-              {courses.map((c) => {
+              {courses.map((c, index) => {
                 let startedAt = new Date(
                   parseInt(c?._id.toString().substring(0, 8), 16) * 1000,
                 ).toLocaleString('en-US', {
@@ -78,38 +78,7 @@ const Course = () => {
                 });
                 return (
                   <>
-                    <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
-                      <div
-                        onClick={() =>
-                          history.push(
-                            `/dashboard/student/course/${c?._id}/module`,
-                          )
-                        }
-                        className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2 text-xl  mx-1 my-1 lg:my-0 hover:bg-red-1 font-bold hover:text-white cursor-pointer"
-                      >
-                        <div className="flex flex-col">
-                          <span>{c?.name}</span>
-                          <span className="font-semibold text-lg">
-                            {c?.description}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                        <h1 className="font-bold">{startedAt}</h1>
-                      </div>
-                      <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                        <div className="flex items-center w-full">
-                          <div className="bg-client w-full rounded-2xl h-2">
-                            <div className="w-9/12 h-full bg-green-1 rounded-2xl"></div>
-                          </div>
-                          <h1 className="text-sm pl-2 text-greem-1">80%</h1>
-                        </div>
-                      </div>
-                      <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                        <h1>Incomplete / Complete</h1>
-                      </div>
-                    </div>
-                    <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>
+                    <CourseListCard c={c} startedAt={startedAt} index={index} />
                   </>
                 );
               })}

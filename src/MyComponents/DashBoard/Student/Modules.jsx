@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
+import {
+  setCurrentCourse,
+  updateModule,
+} from '../../../context/actions/userActions';
 import axiosInstance from '../../../helpers/axiosInstance';
 
 const Modules = () => {
@@ -10,6 +15,10 @@ const Modules = () => {
   const [loading, setLoading] = useState(false);
 
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const progress = useSelector((state) => state.progress.progress);
+  const current = useSelector((state) => state.progress.current);
 
   useEffect(() => {
     setLoading(true);
@@ -27,7 +36,28 @@ const Modules = () => {
         setLoading(false);
         history.goBack();
       });
-  }, [token, courseId, history]);
+  }, [token, courseId, history, dispatch, progress?.courses]);
+
+  useEffect(() => {
+    dispatch(
+      setCurrentCourse(
+        progress?.courses?.filter((f) => f.courseId === courseId)[0],
+      ),
+    );
+  }, [courseId, dispatch, progress?.courses]);
+
+  useEffect(() => {
+    if (current) {
+      if (
+        current?.completedModules?.length === 0 &&
+        current?.currentModule === null
+      ) {
+        if (module?.length !== 0) {
+          dispatch(updateModule({ moduleId: module[0]._id, id: current._id }));
+        }
+      }
+    }
+  }, [current, dispatch, module]);
 
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
@@ -60,16 +90,34 @@ const Modules = () => {
                   Status
                 </h1>
               </div>
-              {module.map((m) => {
+              {module.map((m, index) => {
+                let completed = false;
+                if (
+                  current?.completedModules?.some(
+                    (module) => module.moduleId === m._id,
+                  )
+                ) {
+                  completed = true;
+                }
+                if (current?.currentModule === m._id) {
+                  completed = true;
+                }
+
+                console.log(current?.currentModule);
+
                 return (
                   <>
                     <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
                       <div
-                        onClick={() =>
-                          history.push(
-                            `/dashboard/student/course/${courseId}/module/${m?._id}/chapter`,
-                          )
-                        }
+                        onClick={() => {
+                          if (completed) {
+                            history.push(
+                              `/dashboard/student/course/${courseId}/module/${
+                                m?._id
+                              }/chapter/${module[index + 1]?._id}`,
+                            );
+                          }
+                        }}
                         className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 font-bold hover:text-white cursor-pointer"
                       >
                         <div className="flex flex-col">

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import axiosInstance from '../../../../../../helpers/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import axiosInstance from "../../../../../../helpers/axiosInstance";
 
 const AttendanceList = ({ data, className }) => {
   const [studentAttendence, setStudentAttendence] = useState(data?.attendence);
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const students = useSelector((state) => state.users.students);
   let student = students.filter((f) => f._id === data?.studentId)[0];
   const [note, setNote] = useState(data?.note);
@@ -24,7 +24,7 @@ const AttendanceList = ({ data, className }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
         setStudentAttendence(attendence);
@@ -41,7 +41,7 @@ const AttendanceList = ({ data, className }) => {
       </div>
       <div className="flex flex-col justify-center text-center lg:w-4/12 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
         <input
-          className="text-left px-3 py-3 rounded-xl outline-none ring-0 focus:ring-red-1 focus:ring-2"
+          className="text-left px-3 py-3 rounded-xl outline-none ring-0"
           placeholder="Type Here"
           value={note}
           onChange={(e) => setNote(e.target.value)}

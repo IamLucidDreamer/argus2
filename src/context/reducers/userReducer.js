@@ -1,7 +1,12 @@
-import { GET_PROGRESS } from '../actionTypes';
+import {
+  GET_PROGRESS,
+  SET_CURRENTCOURSE,
+  UPADTE_CURRENTTIMESTAMP,
+} from '../actionTypes';
 
 const initialState = {
   progress: {},
+  current: {},
 };
 
 const progressReducer = (state = initialState, action) => {
@@ -10,6 +15,22 @@ const progressReducer = (state = initialState, action) => {
       return {
         ...state,
         progress: action.payload,
+      };
+    case SET_CURRENTCOURSE:
+      return {
+        ...state,
+        current: action.payload,
+      };
+    case UPADTE_CURRENTTIMESTAMP:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          currentChapter: {
+            ...state.current.currentChapter,
+            currentChapterTimestamp: action.payload,
+          },
+        },
       };
     default:
       return state;

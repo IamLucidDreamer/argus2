@@ -169,7 +169,7 @@ function App() {
             component={Modules}
           />
           <StudentRoutes
-            path="/dashboard/student/course/:courseId/module/:moduleId/chapter"
+            path="/dashboard/student/course/:courseId/module/:moduleId/chapter/:nextModule"
             component={Chapter}
           />
 

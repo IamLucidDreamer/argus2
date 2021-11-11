@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Loader from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
+import {
+  setCurrentCourse,
+  updateChapter,
+} from '../../../context/actions/userActions';
 import axiosInstance from '../../../helpers/axiosInstance';
 import ChapterContent from './ChapterContent';
 
@@ -12,8 +17,13 @@ const Chapter = () => {
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [currentChapter, setCurrentChapter] = useState(null);
+  const [index, setIndex] = useState(0);
 
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const progress = useSelector((state) => state.progress.progress);
+  const current = useSelector((state) => state.progress.current);
 
   useEffect(() => {
     setLoading(true);
@@ -33,12 +43,51 @@ const Chapter = () => {
       });
   }, [token, courseId, history, moduleId]);
 
+  useEffect(() => {
+    dispatch(
+      setCurrentCourse(
+        progress?.courses?.filter((f) => f.courseId === courseId)[0],
+      ),
+    );
+  }, [courseId, dispatch, progress?.courses]);
+
+  useEffect(() => {
+    if (current) {
+      if (current?.currentChapter?.chapterId === null) {
+        if (module?.length !== 0) {
+          dispatch(
+            updateChapter({
+              chapterId: chapter[0]?._id,
+              duration: chapter[0]?.duration,
+              id: current._id,
+            }),
+          );
+        }
+      } else if (
+        current?.currentModule === moduleId &&
+        !chapter?.some(
+          (chapter) => chapter._id === current?.currentChapter?.chapterId,
+        )
+      ) {
+        dispatch(
+          updateChapter({
+            chapterId: chapter[0]?._id,
+            duration: chapter[0]?.duration,
+            id: current._id,
+          }),
+        );
+      }
+    }
+  }, [current, dispatch, chapter, moduleId]);
+
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
       <ChapterContent
         show={show}
         setShow={setShow}
         currentChapter={currentChapter}
+        chapter={chapter}
+        index={index}
       />
       <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
         CHAPTERS
@@ -69,14 +118,29 @@ const Chapter = () => {
                   Status
                 </h1>
               </div>
-              {chapter.map((c) => {
+              {chapter.map((c, index) => {
+                let completed = false;
+                if (
+                  current?.completedChapters?.some(
+                    (chapter) => chapter.chapterId === c._id,
+                  )
+                ) {
+                  completed = true;
+                }
+                if (current?.currentChapter?.chapterId === c._id) {
+                  completed = true;
+                }
+
                 return (
                   <>
                     <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
                       <div
                         onClick={() => {
-                          setShow(true);
-                          setCurrentChapter(c);
+                          if (completed) {
+                            setShow(true);
+                            setCurrentChapter(c);
+                            setIndex(index);
+                          }
                         }}
                         className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 font-bold hover:text-white cursor-pointer"
                       >

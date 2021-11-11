@@ -35,7 +35,7 @@ export const ClassMaterial = () => {
 
   return (
     <div>
-      <div className="w-full flex justify-evenly my-4">
+      <div className="w-full flex flex-col md:flex-row justify-evenly my-4">
         <button
           onClick={() => {
             setButton({
@@ -48,8 +48,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 1
-              ? "bg-white text-red-1 shadow-none"
-              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD COURSE
@@ -66,8 +66,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 2
-              ? "bg-white text-red-1 shadow-none"
-              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD MODULE
@@ -84,8 +84,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 3
-              ? "bg-white text-red-1 shadow-none"
-              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD CHAPTER
@@ -102,8 +102,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 4
-              ? "bg-white text-red-1 shadow-none"
-              : "bg-red-1 text-white shadow-LMS hover:text-red-1 hover:bg-white"
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD SLIDE

@@ -1,5 +1,10 @@
 import axiosInstance from '../../helpers/axiosInstance';
-import { GET_PROGRESS, UPADTE_CURRENTSLIDE } from '../actionTypes';
+import {
+  GET_PROGRESS,
+  SET_CURRENTCOURSE,
+  UPADTE_CURRENTSLIDE,
+  UPADTE_CURRENTTIMESTAMP,
+} from '../actionTypes';
 
 const setProgress = (data) => ({
   type: GET_PROGRESS,
@@ -8,6 +13,16 @@ const setProgress = (data) => ({
 
 const setSlide = (data) => ({
   type: UPADTE_CURRENTSLIDE,
+  payload: data,
+});
+
+const setCurrentCourse = (data) => ({
+  type: SET_CURRENTCOURSE,
+  payload: data,
+});
+
+const setTimestamp = (data) => ({
+  type: UPADTE_CURRENTTIMESTAMP,
   payload: data,
 });
 
@@ -22,7 +37,7 @@ const getProgress = (data) => {
         },
       })
       .then((res) => {
-        dispatch(setProgress(res.data.data));
+        dispatch(setProgress(res.data.data[0]));
       });
   };
 };
@@ -43,6 +58,7 @@ const updateSlide = (data) => {
 
 const updateChapter = (data) => {
   return (dispatch) => {
+    console.log(data);
     axiosInstance
       .put('/progress/updateChapter', data, {
         headers: {
@@ -50,6 +66,7 @@ const updateChapter = (data) => {
         },
       })
       .then((res) => {
+        console.log(res.data.data);
         dispatch(setProgress(res.data.data));
       });
   };
@@ -77,7 +94,9 @@ const updateTimestamp = (data) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => {});
+      .then((res) => {
+        dispatch(setTimestamp(data.time));
+      });
   };
 };
 
@@ -118,4 +137,5 @@ export {
   updateCompletedModule,
   updateCompletedChapter,
   updateSlide,
+  setCurrentCourse,
 };

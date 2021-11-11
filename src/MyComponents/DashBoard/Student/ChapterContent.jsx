@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, IconButton } from '@mui/material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import { useParams } from 'react-router';
@@ -9,6 +9,15 @@ import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded
 import { API } from '../../../api';
 import Countdown from 'react-countdown';
 import MCQ from './MCQ';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {
+  updateChapter,
+  updateCompletedChapter,
+  updateCompletedModule,
+  updateModule,
+  updateTimestamp,
+} from '../../../context/actions/userActions';
 
 function SampleNextArrow(props) {
   const { onClick } = props;
@@ -37,12 +46,17 @@ function SamplePrevArrow(props) {
   );
 }
 
-const ChapterContent = ({ show, setShow, currentChapter }) => {
+const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
-  const { courseId } = useParams();
+  const { courseId, nextModule, moduleId } = useParams();
+  const dispatch = useDispatch();
 
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [completed, setCompleted] = useState(false);
+
+  const progress = useSelector((state) => state.progress.progress);
+  const current = useSelector((state) => state.progress.current);
 
   useEffect(() => {
     if (currentChapter?._id) {
@@ -62,8 +76,6 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
         });
     }
   }, [token, courseId, currentChapter?._id]);
-
-  console.log(slides);
 
   const settings = {
     nextArrow: <SampleNextArrow />,
@@ -123,19 +135,21 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
     ],
   };
 
-  const time = Date.now() + currentChapter?.duration * 60000;
+  const time =
+    Date.now() + current?.currentChapter?.currentChapterTimestamp * 60000;
 
-  const renderer = ({ minutes, seconds, completed }) => {
-    if (completed) {
-      // Render a completed state
-    } else {
-      // Render a countdown
-      return (
-        <span className="text-3xl font-bold text-gray-400 left-0 pl-6 pt-6 absolute">
-          {minutes}:{seconds}
-        </span>
-      );
-    }
+  const countDownRef = useRef();
+
+  if (show) {
+    countDownRef?.current?.api?.start();
+  }
+
+  const renderer = ({ hours, minutes, completed }) => {
+    return (
+      <span className="text-2xl font-bold text-gray-2">
+        {hours !== 0 ? hours + ' hrs' : null} {minutes} min left
+      </span>
+    );
   };
 
   return (
@@ -150,16 +164,95 @@ const ChapterContent = ({ show, setShow, currentChapter }) => {
             onClick={() => {
               setShow(false);
               setSlides([]);
+              countDownRef?.current?.api?.stop();
+              setCompleted(false);
             }}
           >
             <CloseRoundedIcon fontSize="large" />
           </IconButton>
         </div>
-        <Countdown date={new Date(time)} renderer={renderer} />
+        {completed ? (
+          <div className="text-2xl font-bold text-gray-2 w-full text-center ">
+            Chapter Completed!!!
+          </div>
+        ) : null}
+        {current?.completedChapters?.some(
+          (chapter) => chapter.chapterId === currentChapter?._id,
+        ) ? null : (
+          <Countdown
+            ref={countDownRef}
+            renderer={renderer}
+            date={new Date(time)}
+            autoStart={false}
+            onTick={({ minutes, hours }) => {
+              if (hours !== 0) {
+                dispatch(
+                  updateTimestamp({
+                    time: hours * 60 + minutes,
+                    id: current?._id,
+                  }),
+                );
+              } else {
+                dispatch(updateTimestamp({ time: minutes, id: current?._id }));
+              }
+            }}
+            intervalDelay={60000}
+            onStart={() => {
+              console.log('Timer started');
+            }}
+            onStop={() => {
+              console.log('Timer stopped');
+            }}
+            onComplete={() => {
+              if (index === chapter?.length - 1) {
+                dispatch(
+                  updateCompletedChapter({
+                    chapterId: currentChapter?._id,
+                    id: current?._id,
+                  }),
+                );
+                dispatch(
+                  updateCompletedModule({
+                    moduleId: moduleId,
+                    id: current?._id,
+                  }),
+                );
+                if (nextModule) {
+                  dispatch(
+                    updateModule({ moduleId: nextModule, id: current?._id }),
+                  );
+                  dispatch(
+                    updateChapter({
+                      chapterId: null,
+                      duration: 0,
+                      id: current?._id,
+                    }),
+                  );
+                }
+              } else {
+                console.log('inside 2');
+                dispatch(
+                  updateChapter({
+                    chapterId: chapter[index + 1]?._id,
+                    duration: chapter[index + 1]?.duration,
+                    id: current?._id,
+                  }),
+                );
+                dispatch(
+                  updateCompletedChapter({
+                    chapterId: currentChapter?._id,
+                    id: current?._id,
+                  }),
+                );
+              }
+
+              setCompleted(true);
+            }}
+          />
+        )}
         <div className="w-5/6">
           <Slider {...settings} className="w-full">
             {slides.map((data) => {
-              console.log(data);
               return (
                 <div
                   key={data._id}
