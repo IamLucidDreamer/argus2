@@ -105,12 +105,14 @@ const EnrollStudent = () => {
   const columns = useMemo(() => headCells, []);
 
   const token = JSON.parse(localStorage.getItem('jwt'));
-
   const enroll = (e) => {
     e.preventDefault();
+    const currentClass = classList.filter(
+      (f) => f._id === selectedClass?.value,
+    )[0];
     if (
       selected.length <=
-      classList.filter((f) => f._id === selectedClass?.value)[0]?.noOfSpots
+      currentClass?.noOfSpots - currentClass?.students?.length
     ) {
       axiosInstance
         .put(
@@ -148,7 +150,7 @@ const EnrollStudent = () => {
       setShowAlert({
         show: true,
         message: `Only ${
-          classList.filter((f) => f._id === selectedClass?.value)[0]?.noOfSpots
+          currentClass?.noOfSpots - currentClass?.students?.length
         } spots available`,
         success: false,
       });

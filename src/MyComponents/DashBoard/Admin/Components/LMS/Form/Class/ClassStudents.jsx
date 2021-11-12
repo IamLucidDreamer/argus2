@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_Class } from '../../../../../../../context/actions/lmsActions/classActions';
+import { getUsers } from '../../../../../../../context/actions/lmsActions/userAction';
 import axiosInstance from '../../../../../../../helpers/axiosInstance';
 import SelectColumnFilter from '../../../../../../../helpers/TableFilter';
 import Table from '../../../../../../Components/reactTable';
@@ -39,7 +40,7 @@ const ClassStudents = ({ c }) => {
     axiosInstance
       .put(
         `/class/remove-student/${c._id}`,
-        { students: rm },
+        { students: rm, classname: c?.classname },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -47,6 +48,7 @@ const ClassStudents = ({ c }) => {
         },
       )
       .then((res) => {
+        dispatch(getUsers());
         dispatch(get_Class());
       })
       .catch();

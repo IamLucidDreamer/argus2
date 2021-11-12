@@ -86,6 +86,7 @@ const UploadDocsListItem = ({ status, note, docName, index, refresh, doc }) => {
         className={`flex flow-col flex-col items-center justify-center text-center lg:w-4/12 px-3 py-3 rounded-xl border-2 mx-1 my-1 lg:my-0  text-white font-bold ${color[status]}`}
       >
         <h1>{status}</h1>
+        {doc?.note ? (doc?.note !== '' ? doc?.note : null) : null}
         {loading ? (
           <CircularProgress color="inherit" />
         ) : (

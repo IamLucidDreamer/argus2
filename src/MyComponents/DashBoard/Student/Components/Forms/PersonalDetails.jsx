@@ -1,33 +1,40 @@
-import { useFormik } from "formik";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   getUser,
   updateUser,
-} from "../../../../../context/actions/authActions/getUserAction";
-import axiosInstance from "../../../../../helpers/axiosInstance";
+} from '../../../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../../../helpers/axiosInstance';
 
 const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
+    if (!values.name) {
+      errors.name = '*Required';
+    }
+    if (!values.lastname) {
+      errors.lastname = '*Required';
+    }
+
     if (!values.dateOfBirth) {
-      errors.dateOfBirth = "*Required";
+      errors.dateOfBirth = '*Required';
     }
     if (!values.gender) {
-      errors.gender = "*Required";
+      errors.gender = '*Required';
     }
     if (!values.weight) {
-      errors.weight = "*Required";
+      errors.weight = '*Required';
     }
     if (!values.height) {
-      errors.height = "*Required";
+      errors.height = '*Required';
     }
     if (!values.eyeColor) {
-      errors.eyeColor = "*Required";
+      errors.eyeColor = '*Required';
     }
     if (!values.hairColor) {
-      errors.hairColor = "*Required";
+      errors.hairColor = '*Required';
     }
 
     return errors;
@@ -35,21 +42,25 @@ const PersonalDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      dateOfBirth: "",
-      gender: "",
-      weight: "",
-      height: "",
-      eyeColor: "",
-      hairColor: "",
+      name: '',
+      lastname: '',
+      dateOfBirth: '',
+      gender: '',
+      weight: '',
+      height: '',
+      eyeColor: '',
+      hairColor: '',
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, "Personal Details updated"));
+      dispatch(updateUser(resetForm, values, 'Personal Details updated'));
     },
   });
 
   useEffect(() => {
     setValues({
+      name: user?.name,
+      lastname: user?.lastname,
       dateOfBirth: user?.dateOfBirth,
       gender: user?.gender,
       weight: user?.weight,
@@ -86,16 +97,28 @@ const PersonalDetails = ({ user }) => {
           className="flex flex-col text-gray-2 font-bold placeholder-red-1"
         >
           <div className="flex flex-col">
-            <label> Name</label>
+            <label> Firstname</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
-              placeholder="Name Here"
-              {...getFieldProps("dateOfBirth")}
+              placeholder="Firstname Here"
+              {...getFieldProps('name')}
             />
-            {errors.dateOfBirth ? (
+            {errors.name ? (
+              <div className="w-full text-xs text-red-400">{errors.name}</div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
+            <label>Lastname</label>
+            <input
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              type="name"
+              placeholder="Lastname Here"
+              {...getFieldProps('lastname')}
+            />
+            {errors.lastname ? (
               <div className="w-full text-xs text-red-400">
-                {errors.dateOfBirth}
+                {errors.lastname}
               </div>
             ) : null}
           </div>
@@ -104,7 +127,7 @@ const PersonalDetails = ({ user }) => {
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="date"
-              {...getFieldProps("dateOfBirth")}
+              {...getFieldProps('dateOfBirth')}
             />
             {errors.dateOfBirth ? (
               <div className="w-full text-xs text-red-400">
@@ -121,7 +144,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="280"
-                {...getFieldProps("height")}
+                {...getFieldProps('height')}
               />
               {errors.height ? (
                 <div className="w-full text-xs text-red-400">
@@ -137,7 +160,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="500"
-                {...getFieldProps("weight")}
+                {...getFieldProps('weight')}
               />
               {errors.weight ? (
                 <div className="w-full text-xs text-red-400">
@@ -150,7 +173,7 @@ const PersonalDetails = ({ user }) => {
             <label> Eye Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps("eyeColor")}
+              {...getFieldProps('eyeColor')}
             >
               <option value="" disabled selected>
                 Select Eye Color
@@ -173,7 +196,7 @@ const PersonalDetails = ({ user }) => {
             <label> Hair Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps("hairColor")}
+              {...getFieldProps('hairColor')}
             >
               <option value="" disabled selected>
                 Select Hair Color
@@ -195,7 +218,7 @@ const PersonalDetails = ({ user }) => {
             <label> Gender</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps("gender")}
+              {...getFieldProps('gender')}
             >
               <option value="" disabled selected>
                 Select gender
