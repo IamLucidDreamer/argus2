@@ -7,12 +7,18 @@ const History = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
-      .get(`/user-activity/get?page=1&limit=5`, {
+      .get(`/user-activity/get?page=1&limit=100000`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setactivity(res.data.data.activities));
+      .then((res) =>
+        setactivity(
+          res.data.data.activities.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          ),
+        ),
+      );
   }, []);
 
   return (
@@ -40,7 +46,10 @@ const History = () => {
                   {new Date(a.createdAt).toLocaleDateString('en-GB')}
                 </h1>
                 <h1 className="font-bold">
-                  {new Date(a.createdAt).toLocaleTimeString(`en-US`)}
+                  {new Date(a.createdAt).toLocaleTimeString(`en-US`, {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
                 </h1>
               </div>
               <h1 className="lg:w-7/12 flex items-center px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0">

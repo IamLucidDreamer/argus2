@@ -6,12 +6,18 @@ function Notification({ notification }) {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
-      .get(`/user-activity/get?page=1&limit=5`, {
+      .get(`/user-activity/get?page=1&limit=100000`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => setactivity(res.data.data.activities));
+      .then((res) =>
+        setactivity(
+          res.data.data.activities.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+          ),
+        ),
+      );
   }, []);
   return (
     <div
@@ -26,9 +32,12 @@ function Notification({ notification }) {
           <div className="border-b-3 border-white text-sm p-3 leading-snug rounded-lg text-gray-2">
             {a.activityDetails}
             <div className="text-xs font-bold text-right mt-1">
-              {new Date(a.createdAt).toLocaleDateString('en-GB')}
+              {new Date(a.createdAt).toLocaleDateString('en-GB')}{' '}
               <span className="">
-                {new Date(a.createdAt).toLocaleTimeString(`en-US`)}
+                {new Date(a.createdAt).toLocaleTimeString(`en-US`, {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
               </span>
             </div>
           </div>

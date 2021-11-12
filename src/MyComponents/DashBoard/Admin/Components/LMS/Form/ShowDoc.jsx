@@ -52,6 +52,18 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
       <div className="bg-white rounded-lg w-3/5 max-h-3/4 flex relative">
+        <div className="w-full flex justify-end p-4 absolute">
+          <IconButton
+            onClick={() => {
+              setDocData(null);
+              setB64(null);
+              setShow(false);
+            }}
+          >
+            <CloseRoundedIcon fontSize="large" />
+          </IconButton>
+        </div>
+
         {loading ? (
           <div className="w-full p-10 flex items-center justify-center">
             <Loader type="TailSpin" color="#BA0913" height={60} width={60} />
@@ -59,17 +71,6 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
         ) : (
           <>
             {' '}
-            <div className="w-full flex justify-end p-4 absolute">
-              <IconButton
-                onClick={() => {
-                  setDocData(null);
-                  setB64(null);
-                  setShow(false);
-                }}
-              >
-                <CloseRoundedIcon fontSize="large" />
-              </IconButton>
-            </div>
             <div className="w-full">
               {showAlert.show ? (
                 <div className="mr-16 mt-4 ml-4">
@@ -160,6 +161,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                                   },
                                 )
                                 .then((res) => {
+                                  refreshDoc(res);
                                   setRefresh(res);
                                   setShowAlert({
                                     show: true,
@@ -194,6 +196,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                                 },
                               )
                               .then((res) => {
+                                refreshDoc(res);
                                 setRefresh(res);
                                 setShowAlert({
                                   show: true,

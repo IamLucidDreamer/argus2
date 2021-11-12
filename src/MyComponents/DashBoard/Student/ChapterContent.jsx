@@ -204,6 +204,7 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
             }}
             onComplete={() => {
               if (index === chapter?.length - 1) {
+                console.log('completed');
                 dispatch(
                   updateCompletedChapter({
                     chapterId: currentChapter?._id,
@@ -216,17 +217,19 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
                     id: current?._id,
                   }),
                 );
+                dispatch(
+                  updateChapter({
+                    chapterId: null,
+                    duration: 0,
+                    id: current?._id,
+                  }),
+                );
                 if (nextModule) {
                   dispatch(
                     updateModule({ moduleId: nextModule, id: current?._id }),
                   );
-                  dispatch(
-                    updateChapter({
-                      chapterId: null,
-                      duration: 0,
-                      id: current?._id,
-                    }),
-                  );
+                } else {
+                  dispatch(updateModule({ moduleId: null, id: current?._id }));
                 }
               } else {
                 console.log('inside 2');

@@ -49,7 +49,10 @@ const Modules = () => {
 
   useEffect(() => {
     if (current) {
-      if (current?.completedModules?.length === 0 && !current?.currentModule) {
+      if (
+        current?.completedModules?.length === 0 &&
+        current?.currentModule === null
+      ) {
         if (module?.length !== 0) {
           dispatch(updateModule({ moduleId: module[0]._id, id: current._id }));
         }

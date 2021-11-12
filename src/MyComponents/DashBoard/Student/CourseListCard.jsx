@@ -66,7 +66,7 @@ const CourseListCard = ({ c, startedAt, index }) => {
           </div>
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-          <h1>Incomplete / Complete</h1>
+          <h1>{duration === c.duration ? 'Completed' : 'Incomplete'}</h1>
         </div>
       </div>
       <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>

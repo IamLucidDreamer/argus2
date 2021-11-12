@@ -59,14 +59,12 @@ const ModuleListCard = ({ m, completed, courseId, index, module }) => {
 
   let startDate = null;
 
-  if (current?.currentModule?.moduleId === m._id) {
-    startDate = current?.currentModule?.updatedAt;
-  }
-
   if (current.completedModules.some((module) => module.moduleId === m._id)) {
     startDate = current.completedModules.filter(
       (module) => module.moduleId === m._id,
     )[0].createdAt;
+  } else if (current?.currentModule?.moduleId === m._id) {
+    startDate = current?.currentModule?.updatedAt;
   }
 
   return (
@@ -109,10 +107,10 @@ const ModuleListCard = ({ m, completed, courseId, index, module }) => {
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
           <h1>
-            {m._id === current?.currentModule?.moduleId
-              ? 'Ongoing'
-              : completed
+            {completed
               ? 'Completed'
+              : m._id === current?.currentModule?.moduleId
+              ? 'Ongoing'
               : 'Not Started'}
           </h1>
         </div>
