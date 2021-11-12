@@ -52,19 +52,24 @@ const Chapter = () => {
   }, [courseId, dispatch, progress?.courses]);
 
   useEffect(() => {
-    if (current) {
-      if (current?.currentChapter?.chapterId === null) {
+    if (current && chapter.length !== 0) {
+      if (
+        current?.currentChapter?.chapterId === null ||
+        !current?.currentChapter
+      ) {
         if (module?.length !== 0) {
-          dispatch(
-            updateChapter({
-              chapterId: chapter[0]?._id,
-              duration: chapter[0]?.duration,
-              id: current._id,
-            }),
-          );
+          if (current?.currentModule?.moduleId === moduleId) {
+            dispatch(
+              updateChapter({
+                chapterId: chapter[0]?._id,
+                duration: chapter[0]?.duration,
+                id: current._id,
+              }),
+            );
+          }
         }
       } else if (
-        current?.currentModule === moduleId &&
+        current?.currentModule?.moduleId === moduleId &&
         !chapter?.some(
           (chapter) => chapter._id === current?.currentChapter?.chapterId,
         )
@@ -131,6 +136,22 @@ const Chapter = () => {
                   completed = true;
                 }
 
+                let startDate = null;
+
+                if (current?.currentChapter?.chapterId === c._id) {
+                  startDate = current?.currentChapter?.updatedAt;
+                }
+
+                if (
+                  current.completedChapters.some(
+                    (chapter) => chapter.chapterId === c._id,
+                  )
+                ) {
+                  startDate = current.completedChapters.filter(
+                    (chapter) => chapter.chapterId === c._id,
+                  )[0].createdAt;
+                }
+
                 return (
                   <>
                     <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
@@ -152,14 +173,42 @@ const Chapter = () => {
                         </div>
                       </div>
                       <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                        <h1 className="">(yy/mm/dd)</h1>
-                        <h1 className="font-bold">23:00</h1>
+                        <h1 className="">
+                          {startDate
+                            ? new Date(startDate).toLocaleDateString()
+                            : 'Not Started'}
+                        </h1>
+                        <h1 className="font-bold">
+                          {startDate
+                            ? new Date(startDate).toLocaleTimeString('en-US', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                              })
+                            : ''}
+                        </h1>
                       </div>
                       <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                        <h1 className="">Percentage Bar</h1>
+                        <h1 className="">
+                          {c._id === current?.currentChapter?.chapterId
+                            ? `${(
+                                ((c.duration -
+                                  current?.currentChapterTimestamp) /
+                                  c.duration) *
+                                100
+                              ).toFixed(1)} %`
+                            : completed
+                            ? '100%'
+                            : 'Not started'}
+                        </h1>
                       </div>
                       <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                        <h1>Thisasd dasasdfa</h1>
+                        <h1>
+                          {c._id === current?.currentChapter.chapterId
+                            ? 'Ongoing'
+                            : completed
+                            ? 'Completed'
+                            : 'Not Started'}
+                        </h1>
                       </div>
                     </div>
                     <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>

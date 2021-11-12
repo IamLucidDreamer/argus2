@@ -7,6 +7,7 @@ import {
   updateModule,
 } from '../../../context/actions/userActions';
 import axiosInstance from '../../../helpers/axiosInstance';
+import ModuleListCard from './ModuleListCard';
 
 const Modules = () => {
   const token = JSON.parse(localStorage.getItem('jwt'));
@@ -48,10 +49,7 @@ const Modules = () => {
 
   useEffect(() => {
     if (current) {
-      if (
-        current?.completedModules?.length === 0 &&
-        current?.currentModule === null
-      ) {
+      if (current?.completedModules?.length === 0 && !current?.currentModule) {
         if (module?.length !== 0) {
           dispatch(updateModule({ moduleId: module[0]._id, id: current._id }));
         }
@@ -99,47 +97,18 @@ const Modules = () => {
                 ) {
                   completed = true;
                 }
-                if (current?.currentModule === m._id) {
+                if (current?.currentModule?.moduleId === m._id) {
                   completed = true;
                 }
 
-                console.log(current?.currentModule);
-
                 return (
-                  <>
-                    <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
-                      <div
-                        onClick={() => {
-                          if (completed) {
-                            history.push(
-                              `/dashboard/student/course/${courseId}/module/${
-                                m?._id
-                              }/chapter/${module[index + 1]?._id}`,
-                            );
-                          }
-                        }}
-                        className="lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 font-bold hover:text-white cursor-pointer"
-                      >
-                        <div className="flex flex-col">
-                          <span>{m?.name}</span>
-                          <span className="font-semibold text-lg">
-                            {m?.description}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                        <h1 className="">(yy/mm/dd)</h1>
-                        <h1 className="font-bold">23:00</h1>
-                      </div>
-                      <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                        <h1 className="">Percentage Bar</h1>
-                      </div>
-                      <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                        <h1>Thisasd dasasdfa</h1>
-                      </div>
-                    </div>
-                    <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>
-                  </>
+                  <ModuleListCard
+                    m={m}
+                    completed={completed}
+                    index={index}
+                    courseId={courseId}
+                    module={module}
+                  />
                 );
               })}
             </>

@@ -135,8 +135,7 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
     ],
   };
 
-  const time =
-    Date.now() + current?.currentChapter?.currentChapterTimestamp * 60000;
+  const time = Date.now() + current?.currentChapterTimestamp * 60000;
 
   const countDownRef = useRef();
 

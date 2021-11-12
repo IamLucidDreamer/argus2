@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import axiosInstance from '../../../helpers/axiosInstance';
@@ -6,28 +6,37 @@ import axiosInstance from '../../../helpers/axiosInstance';
 const CourseListCard = ({ c, startedAt, index }) => {
   const history = useHistory();
   const token = JSON.parse(localStorage.getItem('jwt'));
+  const [duration, setDuration] = useState(0);
 
   const progress = useSelector((state) => state.progress.progress);
 
-  // useEffect(() => {
+  useEffect(() => {
+    const course = progress?.courses?.filter((f) => f.courseId === c._id)[0];
 
-  //   progress.forEach(element => {
+    let completedChapters = [];
+    course?.completedChapters?.forEach((element) => {
+      completedChapters.push(element.chapterId);
+    });
 
-  //   });
+    if (completedChapters?.length !== 0) {
+      axiosInstance
+        .post(
+          '/material/getDuration',
+          { chapters: completedChapters },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((res) => {
+          setDuration(res.data.data);
+        })
+        .catch((err) => {});
+    }
+  }, [token, c._id, progress?.courses]);
 
-  //   axiosInstance
-  //   .get('/material/getDuration', {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-  //   .then((res) => {
-  //     console.log(res)
-  //   })
-  //   .catch((err) => {
-  //   });
-
-  // }, [token])
+  //Total duration of course in c?.duration and completed duration in duration
 
   return (
     <>
@@ -51,7 +60,9 @@ const CourseListCard = ({ c, startedAt, index }) => {
             <div className="bg-client w-full rounded-2xl h-2">
               <div className="w-9/12 h-full bg-green-1 rounded-2xl"></div>
             </div>
-            <h1 className="text-sm pl-2 text-greem-1">80%</h1>
+            <h1 className="text-sm pl-2 text-greem-1">
+              {((duration / c.duration) * 100).toFixed(1)} %
+            </h1>
           </div>
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">

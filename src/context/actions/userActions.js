@@ -58,7 +58,6 @@ const updateSlide = (data) => {
 
 const updateChapter = (data) => {
   return (dispatch) => {
-    console.log(data);
     axiosInstance
       .put('/progress/updateChapter', data, {
         headers: {
@@ -66,7 +65,6 @@ const updateChapter = (data) => {
         },
       })
       .then((res) => {
-        console.log(res.data.data);
         dispatch(setProgress(res.data.data));
       });
   };

@@ -69,8 +69,12 @@ const Course = () => {
                 </h1>
               </div>
               {courses.map((c, index) => {
+                let time = progress?.courses?.filter(
+                  (f) => f?.courseId === c?._id,
+                )[0];
+
                 let startedAt = new Date(
-                  parseInt(c?._id.toString().substring(0, 8), 16) * 1000,
+                  parseInt(time?._id.toString().substring(0, 8), 16) * 1000,
                 ).toLocaleString('en-US', {
                   day: '2-digit',
                   month: 'short',
