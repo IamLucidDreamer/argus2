@@ -1,30 +1,30 @@
-import { useFormik } from "formik";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   getUser,
   updateUser,
-} from "../../../../../context/actions/authActions/getUserAction";
-import axiosInstance from "../../../../../helpers/axiosInstance";
+} from '../../../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../../../helpers/axiosInstance';
 
 const BackgroundDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.hasCriminalRecord) {
-      errors.hasCriminalRecord = "*Required";
+      errors.hasCriminalRecord = '*Required';
     }
     if (!values.hasVechicle) {
-      errors.hasVechicle = "*Required";
+      errors.hasVechicle = '*Required';
     }
     if (!values.hasLicenseToDrive) {
-      errors.hasLicenseToDrive = "*Required";
+      errors.hasLicenseToDrive = '*Required';
     }
     if (!values.levelOfEducation) {
-      errors.levelOfEducation = "*Required";
+      errors.levelOfEducation = '*Required';
     }
-    if (!values.languagesKnown[0]) {
-      errors.languagesKnown = "*Required";
+    if (!values?.languagesKnown[0]) {
+      errors.languagesKnown = '*Required';
     }
 
     return errors;
@@ -32,25 +32,25 @@ const BackgroundDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      hasCriminalRecord: "",
-      hasVechicle: "",
-      hasLicenseToDrive: "",
-      levelOfEducation: "",
-      languagesKnown: [""],
+      hasCriminalRecord: '',
+      hasVechicle: '',
+      hasLicenseToDrive: '',
+      levelOfEducation: '',
+      languagesKnown: [''],
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, "BackGround Details updated"));
+      dispatch(updateUser(resetForm, values, 'BackGround Details updated'));
     },
   });
 
   useEffect(() => {
     setValues({
-      hasCriminalRecord: user.hasCriminalRecord,
-      hasVechicle: user.hasVechicle,
-      hasLicenseToDrive: user.hasLicenseToDrive,
-      levelOfEducation: user.levelOfEducation,
-      languagesKnown: user.languagesKnown,
+      hasCriminalRecord: user?.hasCriminalRecord,
+      hasVechicle: user?.hasVechicle,
+      hasLicenseToDrive: user?.hasLicenseToDrive,
+      levelOfEducation: user?.levelOfEducation,
+      languagesKnown: user?.languagesKnown,
     });
   }, [user, setValues]);
 
@@ -84,7 +84,7 @@ const BackgroundDetails = ({ user }) => {
             <label> Do you have a criminal record ?</label>
             <select
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("hasCriminalRecord")}
+              {...getFieldProps('hasCriminalRecord')}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -101,7 +101,7 @@ const BackgroundDetails = ({ user }) => {
             <label> Do you own a vehicle ?</label>
             <select
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("hasVechicle")}
+              {...getFieldProps('hasVechicle')}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -118,7 +118,7 @@ const BackgroundDetails = ({ user }) => {
             <label> Are you fully licensed to drive ?</label>
             <select
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("hasLicenseToDrive")}
+              {...getFieldProps('hasLicenseToDrive')}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -135,7 +135,7 @@ const BackgroundDetails = ({ user }) => {
             <label> What is your highest level of Education?</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("levelOfEducation")}
+              {...getFieldProps('levelOfEducation')}
             />
             {errors.levelOfEducation ? (
               <div className="w-full text-xs text-red-400">
@@ -147,11 +147,11 @@ const BackgroundDetails = ({ user }) => {
             <label> Spoken Languages</label>
             <input
               className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("languagesKnown[0]")}
+              {...getFieldProps('languagesKnown[0]')}
             />
-            {errors.languagesKnown ? (
+            {errors?.languagesKnown ? (
               <div className="w-full text-xs text-red-400">
-                {errors.languagesKnown}
+                {errors?.languagesKnown}
               </div>
             ) : null}
           </div>

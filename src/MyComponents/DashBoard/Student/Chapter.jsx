@@ -125,6 +125,7 @@ const Chapter = () => {
               </div>
               {chapter.map((c, index) => {
                 let completed = false;
+                let ongoing = false;
                 if (
                   current?.completedChapters?.some(
                     (chapter) => chapter.chapterId === c._id,
@@ -133,17 +134,17 @@ const Chapter = () => {
                   completed = true;
                 }
                 if (current?.currentChapter?.chapterId === c._id) {
-                  completed = true;
+                  ongoing = true;
                 }
 
                 let startDate = null;
 
                 if (
-                  current.completedChapters.some(
+                  current?.completedChapters.some(
                     (chapter) => chapter.chapterId === c._id,
                   )
                 ) {
-                  startDate = current.completedChapters.filter(
+                  startDate = current?.completedChapters.filter(
                     (chapter) => chapter.chapterId === c._id,
                   )[0].createdAt;
                 } else if (current?.currentChapter?.chapterId === c._id) {
@@ -155,7 +156,7 @@ const Chapter = () => {
                     <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
                       <div
                         onClick={() => {
-                          if (completed) {
+                          if (completed || ongoing) {
                             setShow(true);
                             setCurrentChapter(c);
                             setIndex(index);
@@ -189,7 +190,7 @@ const Chapter = () => {
                         <h1 className="">
                           {completed
                             ? '100%'
-                            : c._id === current?.currentChapter?.chapterId
+                            : ongoing
                             ? `${(
                                 ((c.duration -
                                   current?.currentChapterTimestamp) /
@@ -203,7 +204,7 @@ const Chapter = () => {
                         <h1>
                           {completed
                             ? 'Completed'
-                            : c._id === current?.currentChapter.chapterId
+                            : ongoing
                             ? 'Ongoing'
                             : 'Not Started'}
                         </h1>

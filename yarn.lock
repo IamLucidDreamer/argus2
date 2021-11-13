@@ -6306,6 +6306,11 @@
   "resolved" "https://registry.npmjs.org/immer/-/immer-8.0.1.tgz"
   "version" "8.0.1"
 
+"immutability-helper@^3.0.1":
+  "integrity" "sha512-Q0QaXjPjwIju/28TsugCHNEASwoCcJSyJV3uO1sOIQGI0jKgm9f41Lvz0DZj3n46cNCyAZTsEYoY4C2bVRUzyQ=="
+  "resolved" "https://registry.npmjs.org/immutability-helper/-/immutability-helper-3.1.1.tgz"
+  "version" "3.1.1"
+
 "import-cwd@^2.0.0":
   "integrity" "sha1-qmzzbnInYShcs3HsZRn1PiQ1sKk="
   "resolved" "https://registry.npmjs.org/import-cwd/-/import-cwd-2.1.0.tgz"
@@ -10095,6 +10100,19 @@
   "resolved" "https://registry.npmjs.org/react-social-login-buttons/-/react-social-login-buttons-3.5.1.tgz"
   "version" "3.5.1"
 
+"react-speech-kit@^3.0.1":
+  "integrity" "sha512-MXNOciISanhmnxpHJkBOev3M3NPDpW1T7nTc/eGw5pO9cXpoUccRxZkmr/IlpTPbPEneDNeTmbwri/YweyctZg=="
+  "resolved" "https://registry.npmjs.org/react-speech-kit/-/react-speech-kit-3.0.1.tgz"
+  "version" "3.0.1"
+
+"react-speech@^1.0.2":
+  "integrity" "sha512-z/HgICAqmWIwXbQnxVDm0CMgu6MlZzkVtp37F7kd9vPKSJw8Pcv+f2wFy5kOwTO5m5BOD9awnCsBa5J9XovPJA=="
+  "resolved" "https://registry.npmjs.org/react-speech/-/react-speech-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "immutability-helper" "^3.0.1"
+    "react" "^16.10.1"
+
 "react-square-web-payments-sdk@^2.2.3":
   "integrity" "sha512-udH4DnxxblOeucHBx+7FXvQ/8u2SbpuvK8drOblqCKL9a5YrSLTOz9830vch8QHPWKGoPsrrZsgRGYfi3CxHNw=="
   "resolved" "https://registry.npmjs.org/react-square-web-payments-sdk/-/react-square-web-payments-sdk-2.2.3.tgz"
@@ -10118,13 +10136,22 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0 || ^17.x", "react@^16 || ^17", "react@^16.0.0", "react@^16.6.1 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^16.8.3 || ^17.0.0-0", "react@^17.0.2", "react@>= 15", "react@>= 16", "react@>= 16.3.0", "react@>=15", "react@>=15.0.0", "react@>=16", "react@>=16.3.0", "react@>=16.6.0", "react@>=16.8.0", "react@>=16.x", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0", "react@^15.0.0 || ^16.0.0 || ^17.x", "react@^16 || ^17", "react@^16.0.0", "react@^16.6.1 || ^17", "react@^16.8.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^16.8.3 || ^17.0.0-0", "react@^17.0.2", "react@>= 15", "react@>= 16", "react@>= 16.3.0", "react@>=15", "react@>=15.0.0", "react@>=16", "react@>=16.3.0", "react@>=16.6.0", "react@>=16.8.0", "react@>=16.x", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
+
+"react@^16.10.1":
+  "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
+  "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
+  "version" "16.14.0"
+  dependencies:
+    "loose-envify" "^1.1.0"
+    "object-assign" "^4.1.1"
+    "prop-types" "^15.6.2"
 
 "read-pkg-up@^3.0.0":
   "integrity" "sha1-PtSWaF26D4/hGNBpHcUfSh/5bwc="
