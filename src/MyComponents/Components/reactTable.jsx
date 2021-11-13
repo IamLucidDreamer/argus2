@@ -3,11 +3,14 @@ import {
   useGlobalFilter,
   useRowSelect,
   useTable,
+  useSortBy,
   useFilters,
   usePagination,
   useAsyncDebounce,
 } from 'react-table';
 import { Pagination } from '@mui/material';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 import './reactTable.css';
 
@@ -104,6 +107,7 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
     },
     useFilters,
     useGlobalFilter,
+    useSortBy,
     usePagination,
     useRowSelect,
     (hooks) => {
@@ -203,7 +207,20 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
                   column.Header === 'City' ||
                   column.Header === 'Country' ||
                   column.Header === 'Province' ? null : (
-                    <div> {column.render('Header')}</div>
+                    <>
+                      <div> {column.render('Header')}</div>
+                      <span>
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <ArrowDownwardIcon />
+                          ) : (
+                            <ArrowUpwardIcon />
+                          )
+                        ) : (
+                          ''
+                        )}
+                      </span>
+                    </>
                   )}
                 </th>
               ))}

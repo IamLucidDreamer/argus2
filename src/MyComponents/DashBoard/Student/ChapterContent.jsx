@@ -275,9 +275,12 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
             {slides.map((data) => {
               let utterThis;
               if (data?.title) {
+                let voices = synthRef.current.getVoices();
                 utterThis = new SpeechSynthesisUtterance(
                   'Hi how are you i am fine i am hungry i want burger and pizza',
                 );
+                utterThis.voice = voices[0];
+                utterThis.rate = 0.6;
               }
               return (
                 <div

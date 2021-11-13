@@ -1,8 +1,11 @@
+import { Pagination } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../../../helpers/axiosInstance';
 
 const History = () => {
   const [activity, setactivity] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageData, setpageData] = useState([]);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem('jwt'));
@@ -21,11 +24,24 @@ const History = () => {
       );
   }, []);
 
+  useEffect(() => {
+    setpageData(activity.slice((page - 1) * 10, page * 10));
+  }, [page, activity]);
+
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
       <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
         HISTORY
       </h1>
+      <Pagination
+        className="p-1 mb-4"
+        count={Math.ceil(activity.length / 10)}
+        shape="rounded"
+        onChange={(event, value) => {
+          setPage(value);
+        }}
+      />
+
       <div className="hidden lg:flex flex-col md:flex-row text-lg items-stretch mb-2">
         <h1 className="text-center w-full md:w-3/12 lg:w-2/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2 bg-client mx-1">
           Date
@@ -37,7 +53,7 @@ const History = () => {
           Action By
         </h1>
       </div>
-      {activity.map((a) => {
+      {pageData?.map((a) => {
         return (
           <>
             <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">

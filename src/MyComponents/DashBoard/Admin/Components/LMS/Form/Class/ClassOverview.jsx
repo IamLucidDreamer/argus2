@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import ClassList from "./ClassList";
-import { Pagination } from "@mui/material";
-import Loader from "react-loader-spinner";
-import AddClass from "./AddClass";
-import EditClass from "./EditClass";
-import Alert from "../../../../../../Components/Alert";
-import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import ClassList from './ClassList';
+import { Pagination } from '@mui/material';
+import Loader from 'react-loader-spinner';
+import AddClass from './AddClass';
+import EditClass from './EditClass';
+import Alert from '../../../../../../Components/Alert';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
 const ClassOverview = () => {
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const [newclass, setnewclass] = useState(false);
   const classList = useSelector((state) => state.class.class);
   const loading = useSelector((state) => state.class.loading);
@@ -19,10 +19,11 @@ const ClassOverview = () => {
   const [classOptions, setClassOptions] = useState([]);
   const [locationOptions, setLocationOptions] = useState([]);
   const [show, setShow] = useState(false);
+  const [refreshClassLocation, setRefreshClassLocation] = useState(null);
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
 
@@ -32,7 +33,7 @@ const ClassOverview = () => {
 
   useEffect(() => {
     axiosInstance
-      .get("/constant/getAll?name=Class", {
+      .get('/constant/getAll?name=Class', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,11 +41,11 @@ const ClassOverview = () => {
       .then((res) => {
         setClassOptions(res.data.data);
       });
-  }, [token]);
+  }, [token, refreshClassLocation]);
 
   useEffect(() => {
     axiosInstance
-      .get("/constant/getAll?name=Location", {
+      .get('/constant/getAll?name=Location', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -52,7 +53,7 @@ const ClassOverview = () => {
       .then((res) => {
         setLocationOptions(res.data.data);
       });
-  }, [token]);
+  }, [token, refreshClassLocation]);
 
   return (
     <div>
@@ -79,7 +80,7 @@ const ClassOverview = () => {
             </p>
           ) : (
             <>
-              {" "}
+              {' '}
               <div className="px-1">
                 {showAlert.show ? (
                   <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -146,6 +147,7 @@ const ClassOverview = () => {
         <AddClass
           classOptions={classOptions}
           locationOptions={locationOptions}
+          setRefreshClassLocation={setRefreshClassLocation}
         />
       ) : null}
     </div>

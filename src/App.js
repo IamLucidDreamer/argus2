@@ -128,8 +128,13 @@ function App() {
           />
           <StudentRoutes
             path="/dashboard/student/purchase"
+            component={StudentPurchase}
+          />
+          <StudentRoutes
+            path="/dashboard/student/payment"
             component={PaymentPage}
           />
+
           <StudentRoutes
             path="/dashboard/student/training"
             component={StudentCourse}

@@ -141,7 +141,16 @@ export const ModulePage = () => {
                     <h1 className="">{c?.description}</h1>
                   </div>
                   <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                    <h1>{new Date(c?.createdAt).toLocaleString('en-Us')}</h1>
+                    <h1>
+                      {' '}
+                      {new Date(c?.createdAt).toLocaleString('en-Us', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </h1>
                   </div>
                 </div>
               </>

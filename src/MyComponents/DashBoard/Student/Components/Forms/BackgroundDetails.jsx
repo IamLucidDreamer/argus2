@@ -50,7 +50,7 @@ const BackgroundDetails = ({ user }) => {
       hasVechicle: user?.hasVechicle,
       hasLicenseToDrive: user?.hasLicenseToDrive,
       levelOfEducation: user?.levelOfEducation,
-      languagesKnown: user?.languagesKnown,
+      languagesKnown: [user?.languagesKnown],
     });
   }, [user, setValues]);
 

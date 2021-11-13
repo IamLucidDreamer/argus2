@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import axiosInstance from "../../../../../../helpers/axiosInstance";
-import AddChapter from "./Course/AddChapter";
-import AddCourse from "./Course/AddCourse";
-import AddModule from "./Course/AddModule";
-import AddSlide from "./Course/AddSlide";
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import axiosInstance from '../../../../../../helpers/axiosInstance';
+import AddChapter from './Course/AddChapter';
+import AddCourse from './Course/AddCourse';
+import AddModule from './Course/AddModule';
+import AddSlide from './Course/AddSlide';
 
 export const ClassMaterial = () => {
   const [button, setButton] = useState({
@@ -13,7 +13,7 @@ export const ClassMaterial = () => {
     chapter: false,
     slide: false,
   });
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const [course, setCourse] = useState([]);
   const [courseRefresh, setCourseRefresh] = useState(null);
   const [active, setActive] = useState(0);
@@ -22,7 +22,7 @@ export const ClassMaterial = () => {
 
   useEffect(() => {
     axiosInstance
-      .get("/material/getAllCourses", {
+      .get('/material/getAllCourses', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,8 +48,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 1
-              ? "bg-white text-red-1"
-              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
+              ? 'bg-white text-red-1'
+              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
           }`}
         >
           ADD COURSE
@@ -66,8 +66,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 2
-              ? "bg-white text-red-1"
-              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
+              ? 'bg-white text-red-1'
+              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
           }`}
         >
           ADD MODULE
@@ -84,8 +84,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 3
-              ? "bg-white text-red-1"
-              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
+              ? 'bg-white text-red-1'
+              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
           }`}
         >
           ADD CHAPTER
@@ -102,8 +102,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 4
-              ? "bg-white text-red-1"
-              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
+              ? 'bg-white text-red-1'
+              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
           }`}
         >
           ADD SLIDE
@@ -143,7 +143,7 @@ export const ClassMaterial = () => {
                 onClick={() => {
                   history.push(`/dashboard/admin/lms/course/${c._id}`);
                 }}
-                className="lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 hover:text-white font-bold cursor-pointer"
+                className="lg:w-3/12 flex items-center px-3 py-3 text-gray-2 rounded-xl border-2  mx-1 my-1 lg:my-0 hover:bg-red-1 hover:text-white font-bold cursor-pointer"
               >
                 {c?.name}
               </h1>
@@ -154,8 +154,20 @@ export const ClassMaterial = () => {
                 <h1 className="font-bold">{c?.duration} min</h1>
               </div>
 
-              <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                <h1>{new Date(c?.createdAt).toLocaleString("en-Us")}</h1>
+              <div className="flex flex-col items-center justify-center text-center lg:w-2/12 px-3 py-2 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
+                <h1>
+                  {new Date(c?.createdAt).toLocaleString('en-Us', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                  })}
+                </h1>
+                <h1>
+                  {new Date(c?.createdAt).toLocaleString('en-Us', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+                </h1>
               </div>
             </div>
             <div className="block lg:hidden py-2.5"></div>

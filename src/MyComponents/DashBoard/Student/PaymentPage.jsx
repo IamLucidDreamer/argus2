@@ -1,25 +1,39 @@
-import React from 'react';
-import {
-  SquarePaymentsForm,
-  CreditCardInput,
-} from 'react-square-web-payments-sdk';
+import React, { useRef, useEffect } from 'react';
 
-const applicationId = 'sandbox-sq0idb-NcSzunbg1PqLFw0axzIC3Q';
-const locationId = 'LV0BFXTE346N4';
+export default function PaymentPage() {
+  const paypal = useRef();
 
-const PaymentPage = () => {
-  const cardTokenizeResponseReceived = (tokenRecieved) => {
-    console.log(tokenRecieved);
-  };
+  useEffect(() => {
+    window.paypal
+      .Buttons({
+        createOrder: (data, actions, err) => {
+          return actions.order.create({
+            intent: 'CAPTURE',
+            purchase_units: [
+              {
+                description: 'Cool looking table',
+                amount: {
+                  currency_code: 'USD',
+                  value: 4000.0,
+                },
+              },
+            ],
+          });
+        },
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+          console.log(order);
+        },
+        onError: (err) => {
+          console.log(err);
+        },
+      })
+      .render(paypal.current);
+  }, []);
+
   return (
-    <SquarePaymentsForm
-      applicationId={applicationId}
-      locationId={locationId}
-      cardTokenizeResponseReceived={cardTokenizeResponseReceived}
-    >
-      <CreditCardInput></CreditCardInput>
-    </SquarePaymentsForm>
+    <div>
+      <div ref={paypal}></div>
+    </div>
   );
-};
-
-export default PaymentPage;
+}

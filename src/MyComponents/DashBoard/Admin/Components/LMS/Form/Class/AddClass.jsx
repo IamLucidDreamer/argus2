@@ -1,18 +1,22 @@
-import { useFormik } from "formik";
-import React, { useEffect, useState } from "react";
-import axiosInstance from "../../../../../../../helpers/axiosInstance";
-import Select from "react-select";
-import { addClass } from "../../../../../../../context/actions/lmsActions/classActions";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import Alert from "../../../../../../Components/Alert";
-import ManageClassName from "./ManageClassName";
+import { useFormik } from 'formik';
+import React, { useEffect, useState } from 'react';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
+import Select from 'react-select';
+import { addClass } from '../../../../../../../context/actions/lmsActions/classActions';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Alert from '../../../../../../Components/Alert';
+import ManageClassName from './ManageClassName';
 
-const AddClass = ({ classOptions, locationOptions }) => {
-  const token = JSON.parse(localStorage.getItem("jwt"));
+const AddClass = ({
+  classOptions,
+  locationOptions,
+  setRefreshClassLocation,
+}) => {
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
 
@@ -24,7 +28,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
   instructor?.forEach((element) => {
     options.push({
       value: element._id,
-      label: element.name + "(" + element._id + ")",
+      label: element.name + '(' + element._id + ')',
     });
   });
 
@@ -47,16 +51,16 @@ const AddClass = ({ classOptions, locationOptions }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.classname) {
-      errors.classname = "*Required";
+      errors.classname = '*Required';
     }
     if (!values.date) {
-      errors.date = "*Required";
+      errors.date = '*Required';
     }
     if (!values.location) {
-      errors.location = "*Required";
+      errors.location = '*Required';
     }
     if (!selectedIns) {
-      errors.selectedIns = "*Required";
+      errors.selectedIns = '*Required';
     }
     return errors;
   };
@@ -64,9 +68,9 @@ const AddClass = ({ classOptions, locationOptions }) => {
   const { getFieldProps, handleSubmit, errors, setErrors, setValues, values } =
     useFormik({
       initialValues: {
-        classname: "",
-        date: "",
-        location: "",
+        classname: '',
+        date: '',
+        location: '',
         noOfSpots: 0,
         students: [],
       },
@@ -84,14 +88,14 @@ const AddClass = ({ classOptions, locationOptions }) => {
             dispatch(addClass(res.data.data));
             setShowAlert({
               show: true,
-              message: "Class Added Successfully",
+              message: 'Class Added Successfully',
               success: true,
             });
           })
           .catch((err) => {
             setShowAlert({
               show: true,
-              message: "Error adding class",
+              message: 'Error adding class',
               success: false,
             });
           });
@@ -100,7 +104,13 @@ const AddClass = ({ classOptions, locationOptions }) => {
 
   return (
     <div>
-      <ManageClassName setShow={setShowClass} show={showClass} />
+      <ManageClassName
+        setShow={setShowClass}
+        show={showClass}
+        setRefreshClassLocation={setRefreshClassLocation}
+        classOptions={classOptions}
+        locationOptions={locationOptions}
+      />
       <div className="px-11">
         {showAlert.show ? (
           <Alert alert={showAlert} rmAlert={setShowAlert} />
@@ -123,12 +133,12 @@ const AddClass = ({ classOptions, locationOptions }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: "#E8E8EE",
-                    primary: "#E8E8EE",
+                    primary25: '#E8E8EE',
+                    primary: '#E8E8EE',
                   },
                 })}
                 value={
-                  values.classname !== ""
+                  values.classname !== ''
                     ? { value: values.classname, label: values.classname }
                     : null
                 }
@@ -155,14 +165,14 @@ const AddClass = ({ classOptions, locationOptions }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: "lightgray",
-                    primary: "#BA0913",
+                    primary25: 'lightgray',
+                    primary: '#BA0913',
                   },
                 })}
                 value={selectedIns}
                 onChange={(selectedOption) => {
                   setSelectedIns(selectedOption);
-                  setErrors({ ...errors, selectedIns: "" });
+                  setErrors({ ...errors, selectedIns: '' });
                 }}
               />
             </div>
@@ -178,7 +188,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
             <input
               type="datetime-local"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps("date")}
+              {...getFieldProps('date')}
             />
             {errors.date ? (
               <div className="w-full text-xs text-red-400">{errors.date}</div>
@@ -195,12 +205,12 @@ const AddClass = ({ classOptions, locationOptions }) => {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary25: "#E8E8EE",
-                    primary: "#E8E8EE",
+                    primary25: '#E8E8EE',
+                    primary: '#E8E8EE',
                   },
                 })}
                 value={
-                  values.location !== ""
+                  values.location !== ''
                     ? { value: values.location, label: values.location }
                     : null
                 }
@@ -223,7 +233,7 @@ const AddClass = ({ classOptions, locationOptions }) => {
               type="number"
               placeholder="Number of Spots"
               className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-              {...getFieldProps("noOfSpots")}
+              {...getFieldProps('noOfSpots')}
             />
           </div>
           <div className="w-full lg:w-5/12 mt-3 lg:mt-0">
