@@ -19,6 +19,7 @@ td > div {
   border: 2px solid rgba(232, 234, 238);
   border-radius: 10px !important;
   text-align: center;
+  font-size: 1.125rem;
 }
 th > div {
   height: 60px;
@@ -28,7 +29,7 @@ th > div {
   margin: 2px;
   text-align: center;
   border-radius: 10px;
-  font-size: larger;
+  font-size: 1.125rem;
   padding: 20px;
   background-color: rgba(232, 234, 238) !important;
   color: rgba(134, 134, 150) !important;

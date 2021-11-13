@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import ProfilePicture from './../../../../argus website/PNG/IMG_0118.png';
-import TopBarOptions from './TopBarOptions';
-import Notify from './Notify';
-import { useSelector } from 'react-redux';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import React, { useState } from "react";
+import ProfilePicture from "./../../../../argus website/PNG/IMG_0118.png";
+import TopBarOptions from "./TopBarOptions";
+import Notify from "./Notify";
+import { useSelector } from "react-redux";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 export const TopBar = () => {
   const [topbarOptions, setTopbarOptions] = useState(false);
@@ -14,20 +14,20 @@ export const TopBar = () => {
   return (
     <div className="max-w-1200 mx-auto">
       <div className="pt-3 flex flex-row justify-between items-center">
-        <h1 className="ml-9 text-2xl text-gray-3 font-bold font-for-para">
-          Hii,
+        <h1 className="ml-9 text-xl sm:text-2xl text-gray-3 font-bold font-for-para">
+          Hii
           {user?.name ? (
             <span>
-              ,{' '}
+              ,{" "}
               <span className="text-red-1">
-                {user?.name + ' ' + (user?.lastname ? user?.lastname : '')}
+                {user?.name + " " + (user?.lastname ? user?.lastname : "")}
               </span>
             </span>
           ) : null}
         </h1>
         <div className="ml-auto flex justify-around items-center">
-          <div className="text-xl mx-1 sm:mr-4 text-gray-3">
-            {new Date().toLocaleDateString('en-GB')}
+          <div className="hidden sm:block text-sm sm:text-xl mx-1 sm:mr-4 text-gray-3">
+            {new Date().toLocaleDateString("en-GB")}
           </div>
 
           <button
