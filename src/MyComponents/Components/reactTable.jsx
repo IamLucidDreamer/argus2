@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   useGlobalFilter,
   useRowSelect,
@@ -6,10 +6,10 @@ import {
   useFilters,
   usePagination,
   useAsyncDebounce,
-} from 'react-table';
-import { Pagination } from '@mui/material';
+} from "react-table";
+import { Pagination } from "@mui/material";
 
-import './reactTable.css';
+import "./reactTable.css";
 
 function DefaultColumnFilter() {
   return null;
@@ -34,7 +34,7 @@ const IndeterminateCheckbox = React.forwardRef(
         />
       </>
     );
-  },
+  }
 );
 
 function GlobalFilter({
@@ -50,18 +50,18 @@ function GlobalFilter({
 
   return (
     <span className="font-semibold">
-      Search:{' '}
+      Search:{" "}
       <input
         className={`ml-2 px-2 py-1 focus:outline-none rounded-md focus:ring-1 ring-red-1 `}
-        value={value || ''}
+        value={value || ""}
         onChange={(e) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
         placeholder={`Search ${count} records...`}
         style={{
-          fontSize: '1.1rem',
-          border: '1px solid gray',
+          fontSize: "1.1rem",
+          border: "1px solid gray",
         }}
       />
     </span>
@@ -76,7 +76,7 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
       // Let's set up our default Filter UI
       Filter: DefaultColumnFilter,
     }),
-    [],
+    []
   );
 
   const {
@@ -111,7 +111,7 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
         hooks.visibleColumns.push((columns) => [
           // Let's make a column for selection
           {
-            id: 'selection',
+            id: "selection",
             // The header can use the table's getToggleAllRowsSelectedProps method
             // to render a checkbox
             Header: ({ getToggleAllRowsSelectedProps }) => (
@@ -130,7 +130,7 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
           ...columns,
         ]);
       }
-    },
+    }
   );
 
   useEffect(() => {
@@ -149,8 +149,8 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
       <div
         className={`z-50 w-64 sm:w-72 absolute right-4 sm:right-10 md:right-3 top-10 font-medium text-gray-3 bg-bg-card shadow-button-shadow-2 rounded-2xl ${
           show
-            ? 'transition-all duration-300 opacity-100 inline-block'
-            : 'transition-all duration-300 opacity-0 invisible'
+            ? "transition-all duration-300 opacity-100 inline-block"
+            : "transition-all duration-300 opacity-0 invisible"
         }`}
       >
         <div className="text-gray-2 text-base p-3 font-bold bg-gray-200 rounded-xl flex flex-col">
@@ -160,7 +160,7 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
                 {headerGroup.headers.map((column) => (
                   <>
                     <div>
-                      {column.canFilter ? column.render('Filter') : null}
+                      {column.canFilter ? column.render("Filter") : null}
                     </div>
                   </>
                 ))}
@@ -193,49 +193,51 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
           setGlobalFilter={setGlobalFilter}
         /> */}
       </div>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
-                  {column.Header === 'Gender' ||
-                  column.Header === 'City' ||
-                  column.Header === 'Country' ||
-                  column.Header === 'Province' ? null : (
-                    <div> {column.render('Header')}</div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>
-                      {cell.column.id === 'Gender' ||
-                      cell.column.id === 'City' ||
-                      cell.column.id === 'Country' ||
-                      cell.column.id === 'Province' ? null : (
-                        <div>
-                          {cell.column.id === 'Registration'
-                            ? new Date(cell.value).toDateString()
-                            : cell.render('Cell')}
-                        </div>
-                      )}
-                    </td>
-                  );
-                })}
+      <div className="overflow-x-scroll lg:overflow-visible">
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()}>
+                    {column.Header === "Gender" ||
+                    column.Header === "City" ||
+                    column.Header === "Country" ||
+                    column.Header === "Province" ? null : (
+                      <div> {column.render("Header")}</div>
+                    )}
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()}>
+                        {cell.column.id === "Gender" ||
+                        cell.column.id === "City" ||
+                        cell.column.id === "Country" ||
+                        cell.column.id === "Province" ? null : (
+                          <div>
+                            {cell.column.id === "Registration"
+                              ? new Date(cell.value).toDateString()
+                              : cell.render("Cell")}
+                          </div>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {/* 
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:

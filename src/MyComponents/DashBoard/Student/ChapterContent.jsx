@@ -12,18 +12,26 @@ import MCQ from './MCQ';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import {
+  getProgress,
   updateChapter,
   updateCompletedChapter,
   updateCompletedModule,
   updateModule,
   updateTimestamp,
 } from '../../../context/actions/userActions';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
 
 function SampleNextArrow(props) {
   const { onClick } = props;
   return (
     <div className="slick-arrow slick-next" style={{ color: 'black' }}>
-      <IconButton onClick={onClick}>
+      <IconButton
+        onClick={() => {
+          window.speechSynthesis.cancel();
+          onClick();
+        }}
+      >
         <NavigateNextRoundedIcon color="black" style={{ fontSize: '60px' }} />
       </IconButton>
     </div>
@@ -39,7 +47,12 @@ function SamplePrevArrow(props) {
         left: '-60px',
       }}
     >
-      <IconButton onClick={onClick}>
+      <IconButton
+        onClick={() => {
+          window.speechSynthesis.cancel();
+          onClick();
+        }}
+      >
         <NavigateBeforeRoundedIcon color="black" style={{ fontSize: '60px' }} />
       </IconButton>
     </div>
@@ -136,20 +149,26 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
   };
 
   const time = Date.now() + current?.currentChapterTimestamp * 60000;
+  const synthRef = useRef(window.speechSynthesis);
 
   const countDownRef = useRef();
-
   if (show) {
     countDownRef?.current?.api?.start();
   }
 
-  const renderer = ({ hours, minutes, completed }) => {
+  const renderer = ({ seconds, hours, minutes, completed }) => {
     return (
       <span className="text-2xl font-bold text-gray-2">
-        {hours !== 0 ? hours + ' hrs' : null} {minutes} min left
+        {hours !== 0 ? (hours < 10 ? '0' + hours : hours) + ' :' : null}{' '}
+        {minutes < 10 ? '0' + minutes : minutes} :{' '}
+        {seconds < 10 ? '0' + seconds : seconds}
       </span>
     );
   };
+
+  if (!synthRef.current.pending) {
+    synthRef.current.cancel();
+  }
 
   return (
     <div
@@ -165,6 +184,8 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
               setSlides([]);
               countDownRef?.current?.api?.stop();
               setCompleted(false);
+              dispatch(getProgress());
+              synthRef.current.cancel();
             }}
           >
             <CloseRoundedIcon fontSize="large" />
@@ -176,26 +197,32 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
           </div>
         ) : null}
         {current?.completedChapters?.some(
-          (chapter) => chapter.chapterId === currentChapter?._id,
+          (chapter) =>
+            chapter.chapterId === currentChapter?._id ||
+            current?.currentChapter.chapterId === null,
         ) ? null : (
           <Countdown
             ref={countDownRef}
             renderer={renderer}
             date={new Date(time)}
             autoStart={false}
-            onTick={({ minutes, hours }) => {
-              if (hours !== 0) {
-                dispatch(
-                  updateTimestamp({
-                    time: hours * 60 + minutes,
-                    id: current?._id,
-                  }),
-                );
-              } else {
-                dispatch(updateTimestamp({ time: minutes, id: current?._id }));
+            onTick={({ minutes, hours, seconds }) => {
+              if (seconds === 0) {
+                if (hours !== 0) {
+                  dispatch(
+                    updateTimestamp({
+                      time: hours * 60 + minutes,
+                      id: current?._id,
+                    }),
+                  );
+                } else {
+                  dispatch(
+                    updateTimestamp({ time: minutes, id: current?._id }),
+                  );
+                }
               }
             }}
-            intervalDelay={60000}
+            intervalDelay={1000}
             onStart={() => {
               console.log('Timer started');
             }}
@@ -217,19 +244,10 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
                     id: current?._id,
                   }),
                 );
-                dispatch(
-                  updateChapter({
-                    chapterId: null,
-                    duration: 0,
-                    id: current?._id,
-                  }),
-                );
                 if (nextModule) {
                   dispatch(
                     updateModule({ moduleId: nextModule, id: current?._id }),
                   );
-                } else {
-                  dispatch(updateModule({ moduleId: null, id: current?._id }));
                 }
               } else {
                 console.log('inside 2');
@@ -255,23 +273,63 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
         <div className="w-5/6">
           <Slider {...settings} className="w-full">
             {slides.map((data) => {
+              let utterThis;
+              if (data?.title) {
+                utterThis = new SpeechSynthesisUtterance(
+                  'Hi how are you i am fine i am hungry i want burger and pizza',
+                );
+              }
               return (
                 <div
                   key={data._id}
                   className="p-6 flex flex-row justify-center items-center"
                 >
                   {data?.question === null ? (
-                    <div className="flex">
-                      <div className="w-1/2 h-full flex items-center justify-center">
-                        <img
-                          className="w-full"
-                          src={`${API}/material/getSlideImg/${courseId}/${currentChapter?._id}/${data?._id}`}
-                          alt=""
-                        />
+                    <div className="flex flex-col items-center">
+                      <div className="flex">
+                        <div className="w-1/2 h-full flex items-center justify-center">
+                          <img
+                            className="w-full"
+                            src={`${API}/material/getSlideImg/${courseId}/${currentChapter?._id}/${data?._id}`}
+                            alt=""
+                          />
+                        </div>
+                        <div className="">
+                          <h1>{data?.title}</h1>
+                          <p>{data?.text}</p>
+                        </div>
                       </div>
-                      <div className="">
-                        <h1>{data?.title}</h1>
-                        <p>{data?.text}</p>
+                      <div>
+                        <IconButton
+                          onClick={() => {
+                            if (
+                              synthRef.current.paused &&
+                              synthRef.current.speaking
+                            ) {
+                              console.log(synthRef.current);
+                              synthRef.current.resume();
+                            } else {
+                              console.log(synthRef.current);
+                              synthRef.current.cancel();
+                              synthRef.current.speak(utterThis);
+                            }
+                          }}
+                        >
+                          <PlayArrowRoundedIcon />
+                        </IconButton>
+                        <IconButton
+                          onClick={() => {
+                            if (
+                              synthRef.current.speaking &&
+                              !synthRef.current.paused
+                            ) {
+                              synthRef.current.pause();
+                              console.log(synthRef.current);
+                            }
+                          }}
+                        >
+                          <PauseRoundedIcon />
+                        </IconButton>
                       </div>
                     </div>
                   ) : (

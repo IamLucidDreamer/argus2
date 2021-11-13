@@ -93,6 +93,7 @@ const Modules = () => {
               </div>
               {module.map((m, index) => {
                 let completed = false;
+                let ongoing = false;
                 if (
                   current?.completedModules?.some(
                     (module) => module.moduleId === m._id,
@@ -101,13 +102,14 @@ const Modules = () => {
                   completed = true;
                 }
                 if (current?.currentModule?.moduleId === m._id) {
-                  completed = true;
+                  ongoing = true;
                 }
 
                 return (
                   <ModuleListCard
                     m={m}
                     completed={completed}
+                    ongoing={ongoing}
                     index={index}
                     courseId={courseId}
                     module={module}

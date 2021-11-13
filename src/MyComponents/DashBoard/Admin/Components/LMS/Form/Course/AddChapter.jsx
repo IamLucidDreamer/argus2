@@ -145,7 +145,7 @@ const AddChapter = ({ button, setButton, course }) => {
               </div>
             ) : null}
           </div>
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12  mt-4 lg:mt-0">
             <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2">
               <Select
                 placeholder="Select Module"
@@ -174,12 +174,12 @@ const AddChapter = ({ button, setButton, course }) => {
             ) : null}
           </div>
         </div>
-        <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-around lg:my-4">
           <div className="w-full lg:w-5/12">
             <input
               type="text"
               placeholder="Chapter Name"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
               {...getFieldProps("name")}
             />
             {errors.name ? (
@@ -190,7 +190,7 @@ const AddChapter = ({ button, setButton, course }) => {
             <input
               type="number"
               placeholder="Chapter Duration"
-              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+              className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 lg:mt-0"
               {...getFieldProps("duration")}
             />
             {errors.duration ? (
@@ -204,7 +204,7 @@ const AddChapter = ({ button, setButton, course }) => {
           <textarea
             type="textarea"
             placeholder="Chapter description"
-            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
+            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 h-60"
             {...getFieldProps("description")}
           />
           {errors.descriptions ? (

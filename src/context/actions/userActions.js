@@ -92,9 +92,7 @@ const updateTimestamp = (data) => {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((res) => {
-        dispatch(setTimestamp(data.time));
-      });
+      .then((res) => {});
   };
 };
 

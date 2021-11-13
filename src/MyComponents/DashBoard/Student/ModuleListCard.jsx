@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import axiosInstance from '../../../helpers/axiosInstance';
 
-const ModuleListCard = ({ m, completed, courseId, index, module }) => {
+const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
   const history = useHistory();
   const token = JSON.parse(localStorage.getItem('jwt'));
   const [duration, setDuration] = useState(0);
@@ -72,7 +72,7 @@ const ModuleListCard = ({ m, completed, courseId, index, module }) => {
       <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
         <div
           onClick={() => {
-            if (completed) {
+            if (completed || ongoing) {
               history.push(
                 `/dashboard/student/course/${courseId}/module/${
                   m?._id
@@ -107,11 +107,7 @@ const ModuleListCard = ({ m, completed, courseId, index, module }) => {
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
           <h1>
-            {completed
-              ? 'Completed'
-              : m._id === current?.currentModule?.moduleId
-              ? 'Ongoing'
-              : 'Not Started'}
+            {completed ? 'Completed' : ongoing ? 'Ongoing' : 'Not Started'}
           </h1>
         </div>
       </div>
