@@ -1,75 +1,77 @@
-import "./App.css";
-import "./MyComponents/Components/FontAwesomeIcons";
+import './App.css';
+import './MyComponents/Components/FontAwesomeIcons';
 
-import AdminRoute from "./MyComponents/DashBoard/Admin/Components/AdminRoutes";
-import StudentRoutes from "./MyComponents/DashBoard/Student/Components/StudentRoutes";
+import AdminRoute from './MyComponents/DashBoard/Admin/Components/AdminRoutes';
+import StudentRoutes from './MyComponents/DashBoard/Student/Components/StudentRoutes';
 
-import Covid from "./MyComponents/Main/Covid";
-import Footer from "./MyComponents/Partials/Footer.jsx";
-import Home from "./MyComponents/Main/Home.jsx";
-import SignUp from "./MyComponents/User/SignUp.jsx";
-import Contact from "./MyComponents/Main/Contact.jsx";
-import About from "./MyComponents/Main/About.jsx";
-import Jobs from "./MyComponents/Main/Jobs.jsx";
-import Services from "./MyComponents/Main/Services.jsx";
-import Training from "./MyComponents/Main/Training.jsx";
-import Technology from "./MyComponents/Main/Technology/Technology";
-import IncidentReporting from "./MyComponents/Main/Technology/IncidentReporting.jsx";
-import ToursCheckpoints from "./MyComponents/Main/Technology/ToursCheckpoints.jsx";
-import DispatchTasks from "./MyComponents/Main/Technology/DispatchTasks.jsx";
-import ReportsData from "./MyComponents/Main/Technology/ReportsData.jsx";
-import Communication from "./MyComponents/Main/Technology/Communication.jsx";
-import MobilePatrols from "./MyComponents/Main/Technology/MobilePatrols.jsx";
-import OrganisationStructure from "./MyComponents/Main/OrganisationStructure.jsx";
-import HarassementPolicy from "./MyComponents/Main/HarassementPolicy";
-import Personell from "./MyComponents/Main/Personell";
-import ScrollToTop from "./Functions/ScrollToTop";
+import Covid from './MyComponents/Main/Covid';
+import Footer from './MyComponents/Partials/Footer.jsx';
+import Home from './MyComponents/Main/Home.jsx';
+import SignUp from './MyComponents/User/SignUp.jsx';
+import Contact from './MyComponents/Main/Contact.jsx';
+import About from './MyComponents/Main/About.jsx';
+import Jobs from './MyComponents/Main/Jobs.jsx';
+import Services from './MyComponents/Main/Services.jsx';
+import Training from './MyComponents/Main/Training.jsx';
+import Technology from './MyComponents/Main/Technology/Technology';
+import IncidentReporting from './MyComponents/Main/Technology/IncidentReporting.jsx';
+import ToursCheckpoints from './MyComponents/Main/Technology/ToursCheckpoints.jsx';
+import DispatchTasks from './MyComponents/Main/Technology/DispatchTasks.jsx';
+import ReportsData from './MyComponents/Main/Technology/ReportsData.jsx';
+import Communication from './MyComponents/Main/Technology/Communication.jsx';
+import MobilePatrols from './MyComponents/Main/Technology/MobilePatrols.jsx';
+import OrganisationStructure from './MyComponents/Main/OrganisationStructure.jsx';
+import HarassementPolicy from './MyComponents/Main/HarassementPolicy';
+import Personell from './MyComponents/Main/Personell';
+import ScrollToTop from './Functions/ScrollToTop';
 
-import SignupForStudents from "./MyComponents/DashBoard/Student/Signup";
-import LoginForStudent from "./MyComponents/DashBoard/Student/Login";
-import StudentHome from "./MyComponents/DashBoard/Student/Home.jsx";
-import StudentCalendar from "./MyComponents/DashBoard/Student/Calendar.jsx";
-import StudentPurchase from "./MyComponents/DashBoard/Student/PurchaseCourse.jsx";
-import StudentCourse from "./MyComponents/DashBoard/Student/Training";
-import StudentContact from "./MyComponents/DashBoard/Student/Contact";
-import StudentHistory from "./MyComponents/DashBoard/Student/History";
-import ChangePassword from "./MyComponents/DashBoard/Student/ChangePassword";
-import Mypurchases from "./MyComponents/DashBoard/Student/MyPurchases";
+import SignupForStudents from './MyComponents/DashBoard/Student/Signup';
+import LoginForStudent from './MyComponents/DashBoard/Student/Login';
+import StudentHome from './MyComponents/DashBoard/Student/Home.jsx';
+import StudentCalendar from './MyComponents/DashBoard/Student/Calendar.jsx';
+import StudentPurchase from './MyComponents/DashBoard/Student/PurchaseCourse.jsx';
+import StudentCourse from './MyComponents/DashBoard/Student/Training';
+import StudentContact from './MyComponents/DashBoard/Student/Contact';
+import StudentHistory from './MyComponents/DashBoard/Student/History';
+import ChangePassword from './MyComponents/DashBoard/Student/ChangePassword';
+import Mypurchases from './MyComponents/DashBoard/Student/MyPurchases';
 
-import LoginForAdmin from "./MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin";
-import AdminHome from "./MyComponents/DashBoard/Admin/Home";
-import AdminHomeControls from "./MyComponents/DashBoard/Admin/HomePageControls";
-import AdminStatistics from "./MyComponents/DashBoard/Admin/Statistics";
-import AdminCourseControl from "./MyComponents/DashBoard/Admin/CourseControl";
-import AdminContactControl from "./MyComponents/DashBoard/Admin/ContactFormMessages";
-import AdminLmsHome from "./MyComponents/DashBoard/Admin/LmsHome";
-import AdminPasswordChange from "./MyComponents/DashBoard/Admin/ChangePassword";
-import ManageCoupons from "./MyComponents/DashBoard/Admin/Components/LMS/Form/Course/ManageCoupon";
+import LoginForAdmin from './MyComponents/DashBoard/Admin/AdminControl/LoginForAdmin';
+import AdminHome from './MyComponents/DashBoard/Admin/Home';
+import AdminHomeControls from './MyComponents/DashBoard/Admin/HomePageControls';
+import AdminStatistics from './MyComponents/DashBoard/Admin/Statistics';
+import AdminCourseControl from './MyComponents/DashBoard/Admin/CourseControl';
+import AdminContactControl from './MyComponents/DashBoard/Admin/ContactFormMessages';
+import AdminLmsHome from './MyComponents/DashBoard/Admin/LmsHome';
+import AdminPasswordChange from './MyComponents/DashBoard/Admin/ChangePassword';
+import ManageCoupons from './MyComponents/DashBoard/Admin/Components/LMS/Form/Course/ManageCoupon';
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getContact } from "./context/actions/adminActions/contactAction";
-import { getTestimonial } from "./context/actions/adminActions/testimonialAction";
-import { getEOM } from "./context/actions/adminActions/eomAction";
-import { getClientCarousel } from "./context/actions/adminActions/clientsAction";
-import { getTeam } from "./context/actions/adminActions/teamAction";
-import HomeRoute from "./MyComponents/Main/homeRoutes";
-import { getToken } from "./context/actions/authActions/setStorageAction";
-import { getUser } from "./context/actions/authActions/getUserAction";
-import { useSelector } from "react-redux";
-import UploadDocs from "./MyComponents/DashBoard/Student/UploadDocs";
-import MyTranscripts from "./MyComponents/DashBoard/Student/MyTranscripts";
-import LmsInstructor from "./MyComponents/DashBoard/Admin/LmsInstructor";
-import LmsStudent from "./MyComponents/DashBoard/Admin/LmsStudent";
-import LmsLicense from "./MyComponents/DashBoard/Admin/LmsLicense";
-import CoursePage from "./MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/CoursePage";
-import ModulePage from "./MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/ModulePage";
-import ChapterPage from "./MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/ChapterPage";
-import PaymentPage from "./MyComponents/DashBoard/Student/PaymentPage";
-import Course from "./MyComponents/DashBoard/Student/Course";
-import Modules from "./MyComponents/DashBoard/Student/Modules";
-import Chapter from "./MyComponents/DashBoard/Student/Chapter";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getContact } from './context/actions/adminActions/contactAction';
+import { getTestimonial } from './context/actions/adminActions/testimonialAction';
+import { getEOM } from './context/actions/adminActions/eomAction';
+import { getClientCarousel } from './context/actions/adminActions/clientsAction';
+import { getTeam } from './context/actions/adminActions/teamAction';
+import HomeRoute from './MyComponents/Main/homeRoutes';
+import { getToken } from './context/actions/authActions/setStorageAction';
+import { getUser } from './context/actions/authActions/getUserAction';
+import { useSelector } from 'react-redux';
+import UploadDocs from './MyComponents/DashBoard/Student/UploadDocs';
+import MyTranscripts from './MyComponents/DashBoard/Student/MyTranscripts';
+import LmsInstructor from './MyComponents/DashBoard/Admin/LmsInstructor';
+import LmsStudent from './MyComponents/DashBoard/Admin/LmsStudent';
+import LmsLicense from './MyComponents/DashBoard/Admin/LmsLicense';
+import CoursePage from './MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/CoursePage';
+import ModulePage from './MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/ModulePage';
+import ChapterPage from './MyComponents/DashBoard/Admin/Components/LMS/Form/CoursePages/ChapterPage';
+import PaymentPage from './MyComponents/DashBoard/Student/PaymentPage';
+import Course from './MyComponents/DashBoard/Student/Course';
+import Modules from './MyComponents/DashBoard/Student/Modules';
+import Chapter from './MyComponents/DashBoard/Student/Chapter';
+import ForgetPassword from './MyComponents/Main/ForgetPassword';
+import ForgetPasswordEnterEmail from './MyComponents/Main/ForgotPasswordEnterEmail';
 
 function App() {
   const dispatch = useDispatch();
@@ -118,6 +120,17 @@ function App() {
             path="/dashboard/student/signup"
             component={SignupForStudents}
           />
+          <HomeRoute
+            exact
+            path="/forgot-pass"
+            component={ForgetPasswordEnterEmail}
+          />
+
+          <HomeRoute
+            path="/forgot-pass/:verifyToken"
+            component={ForgetPassword}
+          />
+
           <StudentRoutes
             path="/dashboard/student/home"
             component={StudentHome}

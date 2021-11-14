@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { getUser } from '../../../context/actions/authActions/getUserAction';
 import axiosInstance from '../../../helpers/axiosInstance';
 import SideLine from '../../Components/SideLine';
-import PayPal from './PayPal';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
 
 export default function PaymentPage() {
   const token = JSON.parse(localStorage.getItem('jwt'));
@@ -17,6 +17,8 @@ export default function PaymentPage() {
   const [couponCode, setCouponCode] = useState('');
   const [couponMsg, setCouponMsg] = useState(null);
   const [couponError, setCouponError] = useState(false);
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     dispatch(getUser());
@@ -40,7 +42,7 @@ export default function PaymentPage() {
     e.preventDefault();
     axiosInstance
       .post(
-        '/coupon/applyCoupon',
+        '/coupon/checkCoupon',
         { couponCode },
         {
           headers: {
@@ -49,18 +51,35 @@ export default function PaymentPage() {
         },
       )
       .then((res) => {
+        setCouponDiscount(res?.data?.data?.discount);
         setCouponMsg(res?.data?.message);
         setCouponError(false);
       })
       .catch((err) => {
+        setCouponDiscount(0);
         setCouponMsg(err?.response?.data?.error);
         setCouponError(true);
       });
   };
 
+  useEffect(() => {
+    if (couponCode === '') {
+      setCouponDiscount(0);
+    }
+  }, [couponCode]);
+
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
       <div className="font-for-para">
+        {/* <PayPal
+          show={show}
+          setShow={setShow}
+          course={course}
+          price={
+            course?.Course?.price -
+            (course?.Course?.price * couponDiscount) / 100
+          }
+        /> */}
         <div className="px-2 md:px-0 xl:px-0 max-w-1366 mx-auto">
           <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
             CHECKOUT
@@ -78,15 +97,33 @@ export default function PaymentPage() {
                 {course?.Course?.description}
               </p>
             </div>
-            {checkout ? (
-              <PayPal course={course} />
-            ) : (
-              <div className="flex items-start w-5/12">
+            <div className="flex flex-col w-1/2 justify-end items-end pl-6 mt-8">
+              <div className="w-full">
+                <h1 className="w-full flex justify-between text-xl font-bold">
+                  <span>Price</span>
+                  <span>$ {course?.Course?.price}</span>
+                </h1>
+                <h1 className="w-full flex justify-between text-xl font-bold">
+                  <span>Coupon Discount</span>
+                  <span>
+                    - $ {(course?.Course?.price * couponDiscount) / 100}
+                  </span>
+                </h1>
+                <h1 className="w-full mt-2  border-t-2 flex justify-between text-2xl font-bold">
+                  <span>Total</span>
+                  <span>
+                    $
+                    {course?.Course?.price -
+                      (course?.Course?.price * couponDiscount) / 100}
+                  </span>
+                </h1>
+              </div>
+              <div className="flex items-start w-full mt-6">
                 <div className="w-8/12 mr-4">
                   <input
                     type="text"
                     placeholder="Enter Coupon Code"
-                    className="bg-client p-4 w-full rounded-lg"
+                    className="bg-client p-4 w-full rounded-md"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                   />
@@ -102,12 +139,45 @@ export default function PaymentPage() {
                 </div>
                 <button
                   onClick={(e) => applyCoupon(e)}
-                  className=" w-4/12 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-lg"
+                  className=" w-4/12 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-md"
                 >
                   APPLY COUPON
                 </button>
               </div>
-            )}
+              <div className="w-full mt-6 z-0">
+                <PayPalScriptProvider
+                  options={{
+                    'client-id': 'test',
+                  }}
+                >
+                  <PayPalButtons
+                    style={{ layout: 'horizontal' }}
+                    fundingSource={undefined}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        intent: 'CAPTURE',
+                        purchase_units: [
+                          {
+                            description: course?.Course?.name,
+                            amount: {
+                              currency_code: 'USD',
+                              value: 1000,
+                            },
+                          },
+                        ],
+                      });
+                    }}
+                    onApprove={async (data, actions) => {
+                      const order = await actions.order.capture();
+                      console.log(order);
+                    }}
+                    onError={(err) => {
+                      console.log(err);
+                    }}
+                  />
+                </PayPalScriptProvider>
+              </div>
+            </div>
           </div>
         </div>
       </div>
