@@ -131,7 +131,7 @@ function App() {
             component={StudentPurchase}
           />
           <StudentRoutes
-            path="/dashboard/student/payment"
+            path="/dashboard/student/payment/:courseId"
             component={PaymentPage}
           />
 

@@ -1,12 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import axiosInstance from '../../../helpers/axiosInstance';
 import SideLine from '../../Components/SideLine';
 
 export default function PurchaseCourse() {
   const [faq, setFaq] = useState(0);
   const address = useSelector((state) => state.contact.address);
   const history = useHistory();
+  const token = JSON.parse(localStorage.getItem('jwt'));
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axiosInstance
+      .get('/material/getAllCourses', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setLoading(false);
+        setCourses(res.data.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  }, [token]);
+
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
       <div className="font-for-para">
@@ -36,7 +58,32 @@ export default function PurchaseCourse() {
                 training.
               </p>
 
-              <div className="flex flex-row items-stretch w-full mt-8 mb-6">
+              {courses.map((c) => {
+                return (
+                  <>
+                    <div className="flex flex-row items-stretch w-full mt-8 mb-6">
+                      <SideLine />
+                      <h1 className="leading-tight text-3xl font-bold text-gray-3">
+                        {c?.name} {`$`}
+                        {c?.price}
+                      </h1>
+                    </div>
+                    <p className="leading-relaxed text-base font-medium text-gray-2 mb-6">
+                      {c?.description}
+                    </p>
+                    <button
+                      onClick={() => {
+                        history.push(`/dashboard/student/payment/${c?._id}`);
+                      }}
+                      className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8"
+                    >
+                      REGISTER
+                    </button>
+                  </>
+                );
+              })}
+
+              {/* <div className="flex flex-row items-stretch w-full mt-8 mb-6">
                 <SideLine />
                 <h1 className="leading-tight text-3xl font-bold text-gray-3">
                   Basic Security Traning Course (online) $149.99
@@ -56,9 +103,9 @@ export default function PurchaseCourse() {
                 className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8"
               >
                 REGISTER
-              </button>
+              </button> */}
 
-              <div className="flex flex-row items-stretch w-full mt-8 mb-6">
+              {/* <div className="flex flex-row items-stretch w-full mt-8 mb-6">
                 <SideLine />
                 <h1 className="leading-tight text-3xl font-bold text-gray-3">
                   Basic Security Training Course – (In-class room) $199.99
@@ -89,7 +136,7 @@ export default function PurchaseCourse() {
               </ul>
               <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
                 REGISTER
-              </button>
+              </button> */}
 
               <div className="flex flex-row items-stretch w-full mt-8 mb-8">
                 <SideLine />
