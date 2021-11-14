@@ -1,54 +1,62 @@
-import { useFormik } from "formik";
-import React from "react";
-import axiosInstance from "../../../../../helpers/axiosInstance";
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
 
-const JobSearch = () => {
+const JobSearch = ({ user }) => {
+  const dispatch = useDispatch();
+
   const validate = (values) => {
     const errors = {};
-    if (!values.dateOfBirth) {
-      errors.dateOfBirth = "*Required";
+    if (!values.looking) {
+      errors.looking = '*Required';
     }
-    if (!values.gender) {
-      errors.gender = "*Required";
+    if (!values.wantEmail) {
+      errors.wantEmail = '*Required';
     }
-    if (!values.weight) {
-      errors.weight = "*Required";
+    if (!values.prefferedCity) {
+      errors.prefferedCity = '*Required';
     }
-    if (!values.height) {
-      errors.height = "*Required";
+    if (!values.availability) {
+      errors.availability = '*Required';
     }
-    if (!values.eyeColor) {
-      errors.eyeColor = "*Required";
+    if (!values.wageRange) {
+      errors.wageRange = '*Required';
     }
-    if (!values.hairColor) {
-      errors.hairColor = "*Required";
-    }
-
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      dateOfBirth: "",
-      gender: "",
-      weight: "",
-      height: "",
-      eyeColor: "",
-      hairColor: "",
+      looking: '',
+      wantEmail: '',
+      prefferedCity: '',
+      availability: '',
+      wageRange: '',
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      const token = JSON.parse(localStorage.getItem("jwt"));
-      axiosInstance
-        .put("/user/update", values, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => resetForm())
-        .catch((err) => {});
+      dispatch(
+        updateUser(
+          resetForm,
+          { jobSearch: values },
+          'Job Search Details updated',
+          user?.name,
+          user._id,
+        ),
+      );
     },
   });
+
+  useEffect(() => {
+    setValues({
+      looking: user?.jobSearch?.looking,
+      wantEmail: user?.jobSearch?.wantEmail,
+      prefferedCity: user?.jobSearch?.prefferedCity,
+      availability: user?.jobSearch?.availability,
+      wageRange: user?.jobSearch?.wageRange,
+    });
+  }, [setValues, user]);
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
@@ -70,20 +78,86 @@ const JobSearch = () => {
           <h1 className="text-lg text-gray-3 font-bold mx-5">Job Search</h1>
         </div>
 
-        <form className="flex flex-col text-black font-bold">
-          <label> Are you looking for a job?</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
-          <label> Email me about new opportunities?</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
-          <label> Preferred City of Employment</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
-          <label> Availability</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
-          <label> Wage Range</label>
-          <input className="border-b-2 border-black focus:border-red-1 focus:outline-none mb-4" />
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col text-black font-bold"
+        >
+          <div className="flex flex-col">
+            <label> Are you looking for a job?</label>
+            <select
+              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              {...getFieldProps('looking')}
+            >
+              <option value="" disabled selected></option>
+              <option value="YES">Yes</option>
+              <option value="NO">No</option>
+            </select>
 
-          <button className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1">
-            Add
+            {errors.looking ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.looking}
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
+            <label> Email me about new opportunities?</label>
+            <select
+              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              {...getFieldProps('wantEmail')}
+            >
+              <option value="" disabled selected></option>
+              <option value="YES">Yes</option>
+              <option value="NO">No</option>
+            </select>
+
+            {errors.wantEmail ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.wantEmail}
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
+            <label> Preferred City of Employment</label>
+            <input
+              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              {...getFieldProps('prefferedCity')}
+            />
+
+            {errors.prefferedCity ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.prefferedCity}
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
+            <label> Availability</label>
+            <input
+              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              {...getFieldProps('availability')}
+            />
+            {errors.availability ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.availability}
+              </div>
+            ) : null}
+          </div>
+          <div className="flex flex-col mt-4">
+            <label> Wage Range</label>
+            <input
+              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+              {...getFieldProps('wageRange')}
+            />
+            {errors?.wageRange ? (
+              <div className="w-full text-xs text-red-400">
+                {errors?.wageRange}
+              </div>
+            ) : null}
+          </div>
+          <button
+            type="submit"
+            className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
+          >
+            Update
           </button>
         </form>
       </div>

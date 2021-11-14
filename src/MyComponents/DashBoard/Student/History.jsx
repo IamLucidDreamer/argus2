@@ -72,7 +72,7 @@ const History = () => {
                 {a.activityDetails}
               </h1>
               <div className="flex flow-col items-center justify-center text-center lg:w-3/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-                <h1>{a.userName}</h1>
+                <h1>{a.createdBy}</h1>
               </div>
             </div>
             <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>

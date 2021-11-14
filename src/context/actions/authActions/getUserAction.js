@@ -34,7 +34,7 @@ const getUser = () => {
   };
 };
 
-const updateUser = (resetForm, values, activityDetails) => {
+const updateUser = (resetForm, values, activityDetails, userName, id) => {
   return (dispatch) => {
     const token = JSON.parse(localStorage.getItem('jwt'));
     axiosInstance
@@ -45,22 +45,22 @@ const updateUser = (resetForm, values, activityDetails) => {
       })
       .then((res) => {
         dispatch(getUser());
-        dispatch(userActivity(activityDetails));
+        dispatch(userActivity(activityDetails, userName, id));
         resetForm();
       })
       .catch((err) => {});
   };
 };
 
-const userActivity = (activityDetails, userName) => {
+const userActivity = (activityDetails, userName, id) => {
   return (dispatch) => {
     const token = JSON.parse(localStorage.getItem('jwt'));
-    const id = JSON.parse(localStorage.getItem('id'));
     axiosInstance
       .post(
         `/user-activity/create/${id}`,
         {
           activityDetails: activityDetails,
+          createdBy: userName,
         },
         {
           headers: {
@@ -68,7 +68,7 @@ const userActivity = (activityDetails, userName) => {
           },
         },
       )
-      .then((res) => console.log(res));
+      .then((res) => {});
   };
 };
 

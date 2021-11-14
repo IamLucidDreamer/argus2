@@ -8,6 +8,7 @@ import Alert from '../../../../../Components/Alert';
 import { useDispatch } from 'react-redux';
 import { get_Class } from '../../../../../../context/actions/lmsActions/classActions';
 import { getUsers } from '../../../../../../context/actions/lmsActions/userAction';
+import { userActivity } from '../../../../../../context/actions/authActions/getUserAction';
 
 const EnrollStudent = () => {
   const students = useSelector((state) => state.users.students);
@@ -137,6 +138,16 @@ const EnrollStudent = () => {
             show: true,
             message: 'Students enrolled successfully',
             success: true,
+          });
+
+          selected.forEach((element) => {
+            dispatch(
+              userActivity(
+                `Enrolled in ${currentClass?.classname} class`,
+                'Admin',
+                element.studentId,
+              ),
+            );
           });
         })
         .catch((err) => {

@@ -68,7 +68,15 @@ const ContactDetails = ({ user }) => {
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
-        dispatch(updateUser(resetForm, values, 'Contact Details updated'));
+        dispatch(
+          updateUser(
+            resetForm,
+            values,
+            'Contact Details updated',
+            user?.name,
+            user?._id,
+          ),
+        );
       },
     });
   const [country, setCountry] = useState(null);

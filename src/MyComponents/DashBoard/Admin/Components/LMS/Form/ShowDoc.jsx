@@ -1,25 +1,29 @@
-import { IconButton } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import axiosInstance from "../../../../../../helpers/axiosInstance";
-import Alert from "../../../../../Components/Alert";
-import Loader from "react-loader-spinner";
-import { base64StringToBlob } from "blob-util";
+import { IconButton } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import axiosInstance from '../../../../../../helpers/axiosInstance';
+import Alert from '../../../../../Components/Alert';
+import Loader from 'react-loader-spinner';
+import { base64StringToBlob } from 'blob-util';
+import { useDispatch } from 'react-redux';
+import { userActivity } from '../../../../../../context/actions/authActions/getUserAction';
 
 const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const [docData, setDocData] = useState(null);
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState('');
   const [refresh, setRefresh] = useState(null);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
   const [b64, setB64] = useState(null);
 
   const [loading, setLoading] = useState(false);
   const [blob, setBlob] = useState(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(true);
@@ -32,11 +36,11 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
       .then((res) => {
         setLoading(false);
         setDocData(res.data.data);
-        setB64(Buffer.from(res?.data?.data?.data).toString("base64"));
+        setB64(Buffer.from(res?.data?.data?.data).toString('base64'));
         setBlob(
           window?.URL?.createObjectURL(
-            base64StringToBlob(b64, docData?.contentType)
-          )
+            base64StringToBlob(b64, docData?.contentType),
+          ),
         );
       })
       .catch((err) => {
@@ -48,7 +52,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
   return (
     <div
       className={`${
-        show ? "block" : "hidden"
+        show ? 'block' : 'hidden'
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
       <div className="bg-white rounded-lg w-11/12 lg:w-3/4 2xl:1/2 ">
@@ -70,7 +74,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
           </div>
         ) : (
           <>
-            {" "}
+            {' '}
             <div className="w-full">
               {showAlert.show ? (
                 <div className="mr-16 mt-4 ml-4">
@@ -89,9 +93,9 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                     download={`${docData?.name}(${docData?.userId}_${
                       docData?.username
                     }).${
-                      docData?.contentType === "application/pdf"
-                        ? "pdf"
-                        : "jpeg"
+                      docData?.contentType === 'application/pdf'
+                        ? 'pdf'
+                        : 'jpeg'
                     }`}
                     href={blob}
                   >
@@ -124,13 +128,13 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                       Document Status:
                       <span className="font-bold ml-3">
                         {docData?.isApproved === null
-                          ? "No Action Taken"
+                          ? 'No Action Taken'
                           : null}
-                        {docData?.isApproved === true ? "Approved" : null}
-                        {docData?.isApproved === false ? "Disapproved" : null}
+                        {docData?.isApproved === true ? 'Approved' : null}
+                        {docData?.isApproved === false ? 'Disapproved' : null}
                       </span>
                     </h1>
-                    {docData?.note !== "" && docData?.note !== null ? (
+                    {docData?.note !== '' && docData?.note !== null ? (
                       <h1 className=" text-gray-2">
                         Note:
                         <span className="font-bold ml-3">{docData?.note}</span>
@@ -158,22 +162,29 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                                     headers: {
                                       Authorization: `Bearer ${token}`,
                                     },
-                                  }
+                                  },
                                 )
                                 .then((res) => {
+                                  dispatch(
+                                    userActivity(
+                                      `${docData?.name} approved`,
+                                      'Admin',
+                                      docData?.userId,
+                                    ),
+                                  );
                                   refreshDoc(res);
                                   setRefresh(res);
                                   setShowAlert({
                                     show: true,
-                                    message: "Document approved",
+                                    message: 'Document approved',
                                     success: true,
                                   });
-                                  setNote("");
+                                  setNote('');
                                 })
                                 .catch((err) => {
                                   setShowAlert({
                                     show: true,
-                                    message: "Error approving document",
+                                    message: 'Error approving document',
                                     success: false,
                                   });
                                 });
@@ -193,22 +204,29 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                                   headers: {
                                     Authorization: `Bearer ${token}`,
                                   },
-                                }
+                                },
                               )
                               .then((res) => {
+                                dispatch(
+                                  userActivity(
+                                    `${docData?.name} disapproved`,
+                                    'Admin',
+                                    docData?.userId,
+                                  ),
+                                );
                                 refreshDoc(res);
                                 setRefresh(res);
                                 setShowAlert({
                                   show: true,
-                                  message: "Document disapproved",
+                                  message: 'Document disapproved',
                                   success: true,
                                 });
-                                setNote("");
+                                setNote('');
                               })
                               .catch((err) => {
                                 setShowAlert({
                                   show: true,
-                                  message: "Error disapproving document",
+                                  message: 'Error disapproving document',
                                   success: false,
                                 });
                               });

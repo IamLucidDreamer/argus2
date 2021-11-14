@@ -1,34 +1,9 @@
-import { useFormik } from "formik";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { updateUser } from "../../../../../context/actions/authActions/getUserAction";
+import { useFormik } from 'formik';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
 
-const JobHistory = ({ user }) => {
-  const dispatch = useDispatch();
-
-  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
-    initialValues: {
-      category: "",
-      companyName: "",
-      companyAddress: "",
-      employeeDuration: { from: "", to: "" },
-      reasonForLeaving: "",
-    },
-    onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, "Job history updated"));
-    },
-  });
-
-  useEffect(() => {
-    setValues({
-      category: user?.category,
-      companyName: user?.companyName,
-      companyAddress: user?.companyAddress,
-      employeeDuration: user?.employeeDuration,
-      reasonForLeaving: user?.reasonForLeaving,
-    });
-  }, [user, setValues]);
-
+const JobHistory = ({ user, setShow }) => {
   return (
     <div className="w-full lg:w-1/2 mx-auto">
       <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
@@ -48,85 +23,81 @@ const JobHistory = ({ user }) => {
           </span>
           <h1 className="text-lg text-gray-3 font-bold mx-5">Job History</h1>
         </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col text-black font-bold"
-        >
-          <div className="flex flex-col">
-            <label> Category</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("category")}
-            />
-            {errors.category ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.category}
-              </div>
-            ) : null}
-          </div>
-          <div className="flex flex-col mt-4">
-            <label> Company Name</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("companyName")}
-            />
-            {errors.companyName ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.companyName}
-              </div>
-            ) : null}
-          </div>
-          <div className="flex flex-col mt-4">
-            <label> Address</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("companyAddress")}
-            />
-            {errors.companyAddress ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.companyAddress}
-              </div>
-            ) : null}
-          </div>
-          <div className="flex flex-col mt-4 ">
-            <label> Employment Duration</label>
-            <div className="w-full flex">
-              <input
-                className="mr-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
-                placeholder="from"
-                type="date"
-                {...getFieldProps("employeeDuration.from")}
-              />
-              <label> To</label>
-              <input
-                className="ml-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
-                placeholder="to"
-                type="date"
-                {...getFieldProps("employeeDuration.to")}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col mt-4">
-            <label> Reason for Leaving</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps("reasonForLeaving")}
-            />
-            {errors.reasonForLeaving ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.reasonForLeaving}
-              </div>
-            ) : null}
-          </div>
-
+        {user?.employmentRecord?.length === 0 ? (
+          <p className="w-full text-center text-xl font-bold text-gray-400">
+            Add employment record
+          </p>
+        ) : (
+          <>
+            {user?.employmentRecord?.map((m, index) => {
+              return (
+                <form className="flex flex-col text-black font-bold mb-4">
+                  <label className="text-red-1">#{index + 1}</label>
+                  <div className="flex flex-col">
+                    <label> Category</label>
+                    <input
+                      disabled
+                      className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+                      value={m?.category}
+                    />
+                  </div>
+                  <div className="flex flex-col mt-4">
+                    <label> Company Name</label>
+                    <input
+                      disabled
+                      className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+                      value={m?.companyName}
+                    />
+                  </div>
+                  <div className="flex flex-col mt-4">
+                    <label> Address</label>
+                    <input
+                      disabled
+                      className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+                      value={m?.companyAddress}
+                    />
+                  </div>
+                  <div className="flex flex-col mt-4 ">
+                    <label> Employment Duration</label>
+                    <div className="w-full flex">
+                      <input
+                        disabled
+                        className="mr-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
+                        placeholder="from"
+                        type="date"
+                        value={m?.employeeDurationFrom}
+                      />
+                      <label> To</label>
+                      <input
+                        disabled
+                        className="ml-2 w-full border-b-2 border-black focus:border-red-1 focus:outline-none"
+                        placeholder="to"
+                        type="date"
+                        value={m?.employeeDurationTo}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col mt-4">
+                    <label> Reason for Leaving</label>
+                    <input
+                      disabled
+                      className="border-b-2 border-black focus:border-red-1 focus:outline-none"
+                      value={m?.reasonForLeaving}
+                    />
+                  </div>
+                </form>
+              );
+            })}
+          </>
+        )}
+        <div className="w-full flex justify-center">
           <button
-            type="submit"
+            onClick={() => setShow(true)}
             className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
           >
-            Add
+            {user?.employmentRecord?.length === 0 ? 'Add' : 'Add More +'}
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

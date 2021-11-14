@@ -40,7 +40,15 @@ const BackgroundDetails = ({ user }) => {
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, 'BackGround Details updated'));
+      dispatch(
+        updateUser(
+          resetForm,
+          values,
+          'BackGround Details updated',
+          user?.name,
+          user?._id,
+        ),
+      );
     },
   });
 

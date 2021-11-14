@@ -1,15 +1,16 @@
-import { Pagination } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
-import axiosInstance from "../../../../../../helpers/axiosInstance";
-import Alert from "../../../../../Components/Alert";
-import ProfilePicture from "./../../../../../../argus website/PNG/IMG_0118.png";
-import Table from "../../../../../Components/reactTable";
-import SelectColumnFilter from "../../../../../../helpers/TableFilter";
-import { useSelector } from "react-redux";
-import Loader from "react-loader-spinner";
-import Timeout from "smart-timeout";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { IconButton } from "@mui/material";
+import { Pagination } from '@mui/material';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import axiosInstance from '../../../../../../helpers/axiosInstance';
+import Alert from '../../../../../Components/Alert';
+import ProfilePicture from './../../../../../../argus website/PNG/IMG_0118.png';
+import Table from '../../../../../Components/reactTable';
+import SelectColumnFilter from '../../../../../../helpers/TableFilter';
+import { useSelector } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import Timeout from 'smart-timeout';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import { IconButton } from '@mui/material';
+import Countdown from 'react-countdown';
 
 const Message = () => {
   const [messageInput, setMessageInput] = useState(false);
@@ -18,29 +19,32 @@ const Message = () => {
   const [noOfPages, setNoOfPages] = useState(0);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
   const [showFilter, setShowFilter] = useState(false);
   const [selected, setSelected] = useState([]);
 
   const [message, setMessage] = useState({
-    subject: "",
-    message: "",
+    subject: '',
+    message: '',
   });
   const [refreshMsg, setRefreshMsg] = useState(null);
   const [msgLoading, setMsgLoading] = useState(false);
+  const [started, setStarted] = useState(false);
   const users = useSelector((state) => state.users.users);
+
+  const timerRef = useRef();
 
   users.forEach((element) => {
     for (const key in element) {
       if (element[key] === null) {
-        element[key] = "";
+        element[key] = '';
       }
     }
   });
 
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   useEffect(() => {
     setMsgLoading(true);
     axiosInstance
@@ -58,7 +62,7 @@ const Message = () => {
         setMsgLoading(false);
         setShowAlert({
           show: true,
-          message: "Error fetching message",
+          message: 'Error fetching message',
           success: false,
         });
       });
@@ -66,115 +70,100 @@ const Message = () => {
 
   const headCells = [
     {
-      id: "Student ID",
-      accessor: "_id",
-      Header: "User ID",
+      id: 'Student ID',
+      accessor: '_id',
+      Header: 'User ID',
       Filter: SelectColumnFilter,
-      filter: "includes",
+      filter: 'includes',
     },
     {
-      accessor: "name",
-      Header: "User Name",
+      accessor: 'name',
+      Header: 'User Name',
     },
     {
-      accessor: "phone",
-      Header: "Phone No.",
+      accessor: 'phone',
+      Header: 'Phone No.',
     },
     {
-      id: "Registration",
-      accessor: "createdAt",
-      Header: "Registration",
+      id: 'Registration',
+      accessor: 'createdAt',
+      Header: 'Registration',
     },
     {
-      id: "City",
-      accessor: "city",
-      Header: "City",
+      id: 'City',
+      accessor: 'city',
+      Header: 'City',
       Filter: SelectColumnFilter,
-      filter: "includes",
+      filter: 'includes',
     },
     {
-      id: "Country",
-      accessor: "country",
-      Header: "Country",
+      id: 'Country',
+      accessor: 'country',
+      Header: 'Country',
       Filter: SelectColumnFilter,
-      filter: "includes",
+      filter: 'includes',
     },
     {
-      id: "Province",
-      accessor: "province",
-      Header: "Province",
+      id: 'Province',
+      accessor: 'province',
+      Header: 'Province',
       Filter: SelectColumnFilter,
-      filter: "includes",
+      filter: 'includes',
     },
     {
-      id: "Gender",
-      accessor: "gender",
-      Header: "Gender",
+      id: 'Gender',
+      accessor: 'gender',
+      Header: 'Gender',
       Filter: SelectColumnFilter,
-      filter: "includes",
+      filter: 'includes',
     },
   ];
   const columns = useMemo(() => headCells, []);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-    if (
-      !(
-        selected.length === 0 ||
-        message.subject === "" ||
-        message.message === ""
-      )
-    ) {
-      let recipients = [];
-      selected.forEach((element) => {
-        recipients.push({ userId: element.studentId });
-      });
-      Timeout.set(
-        "message",
-        () => {
-          axiosInstance
-            .post(
-              `/message/create`,
-              {
-                subject: message.subject,
-                message: message.message,
-                recipients,
-              },
-              {
-                headers: {
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            )
-            .then((res) => {
-              setPage(1);
-              setRefreshMsg(res);
-              setMessage({ subject: "", message: "" });
-              setMessageInput(false);
-              setShowAlert({
-                show: true,
-                message: "Message added successfully",
-                success: true,
-              });
-            })
-            .catch((err) => {
-              setShowAlert({
-                show: true,
-                message: "Error adding message",
-                success: false,
-              });
-            });
+  const sendMessage = () => {
+    let recipients = [];
+    selected.forEach((element) => {
+      recipients.push({ userId: element.studentId });
+    });
+    axiosInstance
+      .post(
+        `/message/create`,
+        {
+          subject: message.subject,
+          message: message.message,
+          recipients,
         },
-        6000
-      );
-    } else {
-      setShowAlert({
-        show: true,
-        message: "Select all fields",
-        success: false,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        setPage(1);
+        setRefreshMsg(res);
+        setMessage({ subject: '', message: '' });
+        setMessageInput(false);
+        setShowAlert({
+          show: true,
+          message: 'Message added successfully',
+          success: true,
+        });
+      })
+      .catch((err) => {
+        setShowAlert({
+          show: true,
+          message: 'Error adding message',
+          success: false,
+        });
       });
-    }
   };
+
+  const renderer = ({ seconds }) => {
+    return <span>{seconds} sec left</span>;
+  };
+
+  const time = Date.now() + 10000;
 
   return (
     <div>
@@ -190,7 +179,7 @@ const Message = () => {
           NEW MESSAGE
         </button>
       </div>
-      <div className={messageInput ? "block" : "hidden"}>
+      <div className={messageInput ? 'block' : 'hidden'}>
         <div className="flex flex-wrap justify-center items-center text-lg font-bold">
           <input
             type="text"
@@ -232,18 +221,44 @@ const Message = () => {
             </div>
           </div>
           <button
-            onClick={(e) => {
-              if (Timeout.pending("message")) {
-                Timeout.clear("message");
+            onClick={() => {
+              if (started) {
+                timerRef?.current?.api?.stop();
+                setStarted(false);
               } else {
-                sendMessage(e);
+                if (
+                  !(
+                    selected.length === 0 ||
+                    message.subject === '' ||
+                    message.message === ''
+                  )
+                ) {
+                  timerRef?.current?.api?.start();
+                  setStarted(true);
+                } else {
+                  setShowAlert({
+                    show: true,
+                    message: 'Select all fields',
+                    success: false,
+                  });
+                }
               }
             }}
             className="my-8 w-56 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
           >
-            {Timeout.pending("message")
-              ? `${Math.ceil(Timeout.remaining("message") / 1000)} sec`
-              : "ADD MESSAGE"}
+            {started ? (
+              <Countdown
+                ref={timerRef}
+                renderer={renderer}
+                date={new Date(time)}
+                onComplete={() => {
+                  sendMessage();
+                  setStarted(false);
+                }}
+              />
+            ) : (
+              'ADD MESSAGE'
+            )}
           </button>
         </div>
       </div>
@@ -276,11 +291,36 @@ const Message = () => {
                     />
                     <div className="border-3 border-white px-2 w-full rounded-lg">
                       <div className="block mb-1 font-bold">{m.userName}</div>
-                      <div className="block mb-1 text-xs">CEO</div>
+                      <div className="block mb-1 text-xs">{m?.position}</div>
                     </div>
                   </div>
                   <div>
-                    <IconButton>
+                    <IconButton
+                      onClick={() => {
+                        axiosInstance
+                          .delete(`/message/delete/${m._id}`, {
+                            headers: {
+                              Authorization: `Bearer ${token}`,
+                            },
+                          })
+                          .then((res) => {
+                            setShowAlert({
+                              show: true,
+                              message: 'Message deleted successfully',
+                              success: true,
+                            });
+
+                            setRefreshMsg(res);
+                          })
+                          .catch((err) => {
+                            setShowAlert({
+                              show: true,
+                              message: 'Error deleting message',
+                              error: false,
+                            });
+                          });
+                      }}
+                    >
                       <DeleteRoundedIcon fontSize="large" />
                     </IconButton>
                   </div>
@@ -288,12 +328,12 @@ const Message = () => {
                 <div className="font-bold mt-4 mb-1.5">{m?.subject}</div>
                 {m.message}
                 <div className="block mb-1 text-xs font-bold text-right mt-1">
-                  {new Date(m?.createdAt).toLocaleDateString("en-US", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
+                  {new Date(m?.createdAt).toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
                   })}
                 </div>
               </div>
