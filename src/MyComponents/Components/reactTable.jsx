@@ -9,8 +9,6 @@ import {
   useAsyncDebounce,
 } from 'react-table';
 import { Pagination } from '@mui/material';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 import './reactTable.css';
 
@@ -197,62 +195,51 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
           setGlobalFilter={setGlobalFilter}
         /> */}
       </div>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()}>
-                  {column.Header === 'Gender' ||
-                  column.Header === 'City' ||
-                  column.Header === 'Country' ||
-                  column.Header === 'Province' ? null : (
-                    <>
+      <div className="overflow-x-scroll lg:overflow-visible">
+        <table {...getTableProps()}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()}>
+                    {column.Header === 'Gender' ||
+                    column.Header === 'City' ||
+                    column.Header === 'Country' ||
+                    column.Header === 'Province' ? null : (
                       <div> {column.render('Header')}</div>
-                      <span>
-                        {column.isSorted ? (
-                          column.isSortedDesc ? (
-                            <ArrowDownwardIcon />
-                          ) : (
-                            <ArrowUpwardIcon />
-                          )
-                        ) : (
-                          ''
-                        )}
-                      </span>
-                    </>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>
-                      {cell.column.id === 'Gender' ||
-                      cell.column.id === 'City' ||
-                      cell.column.id === 'Country' ||
-                      cell.column.id === 'Province' ? null : (
-                        <div>
-                          {cell.column.id === 'Registration'
-                            ? new Date(cell.value).toDateString()
-                            : cell.render('Cell')}
-                        </div>
-                      )}
-                    </td>
-                  );
-                })}
+                    )}
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()}>
+                        {cell.column.id === 'Gender' ||
+                        cell.column.id === 'City' ||
+                        cell.column.id === 'Country' ||
+                        cell.column.id === 'Province' ? null : (
+                          <div>
+                            {cell.column.id === 'Registration'
+                              ? new Date(cell.value).toDateString()
+                              : cell.render('Cell')}
+                          </div>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {/* 
         Pagination can be built however you'd like. 
         This is just a very basic UI implementation:

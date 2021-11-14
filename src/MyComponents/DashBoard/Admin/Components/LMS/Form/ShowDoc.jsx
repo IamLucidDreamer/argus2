@@ -1,19 +1,19 @@
-import { IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import axiosInstance from '../../../../../../helpers/axiosInstance';
-import Alert from '../../../../../Components/Alert';
-import Loader from 'react-loader-spinner';
-import { base64StringToBlob } from 'blob-util';
+import { IconButton } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import axiosInstance from "../../../../../../helpers/axiosInstance";
+import Alert from "../../../../../Components/Alert";
+import Loader from "react-loader-spinner";
+import { base64StringToBlob } from "blob-util";
 
 const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [docData, setDocData] = useState(null);
-  const [note, setNote] = useState('');
+  const [note, setNote] = useState("");
   const [refresh, setRefresh] = useState(null);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
   const [b64, setB64] = useState(null);
@@ -32,11 +32,11 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
       .then((res) => {
         setLoading(false);
         setDocData(res.data.data);
-        setB64(Buffer.from(res?.data?.data?.data).toString('base64'));
+        setB64(Buffer.from(res?.data?.data?.data).toString("base64"));
         setBlob(
           window?.URL?.createObjectURL(
-            base64StringToBlob(b64, docData?.contentType),
-          ),
+            base64StringToBlob(b64, docData?.contentType)
+          )
         );
       })
       .catch((err) => {
@@ -48,11 +48,11 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
   return (
     <div
       className={`${
-        show ? 'block' : 'hidden'
+        show ? "block" : "hidden"
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
-      <div className="bg-white rounded-lg w-3/5 max-h-3/4 flex relative">
-        <div className="w-full flex justify-end p-4 absolute">
+      <div className="bg-white rounded-lg w-11/12 lg:w-3/4 2xl:1/2 ">
+        <div className="w-full flex justify-end p-0 md:p-4 relative top-0">
           <IconButton
             onClick={() => {
               setDocData(null);
@@ -60,7 +60,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
               setShow(false);
             }}
           >
-            <CloseRoundedIcon fontSize="large" />
+            <CloseRoundedIcon fontSize="small" />
           </IconButton>
         </div>
 
@@ -70,68 +70,68 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
           </div>
         ) : (
           <>
-            {' '}
+            {" "}
             <div className="w-full">
               {showAlert.show ? (
                 <div className="mr-16 mt-4 ml-4">
                   <Alert alert={showAlert} rmAlert={setShowAlert} />
                 </div>
               ) : null}
-              <div className="flex w-full p-6">
-                <div className="w-1/2 mr-4 flex flex-col items-center justify-center">
+              <div className="flex flex-col lg:flex-row w-full p-0.5 sm:p-6">
+                <div className="w-full lg:w-1/2 mr-4 flex flex-col items-center justify-center">
                   <img
-                    className="mb-2"
+                    className="mb-2 h-36 sm:h-72"
                     src={`data:image/png;base64,${b64}`}
                     alt=""
                   />
                   <a
-                    className="font-bold px-6 py-2 bg-red-1 text-white text-xl rounded-xl hover:bg-white hover:text-red-1 border-2 border-red-1"
+                    className="font-bold px-6 py-2 bg-red-1 text-white text-base sm:text-xl rounded-xl hover:bg-white hover:text-red-1 border-2 border-red-1"
                     download={`${docData?.name}(${docData?.userId}_${
                       docData?.username
                     }).${
-                      docData?.contentType === 'application/pdf'
-                        ? 'pdf'
-                        : 'jpeg'
+                      docData?.contentType === "application/pdf"
+                        ? "pdf"
+                        : "jpeg"
                     }`}
                     href={blob}
                   >
                     Download
                   </a>
                 </div>
-                <div className="w-1/2 mt-10">
-                  <div className="p-2 mb-4">
-                    <h1 className="text-2xl text-gray-2 ">
+                <div className="w-full lg:w-1/2 mt-2 sm:mt-10">
+                  <div className="p-2 mb-4 text-base sm:text-2xl">
+                    <h1 className=" text-gray-2 ">
                       Student Id:
                       <span className="font-bold ml-3">{docData?.userId}</span>
                     </h1>
-                    <h1 className="text-2xl text-gray-2">
+                    <h1 className=" text-gray-2">
                       Student Name:
                       <span className="font-bold ml-3">
                         {docData?.username}
                       </span>
                     </h1>
-                    <h1 className="text-2xl text-gray-2">
+                    <h1 className=" text-gray-2">
                       Document Name:
                       <span className="font-bold ml-3">{docData?.name}</span>
                     </h1>
-                    <h1 className="text-2xl text-gray-2">
+                    <h1 className=" text-gray-2">
                       Created At:
                       <span className="font-bold ml-3">
                         {new Date(docData?.createdAt).toDateString()}
                       </span>
                     </h1>
-                    <h1 className="text-2xl text-gray-2">
+                    <h1 className="text-gray-2">
                       Document Status:
                       <span className="font-bold ml-3">
                         {docData?.isApproved === null
-                          ? 'No Action Taken'
+                          ? "No Action Taken"
                           : null}
-                        {docData?.isApproved === true ? 'Approved' : null}
-                        {docData?.isApproved === false ? 'Disapproved' : null}
+                        {docData?.isApproved === true ? "Approved" : null}
+                        {docData?.isApproved === false ? "Disapproved" : null}
                       </span>
                     </h1>
-                    {docData?.note !== '' && docData?.note !== null ? (
-                      <h1 className="text-2xl text-gray-2">
+                    {docData?.note !== "" && docData?.note !== null ? (
+                      <h1 className=" text-gray-2">
                         Note:
                         <span className="font-bold ml-3">{docData?.note}</span>
                       </h1>
@@ -158,29 +158,29 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                                     headers: {
                                       Authorization: `Bearer ${token}`,
                                     },
-                                  },
+                                  }
                                 )
                                 .then((res) => {
                                   refreshDoc(res);
                                   setRefresh(res);
                                   setShowAlert({
                                     show: true,
-                                    message: 'Document approved',
+                                    message: "Document approved",
                                     success: true,
                                   });
-                                  setNote('');
+                                  setNote("");
                                 })
                                 .catch((err) => {
                                   setShowAlert({
                                     show: true,
-                                    message: 'Error approving document',
+                                    message: "Error approving document",
                                     success: false,
                                   });
                                 });
                             }}
-                            className="font-bold px-8 py-3 bg-green-1 text-white text-xl rounded-xl hover:bg-white hover:text-green-1 border-2 border-green-1 mr-2"
+                            className="w-1/2 sm:w-40 font-bold py-1 sm:py-3 bg-green-1 text-white text-base sm:text-xl rounded-xl hover:bg-white hover:text-green-1 border-2 border-green-1 mr-2"
                           >
-                            APPROVE DOC
+                            APPROVE
                           </button>
                         )}
                         <button
@@ -193,29 +193,29 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                                   headers: {
                                     Authorization: `Bearer ${token}`,
                                   },
-                                },
+                                }
                               )
                               .then((res) => {
                                 refreshDoc(res);
                                 setRefresh(res);
                                 setShowAlert({
                                   show: true,
-                                  message: 'Document disapproved',
+                                  message: "Document disapproved",
                                   success: true,
                                 });
-                                setNote('');
+                                setNote("");
                               })
                               .catch((err) => {
                                 setShowAlert({
                                   show: true,
-                                  message: 'Error disapproving document',
+                                  message: "Error disapproving document",
                                   success: false,
                                 });
                               });
                           }}
-                          className="font-bold px-8 py-3 bg-red-1 text-white text-xl rounded-xl hover:bg-white hover:text-red-1 border-2 border-red-1"
+                          className="w-1/2 sm:w-40 font-bold py-3 bg-red-1 text-white text-base sm:text-xl rounded-xl hover:bg-white hover:text-red-1 border-2 border-red-1"
                         >
-                          DISAPPROVE DOC
+                          DISAPPROVE
                         </button>
                       </div>
                     </div>

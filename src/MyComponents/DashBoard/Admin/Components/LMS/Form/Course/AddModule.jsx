@@ -79,7 +79,7 @@ const AddModule = ({ button, setButton, course }) => {
         onSubmit={handleSubmit}
         className="flex flex-wrap justify-center items-center text-lg font-bold"
       >
-        <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
           <div className="w-full lg:w-5/12">
             <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2">
               <Select
@@ -108,7 +108,7 @@ const AddModule = ({ button, setButton, course }) => {
               </div>
             ) : null}
           </div>
-          <div className="w-full lg:w-5/12">
+          <div className="w-full lg:w-5/12 mt-4 lg:mt-0">
             <input
               type="text"
               placeholder="Module Name"
@@ -124,7 +124,7 @@ const AddModule = ({ button, setButton, course }) => {
           <textarea
             type="textarea"
             placeholder="Module description"
-            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
+            className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 h-60"
             {...getFieldProps("description")}
           />
           {errors.description ? (

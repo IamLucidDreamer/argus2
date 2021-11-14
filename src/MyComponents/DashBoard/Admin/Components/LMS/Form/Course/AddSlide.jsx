@@ -235,7 +235,7 @@ const AddSlide = ({ button, setButton, course }) => {
         onSubmit={handleSubmit}
         className="flex flex-wrap justify-center items-center text-lg font-bold"
       >
-        <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
           <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
             <Select
               placeholder="Select course"
@@ -256,7 +256,7 @@ const AddSlide = ({ button, setButton, course }) => {
               }}
             />
           </div>
-          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
+          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12 mt-4 lg:mt-0">
             <Select
               placeholder="Select module"
               className="w-full"
@@ -277,7 +277,7 @@ const AddSlide = ({ button, setButton, course }) => {
             />
           </div>
         </div>
-        <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
           <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
             <Select
               placeholder="Select chapter"
@@ -298,7 +298,7 @@ const AddSlide = ({ button, setButton, course }) => {
               }}
             />
           </div>
-          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12">
+          <div className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 lg:w-5/12 mt-4 lg:mt-0">
             <Select
               placeholder="Select type"
               className="w-full"
@@ -327,12 +327,12 @@ const AddSlide = ({ button, setButton, course }) => {
 
         {slideType?.value === "1" ? (
           <>
-            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
-              <div className="w-full lg:mx-12">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
+              <div className="w-full lg:w-11/12">
                 <input
                   type="text"
                   placeholder="Title"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   {...getFieldProps("title")}
                 />
                 {errors.title ? (
@@ -343,14 +343,14 @@ const AddSlide = ({ button, setButton, course }) => {
               </div>
             </div>
 
-            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
               <div className=" w-full lg:w-5/12">
                 <div className="flex ">
                   <input
                     type="file"
                     accept="image/png, image/jpeg,image/jpg"
                     placeholder="Slide image"
-                    className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                    className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                     ref={imageRef}
                     onChange={(e) => {
                       handleCompressedUpload(e);
@@ -380,7 +380,7 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="number"
                   placeholder="Position"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 lg:mt-0"
                   {...getFieldProps("position")}
                 />
               </div>
@@ -389,7 +389,7 @@ const AddSlide = ({ button, setButton, course }) => {
               <textarea
                 type="textarea"
                 placeholder="Slide text"
-                className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-4 h-60"
+                className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 h-60"
                 {...getFieldProps("text")}
               />
               {errors.text ? (
@@ -402,12 +402,12 @@ const AddSlide = ({ button, setButton, course }) => {
         {slideType?.value === "2" ? (
           <>
             {" "}
-            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
               <div className="w-full lg:mx-12">
                 <input
                   type="text"
                   placeholder="Question"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   {...getFieldProps("question")}
                 />
                 {errors.question ? (
@@ -417,12 +417,12 @@ const AddSlide = ({ button, setButton, course }) => {
                 ) : null}
               </div>
             </div>
-            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
               <div className="w-full lg:w-5/12">
                 <input
                   type="text"
                   placeholder="Option A"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   {...getFieldProps("optionA")}
                 />
                 {errors.optionA ? (
@@ -431,11 +431,11 @@ const AddSlide = ({ button, setButton, course }) => {
                   </div>
                 ) : null}
               </div>
-              <div className="w-full lg:w-5/12">
+              <div className="w-full lg:w-5/12 mt-4 lg:my-4">
                 <input
                   type="text"
                   placeholder="Option B"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   {...getFieldProps("optionB")}
                 />
                 {errors.optionB ? (
@@ -445,12 +445,12 @@ const AddSlide = ({ button, setButton, course }) => {
                 ) : null}
               </div>
             </div>
-            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
               <div className="w-full lg:w-5/12">
                 <input
                   type="text"
                   placeholder="Option C"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   {...getFieldProps("optionC")}
                 />
                 {errors.optionC ? (
@@ -463,7 +463,7 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="text"
                   placeholder="Option D"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 lg:mt-0"
                   {...getFieldProps("optionD")}
                 />
                 {errors.optionD ? (
@@ -473,12 +473,12 @@ const AddSlide = ({ button, setButton, course }) => {
                 ) : null}
               </div>
             </div>
-            <div className="w-full flex flex-col lg:flex-row items-center justify-around my-4">
+            <div className="w-full flex flex-col lg:flex-row items-center justify-around mt-4 lg:my-4">
               <div className="w-full lg:w-5/12">
                 <select
                   type="text"
                   placeholder="Correct Option"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
                   {...getFieldProps("correctOpt")}
                 >
                   <option value="" disabled selected>
@@ -499,7 +499,7 @@ const AddSlide = ({ button, setButton, course }) => {
                 <input
                   type="number"
                   placeholder="Position"
-                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-8 lg:mt-0"
+                  className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2 mt-4 lg:mt-0"
                   {...getFieldProps("position")}
                 />
               </div>

@@ -1,40 +1,41 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   getUser,
   updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
+} from "../../../../../context/actions/authActions/getUserAction";
+import axiosInstance from "../../../../../helpers/axiosInstance";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = '*Required';
+      errors.name = "*Required";
     }
     if (!values.lastname) {
-      errors.lastname = '*Required';
+      errors.lastname = "*Required";
     }
 
     if (!values.dateOfBirth) {
-      errors.dateOfBirth = '*Required';
+      errors.dateOfBirth = "*Required";
     }
     if (!values.gender) {
-      errors.gender = '*Required';
+      errors.gender = "*Required";
     }
     if (!values.weight) {
-      errors.weight = '*Required';
+      errors.weight = "*Required";
     }
     if (!values.height) {
-      errors.height = '*Required';
+      errors.height = "*Required";
     }
     if (!values.eyeColor) {
-      errors.eyeColor = '*Required';
+      errors.eyeColor = "*Required";
     }
     if (!values.hairColor) {
-      errors.hairColor = '*Required';
+      errors.hairColor = "*Required";
     }
 
     return errors;
@@ -42,18 +43,18 @@ const PersonalDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      name: '',
-      lastname: '',
-      dateOfBirth: '',
-      gender: '',
-      weight: '',
-      height: '',
-      eyeColor: '',
-      hairColor: '',
+      name: "",
+      lastname: "",
+      dateOfBirth: "",
+      gender: "",
+      weight: "",
+      height: "",
+      eyeColor: "",
+      hairColor: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(updateUser(resetForm, values, 'Personal Details updated'));
+      dispatch(updateUser(resetForm, values, "Personal Details updated"));
     },
   });
 
@@ -73,19 +74,9 @@ const PersonalDetails = ({ user }) => {
   return (
     <div className="w-full lg:w-1/2 mx-auto">
       <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
-        <div className="flex items-center mb-4">
-          <span className="inline-block text-red-1">
-            <svg
-              className="w-14 h-14"
-              s
-              viewBox="-32 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M124 328c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H124zm324-216v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
-                fill="currentColor"
-              />
-            </svg>
+        <div className="flex items-center my-4 bg-gray-3">
+          <span className="flex items-center text-red-1 text-4xl">
+            <AccountBoxOutlinedIcon fontSize="inherit" />
           </span>
           <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
             Personal Details
@@ -102,7 +93,7 @@ const PersonalDetails = ({ user }) => {
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
               placeholder="Firstname Here"
-              {...getFieldProps('name')}
+              {...getFieldProps("name")}
             />
             {errors.name ? (
               <div className="w-full text-xs text-red-400">{errors.name}</div>
@@ -114,7 +105,7 @@ const PersonalDetails = ({ user }) => {
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
               placeholder="Lastname Here"
-              {...getFieldProps('lastname')}
+              {...getFieldProps("lastname")}
             />
             {errors.lastname ? (
               <div className="w-full text-xs text-red-400">
@@ -127,7 +118,7 @@ const PersonalDetails = ({ user }) => {
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="date"
-              {...getFieldProps('dateOfBirth')}
+              {...getFieldProps("dateOfBirth")}
             />
             {errors.dateOfBirth ? (
               <div className="w-full text-xs text-red-400">
@@ -144,7 +135,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="280"
-                {...getFieldProps('height')}
+                {...getFieldProps("height")}
               />
               {errors.height ? (
                 <div className="w-full text-xs text-red-400">
@@ -160,7 +151,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="500"
-                {...getFieldProps('weight')}
+                {...getFieldProps("weight")}
               />
               {errors.weight ? (
                 <div className="w-full text-xs text-red-400">
@@ -173,7 +164,7 @@ const PersonalDetails = ({ user }) => {
             <label> Eye Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('eyeColor')}
+              {...getFieldProps("eyeColor")}
             >
               <option value="" disabled selected>
                 Select Eye Color
@@ -196,7 +187,7 @@ const PersonalDetails = ({ user }) => {
             <label> Hair Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('hairColor')}
+              {...getFieldProps("hairColor")}
             >
               <option value="" disabled selected>
                 Select Hair Color
@@ -218,7 +209,7 @@ const PersonalDetails = ({ user }) => {
             <label> Gender</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('gender')}
+              {...getFieldProps("gender")}
             >
               <option value="" disabled selected>
                 Select gender
