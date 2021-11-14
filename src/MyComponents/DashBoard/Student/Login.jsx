@@ -201,7 +201,7 @@ const LogIn = ({ open, setOpen }) => {
               ) : null}
 
               <button
-                className="w-1/2 bg-red-700 text-white p-3 rounded-lg font-semibold text-lg my-3"
+                className="w-1/2 bg-red-700 text-white p-3 rounded-lg font-semibold text-lg my-3 mb-2"
                 type="submit"
               >
                 {loading ? (
@@ -218,6 +218,15 @@ const LogIn = ({ open, setOpen }) => {
                   <>Login</>
                 )}
               </button>
+              <span
+                onClick={() => {
+                  history.push('/forgot-pass');
+                  setOpen(false);
+                }}
+                className="text-red-1 cursor-pointer font-bold hover:text-red-500"
+              >
+                Forgot Password
+              </span>
               <p className="text-gray-900 font-bold text-center my-2">
                 Not yet Registered ?
                 <span
