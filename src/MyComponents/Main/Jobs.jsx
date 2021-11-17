@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import about_image from "./../../argus website/PNG/Video.png";
 import SideBar from "./../Components/SideBar.jsx";
 import SideLine from "./../Components/SideLine";
+import { IconButton } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
-class About extends Component {
-  render() {
-    return (
-      <div className="font-for-para">
-        <div className="text-gray-600 body-font bg-no-repeat bg-cover bg-servicesbg bg-center">
-          <div className="container mx-auto flex px-5 py-20 md:py-40 items-center justify-center flex-col">
-            <div className="text-center lg:w-2/3 w-full">
-              <h1 className="title-font sm:text-6xl text-3xl mb-4 font-bold text-white font-for-para">
-                JOBS
-              </h1>
-            </div>
+const Jobs = () => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div className="font-for-para">
+      <div className="text-gray-600 body-font bg-no-repeat bg-cover bg-servicesbg bg-center">
+        <div className="container mx-auto flex px-5 py-20 md:py-40 items-center justify-center flex-col">
+          <div className="text-center lg:w-2/3 w-full">
+            <h1 className="title-font sm:text-6xl text-3xl mb-4 font-bold text-white font-for-para">
+              JOBS
+            </h1>
           </div>
         </div>
+      </div>
 
       <div className=" bg-no-repeat bg-mapbg bg-contain">
         <div className="px-4 sm:px-8 lg:px-12 xl:px-0 max-w-1366 mx-auto">
@@ -110,11 +113,20 @@ class About extends Component {
                   and professional appearance with good hygiene
                 </li>
               </ul>
+              <div className="flex flex-row items-stretch w-full mt-10 mb-6">
+                <SideLine />
+                <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                  Gear Requirements
+                </h1>
+              </div>
               <p className="leading-loose text-lg font-medium text-gray-2 mb-4 sm:mb-8">
                 If you do not have a valid Ontario Security Licence, we can help
                 you train and apply for one.
               </p>
-              <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner">
+              <button
+                onClick={() => setShow(true)}
+                className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+              >
                 APPLY NOW
               </button>
             </div>
@@ -122,9 +134,23 @@ class About extends Component {
           </div>
         </div>
       </div>
-    </div>
-    );
-  }
-}
+      <div
+        className={`${
+          show ? "block" : "hidden"
+        } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
+      >
+        <div className="bg-white rounded-lg w-11/12 lg:w-1/2">
+          <div className="w-full flex justify-end p-4">
+            <IconButton onClick={() => setShow(false)}>
+              <CloseRoundedIcon fontSize="large" />
+            </IconButton>
+          </div>
 
-export default About;
+          <form className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3 px-4 scale-90 md:scale-100"></form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Jobs;

@@ -210,7 +210,7 @@ export default function Home() {
                   <div className="shadow-services"></div>
                 </div>
                 <div className=" bg-client mx-3 md:mx-0 lg:mx-3">
-                  <div className="border-r-4 border-l-4 border-white">
+                  <div className="border-r-4 border-l-4 border-white md:h-56 xl:h-44">
                     <h2 className="leading-tight text-base lg:text-lg title-font font-bold text-white mx-4 lg:mx-12 mb-3 bg-red-1 rounded-b-lg px-3 pt-2 pb-3">
                       GATED COMMUNITY
                     </h2>
@@ -236,7 +236,7 @@ export default function Home() {
                   <div className="shadow-services"></div>
                 </div>
                 <div className=" bg-client mx-3 md:mx-0 lg:mx-3">
-                  <div className="border-r-4 border-l-4 border-white">
+                  <div className="border-r-4 border-l-4 border-white md:h-56 xl:h-44">
                     <h2 className="leading-tight text-base lg:text-lg title-font font-bold text-white mx-4 lg:mx-12 mb-3 bg-red-1 rounded-b-lg px-3 pt-2 pb-3">
                       CORPORATE
                     </h2>
@@ -262,7 +262,7 @@ export default function Home() {
                   <div className="shadow-services"></div>
                 </div>
                 <div className=" bg-client mx-3 md:mx-0 lg:mx-3">
-                  <div className="border-r-4 border-l-4 border-white">
+                  <div className="border-r-4 border-l-4 border-white md:h-56 xl:h-44">
                     <h2 className="leading-tight text-base lg:text-lg title-font font-bold text-white mx-4 lg:mx-12 mb-3 bg-red-1 rounded-b-lg px-3 pt-2 pb-3">
                       RESIDENTIAL
                     </h2>

@@ -1,16 +1,16 @@
-import { Pagination } from '@mui/material';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import axiosInstance from '../../../../../../helpers/axiosInstance';
-import Alert from '../../../../../Components/Alert';
-import ProfilePicture from './../../../../../../argus website/PNG/IMG_0118.png';
-import Table from '../../../../../Components/reactTable';
-import SelectColumnFilter from '../../../../../../helpers/TableFilter';
-import { useSelector } from 'react-redux';
-import Loader from 'react-loader-spinner';
-import Timeout from 'smart-timeout';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import { IconButton } from '@mui/material';
-import Countdown from 'react-countdown';
+import { Pagination } from "@mui/material";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import axiosInstance from "../../../../../../helpers/axiosInstance";
+import Alert from "../../../../../Components/Alert";
+import ProfilePicture from "./../../../../../../argus website/PNG/IMG_0118.png";
+import Table from "../../../../../Components/reactTable";
+import SelectColumnFilter from "../../../../../../helpers/TableFilter";
+import { useSelector } from "react-redux";
+import Loader from "react-loader-spinner";
+import Timeout from "smart-timeout";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { IconButton } from "@mui/material";
+import Countdown from "react-countdown";
 
 const Message = () => {
   const [messageInput, setMessageInput] = useState(false);
@@ -19,15 +19,15 @@ const Message = () => {
   const [noOfPages, setNoOfPages] = useState(0);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
   const [showFilter, setShowFilter] = useState(false);
   const [selected, setSelected] = useState([]);
 
   const [message, setMessage] = useState({
-    subject: '',
-    message: '',
+    subject: "",
+    message: "",
   });
   const [refreshMsg, setRefreshMsg] = useState(null);
   const [msgLoading, setMsgLoading] = useState(false);
@@ -39,12 +39,12 @@ const Message = () => {
   users.forEach((element) => {
     for (const key in element) {
       if (element[key] === null) {
-        element[key] = '';
+        element[key] = "";
       }
     }
   });
 
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   useEffect(() => {
     setMsgLoading(true);
     axiosInstance
@@ -62,7 +62,7 @@ const Message = () => {
         setMsgLoading(false);
         setShowAlert({
           show: true,
-          message: 'Error fetching message',
+          message: "Error fetching message",
           success: false,
         });
       });
@@ -70,52 +70,52 @@ const Message = () => {
 
   const headCells = [
     {
-      id: 'Student ID',
-      accessor: '_id',
-      Header: 'User ID',
+      id: "Student ID",
+      accessor: "_id",
+      Header: "User ID",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      accessor: 'name',
-      Header: 'User Name',
+      accessor: "name",
+      Header: "User Name",
     },
     {
-      accessor: 'phone',
-      Header: 'Phone No.',
+      accessor: "phone",
+      Header: "Phone No.",
     },
     {
-      id: 'Registration',
-      accessor: 'createdAt',
-      Header: 'Registration',
+      id: "Registration",
+      accessor: "createdAt",
+      Header: "Registration",
     },
     {
-      id: 'City',
-      accessor: 'city',
-      Header: 'City',
+      id: "City",
+      accessor: "city",
+      Header: "City",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Country',
-      accessor: 'country',
-      Header: 'Country',
+      id: "Country",
+      accessor: "country",
+      Header: "Country",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Province',
-      accessor: 'province',
-      Header: 'Province',
+      id: "Province",
+      accessor: "province",
+      Header: "Province",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Gender',
-      accessor: 'gender',
-      Header: 'Gender',
+      id: "Gender",
+      accessor: "gender",
+      Header: "Gender",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
   ];
   const columns = useMemo(() => headCells, []);
@@ -137,23 +137,23 @@ const Message = () => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
         setPage(1);
         setRefreshMsg(res);
-        setMessage({ subject: '', message: '' });
+        setMessage({ subject: "", message: "" });
         setMessageInput(false);
         setShowAlert({
           show: true,
-          message: 'Message added successfully',
+          message: "Message added successfully",
           success: true,
         });
       })
       .catch((err) => {
         setShowAlert({
           show: true,
-          message: 'Error adding message',
+          message: "Error adding message",
           success: false,
         });
       });
@@ -163,7 +163,7 @@ const Message = () => {
     return <span>{seconds} sec left</span>;
   };
 
-  const time = Date.now() + 10000;
+  const time = Date.now() + 60000;
 
   return (
     <div>
@@ -179,7 +179,7 @@ const Message = () => {
           NEW MESSAGE
         </button>
       </div>
-      <div className={messageInput ? 'block' : 'hidden'}>
+      <div className={messageInput ? "block" : "hidden"}>
         <div className="flex flex-wrap justify-center items-center text-lg font-bold">
           <input
             type="text"
@@ -229,8 +229,8 @@ const Message = () => {
                 if (
                   !(
                     selected.length === 0 ||
-                    message.subject === '' ||
-                    message.message === ''
+                    message.subject === "" ||
+                    message.message === ""
                   )
                 ) {
                   timerRef?.current?.api?.start();
@@ -238,7 +238,7 @@ const Message = () => {
                 } else {
                   setShowAlert({
                     show: true,
-                    message: 'Select all fields',
+                    message: "Select all fields",
                     success: false,
                   });
                 }
@@ -257,7 +257,7 @@ const Message = () => {
                 }}
               />
             ) : (
-              'ADD MESSAGE'
+              "ADD MESSAGE"
             )}
           </button>
         </div>
@@ -306,7 +306,7 @@ const Message = () => {
                           .then((res) => {
                             setShowAlert({
                               show: true,
-                              message: 'Message deleted successfully',
+                              message: "Message deleted successfully",
                               success: true,
                             });
 
@@ -315,7 +315,7 @@ const Message = () => {
                           .catch((err) => {
                             setShowAlert({
                               show: true,
-                              message: 'Error deleting message',
+                              message: "Error deleting message",
                               error: false,
                             });
                           });
@@ -328,12 +328,12 @@ const Message = () => {
                 <div className="font-bold mt-4 mb-1.5">{m?.subject}</div>
                 {m.message}
                 <div className="block mb-1 text-xs font-bold text-right mt-1">
-                  {new Date(m?.createdAt).toLocaleDateString('en-US', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
+                  {new Date(m?.createdAt).toLocaleDateString("en-US", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </div>
               </div>

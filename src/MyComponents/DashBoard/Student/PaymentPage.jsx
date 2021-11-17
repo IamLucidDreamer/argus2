@@ -1,20 +1,20 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
-import { getUser } from '../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../helpers/axiosInstance';
-import SideLine from '../../Components/SideLine';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import React, { useRef, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router";
+import { getUser } from "../../../context/actions/authActions/getUserAction";
+import axiosInstance from "../../../helpers/axiosInstance";
+import SideLine from "../../Components/SideLine";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 export default function PaymentPage() {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const { courseId } = useParams();
   const dispatch = useDispatch();
 
   const [course, setCourse] = useState();
   const [loading, setLoading] = useState(false);
   const [checkout, setCheckout] = useState(false);
-  const [couponCode, setCouponCode] = useState('');
+  const [couponCode, setCouponCode] = useState("");
   const [couponMsg, setCouponMsg] = useState(null);
   const [couponError, setCouponError] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(0);
@@ -42,13 +42,13 @@ export default function PaymentPage() {
     e.preventDefault();
     axiosInstance
       .post(
-        '/coupon/checkCoupon',
+        "/coupon/checkCoupon",
         { couponCode },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
         setCouponDiscount(res?.data?.data?.discount);
@@ -63,7 +63,7 @@ export default function PaymentPage() {
   };
 
   useEffect(() => {
-    if (couponCode === '') {
+    if (couponCode === "") {
       setCouponDiscount(0);
     }
   }, [couponCode]);
@@ -84,8 +84,8 @@ export default function PaymentPage() {
           <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
             CHECKOUT
           </h1>
-          <div className="flex w-full justify-between">
-            <div>
+          <div className="flex flex-col lg:flex-row w-full justify-between items-start">
+            <div className="w-full lg:w-1/2">
               <div className="flex flex-row items-stretch w-full mt-8 mb-6">
                 <SideLine />
                 <h1 className="leading-tight text-3xl font-bold text-gray-3">
@@ -97,19 +97,19 @@ export default function PaymentPage() {
                 {course?.Course?.description}
               </p>
             </div>
-            <div className="flex flex-col w-1/2 justify-end items-end pl-6 mt-8">
+            <div className="flex flex-col w-full lg:w-1/2 justify-end items-start lg:items-end lg:pl-6 mt-8 text-lg sm:text-xl">
               <div className="w-full">
-                <h1 className="w-full flex justify-between text-xl font-bold">
+                <h1 className="w-full flex justify-between font-bold">
                   <span>Price</span>
                   <span>$ {course?.Course?.price}</span>
                 </h1>
-                <h1 className="w-full flex justify-between text-xl font-bold">
+                <h1 className="w-full flex justify-between font-bold">
                   <span>Coupon Discount</span>
                   <span>
                     - $ {(course?.Course?.price * couponDiscount) / 100}
                   </span>
                 </h1>
-                <h1 className="w-full mt-2  border-t-2 flex justify-between text-2xl font-bold">
+                <h1 className="w-full mt-2 border-t-2 flex justify-between text-2xl font-bold">
                   <span>Total</span>
                   <span>
                     $
@@ -118,19 +118,19 @@ export default function PaymentPage() {
                   </span>
                 </h1>
               </div>
-              <div className="flex items-start w-full mt-6">
-                <div className="w-8/12 mr-4">
+              <div className="flex w-full items-start mt-6">
+                <div className="mr-4 w-full">
                   <input
                     type="text"
                     placeholder="Enter Coupon Code"
-                    className="bg-client p-4 w-full rounded-md"
+                    className="bg-client p-4 w-full rounded-md text-lg lg:text-xl"
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                   />
                   {couponMsg ? (
                     <div
                       className={`w-full text-xs ${
-                        couponError ? 'text-red-400' : 'text-green-1'
+                        couponError ? "text-red-400" : "text-green-1"
                       }`}
                     >
                       {couponMsg}
@@ -139,7 +139,7 @@ export default function PaymentPage() {
                 </div>
                 <button
                   onClick={(e) => applyCoupon(e)}
-                  className=" w-4/12 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-md"
+                  className=" w-full bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-md text-lg lg:text-xl"
                 >
                   APPLY COUPON
                 </button>
@@ -147,20 +147,20 @@ export default function PaymentPage() {
               <div className="w-full mt-6 z-0">
                 <PayPalScriptProvider
                   options={{
-                    'client-id': 'test',
+                    "client-id": "test",
                   }}
                 >
                   <PayPalButtons
-                    style={{ layout: 'horizontal' }}
+                    style={{ layout: "horizontal" }}
                     fundingSource={undefined}
                     createOrder={(data, actions) => {
                       return actions.order.create({
-                        intent: 'CAPTURE',
+                        intent: "CAPTURE",
                         purchase_units: [
                           {
                             description: course?.Course?.name,
                             amount: {
-                              currency_code: 'USD',
+                              currency_code: "USD",
                               value: 1000,
                             },
                           },
