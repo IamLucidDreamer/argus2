@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import icon1 from "./../../../../argus website/SVG/L1.svg";
-import hiring from "./../../../../argus website/SVG/We are hiring.svg";
-import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
-import ShopOutlinedIcon from "@mui/icons-material/ShopOutlined";
-import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
-import HistoryIcon from "@mui/icons-material/History";
-import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
-import { getProgress } from "../../../../context/actions/userActions";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import icon1 from './../../../../argus website/SVG/L1.svg';
+import hiring from './../../../../argus website/SVG/We are hiring.svg';
+import Logo from './../../../../argus website/SVG/Logowith shadow.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import ShopOutlinedIcon from '@mui/icons-material/ShopOutlined';
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import HistoryIcon from '@mui/icons-material/History';
+import ContactSupportOutlinedIcon from '@mui/icons-material/ContactSupportOutlined';
+import {
+  getProgress,
+  getUsersCourse,
+} from '../../../../context/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 export const SideNav = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProgress());
+    dispatch(getUsersCourse());
   }, [dispatch]);
 
   return (
@@ -89,7 +93,7 @@ export const SideNav = () => {
       <div className="hidden w-10/12 md:flex flex-col items-center text-center px-2 py-4 bg-gray-200 mt-36 mb-8 mx-auto rounded-xl">
         <img src={hiring} alt="" className="w-36 -mt-24 mb-2 " />
         <h1 className="text-sm lg:text-base leading-relaxed font-medium text-gray-2 p-1 mb-4">
-          Start your career with{" "}
+          Start your career with{' '}
           <span className="font-bold">Argus Security</span> Today
         </h1>
         <Link

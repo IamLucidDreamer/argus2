@@ -1,7 +1,68 @@
-import React from "react";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import React, { useEffect, useState } from 'react';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import axiosInstance from '../../../../../helpers/axiosInstance';
+import { docsName } from '../../DocsData';
 
-const Tasks = () => {
+const Tasks = ({ user }) => {
+  const [loading, setLoading] = useState(false);
+  const [docs, setDocs] = useState([]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('jwt'));
+    setLoading(true);
+    axiosInstance
+      .get(`/docs2/getUserDocs`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setLoading(false);
+        setDocs(res.data.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    let arr = [];
+    if (user?.employmentRecord?.length === 0) {
+      arr.push(`Add employment record`);
+    }
+    if (!user?.jobSearch?.looking) {
+      arr.push(`Add job search deatils`);
+    }
+
+    if (!user?.dateOfBirth) {
+      arr.push(`Add personal details`);
+    }
+    if (!user?.hasCriminalRecord) {
+      arr.push(`Add background details`);
+    }
+    if (!user?.street) {
+      arr.push(`Add contact details`);
+    }
+    if (!user?.courses?.length === 0) {
+      arr.push(`Buy a course`);
+    }
+
+    docsName.forEach((element) => {
+      let doc = docs.filter((d) => d.name === element);
+      if (doc.length !== 0) {
+        if (doc[0].isApproved === false) {
+          arr.push(`${element} doc disapproved upload again.`);
+        }
+      } else {
+        if (element !== 'Additional Doc 1' && element !== 'Additional Doc 2')
+          arr.push(`Upload ${element} doc.`);
+      }
+    });
+
+    setTasks(arr);
+  }, [docs, user]);
+
   return (
     <div className="w-full lg:w-1/2 mx-auto">
       <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
@@ -23,94 +84,22 @@ const Tasks = () => {
         </div>
 
         <div className="flex flex-col text-black font-bold">
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>S. No. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="">Status</div>
+          <div className="flex flex-wrap items-center border-b-2 border-black p-4">
+            <h1 className="w-2/12">S. No. </h1>
+            <p className=" pl-1">Name of the task.</p>
+            {/* <div className="">Status</div> */}
           </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-green-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-red-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-green-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-yellow-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-red-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-red-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-yellow-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-red-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between items-center border-b-2 border-black p-4">
-            <h1>01. </h1>
-            <p className="text-gray-2 w-full sm:w-5/12 pl-1">
-              Name of the task.
-            </p>
-            <div className="bg-red-1 text-white p-0.5 rounded-full">
-              <CheckCircleOutlineIcon />
-            </div>
-          </div>
+          {tasks?.map((t, index) => {
+            return (
+              <div className="flex flex-wrap  items-center border-b-2 border-black p-4">
+                <h1 className="w-2/12">{index + 1}. </h1>
+                <p className="text-gray-2  pl-1">{t}</p>
+                {/* <div className="bg-green-1 text-white p-0.5 rounded-full">
+                  <CheckCircleOutlineIcon />
+                </div> */}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

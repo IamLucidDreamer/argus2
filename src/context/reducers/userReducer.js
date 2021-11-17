@@ -1,12 +1,16 @@
 import {
+  COURSE_LOADING,
+  GETUSERS_COURSE,
   GET_PROGRESS,
   SET_CURRENTCOURSE,
   UPADTE_CURRENTTIMESTAMP,
 } from '../actionTypes';
 
 const initialState = {
+  course: [],
   progress: {},
   current: {},
+  loading: false,
 };
 
 const progressReducer = (state = initialState, action) => {
@@ -32,6 +36,17 @@ const progressReducer = (state = initialState, action) => {
           },
         },
       };
+    case GETUSERS_COURSE:
+      return {
+        ...state,
+        course: action.payload,
+      };
+    case COURSE_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
     default:
       return state;
   }

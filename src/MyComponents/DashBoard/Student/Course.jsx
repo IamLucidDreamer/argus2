@@ -5,37 +5,22 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import {
   getProgress,
+  getUsersCourse,
   setCurrentCourse,
 } from '../../../context/actions/userActions';
 import axiosInstance from '../../../helpers/axiosInstance';
 import CourseListCard from './CourseListCard';
 
 const Course = () => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
-  const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const progress = useSelector((state) => state.progress.progress);
+  const courses = useSelector((state) => state.progress.course);
+  const loading = useSelector((state) => state.progress.loading);
 
   useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get('/material/getUsersCourses', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setLoading(false);
-        setCourses(res.data.data);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-  }, [token]);
+    dispatch(getUsersCourse());
+  }, [dispatch]);
 
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">
