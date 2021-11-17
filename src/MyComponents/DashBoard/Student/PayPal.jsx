@@ -31,14 +31,12 @@ const PayPal = ({ course, price, setShowAlert, buyCourse }) => {
           }}
           onApprove={async (data, actions) => {
             await actions.order.capture().then((order) => {
-              if (order.status === 'COMPLETED') {
-                setShowAlert({
-                  show: true,
-                  message: 'Payment successfully!!!',
-                  success: true,
-                });
-                buyCourse();
-              }
+              setShowAlert({
+                show: true,
+                message: 'Payment successfully!!!',
+                success: true,
+              });
+              buyCourse();
             });
           }}
           onError={(err) => {
