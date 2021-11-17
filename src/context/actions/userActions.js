@@ -1,5 +1,7 @@
 import axiosInstance from '../../helpers/axiosInstance';
 import {
+  COURSE_LOADING,
+  GETUSERS_COURSE,
   GET_PROGRESS,
   SET_CURRENTCOURSE,
   UPADTE_CURRENTSLIDE,
@@ -26,7 +28,36 @@ const setTimestamp = (data) => ({
   payload: data,
 });
 
+const courseLoading = (data) => ({
+  type: COURSE_LOADING,
+  payload: data,
+});
+
+const setCourse = (data) => ({
+  type: GETUSERS_COURSE,
+  payload: data,
+});
+
 const token = JSON.parse(localStorage.getItem('jwt'));
+
+const getUsersCourse = () => {
+  return (dispatch) => {
+    dispatch(courseLoading(true));
+    axiosInstance
+      .get('/material/getUsersCourses', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(courseLoading(false));
+        dispatch(setCourse(res.data.data));
+      })
+      .catch((err) => {
+        dispatch(courseLoading(false));
+      });
+  };
+};
 
 const getProgress = (data) => {
   return (dispatch) => {
@@ -134,4 +165,5 @@ export {
   updateCompletedChapter,
   updateSlide,
   setCurrentCourse,
+  getUsersCourse,
 };
