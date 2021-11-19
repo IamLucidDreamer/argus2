@@ -1,7 +1,8 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../../../context/actions/authActions/getUserAction";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 
 const JobSearch = ({ user }) => {
   const dispatch = useDispatch();
@@ -9,30 +10,30 @@ const JobSearch = ({ user }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.looking) {
-      errors.looking = '*Required';
+      errors.looking = "*Required";
     }
     if (!values.wantEmail) {
-      errors.wantEmail = '*Required';
+      errors.wantEmail = "*Required";
     }
     if (!values.prefferedCity) {
-      errors.prefferedCity = '*Required';
+      errors.prefferedCity = "*Required";
     }
     if (!values.availability) {
-      errors.availability = '*Required';
+      errors.availability = "*Required";
     }
     if (!values.wageRange) {
-      errors.wageRange = '*Required';
+      errors.wageRange = "*Required";
     }
     return errors;
   };
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      looking: '',
-      wantEmail: '',
-      prefferedCity: '',
-      availability: '',
-      wageRange: '',
+      looking: "",
+      wantEmail: "",
+      prefferedCity: "",
+      availability: "",
+      wageRange: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
@@ -40,10 +41,10 @@ const JobSearch = ({ user }) => {
         updateUser(
           resetForm,
           { jobSearch: values },
-          'Job Search Details updated',
+          "Job Search Details updated",
           user?.name,
-          user._id,
-        ),
+          user._id
+        )
       );
     },
   });
@@ -60,33 +61,25 @@ const JobSearch = ({ user }) => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
-        <div className="flex items-center mb-4">
-          <span className="inline-block text-red-1">
-            <svg
-              className="w-14 h-14"
-              s
-              viewBox="-32 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M124 328c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H124zm324-216v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
-                fill="currentColor"
-              />
-            </svg>
+      <div className="rounded-2xl bg-white mx-4 md:mx-8 my-4 shadow-button-shadow-2">
+        <div className="flex items-center mt-4 p-2 md:p-4 shadow-forms rounded-t-2xl">
+          <span className="flex items-center text-red-1 text-4xl">
+            <WorkOutlineIcon fontSize="inherit" />
           </span>
-          <h1 className="text-lg text-gray-3 font-bold mx-5">Job Search</h1>
+          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
+            Job Search
+          </h1>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-black font-bold"
+          className="flex flex-col text-gray-2 font-bold placeholder-red-1 h-72 p-2 md:p-4 overflow-y-scroll z-10"
         >
           <div className="flex flex-col">
             <label> Are you looking for a job?</label>
             <select
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('looking')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("looking")}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -102,8 +95,8 @@ const JobSearch = ({ user }) => {
           <div className="flex flex-col mt-4">
             <label> Email me about new opportunities?</label>
             <select
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('wantEmail')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("wantEmail")}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -117,10 +110,10 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Preferred City of Employment</label>
+            <label>Maximum Travel Radius (Bar to select values)</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('prefferedCity')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("prefferedCity")}
             />
 
             {errors.prefferedCity ? (
@@ -130,11 +123,90 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Availability</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('availability')}
-            />
+            <label>Availability</label>
+            <div className="flex flex-row my-2">
+              <div>
+                <div className="flex flex-row items-center justify-start">
+                  <input
+                    type="checkbox"
+                    name="Availability"
+                    value="Early Morning"
+                  />
+                  <label for="Availability" className="pl-2">
+                    {" "}
+                    Early Morning
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Morning" />
+                  <label for="Availability" className="pl-2">
+                    {" "}
+                    Morning
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Day" />
+                  <label for="Availability" className="pl-2">
+                    Day
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Evening" />
+                  <label for="Availability" className="pl-2">
+                    Evening
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Night" />
+                  <label for="Availability" className="pl-2">
+                    Night
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Weekend" />
+                  <label for="Availability" className="pl-2">
+                    Weekend
+                  </label>
+                </div>
+              </div>
+              <div className="ml-2 md:ml-8">
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Shift" />
+                  <label for="Availability" className="pl-2">
+                    Shift
+                  </label>
+                </div>
+
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="On Call" />
+                  <label for="Availability" className="pl-2">
+                    On Call
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Overtime" />
+                  <label for="Availability" className="pl-2">
+                    Overtime
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input type="checkbox" name="Availability" value="Flexible" />
+                  <label for="Availability" className="pl-2">
+                    Flexible
+                  </label>
+                </div>
+                <div className="flex flex-row items-center justify-start">
+                  <input
+                    type="checkbox"
+                    name="Availability"
+                    value="To be Determined"
+                  />
+                  <label for="Availability" className="pl-2">
+                    To be Determined
+                  </label>
+                </div>
+              </div>
+            </div>
             {errors.availability ? (
               <div className="w-full text-xs text-red-400">
                 {errors.availability}
@@ -142,10 +214,10 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Wage Range</label>
+            <label> Wage Range (Bar to select values)</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('wageRange')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("wageRange")}
             />
             {errors?.wageRange ? (
               <div className="w-full text-xs text-red-400">
@@ -153,13 +225,15 @@ const JobSearch = ({ user }) => {
               </div>
             ) : null}
           </div>
+        </form>
+        <div className="flex shadow-forms-1 z-20 rounded-b-2xl">
           <button
             type="submit"
-            className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
+            className=" mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
-            Update
+            UPDATE
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

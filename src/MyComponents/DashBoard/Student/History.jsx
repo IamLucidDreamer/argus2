@@ -1,6 +1,6 @@
-import { Pagination } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../../helpers/axiosInstance';
+import { Pagination } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../../helpers/axiosInstance";
 
 const History = () => {
   const [activity, setactivity] = useState([]);
@@ -8,7 +8,7 @@ const History = () => {
   const [pageData, setpageData] = useState([]);
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('jwt'));
+    const token = JSON.parse(localStorage.getItem("jwt"));
     axiosInstance
       .get(`/user-activity/get?page=1&limit=100000`, {
         headers: {
@@ -18,9 +18,9 @@ const History = () => {
       .then((res) =>
         setactivity(
           res.data.data.activities.sort(
-            (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
-          ),
-        ),
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          )
+        )
       );
   }, []);
 
@@ -56,15 +56,15 @@ const History = () => {
       {pageData?.map((a) => {
         return (
           <>
-            <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+            <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
               <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
                 <h1 className="">
-                  {new Date(a.createdAt).toLocaleDateString('en-GB')}
+                  {new Date(a.createdAt).toLocaleDateString("en-GB")}
                 </h1>
                 <h1 className="font-bold">
                   {new Date(a.createdAt).toLocaleTimeString(`en-US`, {
-                    hour: '2-digit',
-                    minute: '2-digit',
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </h1>
               </div>

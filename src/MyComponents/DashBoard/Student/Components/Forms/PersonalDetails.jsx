@@ -1,37 +1,37 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
-import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../../../context/actions/authActions/getUserAction";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = '*Required';
+      errors.name = "*Required";
     }
     if (!values.lastname) {
-      errors.lastname = '*Required';
+      errors.lastname = "*Required";
     }
 
     if (!values.dateOfBirth) {
-      errors.dateOfBirth = '*Required';
+      errors.dateOfBirth = "*Required";
     }
     if (!values.gender) {
-      errors.gender = '*Required';
+      errors.gender = "*Required";
     }
     if (!values.weight) {
-      errors.weight = '*Required';
+      errors.weight = "*Required";
     }
     if (!values.height) {
-      errors.height = '*Required';
+      errors.height = "*Required";
     }
     if (!values.eyeColor) {
-      errors.eyeColor = '*Required';
+      errors.eyeColor = "*Required";
     }
     if (!values.hairColor) {
-      errors.hairColor = '*Required';
+      errors.hairColor = "*Required";
     }
 
     return errors;
@@ -39,14 +39,14 @@ const PersonalDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
     initialValues: {
-      name: '',
-      lastname: '',
-      dateOfBirth: '',
-      gender: '',
-      weight: '',
-      height: '',
-      eyeColor: '',
-      hairColor: '',
+      name: "",
+      lastname: "",
+      dateOfBirth: "",
+      gender: "",
+      weight: "",
+      height: "",
+      eyeColor: "",
+      hairColor: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
@@ -54,10 +54,10 @@ const PersonalDetails = ({ user }) => {
         updateUser(
           resetForm,
           values,
-          'Personal Details updated',
+          "Personal Details updated",
           user?.name,
-          user?._id,
-        ),
+          user?._id
+        )
       );
     },
   });
@@ -77,8 +77,8 @@ const PersonalDetails = ({ user }) => {
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
-        <div className="flex items-center my-4 bg-gray-3">
+      <div className="rounded-2xl bg-white mx-4 md:mx-8 my-4 shadow-button-shadow-2">
+        <div className="flex items-center mt-4 p-2 md:p-4 bg-white rounded-t-2xl shadow-forms">
           <span className="flex items-center text-red-1 text-4xl">
             <AccountBoxOutlinedIcon fontSize="inherit" />
           </span>
@@ -89,27 +89,27 @@ const PersonalDetails = ({ user }) => {
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-gray-2 font-bold placeholder-red-1"
+          className="flex flex-col text-gray-2 font-bold placeholder-red-1 h-72 p-2 md:p-4 overflow-y-scroll z-10"
         >
           <div className="flex flex-col">
-            <label> Firstname</label>
+            <label> First Name (Not Updatable by student only by admin)</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
               placeholder="Firstname Here"
-              {...getFieldProps('name')}
+              {...getFieldProps("name")}
             />
             {errors.name ? (
               <div className="w-full text-xs text-red-400">{errors.name}</div>
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label>Lastname</label>
+            <label>Last Name (Not Updatable by student only by admin)</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
               placeholder="Lastname Here"
-              {...getFieldProps('lastname')}
+              {...getFieldProps("lastname")}
             />
             {errors.lastname ? (
               <div className="w-full text-xs text-red-400">
@@ -118,11 +118,14 @@ const PersonalDetails = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Date of Birth</label>
+            <label>
+              {" "}
+              Date of Birth (Not Updatable by student only by admin)
+            </label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="date"
-              {...getFieldProps('dateOfBirth')}
+              {...getFieldProps("dateOfBirth")}
             />
             {errors.dateOfBirth ? (
               <div className="w-full text-xs text-red-400">
@@ -139,7 +142,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="280"
-                {...getFieldProps('height')}
+                {...getFieldProps("height")}
               />
               {errors.height ? (
                 <div className="w-full text-xs text-red-400">
@@ -155,7 +158,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="500"
-                {...getFieldProps('weight')}
+                {...getFieldProps("weight")}
               />
               {errors.weight ? (
                 <div className="w-full text-xs text-red-400">
@@ -168,14 +171,14 @@ const PersonalDetails = ({ user }) => {
             <label> Eye Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('eyeColor')}
+              {...getFieldProps("eyeColor")}
             >
               <option value="" disabled selected>
                 Select Eye Color
               </option>
               <option value="brown">Brown</option>
               <option value="hazel">Hazel</option>
-              <option value="brown">Brown</option>
+              <option value="brown">Gray</option>
               <option value="amber">Amber</option>
               <option value="blue">Blue</option>
               <option value="green">Green</option>
@@ -191,7 +194,7 @@ const PersonalDetails = ({ user }) => {
             <label> Hair Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('hairColor')}
+              {...getFieldProps("hairColor")}
             >
               <option value="" disabled selected>
                 Select Hair Color
@@ -213,28 +216,29 @@ const PersonalDetails = ({ user }) => {
             <label> Gender</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('gender')}
+              {...getFieldProps("gender")}
             >
               <option value="" disabled selected>
                 Select gender
               </option>
               <option value="male">Male</option>
               <option value="female">Female</option>
-              <option value="transgender">Trans</option>
+
               <option value="others">Others</option>
             </select>
             {errors.gender ? (
               <div className="w-full text-xs text-red-400">{errors.gender}</div>
             ) : null}
           </div>
-
+        </form>
+        <div className="flex shadow-forms-1 z-20 rounded-b-2xl">
           <button
             type="submit"
-            className="mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
+            className=" mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
             UPDATE
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

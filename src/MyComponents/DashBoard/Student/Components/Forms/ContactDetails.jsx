@@ -1,13 +1,14 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Select from 'react-select';
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Select from "react-select";
 import {
   getUser,
   updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
-import { Country, State, City } from 'country-state-city';
+} from "../../../../../context/actions/authActions/getUserAction";
+import axiosInstance from "../../../../../helpers/axiosInstance";
+import { Country, State, City } from "country-state-city";
+import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
 
 const ContactDetails = ({ user }) => {
   const dispatch = useDispatch();
@@ -15,38 +16,38 @@ const ContactDetails = ({ user }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.country) {
-      errors.country = '*Required';
+      errors.country = "*Required";
     }
     if (!values.province) {
-      errors.province = '*Required';
+      errors.province = "*Required";
     }
     if (!values.streetNumber) {
-      errors.streetNumber = '*Required';
+      errors.streetNumber = "*Required";
     }
     if (!values.city) {
-      errors.city = '*Required';
+      errors.city = "*Required";
     }
     if (!values.street) {
-      errors.street = '*Required';
+      errors.street = "*Required";
     }
     if (!values.postalCode) {
-      errors.postalCode = '*Required';
+      errors.postalCode = "*Required";
     }
     if (!values.suite) {
-      errors.suite = '*Required';
+      errors.suite = "*Required";
     }
     if (!values.homePhone) {
-      errors.homePhone = '*Required';
+      errors.homePhone = "*Required";
     } else if (values.homePhone > 15 && values.homePhone < 6) {
-      errors.homePhone = 'Number should be in range 6-15';
+      errors.homePhone = "Number should be in range 6-15";
     }
     if (!values.phone) {
-      errors.phone = '*Required';
+      errors.phone = "*Required";
     } else if (values.phone > 15 && values.phone < 6) {
-      errors.phone = 'Number should be in range 6-15';
+      errors.phone = "Number should be in range 6-15";
     }
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = "Invalid email address";
     }
 
     return errors;
@@ -55,16 +56,16 @@ const ContactDetails = ({ user }) => {
   const { getFieldProps, handleSubmit, errors, setValues, setFieldValue } =
     useFormik({
       initialValues: {
-        country: '',
-        province: '',
-        streetNumber: '',
-        city: '',
-        street: '',
-        postalCode: '',
-        suite: '',
-        homePhone: '',
-        phone: '',
-        email: '',
+        country: "",
+        province: "",
+        streetNumber: "",
+        city: "",
+        street: "",
+        postalCode: "",
+        suite: "",
+        homePhone: "",
+        phone: "",
+        email: "",
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
@@ -72,10 +73,10 @@ const ContactDetails = ({ user }) => {
           updateUser(
             resetForm,
             values,
-            'Contact Details updated',
+            "Contact Details updated",
             user?.name,
-            user?._id,
-          ),
+            user?._id
+          )
         );
       },
     });
@@ -121,46 +122,36 @@ const ContactDetails = ({ user }) => {
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? 'white' : 'gray',
+      color: state.isSelected ? "white" : "gray",
     }),
     control: () => ({
       // none of react-select's styles are passed to <Control />
-      display: 'flex',
+      display: "flex",
       border: 0,
-      borderBottom: '2px solid black',
+      borderBottom: "2px solid black",
       fontWeight: 100,
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
+      const transition = "opacity 300ms";
       return { ...provided, opacity, transition };
     },
   };
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
-      <div className="rounded-lg bg-white mx-4 md:mx-8 my-4 p-2 md:p-4 shadow-button-shadow-2 h-box overflow-y-scroll">
-        <div className="flex items-center mb-4">
-          <span className="inline-block text-red-1">
-            <svg
-              className="w-14 h-14"
-              s
-              viewBox="-32 0 512 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M124 328c-6.6 0-12-5.4-12-12v-24c0-6.6 5.4-12 12-12h200c6.6 0 12 5.4 12 12v24c0 6.6-5.4 12-12 12H124zm324-216v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
-                fill="currentColor"
-              />
-            </svg>
+      <div className="rounded-2xl bg-white mx-4 md:mx-8 my-4 shadow-button-shadow-2">
+        <div className="flex items-center mt-4 p-2 md:p-4 shadow-forms rounded-t-2xl">
+          <span className="flex items-center text-red-1 text-4xl">
+            <ContactMailOutlinedIcon fontSize="inherit" />
           </span>
-          <h1 className="text-lg text-gray-3 font-bold mx-5">
+          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
             Contact Details
           </h1>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col text-black font-bold"
+          className="flex flex-col text-gray-2 font-bold placeholder-red-1 h-72 p-2 md:p-4 overflow-y-scroll z-10"
         >
           <div className="flex flex-col">
             <label> Country</label>
@@ -174,19 +165,19 @@ const ContactDetails = ({ user }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={country}
               onChange={(selectedOption) => {
-                setFieldValue('country', selectedOption.label);
+                setFieldValue("country", selectedOption.label);
                 setCountry(selectedOption);
               }}
             />
 
             {/* <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               {...getFieldProps("country")}
             /> */}
             {errors.country ? (
@@ -207,13 +198,13 @@ const ContactDetails = ({ user }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={state}
               onChange={(selectedOption) => {
-                setFieldValue('province', selectedOption.label);
+                setFieldValue("province", selectedOption.label);
                 setState(selectedOption);
               }}
             />
@@ -235,13 +226,13 @@ const ContactDetails = ({ user }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={city}
               onChange={(selectedOption) => {
-                setFieldValue('city', selectedOption.label);
+                setFieldValue("city", selectedOption.label);
                 setCity(selectedOption);
               }}
             />
@@ -250,21 +241,11 @@ const ContactDetails = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Street</label>
-            <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('street')}
-            />
-            {errors.street ? (
-              <div className="w-full text-xs text-red-400">{errors.street}</div>
-            ) : null}
-          </div>
-          <div className="flex flex-col mt-4">
             <label> Street Number</label>
             <input
               type="number"
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('streetNumber')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("streetNumber")}
             />
             {errors.streetNumber ? (
               <div className="w-full text-xs text-red-400">
@@ -273,20 +254,28 @@ const ContactDetails = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Suite</label>
+            <label> Street Name</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('suite')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              {...getFieldProps("street")}
             />
-            {errors.suite ? (
-              <div className="w-full text-xs text-red-400">{errors.suite}</div>
+            {errors.street ? (
+              <div className="w-full text-xs text-red-400">{errors.street}</div>
             ) : null}
+          </div>
+
+          <div className="flex flex-col mt-4">
+            <label> Suite (Optional)</label>
+            <input
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("suite")}
+            />
           </div>
           <div className="flex flex-col mt-4">
             <label> Postal Code</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('postalCode')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              {...getFieldProps("postalCode")}
             />
             {errors.postalCode ? (
               <div className="w-full text-xs text-red-400">
@@ -295,24 +284,19 @@ const ContactDetails = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Home Phone</label>
+            <label> Home Phone (Optional)</label>
             <input
               type="number"
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('homePhone')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              {...getFieldProps("homePhone")}
             />
-            {errors.homePhone ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.homePhone}
-              </div>
-            ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Call Phone</label>
+            <label> Cell Phone</label>
             <input
               type="number"
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none "
-              {...getFieldProps('phone')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none "
+              {...getFieldProps("phone")}
             />
             {errors.phone ? (
               <div className="w-full text-xs text-red-400">{errors.phone}</div>
@@ -321,20 +305,22 @@ const ContactDetails = ({ user }) => {
           <div className="flex flex-col mt-4">
             <label> Email</label>
             <input
-              className="border-b-2 border-black focus:border-red-1 focus:outline-none"
-              {...getFieldProps('email')}
+              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
+              {...getFieldProps("email")}
             />
             {errors.email ? (
               <div className="w-full text-xs text-red-400">{errors.email}</div>
             ) : null}
           </div>
+        </form>
+        <div className="flex shadow-forms-1 z-20 rounded-b-2xl">
           <button
             type="submit"
-            className="mx-auto my-4 w-1/2 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1"
+            className=" mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
-            Update
+            UPDATE
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

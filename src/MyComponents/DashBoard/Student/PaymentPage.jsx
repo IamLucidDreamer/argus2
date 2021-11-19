@@ -1,27 +1,17 @@
-<<<<<<< HEAD
 import React, { useRef, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router";
 import { getUser } from "../../../context/actions/authActions/getUserAction";
 import axiosInstance from "../../../helpers/axiosInstance";
 import SideLine from "../../Components/SideLine";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-=======
-import React, { useRef, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router';
-import { getUser } from '../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../helpers/axiosInstance';
-import SideLine from '../../Components/SideLine';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import Loader from 'react-loader-spinner';
-import PayPal from './PayPal';
+import Loader from "react-loader-spinner";
+import PayPal from "./PayPal";
 import {
   getProgress,
   getUsersCourse,
-} from '../../../context/actions/userActions';
-import Alert from '../../Components/Alert';
->>>>>>> 9f7897749933a0a4f5cfe86a853ed6bec670bfe4
+} from "../../../context/actions/userActions";
+import Alert from "../../Components/Alert";
 
 export default function PaymentPage() {
   const token = JSON.parse(localStorage.getItem("jwt"));
@@ -31,12 +21,7 @@ export default function PaymentPage() {
 
   const [course, setCourse] = useState();
   const [loading, setLoading] = useState(false);
-<<<<<<< HEAD
-  const [checkout, setCheckout] = useState(false);
   const [couponCode, setCouponCode] = useState("");
-=======
-  const [couponCode, setCouponCode] = useState('');
->>>>>>> 9f7897749933a0a4f5cfe86a853ed6bec670bfe4
   const [couponMsg, setCouponMsg] = useState(null);
   const [couponError, setCouponError] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(0);
@@ -45,7 +30,7 @@ export default function PaymentPage() {
   const [show, setShow] = useState(false);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
   const courses = useSelector((state) => state.progress.course);
@@ -121,32 +106,32 @@ export default function PaymentPage() {
   const buyCourse = () => {
     axiosInstance
       .post(
-        '/material/buyCourse',
+        "/material/buyCourse",
         { courseId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
         dispatch(getUsersCourse());
         dispatch(getProgress());
         setShowAlert({
           show: true,
-          message: 'Course Bought successfully!!!',
+          message: "Course Bought successfully!!!",
           success: true,
         });
-        if (couponCode !== '') {
+        if (couponCode !== "") {
           axiosInstance
             .post(
-              '/coupon/applyCoupon',
+              "/coupon/applyCoupon",
               { couponCode },
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-              },
+              }
             )
             .then()
             .catch((err) => {});
@@ -155,7 +140,7 @@ export default function PaymentPage() {
       .catch((err) => {
         setShowAlert({
           show: true,
-          message: 'Some error occurred, payment recieved.',
+          message: "Some error occurred, payment recieved.",
           success: false,
         });
       });
@@ -168,56 +153,6 @@ export default function PaymentPage() {
           <h1 className="text-3xl text-center mb-8 leading-tight title-font font-bold text-white w-56 sm:w-96 mx-auto bg-red-1 rounded-b-xl px-3 pt-4 pb-5">
             CHECKOUT
           </h1>
-<<<<<<< HEAD
-          <div className="flex flex-col lg:flex-row w-full justify-between items-start">
-            <div className="w-full lg:w-1/2">
-              <div className="flex flex-row items-stretch w-full mt-8 mb-6">
-                <SideLine />
-                <h1 className="leading-tight text-3xl font-bold text-gray-3">
-                  {course?.Course?.name}
-                </h1>
-              </div>
-
-              <p className="leading-relaxed text-base font-medium text-gray-2 mb-6">
-                {course?.Course?.description}
-              </p>
-            </div>
-            <div className="flex flex-col w-full lg:w-1/2 justify-end items-start lg:items-end lg:pl-6 mt-8 text-lg sm:text-xl">
-              <div className="w-full">
-                <h1 className="w-full flex justify-between font-bold">
-                  <span>Price</span>
-                  <span>$ {course?.Course?.price}</span>
-                </h1>
-                <h1 className="w-full flex justify-between font-bold">
-                  <span>Coupon Discount</span>
-                  <span>
-                    - $ {(course?.Course?.price * couponDiscount) / 100}
-                  </span>
-                </h1>
-                <h1 className="w-full mt-2 border-t-2 flex justify-between text-2xl font-bold">
-                  <span>Total</span>
-                  <span>
-                    $
-                    {course?.Course?.price -
-                      (course?.Course?.price * couponDiscount) / 100}
-                  </span>
-                </h1>
-              </div>
-              <div className="flex w-full items-start mt-6">
-                <div className="mr-4 w-full">
-                  <input
-                    type="text"
-                    placeholder="Enter Coupon Code"
-                    className="bg-client p-4 w-full rounded-md text-lg lg:text-xl"
-                    value={couponCode}
-                    onChange={(e) => setCouponCode(e.target.value)}
-                  />
-                  {couponMsg ? (
-                    <div
-                      className={`w-full text-xs ${
-                        couponError ? "text-red-400" : "text-green-1"
-                      }`}
-=======
           {loading ? (
             <div className="w-full flex items-center justify-center">
               <Loader type="TailSpin" color="#BA0913" height={60} width={60} />
@@ -270,7 +205,7 @@ export default function PaymentPage() {
                           {couponMsg ? (
                             <div
                               className={`w-full text-xs ${
-                                couponError ? 'text-red-400' : 'text-green-1'
+                                couponError ? "text-red-400" : "text-green-1"
                               }`}
                             >
                               {couponMsg}
@@ -282,7 +217,6 @@ export default function PaymentPage() {
                     <button
                       onClick={(e) => applyCoupon(e)}
                       className=" w-4/12 bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-md"
->>>>>>> 9f7897749933a0a4f5cfe86a853ed6bec670bfe4
                     >
                       APPLY COUPON
                     </button>
@@ -302,54 +236,9 @@ export default function PaymentPage() {
                     </div>
                   )}
                 </div>
-<<<<<<< HEAD
-                <button
-                  onClick={(e) => applyCoupon(e)}
-                  className=" w-full bg-green-1 text-white py-3.5 font-bold border-2 border-green-1 hover:bg-white hover:text-green-1 rounded-md text-lg lg:text-xl"
-                >
-                  APPLY COUPON
-                </button>
-              </div>
-              <div className="w-full mt-6 z-0">
-                <PayPalScriptProvider
-                  options={{
-                    "client-id": "test",
-                  }}
-                >
-                  <PayPalButtons
-                    style={{ layout: "horizontal" }}
-                    fundingSource={undefined}
-                    createOrder={(data, actions) => {
-                      return actions.order.create({
-                        intent: "CAPTURE",
-                        purchase_units: [
-                          {
-                            description: course?.Course?.name,
-                            amount: {
-                              currency_code: "USD",
-                              value: 1000,
-                            },
-                          },
-                        ],
-                      });
-                    }}
-                    onApprove={async (data, actions) => {
-                      const order = await actions.order.capture();
-                      console.log(order);
-                    }}
-                    onError={(err) => {
-                      console.log(err);
-                    }}
-                  />
-                </PayPalScriptProvider>
-              </div>
-            </div>
-          </div>
-=======
               </div>
             </>
           )}
->>>>>>> 9f7897749933a0a4f5cfe86a853ed6bec670bfe4
         </div>
       </div>
     </div>

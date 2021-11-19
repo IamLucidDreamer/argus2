@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import axiosInstance from '../../../helpers/axiosInstance';
-import SideLine from '../../Components/SideLine';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import axiosInstance from "../../../helpers/axiosInstance";
+import SideLine from "../../Components/SideLine";
 
 export default function PurchaseCourse() {
   const [faq, setFaq] = useState(0);
   const address = useSelector((state) => state.contact.address);
   const history = useHistory();
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     axiosInstance
-      .get('/material/getAllCourses', {
+      .get("/material/getAllCourses", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -147,24 +147,24 @@ export default function PurchaseCourse() {
               <ul className="text-gray-2 font-medium text-base flex flex-col md:flex-row mb-6">
                 <div className="">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
                     Introduction to the Security Industry
                   </li>
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Basic
-                    Procedures{' '}
+                    Procedures{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                    Regulations{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Regulations{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Use of
                     Force Theory
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                    Emergencies{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Emergencies{" "}
                   </li>
                 </div>
                 <div className="md:mx-10">
@@ -173,19 +173,19 @@ export default function PurchaseCourse() {
                     & Safety
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                    Canadian Legal System & Authorities{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Canadian Legal System & Authorities{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                    Communication I & II{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Communication I & II{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
                     Conflict Resolution
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
                     Diversity & Sensitivity
                   </li>
                 </div>
@@ -201,23 +201,23 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(1)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 1 ? 'font-bold' : ''}>
+                  <p className={faq === 1 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">1.</span> Where
                     do I take the test?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 1 ? '' : '+'}
+                    {faq === 1 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 1
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 1 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 1 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     Testing services for the Ministry of Community Safety and
@@ -227,14 +227,14 @@ export default function PurchaseCourse() {
                     who suggest they can offer testing services. SERCO,
                     operating as Ontario Security Guard and Private Investigator
                     may be contacted by telephone at 1-866-248-2555, 8:00 am to
-                    5:00 pm, Monday to Friday or through their website at:{' '}
+                    5:00 pm, Monday to Friday or through their website at:{" "}
                     <a
                       href="http://www.ontariosecuritytesting.com"
                       target="_blank"
                       rel="noreferrer"
                       className="text-red-1 hover:underline"
                     >
-                      www.ontariosecuritytesting.com{' '}
+                      www.ontariosecuritytesting.com{" "}
                     </a>
                   </div>
                 </div>
@@ -244,33 +244,33 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(2)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 2 ? 'font-bold' : ''}>
+                  <p className={faq === 2 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">2.</span> Is
                     there a website to answer my questions?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 2 ? '' : '+'}
+                    {faq === 2 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 2
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 2 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 2 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
-                    Yes, please visit{' '}
+                    Yes, please visit{" "}
                     <a
                       href="http://www.ontariosecuritytesting.com"
                       target="_blank"
                       rel="noreferrer"
                       className="text-red-1 hover:underline"
                     >
-                      www.ontariosecuritytesting.com{' '}
+                      www.ontariosecuritytesting.com{" "}
                     </a>
                   </div>
                 </div>
@@ -280,23 +280,23 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(3)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 3 ? 'font-bold' : ''}>
+                  <p className={faq === 3 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">3.</span> How
                     much does it cost?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 3 ? '' : '+'}
+                    {faq === 3 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 3
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 3 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 3 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The test fee is $66.50 plus applicable taxes.
@@ -308,23 +308,23 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(4)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 4 ? 'font-bold' : ''}>
+                  <p className={faq === 4 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">4.</span> Does
                     this fee include the cost of my license?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 4 ? '' : '+'}
+                    {faq === 4 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 4
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 4 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 4 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The licensing fee and test fee are two separate costs — one
@@ -337,27 +337,28 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(5)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 5 ? 'font-bold' : ''}>
+                  <p className={faq === 5 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">5.</span> Where
                     do I take the training?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 5 ? '' : '+'}
+                    {faq === 5 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 5
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 5 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 5 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
-                    Training programs are offered at three Argus Institute
-                    located at {address}. Course is offered every other week.
+                    Training programs are offered at Authorized Argus Training
+                    Centers. Course is offered every other week. Contact Us for
+                    Location.
                   </div>
                 </div>
               </div>
@@ -366,23 +367,23 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(6)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 6 ? 'font-bold' : ''}>
+                  <p className={faq === 6 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">6.</span> Is
                     everything included in the price of the course?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 6 ? '' : '+'}
+                    {faq === 6 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 6
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 6 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 6 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     Yes. There are no hidden fees. Study manual, First Aid/CPR
@@ -396,23 +397,23 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(7)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 7 ? 'font-bold' : ''}>
+                  <p className={faq === 7 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">7.</span> What
                     is the cost to the five days of training?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 7 ? '' : '+'}
+                    {faq === 7 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 7
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 7 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 7 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The training will be provided to non-licensed persons who
@@ -426,24 +427,24 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(8)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 8 ? 'font-bold' : ''}>
+                  <p className={faq === 8 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">8.</span> If I
                     have to take the test more than once, do I have to pay again
                     each time?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 8 ? '' : '+'}
+                    {faq === 8 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 8
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 8 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 8 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     Yes, if you fail the test you must pay to re-write it.
@@ -455,24 +456,24 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(9)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 9 ? 'font-bold' : ''}>
+                  <p className={faq === 9 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">9.</span> Do I
                     have to take the test each time my license is going to
                     expire?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 9 ? '' : '+'}
+                    {faq === 9 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 9
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 9 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 9 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     No, you only need to pass the test once to be qualified for
@@ -485,31 +486,31 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(10)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 10 ? 'font-bold' : ''}>
+                  <p className={faq === 10 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">10.</span> Do I
                     have to take the test each time my license is going to
                     expire?How many questions are on the test?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 10 ? '' : '+'}
+                    {faq === 10 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 10
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 10 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 10 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The test is comprised of 60 multiple choice questions with
                     four possible answers each. The test is supervised by a
                     SERCO ‘Invigilator’, an employee assigned to supervise all
                     test participants to ensure that all rules are adhered to.
-                    Please see the SERCO website below for more details:{' '}
+                    Please see the SERCO website below for more details:{" "}
                     <a
                       href="http://www.ontariosecuritytesting.com/candidate_protocol.html"
                       target="_blank"
@@ -526,23 +527,23 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(11)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 11 ? 'font-bold' : ''}>
+                  <p className={faq === 11 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">11.</span> How
                     much time is given to complete the test?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 11 ? '' : '+'}
+                    {faq === 11 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 11
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 11 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 11 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The time limit for the test is 75 minutes. Breaks are
@@ -559,29 +560,29 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(12)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 12 ? 'font-bold' : ''}>
+                  <p className={faq === 12 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">12.</span> When
                     will I get back my test results?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 12 ? '' : '+'}
+                    {faq === 12 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 12
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 12 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 12 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The results of the test are typically made available within
                     24 hours of completion. However, it may take up to 2 – 5
                     business days after the completion of the test before they
-                    are made available at{' '}
+                    are made available at{" "}
                     <a
                       href="http://www.ontariosecuritytesting.com"
                       target="_blank"
@@ -593,7 +594,7 @@ export default function PurchaseCourse() {
                     .
                   </div>
                   <div
-                    className={faq === 12 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 12 ? "block text-base mt-2" : "hidden"}
                   >
                     Once you have been confirmed that you have successfully
                     passed the test, you may apply for a license with the
@@ -606,24 +607,24 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(13)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 13 ? 'font-bold' : ''}>
+                  <p className={faq === 13 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">13.</span> When
                     is the expiry date on my license? What is the cost of the
                     license?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 13 ? '' : '+'}
+                    {faq === 13 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 13
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 13 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 13 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     The expiry date of the license is set two years from the
@@ -637,24 +638,24 @@ export default function PurchaseCourse() {
                 onClick={() => setFaq(14)}
               >
                 <div className="flex flex-row">
-                  <p className={faq === 14 ? 'font-bold' : ''}>
+                  <p className={faq === 14 ? "font-bold" : ""}>
                     <span className="text-red-1 font-bold mr-2">14.</span> I am
                     already certified in First Aid/CPR. Do I still need to
                     attend the CPR training day?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 14 ? '' : '+'}
+                    {faq === 14 ? "" : "+"}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 14
-                      ? 'transition-all opacity-100 duration-700'
-                      : 'transition-all opacity-0 duration-700'
+                      ? "transition-all opacity-100 duration-700"
+                      : "transition-all opacity-0 duration-700"
                   }
                 >
                   <div
-                    className={faq === 14 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 14 ? "block text-base mt-2" : "hidden"}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     No. As of October 1, 2015, all persons holding a current
@@ -663,13 +664,13 @@ export default function PurchaseCourse() {
                     exempt from the fifth day.
                   </div>
                   <div
-                    className={faq === 14 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 14 ? "block text-base mt-2" : "hidden"}
                   >
                     Argus Security must be provided with a copy of your First
                     Aid/CPR certificate.
                   </div>
                   <div
-                    className={faq === 14 ? 'block text-base mt-2' : 'hidden'}
+                    className={faq === 14 ? "block text-base mt-2" : "hidden"}
                   >
                     If you are unable to provide us with a copy of your
                     certificate you will be required to attend all five days of

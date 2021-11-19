@@ -116,7 +116,7 @@ const Jobs = () => {
               <div className="flex flex-row items-stretch w-full mt-10 mb-6">
                 <SideLine />
                 <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
-                  Gear Requirements
+                  Requirements
                 </h1>
               </div>
               <p className="leading-loose text-lg font-medium text-gray-2 mb-4 sm:mb-8">

@@ -12,10 +12,10 @@ export const TopBar = () => {
   const user = useSelector((state) => state.user.user);
 
   return (
-    <div className="max-w-1200 mx-auto">
+    <div className="max-w-1200 mx-2 sm:mx-8 2xl:mx-auto">
       <div className="pt-3 flex flex-row justify-between items-center">
-        <h1 className="ml-9 text-xl sm:text-2xl text-gray-3 font-bold font-for-para">
-          Hii
+        <h1 className="text-base sm:text-2xl text-gray-2 font-bold font-for-para">
+          Hello
           {user?.name ? (
             <span>
               ,{" "}
@@ -26,7 +26,7 @@ export const TopBar = () => {
           ) : null}
         </h1>
         <div className="ml-auto flex justify-around items-center">
-          <div className="hidden sm:block text-sm sm:text-xl mx-1 sm:mr-4 text-gray-3">
+          <div className="hidden sm:block text-sm sm:text-xl mx-1 sm:mr-4 text-gray-2 font-bold">
             {new Date().toLocaleDateString("en-GB")}
           </div>
 
@@ -44,7 +44,7 @@ export const TopBar = () => {
               setTopbarOptions(!topbarOptions);
               setNotify(false);
             }}
-            className="inline-block mx-2 sm:mx-8 2xl:mr-0 md:ml-4 bg-gray-200 hover:bg-red-1 rounded-xl p-2 text-gray-2 hover:text-white"
+            className="inline-block bg-gray-200 hover:bg-red-1 rounded-xl p-2 text-gray-2 hover:text-white"
           >
             <PersonOutlineOutlinedIcon fontSize="large" />
           </button>

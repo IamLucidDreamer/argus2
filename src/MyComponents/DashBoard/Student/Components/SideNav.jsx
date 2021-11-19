@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import icon1 from './../../../../argus website/SVG/L1.svg';
-import hiring from './../../../../argus website/SVG/We are hiring.svg';
-import Logo from './../../../../argus website/SVG/Logowith shadow.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
-import ShopOutlinedIcon from '@mui/icons-material/ShopOutlined';
-import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
-import HistoryIcon from '@mui/icons-material/History';
-import ContactSupportOutlinedIcon from '@mui/icons-material/ContactSupportOutlined';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import icon1 from "./../../../../argus website/SVG/L1.svg";
+import hiring from "./../../../../argus website/SVG/We are hiring.svg";
+import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
+import ShopOutlinedIcon from "@mui/icons-material/ShopOutlined";
+import LibraryBooksOutlinedIcon from "@mui/icons-material/LibraryBooksOutlined";
+import HistoryIcon from "@mui/icons-material/History";
+import ContactSupportOutlinedIcon from "@mui/icons-material/ContactSupportOutlined";
 import {
   getProgress,
   getUsersCourse,
-} from '../../../../context/actions/userActions';
-import { useDispatch } from 'react-redux';
+} from "../../../../context/actions/userActions";
+import { useDispatch } from "react-redux";
 
 export const SideNav = () => {
   const dispatch = useDispatch();
@@ -33,10 +33,10 @@ export const SideNav = () => {
             className="w-full sm:w-1/2 md:w-32 mx-auto mb-8"
           />
         </Link>
-        <nav className="w-full text-base font-medium">
+        <nav className="w-full text-sm lg:text-base font-medium">
           <Link
             to="/dashboard/student/home"
-            className="group flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
+            className="group flex items-center lg:pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <DashboardCustomizeOutlinedIcon />
@@ -45,7 +45,7 @@ export const SideNav = () => {
           </Link>
           <Link
             to="/dashboard/student/calendar"
-            className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
+            className="flex items-center lg:pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <CalendarTodayIcon />
@@ -54,7 +54,7 @@ export const SideNav = () => {
           </Link>
           <Link
             to="/dashboard/student/purchase"
-            className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
+            className="flex items-center lg:pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <ShopOutlinedIcon />
@@ -63,7 +63,7 @@ export const SideNav = () => {
           </Link>
           <Link
             to="/dashboard/student/training"
-            className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
+            className="flex items-center lg:pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <LibraryBooksOutlinedIcon />
@@ -72,7 +72,7 @@ export const SideNav = () => {
           </Link>
           <Link
             to="/dashboard/student/history"
-            className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
+            className="flex items-center lg:pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <HistoryIcon />
@@ -81,7 +81,7 @@ export const SideNav = () => {
           </Link>
           <Link
             to="/dashboard/student/contact"
-            className="flex items-center pl-2 py-3 pr-4 text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
+            className="flex items-center lg:pl-2 py-3 pr-4 text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">
               <ContactSupportOutlinedIcon />
@@ -93,7 +93,7 @@ export const SideNav = () => {
       <div className="hidden w-10/12 md:flex flex-col items-center text-center px-2 py-4 bg-gray-200 mt-36 mb-8 mx-auto rounded-xl">
         <img src={hiring} alt="" className="w-36 -mt-24 mb-2 " />
         <h1 className="text-sm lg:text-base leading-relaxed font-medium text-gray-2 p-1 mb-4">
-          Start your career with{' '}
+          Start your career with{" "}
           <span className="font-bold">Argus Security</span> Today
         </h1>
         <Link
