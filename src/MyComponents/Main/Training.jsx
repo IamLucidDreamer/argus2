@@ -1,12 +1,26 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import about_image from "./../../argus website/PNG/Video.png";
-import SideBar from "./../Components/SideBar.jsx";
-import SideLine from "./../Components/SideLine";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import axiosInstance from '../../helpers/axiosInstance';
+import about_image from './../../argus website/PNG/Video.png';
+import SideBar from './../Components/SideBar.jsx';
+import SideLine from './../Components/SideLine';
 
 const Courses = () => {
   const [faq, setFaq] = useState(0);
-  const address = useSelector((state) => state.contact.address);
+  const [courses, setCourses] = useState([]);
+  const history = useHistory();
+
+  // const address = useSelector((state) => state.contact.address);
+
+  useEffect(() => {
+    axiosInstance
+      .get('/material/getAllCourses')
+      .then((res) => {
+        setCourses(res.data.data);
+      })
+      .catch();
+  }, []);
 
   return (
     <div className="font-for-para">
@@ -25,75 +39,30 @@ const Courses = () => {
           <div className="flex flex-wrap my-12">
             <div className=" md:w-1/2 lg:w-2/3 flex flex-col items-start">
               <img src={about_image} alt="Training Page" className="w-full" />
-              <div className="flex flex-row items-stretch w-full mt-14 mb-8">
-                <SideLine />
-                <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
-                  Road to Success
-                </h1>
-              </div>
-              <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
-                Argus Institute‘s Basic Security Training Course gives you
-                everything you need to prepare for your Ontario Security Guard
-                Licence test. No appointment is required. You may stop by Monday
-                to Friday from 10:00 A.M. until 6 P.M. to register.
-              </p>
-              <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
-                You can also take advantage of our Online Learning Platform that
-                features SelfPaced Online Courses (SPOC), optional live
-                instructor-led sessions within our Virtual Training Room (VTR),
-                and 8 hours of in-classroom First Aid/CPR Level C certification
-                training.
-              </p>
 
-              <div className="flex flex-row items-stretch w-full mt-8 mb-6">
-                <SideLine />
-                <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
-                  Basic Security Traning Course (online) $149.99
-                </h1>
-              </div>
-              <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
-                You can take advantage of our Online Learning Platform that
-                features Self-Paced Online Courses (SPOC), optional live
-                instructor-led sessions within our Virtual Training Room (VTR),
-                and 8 hours of in-classroom First Aid/CPR Level C certification
-                training.
-              </p>
-              <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
-                REGISTER
-              </button>
-
-              <div className="flex flex-row items-stretch w-full mt-8 mb-6">
-                <SideLine />
-                <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
-                  Basic Security Training Course – (In-class room) $199.99
-                </h1>
-              </div>
-              <ul class="text-gray-2 font-medium text-lg mb-6">
-                <li className="flex flex-row items-start my-0.5">
-                  <span className="text-red-1 font-bold mr-2">✓</span> Course is
-                  five days (40 hours) Monday – Friday, 8:30am – 5:00pm
-                </li>
-                <li>
-                  <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                  Comprehensive Security Manual is included{" "}
-                </li>
-                <li className="flex flex-row items-start my-0.5">
-                  <span className="text-red-1 font-bold mr-2">✓</span> Exceeds
-                  Ontario government standards
-                </li>
-                <li className="flex flex-row items-start my-0.5">
-                  <span className="text-red-1 font-bold mr-2">✓</span> Our
-                  guarantee – if you fail the ministry test, you can retake the
-                  course for free!
-                </li>
-                <li className="flex flex-row items-start my-0.5">
-                  <span className="text-red-1 font-bold mr-2">✓</span> Courses
-                  run weekly in Brampton.{" "}
-                </li>
-              </ul>
-              <button className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8">
-                REGISTER
-              </button>
+              {courses.map((c) => {
+                return (
+                  <>
+                    <div className="flex flex-row items-stretch w-full mt-14 mb-8">
+                      <SideLine />
+                      <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
+                        {c?.name}
+                      </h1>
+                    </div>
+                    <p className="leading-relaxed text-lg font-medium text-gray-2 mb-6">
+                      {c?.description}
+                    </p>
+                    <button
+                      onClick={() =>
+                        history.push(`/dashboard/student/payment/${c?._id}`)
+                      }
+                      className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8"
+                    >
+                      REGISTER
+                    </button>
+                  </>
+                );
+              })}
 
               <div className="flex flex-row items-stretch w-full mt-8 mb-8">
                 <SideLine />
@@ -104,24 +73,24 @@ const Courses = () => {
               <ul className="text-gray-2 font-medium text-lg flex flex-col md:flex-row mb-6">
                 <div className="">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
                     Introduction to the Security Industry
                   </li>
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Basic
-                    Procedures{" "}
+                    Procedures{' '}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                    Regulations{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    Regulations{' '}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Use of
                     Force Theory
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                    Emergencies{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    Emergencies{' '}
                   </li>
                 </div>
                 <div className="md:mx-10">
@@ -130,19 +99,19 @@ const Courses = () => {
                     & Safety
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                    Canadian Legal System & Authorities{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    Canadian Legal System & Authorities{' '}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                    Communication I & II{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    Communication I & II{' '}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
                     Conflict Resolution
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
                     Diversity & Sensitivity
                   </li>
                 </div>
@@ -163,18 +132,18 @@ const Courses = () => {
                     do I take the test?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 1 ? "" : "+"}
+                    {faq === 1 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 1
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 1 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 1 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     Testing services for the Ministry of Community Safety and
@@ -184,14 +153,14 @@ const Courses = () => {
                     who suggest they can offer testing services. SERCO,
                     operating as Ontario Security Guard and Private Investigator
                     may be contacted by telephone at 1-866-248-2555, 8:00 am to
-                    5:00 pm, Monday to Friday or through their website at:{" "}
+                    5:00 pm, Monday to Friday or through their website at:{' '}
                     <a
                       href="http://www.ontariosecuritytesting.com"
                       target="_blank"
                       rel="noreferrer"
                       className="text-red-1 hover:underline"
                     >
-                      www.ontariosecuritytesting.com{" "}
+                      www.ontariosecuritytesting.com{' '}
                     </a>
                   </div>
                 </div>
@@ -206,28 +175,28 @@ const Courses = () => {
                     there a website to answer my questions?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 2 ? "" : "+"}
+                    {faq === 2 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 2
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 2 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 2 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>Yes,
-                    please visit{" "}
+                    please visit{' '}
                     <a
                       href="http://www.ontariosecuritytesting.com"
                       target="_blank"
                       rel="noreferrer"
                       className="text-red-1 hover:underline"
                     >
-                      www.ontariosecuritytesting.com{" "}
+                      www.ontariosecuritytesting.com{' '}
                     </a>
                   </div>
                 </div>
@@ -242,18 +211,18 @@ const Courses = () => {
                     much does it cost?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 3 ? "" : "+"}
+                    {faq === 3 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 3
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 3 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 3 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     test fee is $66.50 plus applicable taxes.
@@ -270,18 +239,18 @@ const Courses = () => {
                     this fee include the cost of my license?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 4 ? "" : "+"}
+                    {faq === 4 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 4
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 4 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 4 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     licensing fee and test fee are two separate costs — one for
@@ -299,18 +268,18 @@ const Courses = () => {
                     do I take the training?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 5 ? "" : "+"}
+                    {faq === 5 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 5
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 5 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 5 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>
                     Training programs are offered at Authorized Argus Training
@@ -329,18 +298,18 @@ const Courses = () => {
                     everything included in the price of the course?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 6 ? "" : "+"}
+                    {faq === 6 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 6
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 6 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 6 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>Yes.
                     There are no hidden fees. Study manual, First Aid/CPR
@@ -359,18 +328,18 @@ const Courses = () => {
                     is the cost to the five days of training?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 7 ? "" : "+"}
+                    {faq === 7 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 7
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 7 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 7 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     training will be provided to non-licensed persons who want
@@ -389,18 +358,18 @@ const Courses = () => {
                     each time?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 8 ? "" : "+"}
+                    {faq === 8 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 8
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 8 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 8 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>Yes,
                     if you fail the test you must pay to re-write it.
@@ -418,18 +387,18 @@ const Courses = () => {
                     expire?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 9 ? "" : "+"}
+                    {faq === 9 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 9
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 9 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 9 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>No,
                     you only need to pass the test once to be qualified for
@@ -448,25 +417,25 @@ const Courses = () => {
                     expire?How many questions are on the test?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 10 ? "" : "+"}
+                    {faq === 10 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 10
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 10 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 10 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     test is comprised of 60 multiple choice questions with four
                     possible answers each. The test is supervised by a SERCO
                     ‘Invigilator’, an employee assigned to supervise all test
                     participants to ensure that all rules are adhered to. Please
-                    see the SERCO website below for more details:{" "}
+                    see the SERCO website below for more details:{' '}
                     <a
                       href="http://www.ontariosecuritytesting.com/candidate_protocol.html"
                       target="_blank"
@@ -488,18 +457,18 @@ const Courses = () => {
                     much time is given to complete the test?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 11 ? "" : "+"}
+                    {faq === 11 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 11
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 11 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 11 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     time limit for the test is 75 minutes. Breaks are allowed
@@ -521,24 +490,24 @@ const Courses = () => {
                     will I get back my test results?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 12 ? "" : "+"}
+                    {faq === 12 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 12
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 12 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 12 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     results of the test are typically made available within 24
                     hours of completion. However, it may take up to 2 – 5
                     business days after the completion of the test before they
-                    are made available at{" "}
+                    are made available at{' '}
                     <a
                       href="http://www.ontariosecuritytesting.com"
                       target="_blank"
@@ -550,7 +519,7 @@ const Courses = () => {
                     .
                   </div>
                   <div
-                    className={faq === 12 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 12 ? 'block text-base mt-2' : 'hidden'}
                   >
                     Once you have been confirmed that you have successfully
                     passed the test, you may apply for a license with the
@@ -569,18 +538,18 @@ const Courses = () => {
                     license?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 13 ? "" : "+"}
+                    {faq === 13 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 13
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 13 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 13 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>The
                     expiry date of the license is set two years from the date of
@@ -600,18 +569,18 @@ const Courses = () => {
                     attend the CPR training day?
                   </p>
                   <p className="text-red-1 font-bold ml-auto text-xl cursor-pointer">
-                    {faq === 14 ? "" : "+"}
+                    {faq === 14 ? '' : '+'}
                   </p>
                 </div>
                 <div
                   className={
                     faq === 14
-                      ? "transition-all opacity-100 duration-700"
-                      : "transition-all opacity-0 duration-700"
+                      ? 'transition-all opacity-100 duration-700'
+                      : 'transition-all opacity-0 duration-700'
                   }
                 >
                   <div
-                    className={faq === 14 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 14 ? 'block text-base mt-2' : 'hidden'}
                   >
                     <span className="text-red-1 font-bold mr-2">Ans) </span>No.
                     As of October 1, 2015, all persons holding a current valid
@@ -620,13 +589,13 @@ const Courses = () => {
                     from the fifth day.
                   </div>
                   <div
-                    className={faq === 14 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 14 ? 'block text-base mt-2' : 'hidden'}
                   >
                     Argus Security must be provided with a copy of your First
                     Aid/CPR certificate.
                   </div>
                   <div
-                    className={faq === 14 ? "block text-base mt-2" : "hidden"}
+                    className={faq === 14 ? 'block text-base mt-2' : 'hidden'}
                   >
                     If you are unable to provide us with a copy of your
                     certificate you will be required to attend all five days of

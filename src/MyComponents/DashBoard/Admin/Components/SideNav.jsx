@@ -1,16 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Logo from "./../../../../argus website/SVG/Logowith shadow.svg";
-import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import AssessmentOutlinedIcon from "@mui/icons-material/AssessmentOutlined";
-import BackupOutlinedIcon from "@mui/icons-material/BackupOutlined";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
-import CropRotateOutlinedIcon from "@mui/icons-material/CropRotateOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
-import BallotOutlinedIcon from "@mui/icons-material/BallotOutlined";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from './../../../../argus website/SVG/Logowith shadow.svg';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
+import BackupOutlinedIcon from '@mui/icons-material/BackupOutlined';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import CropRotateOutlinedIcon from '@mui/icons-material/CropRotateOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import BallotOutlinedIcon from '@mui/icons-material/BallotOutlined';
 
 export default function SideNav() {
   return (
@@ -52,7 +52,7 @@ export default function SideNav() {
             <span className="hidden md:block">Shifts</span>
           </Link>
           <Link
-            to="/dashboard/student/calendar"
+            to="/dashboard/admin/employee/applications"
             className="flex items-center pl-2 py-3 pr-4  text-white hover:bg-white hover:text-red-1 rounded-lg border-b-2 border-opacity-50 shadow-button-inner-1"
           >
             <span className="inline-block mx-auto md:mx-3 xl:mx-6">

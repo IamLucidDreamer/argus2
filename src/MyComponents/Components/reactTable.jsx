@@ -38,36 +38,36 @@ const IndeterminateCheckbox = React.forwardRef(
   },
 );
 
-function GlobalFilter({
-  preGlobalFilteredRows,
-  globalFilter,
-  setGlobalFilter,
-}) {
-  const count = preGlobalFilteredRows.length;
-  const [value, setValue] = React.useState(globalFilter);
-  const onChange = useAsyncDebounce((value) => {
-    setGlobalFilter(value || undefined);
-  }, 200);
+// function GlobalFilter({
+//   preGlobalFilteredRows,
+//   globalFilter,
+//   setGlobalFilter,
+// }) {
+//   const count = preGlobalFilteredRows.length;
+//   const [value, setValue] = React.useState(globalFilter);
+//   const onChange = useAsyncDebounce((value) => {
+//     setGlobalFilter(value || undefined);
+//   }, 200);
 
-  return (
-    <span className="font-semibold">
-      Search:{' '}
-      <input
-        className={`ml-2 px-2 py-1 focus:outline-none rounded-md focus:ring-1 ring-red-1 `}
-        value={value || ''}
-        onChange={(e) => {
-          setValue(e.target.value);
-          onChange(e.target.value);
-        }}
-        placeholder={`Search ${count} records...`}
-        style={{
-          fontSize: '1.1rem',
-          border: '1px solid gray',
-        }}
-      />
-    </span>
-  );
-}
+//   return (
+//     <span className="font-semibold">
+//       Search:{' '}
+//       <input
+//         className={`ml-2 px-2 py-1 focus:outline-none rounded-md focus:ring-1 ring-red-1 `}
+//         value={value || ''}
+//         onChange={(e) => {
+//           setValue(e.target.value);
+//           onChange(e.target.value);
+//         }}
+//         placeholder={`Search ${count} records...`}
+//         style={{
+//           fontSize: '1.1rem',
+//           border: '1px solid gray',
+//         }}
+//       />
+//     </span>
+//   );
+// }
 
 function Table({ columns, data, show, setShow, justList, setSelected }) {
   // Use the state and functions returned from useTable to build your UI
@@ -92,10 +92,7 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
     pageCount,
     gotoPage,
     setAllFilters,
-    state,
-    preGlobalFilteredRows,
-    setGlobalFilter,
-    state: { pageSize, selectedRowIds },
+    state: { selectedRowIds },
   } = useTable(
     {
       columns,
@@ -202,10 +199,15 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps()}>
-                    {column.Header === 'Gender' ||
-                    column.Header === 'City' ||
-                    column.Header === 'Country' ||
-                    column.Header === 'Province' ? null : (
+                    {column.id === 'Gender' ||
+                    column.id === 'City' ||
+                    column.id === 'Country' ||
+                    column.id === 'Province' ||
+                    column.id === 'Can Drive' ||
+                    column.id === 'Valid Guard License' ||
+                    column.id === 'Eligible to work in Canada' ||
+                    column.id === 'Education in Canada' ||
+                    column.id === 'Prior Experience' ? null : (
                       <div> {column.render('Header')}</div>
                     )}
                   </th>
@@ -224,7 +226,12 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
                         {cell.column.id === 'Gender' ||
                         cell.column.id === 'City' ||
                         cell.column.id === 'Country' ||
-                        cell.column.id === 'Province' ? null : (
+                        cell.column.id === 'Province' ||
+                        cell.column.id === 'Can Drive' ||
+                        cell.column.id === 'Valid Guard License' ||
+                        cell.column.id === 'Eligible to work in Canada' ||
+                        cell.column.id === 'Education in Canada' ||
+                        cell.column.id === 'Prior Experience' ? null : (
                           <div>
                             {cell.column.id === 'Registration'
                               ? new Date(cell.value).toDateString()
@@ -240,10 +247,6 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
           </tbody>
         </table>
       </div>
-      {/* 
-        Pagination can be built however you'd like. 
-        This is just a very basic UI implementation:
-      */}
     </>
   );
 }

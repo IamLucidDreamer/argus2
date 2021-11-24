@@ -13,7 +13,6 @@ export const ClassMaterial = () => {
     chapter: false,
     slide: false,
   });
-  const token = JSON.parse(localStorage.getItem('jwt'));
   const [course, setCourse] = useState([]);
   const [courseRefresh, setCourseRefresh] = useState(null);
   const [active, setActive] = useState(0);
@@ -22,16 +21,12 @@ export const ClassMaterial = () => {
 
   useEffect(() => {
     axiosInstance
-      .get('/material/getAllCourses', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get('/material/getAllCourses', {})
       .then((res) => {
         setCourse(res.data.data);
       })
       .catch();
-  }, [token, courseRefresh]);
+  }, [courseRefresh]);
 
   return (
     <div>

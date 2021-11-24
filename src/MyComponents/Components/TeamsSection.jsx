@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useSelector } from "react-redux";
-import { API } from "../../api";
-import SideLine from "./SideLine";
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { useSelector } from 'react-redux';
+import { API } from '../../api';
+import SideLine from './SideLine';
 
 const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
   <button
     {...props}
     className={
-      "slick-prev slick-arrow" + (currentSlide === 0 ? " slick-disabled" : "")
+      'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')
     }
     aria-hidden="true"
     aria-disabled={currentSlide === 0 ? true : false}
@@ -23,8 +23,8 @@ const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
   <button
     {...props}
     className={
-      "slick-next slick-arrow" +
-      (currentSlide === slideCount - 1 ? " slick-disabled" : "")
+      'slick-next slick-arrow' +
+      (currentSlide === slideCount - 1 ? ' slick-disabled' : '')
     }
     aria-hidden="true"
     aria-disabled={currentSlide === slideCount - 1 ? true : false}
@@ -67,33 +67,26 @@ const Teams = () => {
         },
       },
       {
-        breakpoint: 650,
+        breakpoint: 770,
         settings: {
           arrows: false,
-          centerPadding: "10px",
+          centerPadding: '10px',
         },
       },
       {
-        breakpoint: 500,
+        breakpoint: 690,
         settings: {
           arrows: false,
-          centerPadding: "0px",
+          slidesToShow: 2,
+          centerPadding: '10px',
         },
       },
       {
         breakpoint: 468,
         settings: {
           arrows: false,
-          slidesToShow: 2,
-          centerPadding: "10px",
-        },
-      },
-      {
-        breakpoint: 330,
-        settings: {
-          arrows: false,
           slidesToShow: 1,
-          centerPadding: "0px",
+          centerPadding: '0px',
         },
       },
     ],
@@ -108,7 +101,7 @@ const Teams = () => {
       {
         breakpoint: 450,
         settings: {
-          centerPadding: "40px",
+          centerPadding: '40px',
         },
       },
     ],

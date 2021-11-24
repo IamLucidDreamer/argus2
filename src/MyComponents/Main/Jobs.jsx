@@ -1,12 +1,89 @@
-import React, { Component, useState } from "react";
-import about_image from "./../../argus website/PNG/Video.png";
-import SideBar from "./../Components/SideBar.jsx";
-import SideLine from "./../Components/SideLine";
-import { IconButton } from "@mui/material";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import React, { useState } from 'react';
+import about_image from './../../argus website/PNG/Video.png';
+import SideBar from './../Components/SideBar.jsx';
+import SideLine from './../Components/SideLine';
+import { IconButton } from '@mui/material';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import WorkStatus from './jobApplicationForms/WorkStatus';
+import Education from './jobApplicationForms/Education';
+import Experience from './jobApplicationForms/Experience';
+import axiosInstance from '../../helpers/axiosInstance';
+import Alert from '../Components/Alert';
 
 const Jobs = () => {
   const [show, setShow] = useState(false);
+  const [formNo, setFormNo] = useState(3);
+  const [formData, setFormData] = useState({
+    name: null,
+    email: null,
+    elegibleToWorkInCanada: null,
+    eligibilityType: null,
+    validSecurityGuardLicence: null,
+    licenceNo: null,
+    canDrive: null,
+    highestLevelOfEducation: null,
+    educationInCanada: null,
+    priorExperience: null,
+    yearsOfExp: null,
+  });
+  const [showAlert, setShowAlert] = useState({
+    show: false,
+    message: '',
+    success: false,
+  });
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    let status = true;
+    for (const key in formData) {
+      if (
+        (formData[key] === null || formData[key] === '') &&
+        key !== 'licenceNo'
+      ) {
+        status = false;
+      }
+    }
+    if (status) {
+      axiosInstance
+        .post('/application/create', formData)
+        .then((res) => {
+          setShowAlert({
+            show: true,
+            message: 'Application submitted successfully!!!',
+            success: true,
+          });
+          setTimeout(() => {
+            setFormData({
+              name: null,
+              email: null,
+              elegibleToWorkInCanada: null,
+              eligibilityType: null,
+              validSecurityGuardLicence: null,
+              licenceNo: null,
+              canDrive: null,
+              highestLevelOfEducation: null,
+              educationInCanada: null,
+              priorExperience: null,
+              yearsOfExp: null,
+            });
+            setShow(false);
+          }, 2500);
+        })
+        .catch((err) => {
+          setShowAlert({
+            show: true,
+            message: 'Error submitting application!!!',
+            success: false,
+          });
+        });
+    } else {
+      setShowAlert({
+        show: true,
+        message: 'Fill all fields!!!',
+        success: false,
+      });
+    }
+  };
 
   return (
     <div className="font-for-para">
@@ -44,26 +121,26 @@ const Jobs = () => {
                     Malls
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                    Commercial Properties{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    Commercial Properties{' '}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                    Condominiums{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    Condominiums{' '}
                   </li>
                 </div>
                 <div className="md:ml-10">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
                     Industrial Sites
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
                     Healthcare Facilities
                   </li>
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Mobile
-                    Guard{" "}
+                    Guard{' '}
                   </li>
                 </div>
               </ul>
@@ -82,7 +159,7 @@ const Jobs = () => {
               <ul className="text-gray-2 font-medium text-lg mb-6">
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> A valid
-                  Ontario Security Licence{" "}
+                  Ontario Security Licence{' '}
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> Previous
@@ -93,8 +170,8 @@ const Jobs = () => {
                   (Ontario Grade 12 or equivalent)
                 </li>
                 <li className="flex flex-row items-start my-0.5">
-                  <span className="text-red-1 font-bold mr-2">✓</span>{" "}
-                  Availability to work required shifts{" "}
+                  <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                  Availability to work required shifts{' '}
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> No
@@ -106,7 +183,7 @@ const Jobs = () => {
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> Available
-                  transportation to get to work{" "}
+                  transportation to get to work{' '}
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> A clean
@@ -136,17 +213,79 @@ const Jobs = () => {
       </div>
       <div
         className={`${
-          show ? "block" : "hidden"
+          show ? 'block' : 'hidden'
         } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
       >
-        <div className="bg-white rounded-lg w-11/12 lg:w-1/2">
-          <div className="w-full flex justify-end p-4">
-            <IconButton onClick={() => setShow(false)}>
+        <div className="bg-client rounded-lg w-11/12 lg:w-1/2 relative">
+          <div className="w-full flex justify-end p-4 absolute">
+            <IconButton
+              onClick={() => {
+                setFormData({
+                  name: null,
+                  email: null,
+                  elegibleToWorkInCanada: null,
+                  eligibilityType: null,
+                  validSecurityGuardLicence: null,
+                  licenceNo: null,
+                  canDrive: null,
+                  highestLevelOfEducation: null,
+                  educationInCanada: null,
+                  priorExperience: null,
+                  yearsOfExp: null,
+                });
+                setShow(false);
+              }}
+            >
               <CloseRoundedIcon fontSize="large" />
             </IconButton>
           </div>
+          <div className="pl-10 pr-14 mt-6">
+            {showAlert.show ? (
+              <Alert alert={showAlert} rmAlert={setShowAlert} />
+            ) : null}
+          </div>
 
-          <form className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3 px-4 scale-90 md:scale-100"></form>
+          <div className="w-full flex justify-center mt-10 mb-4">
+            <h1 className="text-3xl font-bold">
+              {formNo === 3 ? 'Work Status' : null}
+              {formNo === 2 ? 'Education' : null}
+              {formNo === 1 ? 'Experience' : null}
+            </h1>
+          </div>
+          <div className="w-full px-10 mb-6">
+            <div className="w-full bg-white h-10 rounded-full bg-applicationBack bg-no-repeat bg-cover bg-center border-3 border-white">
+              <div
+                className={`${
+                  formNo === 1 ? 'w-full' : `w-1/${formNo}`
+                } transition-all duration-500 bg-red-1 h-full rounded-full`}
+              ></div>
+            </div>
+          </div>
+          {formNo === 3 ? (
+            <WorkStatus
+              setFormNo={setFormNo}
+              formNo={formNo}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          ) : null}
+          {formNo === 2 ? (
+            <Education
+              setFormNo={setFormNo}
+              formNo={formNo}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          ) : null}
+          {formNo === 1 ? (
+            <Experience
+              setFormNo={setFormNo}
+              formNo={formNo}
+              setFormData={setFormData}
+              formData={formData}
+              submitForm={submitForm}
+            />
+          ) : null}
         </div>
       </div>
     </div>

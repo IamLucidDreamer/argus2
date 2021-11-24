@@ -72,6 +72,7 @@ import Modules from './MyComponents/DashBoard/Student/Modules';
 import Chapter from './MyComponents/DashBoard/Student/Chapter';
 import ForgetPassword from './MyComponents/Main/ForgetPassword';
 import ForgetPasswordEnterEmail from './MyComponents/Main/ForgotPasswordEnterEmail';
+import Applications from './MyComponents/DashBoard/Admin/Components/EmployeePortal/Applications';
 
 function App() {
   const dispatch = useDispatch();
@@ -85,8 +86,6 @@ function App() {
     dispatch(getTeam());
   }, [dispatch]);
 
-  const user = useSelector((state) => state.user);
-  console.log(user);
   return (
     <Router>
       <div className="App">
@@ -247,6 +246,10 @@ function App() {
           <AdminRoute
             path="/dashboard/admin/coupon"
             component={ManageCoupons}
+          />
+          <AdminRoute
+            path="/dashboard/admin/employee/applications"
+            component={Applications}
           />
         </switch>
       </div>
