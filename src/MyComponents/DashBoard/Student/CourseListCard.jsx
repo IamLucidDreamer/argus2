@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import axiosInstance from '../../../helpers/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import axiosInstance from "../../../helpers/axiosInstance";
 
 const CourseListCard = ({ c, startedAt, index }) => {
   const history = useHistory();
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [duration, setDuration] = useState(0);
 
   const progress = useSelector((state) => state.progress.progress);
@@ -21,13 +21,13 @@ const CourseListCard = ({ c, startedAt, index }) => {
     if (completedChapters?.length !== 0) {
       axiosInstance
         .post(
-          '/material/getDuration',
+          "/material/getDuration",
           { chapters: completedChapters },
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         )
         .then((res) => {
           setDuration(res.data.data);
@@ -40,7 +40,7 @@ const CourseListCard = ({ c, startedAt, index }) => {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
         <div
           onClick={() => {
             history.push(`/dashboard/student/course/${c?._id}/module`);
@@ -66,7 +66,7 @@ const CourseListCard = ({ c, startedAt, index }) => {
           </div>
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
-          <h1>{duration === c.duration ? 'Completed' : 'Incomplete'}</h1>
+          <h1>{duration === c.duration ? "Completed" : "Incomplete"}</h1>
         </div>
       </div>
       <div className="block lg:hidden bg-red-1 w-full h-0.5 my-4 bg-opacity-0"></div>
