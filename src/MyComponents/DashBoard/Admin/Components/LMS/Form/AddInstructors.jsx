@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { useDispatch } from 'react-redux';
 import { getUsers } from '../../../../../../context/actions/lmsActions/userAction';
@@ -8,13 +8,14 @@ import Alert from '../../../../../Components/Alert';
 
 const AddInstructors = () => {
   const [searchParams, setSearchParams] = useState({
-    _id: '',
+    docId: '',
     createdAt: '',
     name: '',
     lastname: '',
     email: '',
     phone: '',
     city: '',
+    courses: [],
   });
   const [user, setUser] = useState([]);
   const [show, setShow] = useState(false);
@@ -28,6 +29,17 @@ const AddInstructors = () => {
 
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    axiosInstance
+      .get('/material/getAllCourses')
+      .then((res) => {
+        setCourses(res?.data?.data);
+      })
+      .catch((err) => {});
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -65,7 +77,7 @@ const AddInstructors = () => {
   const headCells = [
     {
       id: 'User ID',
-      accessor: '_id',
+      accessor: 'docId',
       Header: 'User ID',
     },
     {
@@ -165,11 +177,21 @@ const AddInstructors = () => {
             }
             className="bg-client p-5 w-full lg:w-5/12 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
           />
-          <input
-            type="text"
+          <select
             placeholder="Course DropDown"
             className="bg-client p-5 w-full lg:w-5/12 mt-8 lg:mt-0 rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-          />
+            value={searchParams?.courses[0]}
+            onChange={(e) =>
+              setSearchParams({ ...searchParams, courses: [e.target.value] })
+            }
+          >
+            <option value="" selected disabled>
+              Select course
+            </option>
+            {courses.map((c, index) => {
+              return <option value={c?._id}>{c?.name}</option>;
+            })}
+          </select>
         </div>
         <div className="w-full flex flex-col lg:flex-row items-center justify-evenly my-4">
           <input

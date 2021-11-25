@@ -1,14 +1,11 @@
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  getUser,
-  updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { userActivity } from '../../../../../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
 
-const BackgroundDetails = ({ user }) => {
+const BackgroundDetails = ({ user, setRefreshData }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
@@ -41,15 +38,21 @@ const BackgroundDetails = ({ user }) => {
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(
-        updateUser(
-          resetForm,
-          values,
-          'BackGround Details updated',
-          user?.name,
-          user?._id,
-        ),
-      );
+      const token = JSON.parse(localStorage.getItem('jwt'));
+      axiosInstance
+        .put(`/user/updateAdmin/${user?._id}`, values, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          dispatch(
+            userActivity('Background Details Added', 'Admin', user?._id),
+          );
+          setRefreshData(res);
+          resetForm();
+        })
+        .catch((err) => {});
     },
   });
 

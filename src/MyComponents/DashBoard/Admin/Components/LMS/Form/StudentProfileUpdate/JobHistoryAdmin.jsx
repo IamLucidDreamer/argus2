@@ -1,29 +1,25 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  getUser,
-  userActivity,
-} from '../../../../../context/actions/authActions/getUserAction';
+import React from 'react';
 import RestorePageOutlinedIcon from '@mui/icons-material/RestorePageOutlined';
-import axiosInstance from '../../../../../helpers/axiosInstance';
 import { IconButton } from '@mui/material';
 import { DeleteOutline } from '@mui/icons-material';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
+import { useDispatch } from 'react-redux';
+import { userActivity } from '../../../../../../../context/actions/authActions/getUserAction';
 
-const JobHistory = ({ user, setShow }) => {
+const JobHistory = ({ user, setShow, setRefreshData }) => {
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('jwt'));
 
   const deleteRecord = (id) => {
     axiosInstance
-      .delete(`/user/deleteJobHistory/${id}`, {
+      .delete(`/user/deleteJobHistoryAdmin/${user?._id}/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        dispatch(userActivity('Job Record Deleted', user?.name, user?._id));
-        dispatch(getUser());
+        dispatch(userActivity('Job Record Deleted', 'Admin', user?._id));
+        setRefreshData(res);
       })
       .catch((err) => {});
   };

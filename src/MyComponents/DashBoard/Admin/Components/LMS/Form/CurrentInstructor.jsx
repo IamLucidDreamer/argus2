@@ -30,7 +30,7 @@ const CurrentInstructor = () => {
   const headCells = [
     {
       id: 'Instructor ID',
-      accessor: '_id',
+      accessor: 'docId',
       Header: 'Instructor ID',
       Filter: SelectColumnFilter,
       filter: 'includes',

@@ -7,7 +7,10 @@ import AddClass from './AddClass';
 import EditClass from './EditClass';
 import Alert from '../../../../../../Components/Alert';
 import axiosInstance from '../../../../../../../helpers/axiosInstance';
+import { useDispatch } from 'react-redux';
+import { get_Class } from '../../../../../../../context/actions/lmsActions/classActions';
 const ClassOverview = () => {
+  const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem('jwt'));
   const [newclass, setnewclass] = useState(false);
   const classList = useSelector((state) => state.class.class);
@@ -26,6 +29,12 @@ const ClassOverview = () => {
     message: '',
     success: false,
   });
+
+  useEffect(() => {
+    if (classList.length === 0) {
+      dispatch(get_Class());
+    }
+  }, [dispatch, classList]);
 
   useEffect(() => {
     setpageData(classList.slice((page - 1) * 5, page * 5));
