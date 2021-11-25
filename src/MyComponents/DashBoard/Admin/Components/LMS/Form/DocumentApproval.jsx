@@ -54,7 +54,7 @@ const DocumentApproval = () => {
   const headCells = [
     {
       id: 'Student ID',
-      accessor: '_id',
+      accessor: 'docId',
       Header: 'Student ID',
       Filter: SelectColumnFilter,
       filter: 'includes',

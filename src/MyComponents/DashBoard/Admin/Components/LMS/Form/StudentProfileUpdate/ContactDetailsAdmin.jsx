@@ -2,15 +2,12 @@ import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import {
-  getUser,
-  updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
 import { Country, State, City } from 'country-state-city';
 import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
+import { userActivity } from '../../../../../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
 
-const ContactDetails = ({ user }) => {
+const ContactDetails = ({ user, setRefreshData }) => {
   const dispatch = useDispatch();
 
   const validate = (values) => {
@@ -33,11 +30,8 @@ const ContactDetails = ({ user }) => {
     if (!values.postalCode) {
       errors.postalCode = '*Required';
     }
-    if (!values.suite) {
-      errors.suite = '*Required';
-    }
     if (!values.homePhone) {
-      errors.homePhone = '*Required';
+      delete errors.homePhone;
     } else if (values.homePhone > 15 && values.homePhone < 6) {
       errors.homePhone = 'Number should be in range 6-15';
     }
@@ -69,15 +63,19 @@ const ContactDetails = ({ user }) => {
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
-        dispatch(
-          updateUser(
-            resetForm,
-            values,
-            'Contact Details updated',
-            user?.name,
-            user?._id,
-          ),
-        );
+        const token = JSON.parse(localStorage.getItem('jwt'));
+        axiosInstance
+          .put(`/user/updateAdmin/${user?._id}`, values, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            dispatch(userActivity('Contact details added', 'Admin', user?._id));
+            setRefreshData(res);
+            resetForm();
+          })
+          .catch((err) => {});
       },
     });
   const [country, setCountry] = useState(null);

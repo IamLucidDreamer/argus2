@@ -74,6 +74,7 @@ import ForgetPassword from './MyComponents/Main/ForgetPassword';
 import ForgetPasswordEnterEmail from './MyComponents/Main/ForgotPasswordEnterEmail';
 import Applications from './MyComponents/DashBoard/Admin/Components/EmployeePortal/Applications';
 import { getReq } from './context/actions/adminActions/requirementActions';
+import StudentProfleLookup from './MyComponents/DashBoard/Admin/Components/LMS/Form/StudentProfleLookup';
 
 function App() {
   const dispatch = useDispatch();
@@ -225,8 +226,13 @@ function App() {
             component={LmsLicense}
           />
           <AdminRoute
+            exact
             path="/dashboard/admin/lms/student"
             component={LmsStudent}
+          />
+          <AdminRoute
+            path="/dashboard/admin/lms/student/lookup/:id"
+            component={StudentProfleLookup}
           />
           <AdminRoute
             path="/dashboard/admin/lms/instructor"

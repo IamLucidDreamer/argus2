@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import { userActivity } from '../../../../../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
 
-const PersonalDetails = ({ user }) => {
+const PersonalDetails = ({ user, setRefreshData }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
@@ -50,15 +51,19 @@ const PersonalDetails = ({ user }) => {
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(
-        updateUser(
-          resetForm,
-          values,
-          'Personal Details updated',
-          user?.name,
-          user?._id,
-        ),
-      );
+      const token = JSON.parse(localStorage.getItem('jwt'));
+      axiosInstance
+        .put(`/user/updateAdmin/${user?._id}`, values, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          dispatch(userActivity('Personal Details Added', 'Admin', user?._id));
+          setRefreshData(res);
+          resetForm();
+        })
+        .catch((err) => {});
     },
   });
 

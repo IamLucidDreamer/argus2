@@ -8,7 +8,7 @@ import { base64StringToBlob } from 'blob-util';
 import { useDispatch } from 'react-redux';
 import { userActivity } from '../../../../../../context/actions/authActions/getUserAction';
 
-const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
+const ShowDoc = ({ show, setShow, data, refreshDoc = () => {} }) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
   const [docData, setDocData] = useState(null);
   const [note, setNote] = useState('');
@@ -26,27 +26,29 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setLoading(true);
-    axiosInstance
-      .get(`/docs2/getDoc/${data?._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setLoading(false);
-        setDocData(res.data.data);
-        setB64(Buffer.from(res?.data?.data?.data).toString('base64'));
-        setBlob(
-          window?.URL?.createObjectURL(
-            base64StringToBlob(b64, docData?.contentType),
-          ),
-        );
-      })
-      .catch((err) => {
-        setLoading(false);
-        setShow(false);
-      });
+    if (data?._id) {
+      setLoading(true);
+      axiosInstance
+        .get(`/docs2/getDoc/${data?._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setLoading(false);
+          setDocData(res.data.data);
+          setB64(Buffer.from(res?.data?.data?.data).toString('base64'));
+          setBlob(
+            window?.URL?.createObjectURL(
+              base64StringToBlob(b64, docData?.contentType),
+            ),
+          );
+        })
+        .catch((err) => {
+          setLoading(false);
+          setShow(false);
+        });
+    }
   }, [data?._id, token, refresh, setShow, b64, docData?.contentType]);
 
   return (
@@ -64,7 +66,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
               setShow(false);
             }}
           >
-            <CloseRoundedIcon fontSize="small" />
+            <CloseRoundedIcon fontSize="medium" />
           </IconButton>
         </div>
 
@@ -90,7 +92,7 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                   />
                   <a
                     className="font-bold px-6 py-2 bg-red-1 text-white text-base sm:text-xl rounded-xl hover:bg-white hover:text-red-1 border-2 border-red-1"
-                    download={`${docData?.name}(${docData?.userId}_${
+                    download={`${docData?.name}(${docData?.userDocId}_${
                       docData?.username
                     }).${
                       docData?.contentType === 'application/pdf'
@@ -106,7 +108,9 @@ const ShowDoc = ({ show, setShow, data, refreshDoc }) => {
                   <div className="p-2 mb-4 text-base sm:text-2xl">
                     <h1 className=" text-gray-2 ">
                       Student Id:
-                      <span className="font-bold ml-3">{docData?.userId}</span>
+                      <span className="font-bold ml-3">
+                        {docData?.userDocId}
+                      </span>
                     </h1>
                     <h1 className=" text-gray-2">
                       Student Name:

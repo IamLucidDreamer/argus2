@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import { userActivity } from '../../../../../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../../../../../helpers/axiosInstance';
 
-const JobSearch = ({ user }) => {
+const JobSearch = ({ user, setRefreshData }) => {
   const dispatch = useDispatch();
 
   const validate = (values) => {
@@ -37,15 +38,23 @@ const JobSearch = ({ user }) => {
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
-      dispatch(
-        updateUser(
-          resetForm,
+      const token = JSON.parse(localStorage.getItem('jwt'));
+      axiosInstance
+        .put(
+          `/user/updateAdmin/${user?._id}`,
           { jobSearch: values },
-          'Job Search Details updated',
-          user?.name,
-          user._id,
-        ),
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then((res) => {
+          dispatch(userActivity('Job Search Added', 'Admin', user?._id));
+          setRefreshData(res);
+          resetForm();
+        })
+        .catch((err) => {});
     },
   });
 
@@ -141,90 +150,6 @@ const JobSearch = ({ user }) => {
               <option value="Flexible">Flexible</option>
               <option value="To be Determined">To be Determined</option>
             </select>
-
-            {/* <div className="flex flex-row my-2">
-              <div>
-                <div className="flex flex-row items-center justify-start">
-                  <input
-                    type="checkbox"
-                    name="Availability"
-                    value="Early Morning"
-                  />
-                  <label for="Availability" className="pl-2">
-                    {' '}
-                    Early Morning
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Morning" />
-                  <label for="Availability" className="pl-2">
-                    {' '}
-                    Morning
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Day" />
-                  <label for="Availability" className="pl-2">
-                    Day
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Evening" />
-                  <label for="Availability" className="pl-2">
-                    Evening
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Night" />
-                  <label for="Availability" className="pl-2">
-                    Night
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Weekend" />
-                  <label for="Availability" className="pl-2">
-                    Weekend
-                  </label>
-                </div>
-              </div>
-              <div className="ml-2 md:ml-8">
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Shift" />
-                  <label for="Availability" className="pl-2">
-                    Shift
-                  </label>
-                </div>
-
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="On Call" />
-                  <label for="Availability" className="pl-2">
-                    On Call
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Overtime" />
-                  <label for="Availability" className="pl-2">
-                    Overtime
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input type="checkbox" name="Availability" value="Flexible" />
-                  <label for="Availability" className="pl-2">
-                    Flexible
-                  </label>
-                </div>
-                <div className="flex flex-row items-center justify-start">
-                  <input
-                    type="checkbox"
-                    name="Availability"
-                    value="To be Determined"
-                  />
-                  <label for="Availability" className="pl-2">
-                    To be Determined
-                  </label>
-                </div>
-              </div>
-            </div> */}
             {errors.availability ? (
               <div className="w-full text-xs text-red-400">
                 {errors.availability}

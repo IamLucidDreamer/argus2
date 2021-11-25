@@ -1,6 +1,7 @@
 import axiosInstance from '../../helpers/axiosInstance';
 import {
   COURSE_LOADING,
+  GETALL_COURSES,
   GETUSERS_COURSE,
   GET_PROGRESS,
   SET_CURRENTCOURSE,
@@ -38,7 +39,23 @@ const setCourse = (data) => ({
   payload: data,
 });
 
+const setAllCourse = (data) => ({
+  type: GETALL_COURSES,
+  payload: data,
+});
+
 const token = JSON.parse(localStorage.getItem('jwt'));
+
+const getAllCourses = () => {
+  return (dispatch) => {
+    axiosInstance
+      .get('/material/getAllCourses')
+      .then((res) => {
+        setAllCourse(res?.data?.data);
+      })
+      .catch((err) => {});
+  };
+};
 
 const getUsersCourse = () => {
   return (dispatch) => {
@@ -166,4 +183,5 @@ export {
   updateSlide,
   setCurrentCourse,
   getUsersCourse,
+  getAllCourses,
 };

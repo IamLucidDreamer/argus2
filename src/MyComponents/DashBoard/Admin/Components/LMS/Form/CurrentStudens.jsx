@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 import SelectColumnFilter from '../../../../../../helpers/TableFilter';
 import Table from '../../../../../Components/reactTable';
@@ -8,6 +9,8 @@ const CurrentStudens = () => {
   const students = useSelector((state) => state.users.students);
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState([]);
+
+  const history = useHistory();
 
   students.forEach((element) => {
     for (const key in element) {
@@ -20,7 +23,7 @@ const CurrentStudens = () => {
   const headCells = [
     {
       id: 'Student ID',
-      accessor: '_id',
+      accessor: 'docId',
       Header: 'Student ID',
       Filter: SelectColumnFilter,
       filter: 'includes',
@@ -86,6 +89,9 @@ const CurrentStudens = () => {
         setShow={setShow}
         justList={true}
         setSelected={setSelected}
+        func={(id) => {
+          history.push(`/dashboard/admin/lms/student/lookup/${id}`);
+        }}
       />
     </div>
   );

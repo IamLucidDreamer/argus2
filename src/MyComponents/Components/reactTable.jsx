@@ -69,7 +69,15 @@ const IndeterminateCheckbox = React.forwardRef(
 //   );
 // }
 
-function Table({ columns, data, show, setShow, justList, setSelected }) {
+function Table({
+  columns,
+  data,
+  show,
+  setShow,
+  justList,
+  setSelected,
+  func = () => {},
+}) {
   // Use the state and functions returned from useTable to build your UI
 
   const defaultColumn = React.useMemo(
@@ -232,11 +240,24 @@ function Table({ columns, data, show, setShow, justList, setSelected }) {
                         cell.column.id === 'Eligible to work in Canada' ||
                         cell.column.id === 'Education in Canada' ||
                         cell.column.id === 'Prior Experience' ? null : (
-                          <div>
-                            {cell.column.id === 'Registration'
-                              ? new Date(cell.value).toDateString()
-                              : cell.render('Cell')}
-                          </div>
+                          <>
+                            <div
+                              onClick={() => {
+                                if (cell.column.id === 'Student ID') {
+                                  func(cell.row.original._id);
+                                }
+                              }}
+                              className={`${
+                                cell.column.id === 'Student ID'
+                                  ? 'hover:bg-red-1 hover:text-white cursor-pointer'
+                                  : ''
+                              }`}
+                            >
+                              {cell.column.id === 'Registration'
+                                ? new Date(cell.value).toDateString()
+                                : cell.render('Cell')}
+                            </div>
+                          </>
                         )}
                       </td>
                     );

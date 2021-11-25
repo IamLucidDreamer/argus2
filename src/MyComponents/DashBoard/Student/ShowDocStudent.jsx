@@ -5,6 +5,7 @@ import Loader from 'react-loader-spinner';
 import { base64StringToBlob } from 'blob-util';
 import axiosInstance from '../../../helpers/axiosInstance';
 import Alert from '../../Components/Alert';
+import { useSelector } from 'react-redux';
 
 const ShowDocStudent = ({ show, setShow, data }) => {
   const token = JSON.parse(localStorage.getItem('jwt'));
