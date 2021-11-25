@@ -73,6 +73,7 @@ import Chapter from './MyComponents/DashBoard/Student/Chapter';
 import ForgetPassword from './MyComponents/Main/ForgetPassword';
 import ForgetPasswordEnterEmail from './MyComponents/Main/ForgotPasswordEnterEmail';
 import Applications from './MyComponents/DashBoard/Admin/Components/EmployeePortal/Applications';
+import { getReq } from './context/actions/adminActions/requirementActions';
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
     dispatch(getContact());
     dispatch(getTestimonial());
     dispatch(getEOM());
+    dispatch(getReq());
     dispatch(getClientCarousel());
     dispatch(getTeam());
   }, [dispatch]);

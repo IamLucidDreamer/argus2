@@ -28,11 +28,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getEOMAdmin());
-    dispatch(getTestimonial());
-    dispatch(getContact());
-    dispatch(getClientCarousel());
     dispatch(getTeam());
-    dispatch(getReq());
   }, [dispatch]);
 
   return (

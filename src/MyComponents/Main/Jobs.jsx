@@ -9,6 +9,8 @@ import Education from './jobApplicationForms/Education';
 import Experience from './jobApplicationForms/Experience';
 import axiosInstance from '../../helpers/axiosInstance';
 import Alert from '../Components/Alert';
+import { useSelector } from 'react-redux';
+import { API } from '../../api';
 
 const Jobs = () => {
   const [show, setShow] = useState(false);
@@ -31,6 +33,8 @@ const Jobs = () => {
     message: '',
     success: false,
   });
+
+  const req = useSelector((state) => state.req.requirement);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -196,10 +200,27 @@ const Jobs = () => {
                   Requirements
                 </h1>
               </div>
-              <p className="leading-loose text-lg font-medium text-gray-2 mb-4 sm:mb-8">
-                If you do not have a valid Ontario Security Licence, we can help
-                you train and apply for one.
-              </p>
+              <div>
+                {req.map((r) => {
+                  return (
+                    <>
+                      <h1 className="leading-loose text-xl text-black font-semibold">
+                        {r?.title}
+                      </h1>
+                      <img
+                        src={`${API}/requirement/get-photo/${r?._id}`}
+                        alt=""
+                      />
+                      <p className="leading-loose text-lg font-medium text-gray-2">
+                        {r?.description}
+                      </p>
+                      <p className="leading-loose text-xl font-semibold text-gray-2 mb-4 sm:mb-8">
+                        $ {r?.price}
+                      </p>
+                    </>
+                  );
+                })}
+              </div>
               <button
                 onClick={() => setShow(true)}
                 className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
