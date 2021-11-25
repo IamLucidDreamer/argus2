@@ -9,10 +9,12 @@ import { userReducer } from './reducers/lmsReducer.js/userReducer';
 import { classReducer } from './reducers/lmsReducer.js/classReducer';
 import { basketReducer } from './reducers/lmsReducer.js/basketReducer';
 import { progressReducer } from './reducers/userReducer';
+import { requirementReducer } from './reducers/adminReducer/requirementActions';
 
 const rootReducer = combineReducers({
   contact: contactReducer,
   testimonial: testimonialReducer,
+  req: requirementReducer,
   eom: eomReducer,
   client: clientReducer,
   team: teamReducer,

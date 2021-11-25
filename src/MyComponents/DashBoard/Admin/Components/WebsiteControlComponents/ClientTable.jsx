@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { API } from "../../../../../api";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { API } from '../../../../../api';
 import {
   deleteClientCarousel,
   setupdateclientcarousel,
-} from "../../../../../context/actions/adminActions/clientsAction";
-import Loader from "react-loader-spinner";
+} from '../../../../../context/actions/adminActions/clientsAction';
+import Loader from 'react-loader-spinner';
 
 export const ClientTable = () => {
   const clients = useSelector((state) => state.client.clients);
@@ -23,7 +23,6 @@ export const ClientTable = () => {
         </div>
       ) : (
         <>
-          {" "}
           {clients.map((client) => {
             return (
               <div
@@ -63,13 +62,13 @@ export const ClientTable = () => {
                         />
                       </div>
                     ) : (
-                      "Delete"
+                      'Delete'
                     )}
                   </button>
                   <button
                     onClick={() => {
                       dispatch(
-                        setupdateclientcarousel({ state: true, data: client })
+                        setupdateclientcarousel({ state: true, data: client }),
                       );
                     }}
                     className="px-3 py-1 m-2 border-2 border-dashed border-red-1 bg-red-1 text-white rounded-lg hover:text-blue-400 hover:bg-blue-100 hover:border-blue-400"
