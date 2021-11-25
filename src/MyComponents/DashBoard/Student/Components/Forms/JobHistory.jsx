@@ -25,7 +25,7 @@ const JobHistory = ({ user, setShow }) => {
             <div className="flex flex-col text-gray-2 font-bold placeholder-red-1 h-72 p-2 md:p-4 overflow-y-scroll z-10">
               {user?.employmentRecord?.map((m, index) => {
                 return (
-                  <form className="flex flex-col text-gray-2 font-bold mb-4">
+                  <form className="flex flex-col  font-bold mb-4">
                     <label className="text-red-1">#{index + 1}</label>
                     <div className="flex flex-col">
                       <label> Category</label>
