@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import axiosInstance from '../../../helpers/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
+import axiosInstance from "../../../helpers/axiosInstance";
 
 const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
   const history = useHistory();
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [duration, setDuration] = useState(0);
   const [chapters, setChapters] = useState([]);
 
@@ -40,13 +40,13 @@ const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
     if (completedChapters?.length !== 0) {
       axiosInstance
         .post(
-          '/material/getDuration',
+          "/material/getDuration",
           { chapters: completedChapters },
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          },
+          }
         )
         .then((res) => {
           setDuration(res.data.data);
@@ -61,7 +61,7 @@ const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
 
   if (current.completedModules.some((module) => module.moduleId === m._id)) {
     startDate = current.completedModules.filter(
-      (module) => module.moduleId === m._id,
+      (module) => module.moduleId === m._id
     )[0].createdAt;
   } else if (current?.currentModule?.moduleId === m._id) {
     startDate = current?.currentModule?.updatedAt;
@@ -69,14 +69,14 @@ const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl border-2 lg:border-none border-red-1">
+      <div className="flex flex-col lg:flex-row text-lg mb-2 rounded-xl shadow-cards lg:shadow-none">
         <div
           onClick={() => {
             if (completed || ongoing) {
               history.push(
                 `/dashboard/student/course/${courseId}/module/${
                   m?._id
-                }/chapter/${module[index + 1]?._id}`,
+                }/chapter/${module[index + 1]?._id}`
               );
             }
           }}
@@ -91,15 +91,15 @@ const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
           <h1 className="">
             {startDate
               ? new Date(startDate).toLocaleDateString()
-              : 'Not Started'}
+              : "Not Started"}
           </h1>
           <h1 className="font-bold">
             {startDate
-              ? new Date(startDate).toLocaleTimeString('en-US', {
-                  hour: '2-digit',
-                  minute: '2-digit',
+              ? new Date(startDate).toLocaleTimeString("en-US", {
+                  hour: "2-digit",
+                  minute: "2-digit",
                 })
-              : ''}
+              : ""}
           </h1>
         </div>
         <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
@@ -107,7 +107,7 @@ const ModuleListCard = ({ m, completed, ongoing, courseId, index, module }) => {
         </div>
         <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
           <h1>
-            {completed ? 'Completed' : ongoing ? 'Ongoing' : 'Not Started'}
+            {completed ? "Completed" : ongoing ? "Ongoing" : "Not Started"}
           </h1>
         </div>
       </div>

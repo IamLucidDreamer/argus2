@@ -97,7 +97,7 @@ export const SideNav = () => {
           <span className="font-bold">Argus Security</span> Today
         </h1>
         <Link
-          to="/"
+          to="/jobs"
           className="w-11/12 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-10 sm:mt-0 hover:shadow-button-inner"
         >
           APPLY NOW
@@ -105,7 +105,7 @@ export const SideNav = () => {
       </div>
       <div className="block md:hidden mt-20">
         <Link
-          to="/"
+          to="/jobs"
           className="w-9/12 sm:w-14 mx-auto flex flex-col justify-center bg-white rounded-xl my-4 text-center text-lg py-2 font-bold text-red-1 leading-tight"
         >
           <div className="flex mx-auto">
