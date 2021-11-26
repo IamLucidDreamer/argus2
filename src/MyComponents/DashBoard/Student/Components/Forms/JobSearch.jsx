@@ -110,8 +110,12 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label>Maximum Travel Radius (Bar to select values)</label>
+            <label>Maximum Travel Radius (In KM)</label>
             <input
+              type="range"
+              min="1"
+              max="50"
+              value="5"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps('prefferedCity')}
             />
@@ -232,8 +236,12 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label> Wage Range (Bar to select values)</label>
+            <label>Wage Range</label>
             <input
+              type="range"
+              min="1"
+              max="50"
+              value="5"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
               {...getFieldProps('wageRange')}
             />
