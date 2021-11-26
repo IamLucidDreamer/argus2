@@ -24,8 +24,13 @@ const getUser = () => {
         },
       })
       .then((res) => {
-        dispatch(setUser(res.data.data));
-        dispatch(isAuthenticated('true'));
+        if (res?.data?.data?.blocked) {
+          dispatch(isAuthenticated('false'));
+          dispatch(clearStorage());
+        } else {
+          dispatch(setUser(res.data.data));
+          dispatch(isAuthenticated('true'));
+        }
       })
       .catch(() => {
         dispatch(isAuthenticated('false'));

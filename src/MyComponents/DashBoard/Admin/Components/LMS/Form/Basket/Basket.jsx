@@ -188,7 +188,6 @@ const Basket = () => {
           </p>
         ) : (
           <>
-            {' '}
             <Pagination
               className="p-1 mb-4"
               count={Math.ceil(basketData.length / 5)}

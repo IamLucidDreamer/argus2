@@ -26,10 +26,10 @@ export default function StudentProfleLookup() {
   const [user, setUser] = useState(null);
   const [refreshData, setRefreshData] = useState(null);
 
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const { id } = useParams();
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('jwt'));
     setLoading(true);
     axiosInstance
       .get(`/user/getUserAdmin/${id}`, {
@@ -44,7 +44,27 @@ export default function StudentProfleLookup() {
       .catch((err) => {
         setLoading(false);
       });
-  }, [id, refreshData]);
+  }, [refreshData, id, token]);
+
+  const blockunblock = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .put(
+        `/user/block`,
+        { userId: user?._id, block: !user?.blocked },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        setRefreshData(res);
+      })
+      .catch((err) => {
+        setRefreshData(err);
+      });
+  };
 
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
@@ -84,9 +104,24 @@ export default function StudentProfleLookup() {
                         {user.lastname ? user.lastname : null}
                       </h1>
                     </div>
-                    <h1 className="text-3xl font-bold">
-                      {user.docId ? user.docId : null}
-                    </h1>
+                    <div className="flex">
+                      <h1 className="text-3xl font-bold">
+                        {user.docId ? user.docId : null}
+                      </h1>
+
+                      <button
+                        onClick={(e) => {
+                          blockunblock(e);
+                        }}
+                        className={`${
+                          user?.blocked
+                            ? 'bg-green-1 border-green-1 hover:text-green-1'
+                            : 'bg-red-1 border-red-1 hover:text-red-1'
+                        } w-max mx-auto my-4 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4   border-double  rounded-lg hover:shadow-button-inner`}
+                      >
+                        {user?.blocked ? 'UNBLOCK' : 'BLOCK'}
+                      </button>
+                    </div>
                   </div>
                   <div className="flex flex-wrap">
                     <PersonalDetails

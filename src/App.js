@@ -75,6 +75,7 @@ import ForgetPasswordEnterEmail from './MyComponents/Main/ForgotPasswordEnterEma
 import Applications from './MyComponents/DashBoard/Admin/Components/EmployeePortal/Applications';
 import { getReq } from './context/actions/adminActions/requirementActions';
 import StudentProfleLookup from './MyComponents/DashBoard/Admin/Components/LMS/Form/StudentProfleLookup';
+import ContactFormMessage from './MyComponents/DashBoard/Admin/ContactFormMessages';
 
 function App() {
   const dispatch = useDispatch();
@@ -255,6 +256,11 @@ function App() {
             path="/dashboard/admin/coupon"
             component={ManageCoupons}
           />
+          <AdminRoute
+            path="/dashboard/admin/messages"
+            component={ContactFormMessage}
+          />
+
           <AdminRoute
             path="/dashboard/admin/employee/applications"
             component={Applications}

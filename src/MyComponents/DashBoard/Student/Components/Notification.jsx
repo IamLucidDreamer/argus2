@@ -17,7 +17,8 @@ function Notification({ notification }) {
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
           ),
         ),
-      );
+      )
+      .catch((err) => {});
   }, []);
   return (
     <div

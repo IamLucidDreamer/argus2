@@ -1,24 +1,24 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { useSelector } from "react-redux";
-import { Route, Redirect } from "react-router-dom";
-import { SideNav } from "./SideNav";
-import { TopBar } from "./TopBar";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import { SideNav } from './SideNav';
+import { TopBar } from './TopBar';
 
 const StudentRoutes = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   return (
     <Route
       {...rest}
       render={(props) => (
         <>
-          {user?.isAuth === "false" ||
-          (user?.isAuth === "true" && user?.user?.role !== 1) ||
+          {user?.isAuth === 'false' ||
+          (user?.isAuth === 'true' && user?.user?.role !== 1) ||
           !token ? (
             <Redirect
               to={{
-                pathname: "/dashboard/student/signup",
+                pathname: '/dashboard/student/signup',
                 state: { from: props.location },
               }}
             />

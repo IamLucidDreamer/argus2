@@ -83,12 +83,21 @@ const LogIn = ({ open, setOpen }) => {
     await axiosInstance
       .post('/googlelogin', { idToken: res.tokenId })
       .then((response) => {
-        setLoading(false);
-        dispatch(setUser(response?.data?.user));
-        dispatch(setUserID(response?.data?.user?._id));
-        dispatch(setToken(response?.data?.token));
-        dispatch(isAuthenticated('true'));
-        history.push('/dashboard/student/home');
+        if (response?.data?.user?.blocked) {
+          setShowAlert({
+            show: true,
+            message: 'You have been blocked!!! Contact the admin.',
+            success: false,
+          });
+          setLoading(false);
+        } else {
+          setLoading(false);
+          dispatch(setUser(response?.data?.user));
+          dispatch(setUserID(response?.data?.user?._id));
+          dispatch(setToken(response?.data?.token));
+          dispatch(isAuthenticated('true'));
+          history.push('/dashboard/student/home');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -117,12 +126,21 @@ const LogIn = ({ open, setOpen }) => {
         access_token: res.accessToken,
       })
       .then((response) => {
-        setLoading(false);
-        dispatch(setUser(response?.data?.user));
-        dispatch(setUserID(response?.data?.user?._id));
-        dispatch(setToken(response?.data?.token));
-        dispatch(isAuthenticated('true'));
-        history.push('/dashboard/student/home');
+        if (response?.data?.user?.blocked) {
+          setShowAlert({
+            show: true,
+            message: 'You have been blocked!!! Contact the admin.',
+            success: false,
+          });
+          setLoading(false);
+        } else {
+          setLoading(false);
+          dispatch(setUser(response?.data?.user));
+          dispatch(setUserID(response?.data?.user?._id));
+          dispatch(setToken(response?.data?.token));
+          dispatch(isAuthenticated('true'));
+          history.push('/dashboard/student/home');
+        }
       })
       .catch((err) => {
         setLoading(false);
@@ -140,7 +158,12 @@ const LogIn = ({ open, setOpen }) => {
         <div className="w-full p-4 md:p-16 lg:p-40 bg-white rounded-3xl flex flex-col-reverse md:flex-row items-center justify-center bg-no-repeat bg-cover bg-logincar">
           <div className="content text-3xl text-center md:text-left lg:w-2/3"></div>
           <div className="w-1/3 mx-auto flex flex-col items-center">
-            <button onClick={() => setOpen(false)}>
+            <button
+              onClick={() => {
+                setOpen(false);
+                setLoading(false);
+              }}
+            >
               {' '}
               {/*Close Button*/}
               <FontAwesomeIcon
