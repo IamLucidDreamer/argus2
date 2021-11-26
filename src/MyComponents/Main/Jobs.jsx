@@ -210,7 +210,7 @@ const Jobs = () => {
                 {req.map((r) => {
                   return (
                     <>
-                      <div className="p-4 w-96 lg:w-1/2">
+                      <div className="p-4 w-72 sm:w-96 lg:w-1/2">
                         <div className="h-full overflow-hidden ">
                           <div className="shadow-services rounded-2xl">
                             <img
@@ -259,7 +259,7 @@ const Jobs = () => {
         } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
       >
         <div className="bg-client rounded-lg w-11/12 lg:w-1/2 relative">
-          <div className="w-full flex justify-end p-4 absolute">
+          <div className="w-full flex justify-end p-2 absolute">
             <IconButton
               onClick={() => {
                 setFormData({
