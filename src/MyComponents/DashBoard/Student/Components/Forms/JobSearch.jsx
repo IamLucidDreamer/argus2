@@ -27,7 +27,7 @@ const JobSearch = ({ user }) => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues, values } = useFormik({
     initialValues: {
       looking: '',
       wantEmail: '',
@@ -110,7 +110,10 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label>Maximum Travel Radius (In KM)</label>
+            <label>
+              Maximum Travel Radius (In KM)-{' '}
+              <span>{values.prefferedCity}KM</span>
+            </label>
             <input
               type="range"
               min="1"
@@ -236,7 +239,9 @@ const JobSearch = ({ user }) => {
             ) : null}
           </div>
           <div className="flex flex-col mt-4">
-            <label>Wage Range</label>
+            <label>
+              Wage- <span>${values?.wageRange}</span>
+            </label>
             <input
               type="range"
               min="1"

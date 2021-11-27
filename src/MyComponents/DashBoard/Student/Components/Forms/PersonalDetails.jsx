@@ -8,16 +8,6 @@ const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
-    if (!values.name) {
-      errors.name = '*Required';
-    }
-    if (!values.lastname) {
-      errors.lastname = '*Required';
-    }
-
-    if (!values.dateOfBirth) {
-      errors.dateOfBirth = '*Required';
-    }
     if (!values.gender) {
       errors.gender = '*Required';
     }
@@ -37,11 +27,8 @@ const PersonalDetails = ({ user }) => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
+  const { getFieldProps, handleSubmit, errors, setValues, values } = useFormik({
     initialValues: {
-      name: '',
-      lastname: '',
-      dateOfBirth: '',
       gender: '',
       weight: '',
       height: '',
@@ -97,11 +84,9 @@ const PersonalDetails = ({ user }) => {
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
               placeholder="Firstname Here"
-              {...getFieldProps('name')}
+              value={values?.name}
+              disabled
             />
-            {errors.name ? (
-              <div className="w-full text-xs text-red-400">{errors.name}</div>
-            ) : null}
           </div>
           <div className="flex flex-col mt-4">
             <label>Last Name (Not Updatable by student only by admin)</label>
@@ -109,29 +94,20 @@ const PersonalDetails = ({ user }) => {
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="name"
               placeholder="Lastname Here"
-              {...getFieldProps('lastname')}
+              value={values?.lastname}
+              disabled
             />
-            {errors.lastname ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.lastname}
-              </div>
-            ) : null}
           </div>
           <div className="flex flex-col mt-4">
             <label>
-              {' '}
               Date of Birth (Not Updatable by student only by admin)
             </label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
               type="date"
-              {...getFieldProps('dateOfBirth')}
+              value={values?.dateOfBirth}
+              disabled
             />
-            {errors.dateOfBirth ? (
-              <div className="w-full text-xs text-red-400">
-                {errors.dateOfBirth}
-              </div>
-            ) : null}
           </div>
           <div className="flex flex-row items-center justify-between mt-4">
             <div className="flex flex-col w-5/12">

@@ -33,11 +33,8 @@ const ContactDetails = ({ user }) => {
     if (!values.postalCode) {
       errors.postalCode = '*Required';
     }
-    if (!values.suite) {
-      errors.suite = '*Required';
-    }
     if (!values.homePhone) {
-      errors.homePhone = '*Required';
+      delete errors.homePhone;
     } else if (values.homePhone > 15 && values.homePhone < 6) {
       errors.homePhone = 'Number should be in range 6-15';
     }

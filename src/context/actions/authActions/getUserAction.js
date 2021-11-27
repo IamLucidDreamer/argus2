@@ -1,5 +1,6 @@
 import axiosInstance from '../../../helpers/axiosInstance';
 import { IS_AUTH, SET_USERDETAILS } from '../../actionTypes';
+import { addNot } from '../notAndMessage';
 import { clearStorage } from './setStorageAction';
 
 const setUser = (data) => ({
@@ -30,6 +31,7 @@ const getUser = () => {
         } else {
           dispatch(setUser(res.data.data));
           dispatch(isAuthenticated('true'));
+          dispatch(lastLoggedIn());
         }
       })
       .catch(() => {
@@ -51,6 +53,15 @@ const updateUser = (resetForm, values, activityDetails, userName, id) => {
       .then((res) => {
         dispatch(getUser());
         dispatch(userActivity(activityDetails, userName, id));
+        dispatch(
+          addNot({
+            userId: id,
+            userName: userName,
+            createdBy: userName,
+            activityDetails,
+            createdAt: new Date(),
+          }),
+        );
         resetForm();
       })
       .catch((err) => {});
@@ -73,8 +84,34 @@ const userActivity = (activityDetails, userName, id) => {
           },
         },
       )
-      .then((res) => {});
+      .then((res) => {})
+      .catch((err) => {});
   };
 };
 
-export { getUser, setUser, isAuthenticated, updateUser, userActivity };
+const lastLoggedIn = () => {
+  return (dispatch) => {
+    const token = JSON.parse(localStorage.getItem('jwt'));
+    axiosInstance
+      .put(
+        `/user/lastLoggedIn`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {})
+      .catch(() => {});
+  };
+};
+
+export {
+  getUser,
+  setUser,
+  isAuthenticated,
+  updateUser,
+  userActivity,
+  lastLoggedIn,
+};

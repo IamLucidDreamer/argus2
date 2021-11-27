@@ -10,6 +10,7 @@ import { classReducer } from './reducers/lmsReducer.js/classReducer';
 import { basketReducer } from './reducers/lmsReducer.js/basketReducer';
 import { progressReducer } from './reducers/userReducer';
 import { requirementReducer } from './reducers/adminReducer/requirementActions';
+import notificationReducer from './reducers/notAndMessage';
 
 const rootReducer = combineReducers({
   contact: contactReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   class: classReducer,
   basket: basketReducer,
   progress: progressReducer,
+  notification: notificationReducer,
 });
 
 export default rootReducer;

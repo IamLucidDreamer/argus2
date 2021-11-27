@@ -1,13 +1,44 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+import {
+  getHistory,
+  getMessage,
+} from '../../../../context/actions/notAndMessage';
+import {
+  getProgress,
+  getUsersCourse,
+} from '../../../../context/actions/userActions';
 import { SideNav } from './SideNav';
 import { TopBar } from './TopBar';
 
 const StudentRoutes = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.user);
   const token = JSON.parse(localStorage.getItem('jwt'));
+  const progress = useSelector((state) => state.progress.progress);
+  const courses = useSelector((state) => state.progress.course);
+  const messages = useSelector((state) => state.notification.messages);
+  const activity = useSelector((state) => state.notification.notification);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user?.user?.role === 1) {
+      if (!progress) {
+        dispatch(getProgress());
+      }
+      if (courses.length === 0) {
+        dispatch(getUsersCourse());
+      }
+      if (activity.length === 0) {
+        dispatch(getHistory());
+      }
+      if (messages.length === 0) {
+        dispatch(getMessage());
+      }
+    }
+  }, [dispatch, user]);
+
   return (
     <Route
       {...rest}

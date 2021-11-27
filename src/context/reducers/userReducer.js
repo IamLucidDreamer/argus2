@@ -8,8 +8,8 @@ import {
 
 const initialState = {
   course: [],
-  progress: {},
-  current: {},
+  progress: null,
+  current: null,
   loading: false,
 };
 

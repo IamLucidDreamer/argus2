@@ -14,6 +14,7 @@ import GoogleButton from 'react-google-button';
 import { useDispatch } from 'react-redux';
 import {
   isAuthenticated,
+  lastLoggedIn,
   setUser,
 } from '../../../context/actions/authActions/getUserAction';
 import {
@@ -63,6 +64,7 @@ const LogIn = ({ open, setOpen }) => {
           dispatch(setUserID(response?.data?.user?._id));
           dispatch(setToken(response?.data?.token));
           dispatch(isAuthenticated('true'));
+          dispatch(lastLoggedIn());
           history.push('/dashboard/student/home');
           resetForm();
         })

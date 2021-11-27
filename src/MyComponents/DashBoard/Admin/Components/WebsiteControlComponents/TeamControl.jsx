@@ -1,21 +1,21 @@
-import { useFormik } from "formik";
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Compressor from "compressorjs";
+import { useFormik } from 'formik';
+import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Compressor from 'compressorjs';
 import {
   addTeam,
   setupdateteam,
   teamAlert,
   updateTeam,
-} from "../../../../../context/actions/adminActions/teamAction";
-import Loader from "react-loader-spinner";
-import Alert from "../../../../Components/Alert";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+} from '../../../../../context/actions/adminActions/teamAction';
+import Loader from 'react-loader-spinner';
+import Alert from '../../../../Components/Alert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function TeamControl() {
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
   const dispatch = useDispatch();
@@ -27,8 +27,8 @@ export default function TeamControl() {
   const handleCompressedUpload = (e) => {
     const image = e.target.files[0];
     new Compressor(image, {
-      quality: 0.4,
-      maxWidth: 1500,
+      quality: 0.3,
+      maxWidth: 1400,
       success: (compressedResult) => {
         setValues({ ...values, teamImg: compressedResult });
       },
@@ -50,24 +50,24 @@ export default function TeamControl() {
           success: false,
         });
       }
-      dispatch(teamAlert({ success: null, message: "" }));
+      dispatch(teamAlert({ success: null, message: '' }));
     }
   }, [dispatch, teamalert]);
 
   const validate = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = "*Required";
+      errors.name = '*Required';
     }
     if (!values.description) {
-      errors.description = "*Required";
+      errors.description = '*Required';
     }
     if (!values.role) {
-      errors.role = "*Required";
+      errors.role = '*Required';
     }
     if (!update.state) {
       if (!values.teamImg) {
-        errors.teamImg = "*Required";
+        errors.teamImg = '*Required';
       }
     }
     return errors;
@@ -76,20 +76,20 @@ export default function TeamControl() {
   const { getFieldProps, handleSubmit, errors, setValues, resetForm, values } =
     useFormik({
       initialValues: {
-        name: "",
-        description: "",
-        role: "",
+        name: '',
+        description: '',
+        role: '',
         teamImg: null,
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
-        teamRef.current.value = "";
+        teamRef.current.value = '';
         resetForm();
         const formdata = new FormData();
-        formdata.append("name", values.name);
-        formdata.append("role", values.role);
-        formdata.append("description", values.description);
-        formdata.append("photo", values.teamImg);
+        formdata.append('name', values.name);
+        formdata.append('role', values.role);
+        formdata.append('description', values.description);
+        formdata.append('photo', values.teamImg);
         if (update.state) {
           dispatch(updateTeam(formdata, update.data._id));
         } else {
@@ -120,22 +120,22 @@ export default function TeamControl() {
 
       <input
         className={`w-full ${
-          errors.name ? "border-b-2 border-red-600" : "border-b border-client"
+          errors.name ? 'border-b-2 border-red-600' : 'border-b border-client'
         } focus:outline-none mt-4 p-1`}
         type="text"
         placeholder="Name of the Team Member"
-        {...getFieldProps("name")}
+        {...getFieldProps('name')}
       />
       {errors.name ? (
         <div className="w-full text-xs text-red-400">{errors.name}</div>
       ) : null}
       <input
         className={`w-full ${
-          errors.role ? "border-b-2 border-red-600" : "border-b border-client"
+          errors.role ? 'border-b-2 border-red-600' : 'border-b border-client'
         } focus:outline-none mt-4 p-1`}
         type="text"
         placeholder="Role of the Team Member"
-        {...getFieldProps("role")}
+        {...getFieldProps('role')}
       />
       {errors.role ? (
         <div className="w-full text-xs text-red-400">{errors.role}</div>
@@ -143,13 +143,13 @@ export default function TeamControl() {
       <textarea
         className={`w-full ${
           errors.description
-            ? "border-b-2 border-red-600"
-            : "border-b border-client"
+            ? 'border-b-2 border-red-600'
+            : 'border-b border-client'
         } focus:outline-none mt-4 p-1`}
         type="text"
         rows="3"
         placeholder="Description of Team Member"
-        {...getFieldProps("description")}
+        {...getFieldProps('description')}
       />
       {errors.description ? (
         <div className="w-full text-xs text-red-400">{errors.description}</div>
@@ -169,7 +169,7 @@ export default function TeamControl() {
           {values.teamImg ? (
             <button
               onClick={() => {
-                teamRef.current.value = "";
+                teamRef.current.value = '';
                 setValues({ ...values, teamImg: null });
               }}
             >
@@ -190,14 +190,14 @@ export default function TeamControl() {
             <Loader type="TailSpin" color="lightgray" height={40} width={40} />
           </div>
         ) : (
-          <> {update.state ? "UPDATE" : "ADD"}</>
+          <> {update.state ? 'UPDATE' : 'ADD'}</>
         )}
       </button>
       {update.state ? (
         <button
           className="my-2 p-4 bg-red-1 text-white py-3.5 font-bold border-2 border-red-1 hover:bg-white hover:text-red-1 rounded-lg"
           onClick={() => {
-            teamRef.current.value = "";
+            teamRef.current.value = '';
             resetForm();
             dispatch(setupdateteam({ state: false, data: null }));
           }}
