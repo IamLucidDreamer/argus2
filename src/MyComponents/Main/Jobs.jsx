@@ -4,6 +4,7 @@ import SideBar from "./../Components/SideBar.jsx";
 import SideLine from "./../Components/SideLine";
 import { IconButton } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import PersonalDetails from "./jobApplicationForms/PersonalDetails";
 import WorkStatus from "./jobApplicationForms/WorkStatus";
 import Education from "./jobApplicationForms/Education";
 import Experience from "./jobApplicationForms/Experience";
@@ -15,7 +16,7 @@ import { Link } from "react-router-dom";
 
 const Jobs = () => {
   const [show, setShow] = useState(false);
-  const [formNo, setFormNo] = useState(3);
+  const [formNo, setFormNo] = useState(4);
   const [formData, setFormData] = useState({
     name: null,
     email: null,
@@ -102,11 +103,16 @@ const Jobs = () => {
         </div>
       </div>
 
-      <div className=" bg-no-repeat bg-mapbg bg-contain">
+      <div className="">
         <div className="px-4 sm:px-8 lg:px-12 xl:px-0 max-w-1366 mx-auto">
           <div className="flex flex-wrap my-12">
             <div className=" md:w-1/2 lg:w-2/3 flex flex-col items-start">
-              <img src={about_image} alt="Jobs page" className="w-full" />
+              <button
+                onClick={() => setShow(true)}
+                className="mx-auto font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
+              >
+                APPLY NOW
+              </button>
               <div className="flex flex-row items-stretch w-full mt-10 mb-6">
                 <SideLine />
                 <h1 className="leading-tight text-3xl sm:text-4xl font-bold text-gray-3">
@@ -212,15 +218,15 @@ const Jobs = () => {
                     <>
                       <div className="p-4 w-72 sm:w-96 lg:w-1/2">
                         <div className="h-full overflow-hidden ">
-                          <div className="shadow-services rounded-2xl">
+                          <div className="rounded-2xl">
                             <img
                               src={`${API}/requirement/get-photo/${r?._id}`}
                               alt=""
-                              className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner"
+                              className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner mx-auto"
                             />
                           </div>
-                          <div className=" bg-white mx-3 md:mx-0 lg:mx-3">
-                            <div className="border-r-4 border-l-4 border-client md:h-56 xl:h-44">
+                          <div className=" bg-white mx-3 md:mx-0 lg:mx-3 mt-4">
+                            <div className="border-t-4 border-r-4 border-l-4 border-client md:h-44 rounded-t-lg">
                               <h2 className="leading-tight text-base lg:text-lg title-font font-bold text-white mx-4 lg:mx-12 mb-3 bg-red-1 rounded-b-lg px-3 pt-2 pb-3">
                                 {r?.title}
                               </h2>
@@ -244,7 +250,7 @@ const Jobs = () => {
               </div>
               <button
                 onClick={() => setShow(true)}
-                className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+                className="mx-auto font-bold text-white bg-red-1 py-4 px-8 md:px-16 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
               >
                 APPLY NOW
               </button>
@@ -256,9 +262,9 @@ const Jobs = () => {
       <div
         className={`${
           show ? "block" : "hidden"
-        } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
+        } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-50`}
       >
-        <div className="bg-client rounded-lg w-11/12 lg:w-1/2 relative">
+        <div className="bg-client rounded-lg w-11/12 lg:w-2/3 relative pb-4">
           <div className="w-full flex justify-end p-2 absolute">
             <IconButton
               onClick={() => {
@@ -287,22 +293,39 @@ const Jobs = () => {
             ) : null}
           </div>
 
-          <div className="w-full flex justify-center mt-10 mb-4">
-            <h1 className="text-3xl font-bold">
+          <div className="w-full flex justify-center mt-4 mb-4 px-4">
+            <h1 className="text-3xl font-bold text-gray-3">
+              {formNo === 4 ? "Personal Information" : null}
               {formNo === 3 ? "Work Status" : null}
               {formNo === 2 ? "Education" : null}
               {formNo === 1 ? "Experience" : null}
             </h1>
           </div>
-          <div className="w-full px-10 mb-6">
-            <div className="w-full bg-white h-10 rounded-full bg-applicationBack bg-no-repeat bg-cover bg-center border-3 border-white">
+          <div className="w-full px-2 lg:px-10 mb-6">
+            <div className="w-full bg-white h-3 rounded-full border-3 border-white">
               <div
                 className={`${
-                  formNo === 1 ? "w-full" : `w-1/${formNo}`
+                  formNo === 1
+                    ? "w-full"
+                    : formNo === 2
+                    ? `w-2/3`
+                    : formNo === 3
+                    ? `w-1/3`
+                    : formNo === 4
+                    ? `w-2`
+                    : `w-full`
                 } transition-all duration-500 bg-red-1 h-full rounded-full`}
               ></div>
             </div>
           </div>
+          {formNo === 4 ? (
+            <PersonalDetails
+              setFormNo={setFormNo}
+              formNo={formNo}
+              setFormData={setFormData}
+              formData={formData}
+            />
+          ) : null}
           {formNo === 3 ? (
             <WorkStatus
               setFormNo={setFormNo}

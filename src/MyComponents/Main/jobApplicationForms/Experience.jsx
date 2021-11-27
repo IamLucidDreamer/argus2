@@ -59,16 +59,25 @@ const Experience = ({
           ) : null}
         </div>
       </div>
+      <div className="w-full flex px-10 mt-6">
+        <div className="w-full flex items-center">
+          <input type="checkbox" className="w-4 h-4" />
+          <p className="text-gray-2 ml-2">
+            By checking this box I affirm that all the information provided is
+            true to the best of my knowledge.
+          </p>
+        </div>
+      </div>
       <div className="w-full px-10 flex mt-6 ">
         <button
           onClick={() => setFormNo(2)}
-          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
         >
           BACK
         </button>
         <button
           onClick={(e) => submitForm(e)}
-          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
         >
           FINISH
         </button>

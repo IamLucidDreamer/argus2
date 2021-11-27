@@ -69,7 +69,7 @@ function ContactForm({ width = "w-full" }) {
         <Alert alert={showAlert} rmAlert={setShowAlert} />
       ) : null}
       <input
-        className="w-full  py-5 px-4 focus:outline-none focus:ring-1 ring-red-1 rounded-lg"
+        className="w-full  py-5 px-4 focus:outline-none focus:ring-1 ring-gray-2 rounded-lg"
         type="name"
         placeholder="Your Name"
         {...getFieldProps("name")}
@@ -78,7 +78,7 @@ function ContactForm({ width = "w-full" }) {
         <div className="w-full text-xs text-red-400">{errors.name}</div>
       ) : null}
       <input
-        className="w-full mt-3 py-5 px-4 focus:outline-none focus:ring-1 ring-red-1 rounded-lg"
+        className="w-full mt-3 py-5 px-4 focus:outline-none focus:ring-1 ring-gray-2 rounded-lg"
         type="telephone"
         placeholder="Phone Number"
         {...getFieldProps("phoneNumber")}
@@ -87,7 +87,7 @@ function ContactForm({ width = "w-full" }) {
         <div className="w-full text-xs text-red-400">{errors.phoneNumber}</div>
       ) : null}
       <textarea
-        className="w-full h-56 mt-3 py-5 px-4 focus:outline-none focus:ring-1 ring-red-1 rounded-lg"
+        className="w-full h-56 mt-3 py-5 px-4 focus:outline-none focus:ring-1 ring-gray-2 rounded-lg"
         type="text"
         placeholder="Write Message"
         {...getFieldProps("message")}
@@ -97,7 +97,7 @@ function ContactForm({ width = "w-full" }) {
       ) : null}
       <button
         type="submit"
-        className="w-full text-xl lg:text-base xl:text-xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-2 hover:shadow-button-inner"
+        className="w-full text-xl lg:text-base xl:text-xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-2 hover:shadow-button-inner-1"
       >
         SEND MESSAGE
       </button>

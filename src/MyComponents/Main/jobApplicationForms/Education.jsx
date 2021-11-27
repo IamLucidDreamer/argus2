@@ -21,9 +21,17 @@ const Education = ({ setFormNo, formNo, formData, setFormData }) => {
             <option selected disabled value={null}>
               Select education
             </option>
-
-            <option value="option1">option1</option>
-            <option value="option2">option2</option>
+            <option value="None or Less Than High School">
+              None or Less Than High School
+            </option>
+            <option value="High School Graduate">High School Graduate</option>
+            <option value="Associate's degree:">
+              One or Two years program in a College or a University
+            </option>
+            <option value="Bachelor's degree">Bachelor's degree</option>
+            <option value="Master's Degree">Master's Degree</option>
+            <option value="Doctoral degree">Doctoral degree</option>
+            <option value="Others">Others</option>
           </select>
           {!formData.highestLevelOfEducation ? (
             <div className="w-full text-xs text-red-400 mt-1">*Required</div>
@@ -67,13 +75,13 @@ const Education = ({ setFormNo, formNo, formData, setFormData }) => {
       <div className="w-full px-10 flex mt-2 lg:mt-6 ">
         <button
           onClick={() => setFormNo(3)}
-          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
         >
           BACK
         </button>
         <button
           onClick={() => setFormNo(1)}
-          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
         >
           NEXT
         </button>

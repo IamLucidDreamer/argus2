@@ -15,27 +15,32 @@ const SideBar = () => {
         </h1>
         <Link to="/services">
           <h1 className="rounded-lg py-5 pl-8 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
-            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span> Residential Security
+            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{" "}
+            Residential Security
           </h1>
         </Link>
         <Link to="/services">
           <h1 className="rounded-lg py-5 pl-8 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
-            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span> Commercial Security
+            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{" "}
+            Commercial Security
           </h1>
         </Link>
         <Link to="/services">
           <h1 className="rounded-lg py-5 pl-8 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
-            <span className="mx-0.5 sm:mx-4 md:mx-0.5 xl:mx-4">➔</span> Event Security
+            <span className="mx-0.5 sm:mx-4 md:mx-0.5 xl:mx-4">➔</span> Event
+            Security
           </h1>
         </Link>
         <Link to="/courses">
           <h1 className="rounded-lg py-5 pl-8 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
-            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span> Security License
+            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{" "}
+            Security License
           </h1>
         </Link>
         <Link to="/jobs">
           <h1 className="rounded-lg py-5 pl-8 hover:bg-red-1 hover:text-white hover:rounded-md hover:shadow-button-inner border-b-2 border-white">
-            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span> Employment
+            <span className="mx-0.5 sm:mx-4 md:mx-1 lg:mx-0.5 xl:mx-4">➔</span>{" "}
+            Employment
           </h1>
         </Link>
       </div>
@@ -45,7 +50,7 @@ const SideBar = () => {
           Professional Help to get back your peace of mind
         </h1>
         <a
-          className="w-full text-2xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-10 sm:mt-0 hover:shadow-button-inner"
+          className="w-full text-2xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-10 sm:mt-0 hover:shadow-button-inner-1"
           href={`tel:${contact.phoneNumber}`}
         >
           {contact.phoneNumber}

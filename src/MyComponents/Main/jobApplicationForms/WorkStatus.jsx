@@ -4,39 +4,7 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
   return (
     <div className="p-2">
       <div className="w-full h-96 overflow-y-scroll ">
-        <div className="w-full flex flex-col lg:flex-row px-2 lg:px-10 text-base lg:text-base">
-          <div className="w-full lg:mr-2">
-            <label className="text-gray-400">Enter your name</label>
-            <input
-              type="text"
-              placeholder="Name"
-              className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-            />
-            {!formData.name ? (
-              <div className="w-full text-xs text-red-400 mt-1">*Required</div>
-            ) : null}
-          </div>
-          <div className="w-full lg:ml-2">
-            <label className="text-gray-400">Enter your email</label>
-            <input
-              type="email"
-              placeholder="Email"
-              className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2  rounded-lg"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-            />
-            {!formData.email ? (
-              <div className="w-full text-xs text-red-400 mt-1">*Required</div>
-            ) : null}
-          </div>
-        </div>
-        <div className="w-full flex flex-col px-2 lg:px-10 mt-6">
+        <div className="w-full flex flex-col px-2 lg:px-10">
           <label className="text-gray-400">
             Are you Eligible to Work in Canada?
           </label>
@@ -76,7 +44,7 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
               Type of Eligibility
             </label>
             <select
-              className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg"
+              className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg "
               value={formData.eligibilityType}
               onChange={(e) =>
                 setFormData({ ...formData, eligibilityType: e.target.value })
@@ -85,8 +53,10 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
               <option selected disabled value={null}>
                 Select eligibility
               </option>
-              <option value="Eligibility 1">Eligibility 1</option>
-              <option value="Eligibility 2">Eligibility 2</option>
+              <option value="Citizen">Citizen</option>
+              <option value="Permanent Resident">Permanent Resident</option>
+              <option value="Worker">Worker</option>
+              <option value="Student">Student</option>
             </select>
             {!formData.eligibilityType ? (
               <div className="w-full text-xs text-red-400 mt-1">*Required</div>
@@ -94,7 +64,7 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
           </div>
           <div className="flex flex-col flex-1 ml-2">
             <label className="text-base text-gray-400">
-              Are you Eligible to Work in Canada?
+              Do you have a valid security guard license?
             </label>
             <div className="flex">
               <div
@@ -143,7 +113,9 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
             />
           </div>
           <div className="flex flex-col flex-1 ml-2">
-            <label className="text-base text-gray-400">Do you drive?</label>
+            <label className="text-base text-gray-400">
+              Do you own a vehicle?
+            </label>
             <div className="flex">
               <div
                 onClick={() => setFormData({ ...formData, canDrive: true })}
@@ -172,12 +144,15 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
           </div>
         </div>
         <div className="w-full px-10 flex my-6 ">
-          <button className="flex-1 invisible mr-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner">
+          <button
+            onClick={() => setFormNo(4)}
+            className="flex-1 mr-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
+          >
             BACK
           </button>
           <button
             onClick={() => setFormNo(2)}
-            className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner"
+            className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
           >
             NEXT
           </button>

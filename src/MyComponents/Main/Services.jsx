@@ -67,6 +67,46 @@ const Services = () => {
               </div>
             </div>
 
+            <div
+              className={
+                row === 1
+                  ? "transition-all opacity-100 duration-700"
+                  : "transition-all opacity-0 duration-700"
+              }
+            >
+              <div className={row === 1 ? "block lg:hidden" : "hidden"}>
+                <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      GATED COMMUNITY SECURITY
+                    </h2>
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                      <div className=" w-full xl:w-8/12 text-left">
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          Our security team makes sure that only vehicles and
+                          people who enter the area either live there, are
+                          visiting, or have been requested to come for business
+                          purposes. Any repair or delivery people will need your
+                          approval before getting permission to enter.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          Anytime a non-resident comes to the gate, the guard
+                          calls the appropriate resident or management to make
+                          sure they are invited. If you do not answer the phone
+                          or deny entry to the visitor, the guard will not open
+                          the gate and will point them to the exit. However, if
+                          you plan to be away from the home but need to have a
+                          repair service come in, you may leave the name at the
+                          gate so they can enter.
+                        </p>
+                      </div>
+                      <ServiceSlider images={images} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="p-4 w-96 md:w-1/3">
               <div className="h-full overflow-hidden ">
                 <div className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner bg-callus bg-no-repeat bg-cover bg-center">
@@ -89,6 +129,54 @@ const Services = () => {
                     >
                       Read More
                     </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={
+                row === 2
+                  ? "transition-all opacity-100 duration-700"
+                  : "transition-all opacity-0 duration-700"
+              }
+            >
+              <div className={row === 2 ? "block lg:hidden" : "hidden"}>
+                <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      CONSTRUCTION SECURITY
+                    </h2>
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                      <div className=" w-full xl:w-8/12 text-left">
+                        <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
+                          What is a construction security guard?
+                        </p>
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          Security Guards serve in pivotal roles on an active
+                          construction site. Their presence onside aids in the
+                          prevention of theft, minimizes property damage, deters
+                          vandals and promptly addresses unexpected events
+                          including fires.
+                        </p>
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          Security Guards needed at constructions sites are
+                          required at different stages of demolition, build or
+                          restoration. Our Team of security personnel are
+                          available 24-hours a day, or you can choose to have
+                          them at your location simply during the off hours when
+                          everything on the site is more vulnerable.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          Implementing lights and cameras may help deter the
+                          theft of materials and heavy equipment from
+                          construction sites but having physical presence of a
+                          security guard is the most effective way to catch any
+                          criminal activity before it happens.
+                        </p>
+                      </div>
+                      <ServiceSlider images={images} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -129,7 +217,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 1 ? "block" : "hidden"}>
+              <div className={row === 1 ? "hidden lg:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -169,7 +257,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 2 ? "block" : "hidden"}>
+              <div className={row === 2 ? "hidden lg:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -284,6 +372,53 @@ const Services = () => {
               </div>
             </div>
 
+            <div
+              className={
+                row === 4
+                  ? "transition-all opacity-100 duration-700"
+                  : "transition-all opacity-0 duration-700"
+              }
+            >
+              <div className={row === 4 ? "block lg:hidden" : "hidden"}>
+                <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      RESIDENTIAL SECURITY
+                    </h2>
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                      <div className=" w-full xl:w-8/12 text-left">
+                        <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
+                          Why us?
+                        </p>
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          Residential Security department is dedicated to
+                          safeguard people and their properties from privacy
+                          breaches, home invasions, disturbances, or any other
+                          threats.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          Mobile patrols are available 24 hours a day, 7 days a
+                          week, 365 days a year to watch over your property
+                          while your away from home or on vacation.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          If you are going to be away from your home for awhile,
+                          Argus Security Services can provide you with a house
+                          check in service where our team of security guards can
+                          check in on your property Argus Security trained
+                          professionals will go to your home on the dates that
+                          you specify and check all the doors to ensure that
+                          they are locked, check for damages, and make sure
+                          there are no trespassers.
+                        </p>
+                      </div>
+                      <ServiceSlider images={images} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="p-4 w-96 md:w-1/3">
               <div className="h-full overflow-hidden ">
                 <div className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner bg-callus bg-no-repeat bg-cover bg-center">
@@ -306,6 +441,51 @@ const Services = () => {
                     >
                       Read More
                     </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={
+                row === 5
+                  ? "transition-all opacity-100 duration-700"
+                  : "transition-all opacity-0 duration-700"
+              }
+            >
+              <div className={row === 5 ? "block lg:hidden" : "hidden"}>
+                <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      CORPORATE SECURITY
+                    </h2>
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                      <div className=" w-full xl:w-8/12 text-left">
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          Corporate security guards working in the retail
+                          industry are employed by large and small stores and
+                          shopping malls, mainly to deter theft and vandalism.
+                          Our guards monitor security cameras, patrol parking
+                          lots apprehend shoplifting suspects or assist
+                          undercover store detectives with loss prevention.
+                          Common duties include daily reports, answering phone
+                          calls during off hours and contacting the fire
+                          department or law enforcement during certain
+                          circumstances, such as criminal violation, fire and
+                          trespassing.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          All of our guards are specifically trained to handle
+                          large office buildings. Argus Security Services will
+                          keep an eye out for any unwanted personnel or
+                          behaviour. Throughout the day, many visitors, clients,
+                          employees may visit the building however our guards
+                          will ensure the day is kept running smoothly and as
+                          planned.
+                        </p>
+                      </div>
+                      <ServiceSlider images={images} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -345,7 +525,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 4 ? "block" : "hidden"}>
+              <div className={row === 4 ? "hidden lg:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -392,7 +572,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 5 ? "block" : "hidden"}>
+              <div className={row === 5 ? "hidden lg:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -495,6 +675,52 @@ const Services = () => {
               </div>
             </div>
 
+            <div
+              className={
+                row === 7
+                  ? "transition-all opacity-100 duration-700"
+                  : "transition-all opacity-0 duration-700"
+              }
+            >
+              <div className={row === 7 ? "block lg:hidden" : "hidden"}>
+                <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      COMMERCIAL SECURITY
+                    </h2>
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                      <div className=" w-full xl:w-8/12 text-left">
+                        <p className="leading-relaxed text-base md:text-lg font-bold text-gray-2 mb-6">
+                          Not satisfied with your current providers?
+                        </p>
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          Our experienced Commercial Security team is capable of
+                          reducing risks and protect assets. Commercial security
+                          guards can protect your business from vandalism,
+                          fires, and robberies. Argus Security focuses on
+                          transparency, safety, and strong and adaptable
+                          management training and convergent solutions that
+                          allow for technology to work hand in hand with our
+                          services. We recognize that every location has a
+                          unique culture and personality.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          Hiring a security guard increases the sense of
+                          security for employees, customers and business owners.
+                          Workers will be able to perform better and be more
+                          productive in a safe and secure environment. We
+                          design, implement and execute effective and efficient
+                          customized security solutions so that you can be
+                          confident in your commercial building’s security.
+                        </p>
+                      </div>
+                      <ServiceSlider images={images} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="p-4 w-96 md:w-1/3">
               <div className="h-full overflow-hidden ">
                 <div className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner bg-callus bg-no-repeat bg-cover bg-center">
@@ -517,6 +743,51 @@ const Services = () => {
                     >
                       Read More
                     </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={
+                row === 8
+                  ? "transition-all opacity-100 duration-700"
+                  : "transition-all opacity-0 duration-700"
+              }
+            >
+              <div className={row === 8 ? "block lg:hidden" : "hidden"}>
+                <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
+                  <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
+                    <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
+                      MOBILE SECURITY
+                    </h2>
+                    <div className="flex flex-col xl:flex-row items-center xl:items-center justify-around">
+                      <div className=" w-full xl:w-8/12 text-justify">
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          There are times when gates, locks, alarm and cameras
+                          may not be enough for you to feel as though your
+                          premises are completely safe from trespassers and
+                          vandals. At Argus Security Services, we recognize
+                          visible security presence is most effective.
+                        </p>
+                        <p className="leading-relaxed text-base md:text-lg font-medium text-gray-2 mb-6">
+                          We offer fully uniformed mobile security guards in
+                          marked patrol vehicles to significantly reduce the
+                          opportunity for crime such as trespassing, vandalism
+                          and theft, through an effective security patrol of
+                          your premises.
+                        </p>
+                        <p className="leading-relaxed text-lg font-medium text-gray-2 mb-2">
+                          Our mobile security guards will be conducting an
+                          internal foot patrol of your premises ensuring all
+                          access points including windows and doors are locked,
+                          and that there are no water leaks or safety hazards.
+                          Our mobile security supervisors are trained to respond
+                          to a wide range of security situations across the GTA.
+                        </p>
+                      </div>
+                      <ServiceSlider images={images} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -557,7 +828,7 @@ const Services = () => {
                 : "transition-all opacity-0 duration-700"
             }
           >
-            <div className={row === 7 ? "block" : "hidden"}>
+            <div className={row === 7 ? "hidden lg:block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                   <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -602,7 +873,7 @@ const Services = () => {
                 : "transition-all opacity-0 duration-700"
             }
           >
-            <div className={row === 8 ? "block" : "hidden"}>
+            <div className={row === 8 ? "hidden lg:block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                   <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">

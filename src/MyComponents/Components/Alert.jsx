@@ -16,8 +16,8 @@ export default function Alert({ alert, rmAlert }) {
       <div
         className={
           !alert.success
-            ? " bg-red-100 border-l-4 border-red-500 text-red-700 p-2 w-full"
-            : "bg-green-100 border-l-4  border-green-500 text-green-700 p-2 w-full"
+            ? " bg-red-1 border-l-4 border-red-1 text-red-1 p-2 w-full bg-opacity-10"
+            : "bg-green-1 border-l-4  border-green-1 text-green-1 p-2 w-full bg-opacity-10"
         }
         role="alert"
       >

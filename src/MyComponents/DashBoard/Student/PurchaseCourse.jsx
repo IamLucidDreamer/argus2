@@ -75,7 +75,7 @@ export default function PurchaseCourse() {
                       onClick={() => {
                         history.push(`/dashboard/student/payment/${c?._id}`);
                       }}
-                      className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner mb-8"
+                      className="mx-auto md:mx-0 font-bold text-white bg-red-1 py-2 px-6 md:px-10 hover:bg-white border-4 border-double  border-red-1 hover:text-red-1 rounded-lg text-2xl mt-10 sm:mt-0 hover:shadow-button-inner-1 mb-8"
                     >
                       REGISTER
                     </button>

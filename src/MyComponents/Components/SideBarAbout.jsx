@@ -50,7 +50,7 @@ function SideBarAbout() {
           Professional Help to get back your peace of mind
         </h1>
         <a
-          className="w-full text-2xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-10 sm:mt-0 hover:shadow-button-inner"
+          className="w-full text-2xl p-4 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg mt-10 sm:mt-0 hover:shadow-button-inner-1"
           href={`tel:${contact.phoneNumber}`}
         >
           {contact.phoneNumber}
