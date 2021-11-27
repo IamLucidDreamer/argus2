@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
-import logo from './../../../argus website/PNG/Logo Vectors.png';
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState } from "react";
+import logo from "./../../../argus website/PNG/Logo Vectors.png";
+import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // eslint-disable-next-line no-unused-vars
-import { useFormik } from 'formik';
-import Alert from '../../Components/Alert';
-import axiosInstance from '../../../helpers/axiosInstance';
-import Loader from 'react-loader-spinner';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { FacebookLoginButton } from 'react-social-login-buttons';
-import GoogleButton from 'react-google-button';
-import { useDispatch } from 'react-redux';
+import { useFormik } from "formik";
+import Alert from "../../Components/Alert";
+import axiosInstance from "../../../helpers/axiosInstance";
+import Loader from "react-loader-spinner";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { FacebookLoginButton } from "react-social-login-buttons";
+import GoogleButton from "react-google-button";
+import { useDispatch } from "react-redux";
 import {
   isAuthenticated,
   lastLoggedIn,
   setUser,
-} from '../../../context/actions/authActions/getUserAction';
+} from "../../../context/actions/authActions/getUserAction";
 import {
   setToken,
   setUserID,
-} from '../../../context/actions/authActions/setStorageAction';
+} from "../../../context/actions/authActions/setStorageAction";
 
 const validate = (values) => {
   const errors = {};
   if (!values.password) {
-    errors.password = '*Required';
+    errors.password = "*Required";
   }
 
   if (!values.email) {
-    errors.email = '*Required';
+    errors.email = "*Required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = "Invalid email address";
   }
 
   return errors;
@@ -44,14 +44,14 @@ const LogIn = ({ open, setOpen }) => {
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
   const { getFieldProps, handleSubmit, errors } = useFormik({
     initialValues: {
-      password: '',
-      email: '',
+      password: "",
+      email: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
@@ -63,9 +63,9 @@ const LogIn = ({ open, setOpen }) => {
           dispatch(setUser(response?.data?.user));
           dispatch(setUserID(response?.data?.user?._id));
           dispatch(setToken(response?.data?.token));
-          dispatch(isAuthenticated('true'));
+          dispatch(isAuthenticated("true"));
           dispatch(lastLoggedIn());
-          history.push('/dashboard/student/home');
+          history.push("/dashboard/student/home");
           resetForm();
         })
         .catch((err) => {
@@ -83,12 +83,12 @@ const LogIn = ({ open, setOpen }) => {
   const googleSuccess = async (res) => {
     setLoading(true);
     await axiosInstance
-      .post('/googlelogin', { idToken: res.tokenId })
+      .post("/googlelogin", { idToken: res.tokenId })
       .then((response) => {
         if (response?.data?.user?.blocked) {
           setShowAlert({
             show: true,
-            message: 'You have been blocked!!! Contact the admin.',
+            message: "You have been blocked!!! Contact the admin.",
             success: false,
           });
           setLoading(false);
@@ -97,8 +97,8 @@ const LogIn = ({ open, setOpen }) => {
           dispatch(setUser(response?.data?.user));
           dispatch(setUserID(response?.data?.user?._id));
           dispatch(setToken(response?.data?.token));
-          dispatch(isAuthenticated('true'));
-          history.push('/dashboard/student/home');
+          dispatch(isAuthenticated("true"));
+          history.push("/dashboard/student/home");
         }
       })
       .catch((err) => {
@@ -116,14 +116,14 @@ const LogIn = ({ open, setOpen }) => {
     setLoading(false);
     setShowAlert({
       show: true,
-      message: 'Login failed try again',
+      message: "Login failed try again",
       success: false,
     });
   };
   const responseFacebook = async (res) => {
     setLoading(true);
     await axiosInstance
-      .post('/facebooklogin', {
+      .post("/facebooklogin", {
         userId: res.userID,
         access_token: res.accessToken,
       })
@@ -131,7 +131,7 @@ const LogIn = ({ open, setOpen }) => {
         if (response?.data?.user?.blocked) {
           setShowAlert({
             show: true,
-            message: 'You have been blocked!!! Contact the admin.',
+            message: "You have been blocked!!! Contact the admin.",
             success: false,
           });
           setLoading(false);
@@ -140,8 +140,8 @@ const LogIn = ({ open, setOpen }) => {
           dispatch(setUser(response?.data?.user));
           dispatch(setUserID(response?.data?.user?._id));
           dispatch(setToken(response?.data?.token));
-          dispatch(isAuthenticated('true'));
-          history.push('/dashboard/student/home');
+          dispatch(isAuthenticated("true"));
+          history.push("/dashboard/student/home");
         }
       })
       .catch((err) => {
@@ -155,9 +155,9 @@ const LogIn = ({ open, setOpen }) => {
   };
 
   return (
-    <div class={open ? 'block fixed top-0 z-100 overflow-hidden' : 'hidden'}>
+    <div class={open ? "block fixed top-0 z-50 overflow-hidden" : "hidden"}>
       <div className="p-32 w-screen h-screen flex flex-col-reverse md:flex-row items-center justify-center bg-black bg-opacity-80">
-        <div className="w-full p-4 md:p-16 lg:p-40 bg-white rounded-3xl flex flex-col-reverse md:flex-row items-center justify-center bg-no-repeat bg-cover bg-logincar">
+        <div className="w-full p-4 md:p-16 lg:p-40 bg-transparent lg:bg-white rounded-3xl flex flex-col-reverse md:flex-row items-center justify-center bg-no-repeat bg-cover lg:bg-logincar">
           <div className="content text-3xl text-center md:text-left lg:w-2/3"></div>
           <div className="w-1/3 mx-auto flex flex-col items-center">
             <button
@@ -166,7 +166,7 @@ const LogIn = ({ open, setOpen }) => {
                 setLoading(false);
               }}
             >
-              {' '}
+              {" "}
               {/*Close Button*/}
               <FontAwesomeIcon
                 icon="window-close"
@@ -186,7 +186,7 @@ const LogIn = ({ open, setOpen }) => {
                 buttonText="Login with Google"
                 onSuccess={googleSuccess}
                 onFailure={googleFailure}
-                cookiePolicy={'single_host_origin'}
+                cookiePolicy={"single_host_origin"}
                 render={(renderProps) => (
                   <GoogleButton onClick={renderProps.onClick} />
                 )}
@@ -205,7 +205,7 @@ const LogIn = ({ open, setOpen }) => {
                 className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
                 type="email"
                 placeholder="Email"
-                {...getFieldProps('email')}
+                {...getFieldProps("email")}
               />
               {errors.email ? (
                 <div className="w-full text-xs text-red-400">
@@ -217,7 +217,7 @@ const LogIn = ({ open, setOpen }) => {
                 className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
                 type="password"
                 placeholder="Password"
-                {...getFieldProps('password')}
+                {...getFieldProps("password")}
               />
               {errors.password ? (
                 <div className="w-full text-xs text-red-400">
@@ -245,7 +245,7 @@ const LogIn = ({ open, setOpen }) => {
               </button>
               <span
                 onClick={() => {
-                  history.push('/forgot-pass');
+                  history.push("/forgot-pass");
                   setOpen(false);
                 }}
                 className="text-red-1 cursor-pointer font-bold hover:text-red-500"
@@ -256,12 +256,12 @@ const LogIn = ({ open, setOpen }) => {
                 Not yet Registered ?
                 <span
                   onClick={() => {
-                    history.push('/dashboard/student/signup');
+                    history.push("/dashboard/student/signup");
                     setOpen(false);
                   }}
                   className="text-blue-500 cursor-pointer"
                 >
-                  {' '}
+                  {" "}
                   Register
                 </span>
               </p>
