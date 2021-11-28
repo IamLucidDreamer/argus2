@@ -85,8 +85,8 @@ const Teams = () => {
         breakpoint: 468,
         settings: {
           arrows: false,
-          slidesToShow: 3,
-          centerPadding: "-2625px",
+          slidesToShow: 1,
+          centerPadding: "-2675px",
         },
       },
     ],
