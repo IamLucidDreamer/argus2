@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axiosInstance from '../../../../../../../helpers/axiosInstance';
-import ProfileBar from '../../../ProfileBar';
-import SideNav from '../../../SideNav';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import { IconButton } from '@mui/material';
-import Alert from '../../../../../../Components/Alert';
-import { useFormik } from 'formik';
+import React, { useEffect, useState } from "react";
+import axiosInstance from "../../../../../../../helpers/axiosInstance";
+import ProfileBar from "../../../ProfileBar";
+import SideNav from "../../../SideNav";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { IconButton } from "@mui/material";
+import Alert from "../../../../../../Components/Alert";
+import { useFormik } from "formik";
 
 const ManageCoupons = () => {
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
   const [addCoupon, setAddCoupon] = useState(false);
   const [coupons, setCoupons] = useState([]);
   const [refresh, setRefresh] = useState(null);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
   const [deleteRefresh, setDeleteRefresh] = useState(0);
@@ -54,16 +54,16 @@ const ManageCoupons = () => {
   const validate = (values) => {
     const errors = {};
     if (!values.discount) {
-      errors.discount = '*Required';
+      errors.discount = "*Required";
     }
     if (!values.validity) {
-      errors.validity = '*Required';
+      errors.validity = "*Required";
     }
     if (!values.couponCode) {
-      errors.couponCode = '*Required';
+      errors.couponCode = "*Required";
     }
     if (!values.usage) {
-      errors.usage = '*Required';
+      errors.usage = "*Required";
     }
 
     return errors;
@@ -72,10 +72,10 @@ const ManageCoupons = () => {
   const { getFieldProps, handleSubmit, errors, setErrors, setValues, values } =
     useFormik({
       initialValues: {
-        couponCode: '',
-        usage: '',
-        validity: '',
-        discount: '',
+        couponCode: "",
+        usage: "",
+        validity: "",
+        discount: "",
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
@@ -91,14 +91,14 @@ const ManageCoupons = () => {
             setRefresh(res);
             setShowAlert({
               show: true,
-              message: 'Coupon Added Successfully',
+              message: "Coupon Added Successfully",
               success: true,
             });
           })
           .catch((err) => {
             setShowAlert({
               show: true,
-              message: 'Error adding coupon',
+              message: "Error adding coupon",
               success: false,
             });
           });
@@ -122,7 +122,7 @@ const ManageCoupons = () => {
 
           {coupons.length === 0 ? (
             <>
-              {' '}
+              {" "}
               <p className="w-full text-center text-xl font-bold text-gray-400">
                 No coupons
               </p>
@@ -148,7 +148,7 @@ const ManageCoupons = () => {
               </div>
               {coupons.map((c) => {
                 return (
-                  <div className="hidden lg:flex flex-row text-base xl:text-lg items-stretch mb-2">
+                  <div className="flex flex-col lg:flex-row text-lg mb-6 rounded-xl shadow-cards lg:shadow-none">
                     <h1 className="text-center w-full flex items-center justify-center lg:w-3/12 px-3 py-3 text-gray-2 font-bold rounded-xl border-2  mx-1">
                       {c?.couponCode}
                     </h1>
@@ -174,14 +174,14 @@ const ManageCoupons = () => {
                               setRefresh(res);
                               setShowAlert({
                                 show: true,
-                                message: 'Deleted Successfully',
+                                message: "Deleted Successfully",
                                 success: true,
                               });
                             })
                             .catch((err) => {
                               setShowAlert({
                                 show: true,
-                                message: 'Error deleting',
+                                message: "Error deleting",
                                 success: false,
                               });
                             });
@@ -204,7 +204,7 @@ const ManageCoupons = () => {
               NEW COUPON
             </button>
           </div>
-          <div className={addCoupon ? 'block' : 'hidden'}>
+          <div className={addCoupon ? "block" : "hidden"}>
             <form
               onSubmit={handleSubmit}
               className="flex flex-wrap justify-center items-center text-lg font-bold text-gray-3"
@@ -215,7 +215,7 @@ const ManageCoupons = () => {
                     type="text"
                     placeholder="Coupon Code"
                     className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-                    {...getFieldProps('couponCode')}
+                    {...getFieldProps("couponCode")}
                   />
                   {errors.couponCode ? (
                     <div className="w-full text-xs text-red-400">
@@ -228,7 +228,7 @@ const ManageCoupons = () => {
                     type="Number"
                     placeholder="Discount Percentage"
                     className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-                    {...getFieldProps('discount')}
+                    {...getFieldProps("discount")}
                   />
                   {errors.discount ? (
                     <div className="w-full text-xs text-red-400">
@@ -243,7 +243,7 @@ const ManageCoupons = () => {
                     type="date"
                     placeholder="Validity"
                     className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-                    {...getFieldProps('validity')}
+                    {...getFieldProps("validity")}
                   />
                   {errors.validity ? (
                     <div className="w-full text-xs text-red-400">
@@ -256,7 +256,7 @@ const ManageCoupons = () => {
                     type="Number"
                     placeholder="Usage"
                     className="bg-client p-5 w-full rounded-xl focus:outline-none ring-2 ring-white focus:ring-gray-2"
-                    {...getFieldProps('usage')}
+                    {...getFieldProps("usage")}
                   />
                   {errors.usage ? (
                     <div className="w-full text-xs text-red-400">
