@@ -74,7 +74,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 1 ? "block lg:hidden" : "hidden"}>
+              <div className={row === 1 ? "block md:hidden" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -141,7 +141,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 2 ? "block lg:hidden" : "hidden"}>
+              <div className={row === 2 ? "block md:hidden" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -217,7 +217,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 1 ? "hidden lg:block" : "hidden"}>
+              <div className={row === 1 ? "hidden md:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -257,7 +257,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 2 ? "hidden lg:block" : "hidden"}>
+              <div className={row === 2 ? "hidden md:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -379,7 +379,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 4 ? "block lg:hidden" : "hidden"}>
+              <div className={row === 4 ? "block md:hidden" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -453,7 +453,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 5 ? "block lg:hidden" : "hidden"}>
+              <div className={row === 5 ? "block md:hidden" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -525,7 +525,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 4 ? "hidden lg:block" : "hidden"}>
+              <div className={row === 4 ? "hidden md:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -572,7 +572,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 5 ? "hidden lg:block" : "hidden"}>
+              <div className={row === 5 ? "hidden md:block" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -682,7 +682,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 7 ? "block lg:hidden" : "hidden"}>
+              <div className={row === 7 ? "block md:hidden" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -755,7 +755,7 @@ const Services = () => {
                   : "transition-all opacity-0 duration-700"
               }
             >
-              <div className={row === 8 ? "block lg:hidden" : "hidden"}>
+              <div className={row === 8 ? "block md:hidden" : "hidden"}>
                 <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                   <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                     <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -828,7 +828,7 @@ const Services = () => {
                 : "transition-all opacity-0 duration-700"
             }
           >
-            <div className={row === 7 ? "hidden lg:block" : "hidden"}>
+            <div className={row === 7 ? "hidden md:block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                   <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
@@ -873,7 +873,7 @@ const Services = () => {
                 : "transition-all opacity-0 duration-700"
             }
           >
-            <div className={row === 8 ? "hidden lg:block" : "hidden"}>
+            <div className={row === 8 ? "hidden md:block" : "hidden"}>
               <div className="p-1 sm:p-2 rounded-3xl border-3 border-client mb-12 md:m-6">
                 <div className="rounded-2xl bg-client  px-4 sm:px-12 pb-0 sm:pb-8">
                   <h2 className="leading-tight text-3xl title-font font-bold text-white text-center mb-6 py-4 bg-red-1 w-10/12 lg:w-6/12 mx-auto rounded-b-xl">
