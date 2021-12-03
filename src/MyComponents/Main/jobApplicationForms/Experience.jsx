@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 
 const Experience = ({
   setFormNo,
@@ -7,6 +7,10 @@ const Experience = ({
   setFormData,
   submitForm,
 }) => {
+  const [checkBox, setCheckBox] = useState(null);
+
+  console.log(checkBox);
+
   return (
     <div className="pb-2">
       <div className="w-full flex flex-col px-2 lg:px-10 mt-6">
@@ -18,8 +22,8 @@ const Experience = ({
             onClick={() => setFormData({ ...formData, priorExperience: true })}
             className={`${
               formData.priorExperience
-                ? "bg-red-1 text-white"
-                : "bg-white text-gray-400"
+                ? 'bg-red-1 text-white'
+                : 'bg-white text-gray-400'
             }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 mt-2 w-full rounded-lg`}
           >
             YES
@@ -28,8 +32,8 @@ const Experience = ({
             onClick={() => setFormData({ ...formData, priorExperience: false })}
             className={`${
               formData.priorExperience === false
-                ? "bg-red-1 text-white"
-                : "bg-white text-gray-400"
+                ? 'bg-red-1 text-white'
+                : 'bg-white text-gray-400'
             }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 ml-2 mt-2 w-full rounded-lg`}
           >
             NO
@@ -61,10 +65,16 @@ const Experience = ({
       </div>
       <div className="w-full flex px-10 mt-6">
         <div className="w-full flex items-center">
-          <input type="checkbox" className="w-4 h-4" />
+          <input
+            type="checkbox"
+            className="w-4 h-4"
+            value={checkBox}
+            onChange={(e) => setCheckBox(e.target.checked)}
+          />
           <p className="text-gray-2 ml-2">
-            By checking this box I affirm that all the information provided is
-            true to the best of my knowledge.
+            <span className="text-red-1">*</span> By checking this box I affirm
+            that all the information provided is true to the best of my
+            knowledge.
           </p>
         </div>
       </div>
@@ -76,8 +86,14 @@ const Experience = ({
           BACK
         </button>
         <button
-          onClick={(e) => submitForm(e)}
-          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
+          onClick={(e) => {
+            if (checkBox) {
+              submitForm(e);
+            }
+          }}
+          className={` ${
+            checkBox ? 'hover:text-red-1 hover:bg-white' : 'opacity-40'
+          } flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg  border-4 border-double  border-red-1   text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1`}
         >
           FINISH
         </button>

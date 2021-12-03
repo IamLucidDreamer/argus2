@@ -1,5 +1,6 @@
 import {
   COURSE_LOADING,
+  GETALL_COURSES,
   GETUSERS_COURSE,
   GET_PROGRESS,
   SET_CURRENTCOURSE,
@@ -8,6 +9,7 @@ import {
 
 const initialState = {
   course: [],
+  courses: [],
   progress: null,
   current: null,
   loading: false,
@@ -46,7 +48,11 @@ const progressReducer = (state = initialState, action) => {
         ...state,
         loading: action.payload,
       };
-
+    case GETALL_COURSES:
+      return {
+        ...state,
+        courses: action.payload,
+      };
     default:
       return state;
   }

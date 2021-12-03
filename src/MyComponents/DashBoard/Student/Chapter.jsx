@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import Loader from "react-loader-spinner";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import React, { useEffect, useState } from 'react';
+import Loader from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router';
 import {
   setCurrentCourse,
   updateChapter,
-} from "../../../context/actions/userActions";
-import axiosInstance from "../../../helpers/axiosInstance";
-import ChapterContent from "./ChapterContent";
+} from '../../../context/actions/userActions';
+import axiosInstance from '../../../helpers/axiosInstance';
+import ChapterContent from './ChapterContent';
 
 const Chapter = () => {
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const { courseId, moduleId } = useParams();
 
   const [chapter, setChapter] = useState([]);
@@ -46,8 +46,8 @@ const Chapter = () => {
   useEffect(() => {
     dispatch(
       setCurrentCourse(
-        progress?.courses?.filter((f) => f.courseId === courseId)[0]
-      )
+        progress?.courses?.filter((f) => f.courseId === courseId)[0],
+      ),
     );
   }, [courseId, dispatch, progress?.courses]);
 
@@ -64,14 +64,14 @@ const Chapter = () => {
                 chapterId: chapter[0]?._id,
                 duration: chapter[0]?.duration,
                 id: current._id,
-              })
+              }),
             );
           }
         }
       } else if (
         current?.currentModule?.moduleId === moduleId &&
         !chapter?.some(
-          (chapter) => chapter._id === current?.currentChapter?.chapterId
+          (chapter) => chapter._id === current?.currentChapter?.chapterId,
         )
       ) {
         dispatch(
@@ -79,7 +79,7 @@ const Chapter = () => {
             chapterId: chapter[0]?._id,
             duration: chapter[0]?.duration,
             id: current._id,
-          })
+          }),
         );
       }
     }
@@ -128,7 +128,7 @@ const Chapter = () => {
                 let ongoing = false;
                 if (
                   current?.completedChapters?.some(
-                    (chapter) => chapter.chapterId === c._id
+                    (chapter) => chapter.chapterId === c._id,
                   )
                 ) {
                   completed = true;
@@ -141,11 +141,11 @@ const Chapter = () => {
 
                 if (
                   current?.completedChapters.some(
-                    (chapter) => chapter.chapterId === c._id
+                    (chapter) => chapter.chapterId === c._id,
                   )
                 ) {
                   startDate = current?.completedChapters.filter(
-                    (chapter) => chapter.chapterId === c._id
+                    (chapter) => chapter.chapterId === c._id,
                   )[0].createdAt;
                 } else if (current?.currentChapter?.chapterId === c._id) {
                   startDate = current?.currentChapter?.updatedAt;
@@ -175,21 +175,21 @@ const Chapter = () => {
                         <h1 className="">
                           {startDate
                             ? new Date(startDate).toLocaleDateString()
-                            : "Not Started"}
+                            : 'Not Started'}
                         </h1>
                         <h1 className="font-bold">
                           {startDate
-                            ? new Date(startDate).toLocaleTimeString("en-US", {
-                                hour: "2-digit",
-                                minute: "2-digit",
+                            ? new Date(startDate).toLocaleTimeString('en-US', {
+                                hour: '2-digit',
+                                minute: '2-digit',
                               })
-                            : ""}
+                            : ''}
                         </h1>
                       </div>
                       <div className="flex flex-col justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
                         <h1 className="">
                           {completed
-                            ? "100%"
+                            ? '100%'
                             : ongoing
                             ? `${(
                                 ((c.duration -
@@ -197,16 +197,16 @@ const Chapter = () => {
                                   c.duration) *
                                 100
                               ).toFixed(1)} %`
-                            : "Not started"}
+                            : 'Not started'}
                         </h1>
                       </div>
                       <div className="flex flow-col items-center justify-center text-center lg:w-2/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
                         <h1>
                           {completed
-                            ? "Completed"
+                            ? 'Completed'
                             : ongoing
-                            ? "Ongoing"
-                            : "Not Started"}
+                            ? 'Ongoing'
+                            : 'Not Started'}
                         </h1>
                       </div>
                     </div>

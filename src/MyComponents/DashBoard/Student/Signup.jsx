@@ -1,36 +1,42 @@
-import React, { useState } from "react";
-import logo from "./../../../argus website/PNG/Logo Vectors.png";
-import { useFormik } from "formik";
-import Alert from "../../Components/Alert";
-import axiosInstance from "../../../helpers/axiosInstance";
-import { useHistory } from "react-router";
-import Loader from "react-loader-spinner";
-import GoogleLogin from "react-google-login";
-import { FacebookLoginButton } from "react-social-login-buttons";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import GoogleButton from "react-google-button";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import logo from './../../../argus website/PNG/Logo Vectors.png';
+import { useFormik } from 'formik';
+import Alert from '../../Components/Alert';
+import axiosInstance from '../../../helpers/axiosInstance';
+import { useHistory } from 'react-router';
+import Loader from 'react-loader-spinner';
+import GoogleLogin from 'react-google-login';
+import { FacebookLoginButton } from 'react-social-login-buttons';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import GoogleButton from 'react-google-button';
+import { useDispatch } from 'react-redux';
 import {
   isAuthenticated,
   setUser,
-} from "../../../context/actions/authActions/getUserAction";
+} from '../../../context/actions/authActions/getUserAction';
 import {
   setToken,
   setUserID,
-} from "../../../context/actions/authActions/setStorageAction";
+} from '../../../context/actions/authActions/setStorageAction';
 
 const validate = (values) => {
   const errors = {};
+  if (!values.name) {
+    errors.name = '*Required';
+  }
+  if (!values.lastname) {
+    errors.lastname = '*Required';
+  }
   if (!values.password) {
-    errors.password = "*Required";
+    errors.password = '*Required';
   } else if (values.password.length < 6) {
-    errors.password = "Must be atleast 6 characters";
+    errors.password = 'Must be atleast 6 characters';
   }
 
   if (!values.email) {
-    errors.email = "*Required";
+    errors.email = '*Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+    errors.email = 'Invalid email address';
   }
 
   return errors;
@@ -43,14 +49,16 @@ const SignUp = ({ setOpen }) => {
 
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
 
   const { getFieldProps, handleSubmit, errors } = useFormik({
     initialValues: {
-      password: "",
-      email: "",
+      password: '',
+      email: '',
+      name: '',
+      lastname: '',
     },
     validate,
     onSubmit: (values, { resetForm }) => {
@@ -58,13 +66,13 @@ const SignUp = ({ setOpen }) => {
       axiosInstance
         .post(`/signup`, values)
         .then(() => {
-          axiosInstance.post("/signin", values).then((response) => {
+          axiosInstance.post('/signin', values).then((response) => {
             setLoading(false);
             dispatch(setUser(response?.data?.user));
             dispatch(setUserID(response?.data?.user?._id));
             dispatch(setToken(response?.data?.token));
-            dispatch(isAuthenticated("true"));
-            history.push("/dashboard/student/home");
+            dispatch(isAuthenticated('true'));
+            history.push('/dashboard/student/home');
             resetForm();
           });
         })
@@ -82,14 +90,14 @@ const SignUp = ({ setOpen }) => {
 
   const googleSuccess = async (res) => {
     await axiosInstance
-      .post("/googlelogin", { idToken: res.tokenId })
+      .post('/googlelogin', { idToken: res.tokenId })
       .then((response) => {
         setLoading(false);
         dispatch(setUser(response?.data?.user));
         dispatch(setUserID(response?.data?.user?._id));
         dispatch(setToken(response?.data?.token));
-        dispatch(isAuthenticated("true"));
-        history.push("/dashboard/student/home");
+        dispatch(isAuthenticated('true'));
+        history.push('/dashboard/student/home');
       })
       .catch((err) => {
         setLoading(false);
@@ -105,7 +113,7 @@ const SignUp = ({ setOpen }) => {
     setLoading(false);
     setShowAlert({
       show: true,
-      message: "Login failed try again",
+      message: 'Login failed try again',
       success: false,
     });
   };
@@ -113,7 +121,7 @@ const SignUp = ({ setOpen }) => {
   const responseFacebook = async (res) => {
     console.log(res);
     await axiosInstance
-      .post("/facebooklogin", {
+      .post('/facebooklogin', {
         userId: res.userID,
         access_token: res.accessToken,
       })
@@ -122,8 +130,8 @@ const SignUp = ({ setOpen }) => {
         dispatch(setUser(response?.data?.user));
         dispatch(setUserID(response?.data?.user?._id));
         dispatch(setToken(response?.data?.token));
-        dispatch(isAuthenticated("true"));
-        history.push("/dashboard/student/home");
+        dispatch(isAuthenticated('true'));
+        history.push('/dashboard/student/home');
       })
       .catch((err) => {
         setLoading(false);
@@ -155,7 +163,7 @@ const SignUp = ({ setOpen }) => {
               clientId="687463143304-kpg02h4gpk2ul6a4fk3fnsbpp1hg241i.apps.googleusercontent.com"
               onSuccess={googleSuccess}
               onFailure={googleFailure}
-              cookiePolicy={"single_host_origin"}
+              cookiePolicy={'single_host_origin'}
               render={(renderProps) => (
                 <div>
                   <GoogleButton type="dark" onClick={renderProps.onClick} />
@@ -174,9 +182,30 @@ const SignUp = ({ setOpen }) => {
             <div>Or</div>
             <input
               className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
+              type="text"
+              placeholder="Firstname"
+              {...getFieldProps('name')}
+            />
+            {errors.name ? (
+              <div className="w-full text-xs text-red-400">{errors.name}</div>
+            ) : null}
+            <input
+              className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
+              type="text"
+              placeholder="Lastname"
+              {...getFieldProps('lastname')}
+            />
+            {errors.lastname ? (
+              <div className="w-full text-xs text-red-400">
+                {errors.lastname}
+              </div>
+            ) : null}
+
+            <input
+              className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
               type="email"
               placeholder="Email"
-              {...getFieldProps("email")}
+              {...getFieldProps('email')}
             />
             {errors.email ? (
               <div className="w-full text-xs text-red-400">{errors.email}</div>
@@ -185,7 +214,7 @@ const SignUp = ({ setOpen }) => {
               className={`w-full mt-3 py-3 px-4 border border-gray-400 focus:outline-none rounded-md focus:ring-1 ring-red-1`}
               type="password"
               placeholder="Password"
-              {...getFieldProps("password")}
+              {...getFieldProps('password')}
             />
             {errors.password ? (
               <div className="w-full text-xs text-red-400">
