@@ -1,16 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Button, IconButton } from "@mui/material";
-import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { useParams } from "react-router";
-import axiosInstance from "../../../helpers/axiosInstance";
-import Slider from "react-slick";
-import NavigateNextRoundedIcon from "@mui/icons-material/NavigateNextRounded";
-import NavigateBeforeRoundedIcon from "@mui/icons-material/NavigateBeforeRounded";
-import { API } from "../../../api";
-import Countdown from "react-countdown";
-import MCQ from "./MCQ";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, IconButton } from '@mui/material';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { useParams } from 'react-router';
+import axiosInstance from '../../../helpers/axiosInstance';
+import Slider from 'react-slick';
+import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
+import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
+import { API } from '../../../api';
+import Countdown from 'react-countdown';
+import MCQ from './MCQ';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   getProgress,
   updateChapter,
@@ -18,21 +18,21 @@ import {
   updateCompletedModule,
   updateModule,
   updateTimestamp,
-} from "../../../context/actions/userActions";
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
-import PauseRoundedIcon from "@mui/icons-material/PauseRounded";
+} from '../../../context/actions/userActions';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import PauseRoundedIcon from '@mui/icons-material/PauseRounded';
 
 function SampleNextArrow(props) {
   const { onClick } = props;
   return (
-    <div className="slick-arrow slick-next" style={{ color: "black" }}>
+    <div className="slick-arrow slick-next" style={{ color: 'black' }}>
       <IconButton
         onClick={() => {
           window.speechSynthesis.cancel();
           onClick();
         }}
       >
-        <NavigateNextRoundedIcon color="black" style={{ fontSize: "60px" }} />
+        <NavigateNextRoundedIcon color="black" style={{ fontSize: '60px' }} />
       </IconButton>
     </div>
   );
@@ -43,8 +43,8 @@ function SamplePrevArrow(props) {
     <div
       className="slick-arrow slick-prev"
       style={{
-        color: "black",
-        left: "-60px",
+        color: 'black',
+        left: '-60px',
       }}
     >
       <IconButton
@@ -53,14 +53,14 @@ function SamplePrevArrow(props) {
           onClick();
         }}
       >
-        <NavigateBeforeRoundedIcon color="black" style={{ fontSize: "60px" }} />
+        <NavigateBeforeRoundedIcon color="black" style={{ fontSize: '60px' }} />
       </IconButton>
     </div>
   );
 }
 
 const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const { courseId, nextModule, moduleId } = useParams();
   const dispatch = useDispatch();
 
@@ -97,7 +97,7 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
       {
         breakpoint: 1700,
         settings: {
-          centerPadding: "350px",
+          centerPadding: '350px',
           nextArrow: <SampleNextArrow />,
           prevArrow: <SamplePrevArrow />,
         },
@@ -105,7 +105,7 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
       {
         breakpoint: 1500,
         settings: {
-          centerPadding: "300px",
+          centerPadding: '300px',
           nextArrow: <SampleNextArrow />,
           prevArrow: <SamplePrevArrow />,
         },
@@ -113,42 +113,42 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
       {
         breakpoint: 1200,
         settings: {
-          centerPadding: "250px",
+          centerPadding: '250px',
           arrows: false,
         },
       },
       {
         breakpoint: 950,
         settings: {
-          centerPadding: "200px",
+          centerPadding: '200px',
           arrows: false,
         },
       },
       {
         breakpoint: 850,
         settings: {
-          centerPadding: "170px",
+          centerPadding: '170px',
           arrows: false,
         },
       },
       {
         breakpoint: 700,
         settings: {
-          centerPadding: "50px",
+          centerPadding: '50px',
           arrows: false,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          centerPadding: "10px",
+          centerPadding: '10px',
           arrows: false,
         },
       },
     ],
   };
 
-  const time = Date.now() + current?.currentChapterTimestamp * 60000;
+  const time = new Date(Date.now() + current?.currentChapterTimestamp * 60000);
   const synthRef = useRef(window.speechSynthesis);
 
   const countDownRef = useRef();
@@ -159,9 +159,9 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
   const renderer = ({ seconds, hours, minutes, completed }) => {
     return (
       <span className="text-2xl font-bold text-gray-2">
-        {hours !== 0 ? (hours < 10 ? "0" + hours : hours) + " :" : null}{" "}
-        {minutes < 10 ? "0" + minutes : minutes} :{" "}
-        {seconds < 10 ? "0" + seconds : seconds}
+        {hours !== 0 ? (hours < 10 ? '0' + hours : hours) + ' :' : null}{' '}
+        {minutes < 10 ? '0' + minutes : minutes} :{' '}
+        {seconds < 10 ? '0' + seconds : seconds}
       </span>
     );
   };
@@ -173,7 +173,7 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
   return (
     <div
       className={`${
-        show ? "block" : "hidden"
+        show ? 'block' : 'hidden'
       } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-20`}
     >
       <div className="bg-white flex flex-col items-center rounded-lg w-11/12 lg:w-3/4 h-5/6 lg:h-3/4 relative">
@@ -199,12 +199,12 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
         {current?.completedChapters?.some(
           (chapter) =>
             chapter.chapterId === currentChapter?._id ||
-            current?.currentChapter.chapterId === null
+            current?.currentChapter.chapterId === null,
         ) ? null : (
           <Countdown
             ref={countDownRef}
             renderer={renderer}
-            date={new Date(time)}
+            date={time}
             autoStart={false}
             onTick={({ minutes, hours, seconds }) => {
               if (seconds === 0) {
@@ -213,59 +213,54 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
                     updateTimestamp({
                       time: hours * 60 + minutes,
                       id: current?._id,
-                    })
+                    }),
                   );
                 } else {
                   dispatch(
-                    updateTimestamp({ time: minutes, id: current?._id })
+                    updateTimestamp({ time: minutes, id: current?._id }),
                   );
                 }
               }
             }}
             intervalDelay={1000}
             onStart={() => {
-              console.log("Timer started");
+              console.log('Timer started');
             }}
             onStop={() => {
-              console.log("Timer stopped");
+              console.log('Timer stopped');
             }}
             onComplete={() => {
               if (index === chapter?.length - 1) {
-                console.log("completed");
                 dispatch(
                   updateCompletedChapter({
                     chapterId: currentChapter?._id,
                     id: current?._id,
-                  })
+                  }),
                 );
                 dispatch(
                   updateCompletedModule({
                     moduleId: moduleId,
                     id: current?._id,
-                  })
+                  }),
                 );
-                if (nextModule) {
-                  dispatch(
-                    updateModule({ moduleId: nextModule, id: current?._id })
-                  );
-                }
+                dispatch(
+                  updateModule({ moduleId: nextModule, id: current?._id }),
+                );
               } else {
-                console.log("inside 2");
                 dispatch(
                   updateChapter({
                     chapterId: chapter[index + 1]?._id,
                     duration: chapter[index + 1]?.duration,
                     id: current?._id,
-                  })
+                  }),
                 );
                 dispatch(
                   updateCompletedChapter({
                     chapterId: currentChapter?._id,
                     id: current?._id,
-                  })
+                  }),
                 );
               }
-
               setCompleted(true);
             }}
           />
@@ -277,7 +272,7 @@ const ChapterContent = ({ show, setShow, currentChapter, chapter, index }) => {
               if (data?.title) {
                 let voices = synthRef.current.getVoices();
                 utterThis = new SpeechSynthesisUtterance(
-                  data?.title + data?.text
+                  data?.title + data?.text,
                 );
                 utterThis.voice = voices[0];
                 utterThis.rate = 0.6;

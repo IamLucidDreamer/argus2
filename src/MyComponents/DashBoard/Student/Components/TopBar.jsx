@@ -42,9 +42,6 @@ export const TopBar = () => {
     setCount(c);
   }, [messages, activity, user?.lastLoggedIn]);
 
-  console.log(count);
-  console.log(user?.lastLoggedIn);
-
   return (
     <div className="max-w-1200 mx-2 sm:mx-8 2xl:mx-auto">
       <div className="pt-3 flex flex-row justify-between items-center">

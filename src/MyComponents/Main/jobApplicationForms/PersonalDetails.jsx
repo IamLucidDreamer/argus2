@@ -1,9 +1,49 @@
 // We missed a page in the Apply now form.
 
-import React from "react";
-import Select from "react-select";
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import { Country, State, City } from 'country-state-city';
 
 const PersonalDetails = ({ setFormNo, formNo, formData, setFormData }) => {
+  const [country, setCountry] = useState(null);
+  const [state, setState] = useState(null);
+
+  let countryOptions = [];
+  let stateOptions = [];
+
+  Country?.getAllCountries()?.forEach((element) => {
+    countryOptions.push({ value: element?.isoCode, label: element?.name });
+  });
+
+  State?.getStatesOfCountry(country?.value)?.forEach((element) => {
+    stateOptions.push({ value: element?.isoCode, label: element?.name });
+  });
+
+  useEffect(() => {
+    setCountry({ value: null, label: formData?.country });
+    setState({ value: null, label: formData?.state });
+  }, [formData?.country, formData?.state]);
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+    }),
+    control: () => ({
+      // none of react-select's styles are passed to <Control />
+      display: 'flex',
+      fontWeight: 100,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      padding: '15px 8px',
+      color: 'gray',
+    }),
+    singleValue: (provided, state) => {
+      const opacity = state.isDisabled ? 0.5 : 1;
+      const transition = 'opacity 300ms';
+      return { ...provided, opacity, transition };
+    },
+  };
+
   return (
     <div className="p-2">
       <div className="w-full h-96 overflow-y-scroll ">
@@ -14,29 +54,29 @@ const PersonalDetails = ({ setFormNo, formNo, formData, setFormData }) => {
             </label>
             <input
               type="text"
-              placeholder="John"
+              placeholder="Enter firstname"
               className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg"
-              value={formData.name}
+              value={formData.firstname}
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
+                setFormData({ ...formData, firstname: e.target.value })
               }
             />
-            {!formData.name ? (
+            {!formData.firstname ? (
               <div className="w-full text-xs text-red-1 mt-1">*Required</div>
             ) : null}
           </div>
           <div className="w-full lg:ml-2">
             <label className="text-gray-400">Last Name</label>
             <input
-              type="email"
-              placeholder="Doe"
+              type="text"
+              placeholder="Enter lastname"
               className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2  rounded-lg"
-              value={formData.email}
+              value={formData.lastname}
               onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
+                setFormData({ ...formData, lastname: e.target.value })
               }
             />
-            {!formData.email ? (
+            {!formData.lastname ? (
               <div className="w-full text-xs text-red-400 mt-1">*Required</div>
             ) : null}
           </div>
@@ -46,14 +86,14 @@ const PersonalDetails = ({ setFormNo, formNo, formData, setFormData }) => {
             <label className="text-gray-400">Phone Number</label>
             <input
               type="number"
-              placeholder="6472891070"
+              placeholder="Enter phone number"
               className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg"
-              value={formData.name}
+              value={formData.phone}
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
+                setFormData({ ...formData, phone: e.target.value })
               }
             />
-            {!formData.name ? (
+            {!formData.phone ? (
               <div className="w-full text-xs text-red-400 mt-1">*Required</div>
             ) : null}
           </div>
@@ -61,7 +101,7 @@ const PersonalDetails = ({ setFormNo, formNo, formData, setFormData }) => {
             <label className="text-gray-400">Email</label>
             <input
               type="email"
-              placeholder="johndoe@gmail.com"
+              placeholder="Enter email"
               className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2  rounded-lg"
               value={formData.email}
               onChange={(e) =>
@@ -77,31 +117,53 @@ const PersonalDetails = ({ setFormNo, formNo, formData, setFormData }) => {
         <div className="w-full flex flex-col lg:flex-row px-2 lg:px-10 text-base lg:text-base">
           <div className="w-full lg:mr-2">
             <label className="text-gray-400">Country</label>
-            <input
-              type="Country"
-              placeholder="Canada"
-              className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
+            <Select
+              placeholder="Select Country"
+              className=" w-full border-0"
+              options={countryOptions}
+              styles={customStyles}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'lightgray',
+                  primary: '#BA0913',
+                },
+              })}
+              value={country}
+              onChange={(selectedOption) => {
+                setFormData({ ...formData, country: selectedOption.label });
+                setCountry(selectedOption);
+              }}
             />
-            {!formData.name ? (
+            {!formData.country ? (
               <div className="w-full text-xs text-red-400 mt-1">*Required</div>
             ) : null}
           </div>
           <div className="w-full lg:ml-2">
             <label className="text-gray-400">State/Province</label>
-            <input
-              type="email"
-              placeholder="Ontario"
-              className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2  rounded-lg"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
+            <Select
+              placeholder="Select State/Province"
+              className=" w-full border-0"
+              options={stateOptions}
+              styles={customStyles}
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary25: 'lightgray',
+                  primary: '#BA0913',
+                },
+              })}
+              value={state}
+              onChange={(selectedOption) => {
+                setFormData({ ...formData, state: selectedOption.label });
+                setState(selectedOption);
+              }}
             />
-            {!formData.email ? (
+            {!formData.state ? (
               <div className="w-full text-xs text-red-400 mt-1">*Required</div>
             ) : null}
           </div>
@@ -111,29 +173,29 @@ const PersonalDetails = ({ setFormNo, formNo, formData, setFormData }) => {
             <label className="text-gray-400">Address</label>
             <input
               type="address"
-              placeholder="350 Rutherford Road South Brampton ON L6W-4N6 Suite 210 Plaza 2"
+              placeholder="Enter address"
               className="p-2 lg:p-5 mt-2 w-full focus:outline-none ring-2 ring-white focus:ring-gray-2 rounded-lg"
-              value={formData.name}
+              value={formData.address}
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
+                setFormData({ ...formData, address: e.target.value })
               }
             />
-            {!formData.name ? (
+            {!formData.address ? (
               <div className="w-full text-xs text-red-400 mt-1">*Required</div>
             ) : null}
           </div>
         </div>
-        <div className="w-full px-10 flex my-0.5 lg:my-6 ">
-          <button className="flex-1 invisible mr-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl  hover:shadow-button-inner-1">
-            BACK
-          </button>
-          <button
-            onClick={() => setFormNo(3)}
-            className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl  hover:shadow-button-inner-1"
-          >
-            NEXT
-          </button>
-        </div>
+      </div>
+      <div className="w-full px-10 flex my-0.5 lg:my-6 ">
+        <button className="flex-1 invisible mr-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl  hover:shadow-button-inner-1">
+          BACK
+        </button>
+        <button
+          onClick={() => setFormNo(3)}
+          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl  hover:shadow-button-inner-1"
+        >
+          NEXT
+        </button>
       </div>
     </div>
   );

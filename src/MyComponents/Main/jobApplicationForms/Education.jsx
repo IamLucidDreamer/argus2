@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Education = ({ setFormNo, formNo, formData, setFormData }) => {
   return (
@@ -49,8 +49,8 @@ const Education = ({ setFormNo, formNo, formData, setFormData }) => {
             }
             className={`${
               formData.educationInCanada
-                ? "bg-red-1 text-white"
-                : "bg-white text-gray-400"
+                ? 'bg-red-1 text-white'
+                : 'bg-white text-gray-400'
             }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 mt-2 w-full rounded-lg`}
           >
             YES
@@ -61,8 +61,8 @@ const Education = ({ setFormNo, formNo, formData, setFormData }) => {
             }
             className={`${
               formData.educationInCanada === false
-                ? "bg-red-1 text-white"
-                : "bg-white text-gray-400"
+                ? 'bg-red-1 text-white'
+                : 'bg-white text-gray-400'
             }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 ml-2 mt-2 w-full rounded-lg`}
           >
             NO

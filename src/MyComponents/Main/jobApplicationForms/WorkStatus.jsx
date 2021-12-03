@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
   return (
@@ -15,8 +15,8 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
               }
               className={`${
                 formData.elegibleToWorkInCanada
-                  ? "bg-red-1 text-white"
-                  : "bg-white text-gray-400"
+                  ? 'bg-red-1 text-white'
+                  : 'bg-white text-gray-400'
               }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 mr-2 mt-2 w-full rounded-lg`}
             >
               YES
@@ -27,8 +27,8 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
               }
               className={`${
                 formData.elegibleToWorkInCanada === false
-                  ? "bg-red-1 text-white"
-                  : "bg-white text-gray-400"
+                  ? 'bg-red-1 text-white'
+                  : 'bg-white text-gray-400'
               }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 ml-2 mt-2 w-full rounded-lg`}
             >
               NO
@@ -73,8 +73,8 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
                 }
                 className={`${
                   formData.validSecurityGuardLicence
-                    ? "bg-red-1 text-white"
-                    : "bg-white text-gray-400"
+                    ? 'bg-red-1 text-white'
+                    : 'bg-white text-gray-400'
                 }  cursor-pointer hover:bg-red-1 hover:text-white text-center p-2 lg:p-5 mr-2 mt-2 w-full rounded-lg`}
               >
                 YES
@@ -85,8 +85,8 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
                 }
                 className={`${
                   formData.validSecurityGuardLicence === false
-                    ? "bg-red-1 text-white"
-                    : "bg-white text-gray-400"
+                    ? 'bg-red-1 text-white'
+                    : 'bg-white text-gray-400'
                 }  cursor-pointer hover:bg-red-1 hover:text-white text-center p-2 lg:p-5 ml-2 mt-2 w-full rounded-lg`}
               >
                 NO
@@ -121,8 +121,8 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
                 onClick={() => setFormData({ ...formData, canDrive: true })}
                 className={`${
                   formData.canDrive
-                    ? "bg-red-1 text-white"
-                    : "bg-white text-gray-400"
+                    ? 'bg-red-1 text-white'
+                    : 'bg-white text-gray-400'
                 }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2 lg:p-5 mr-2 mt-2 w-full rounded-lg`}
               >
                 YES
@@ -131,8 +131,8 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
                 onClick={() => setFormData({ ...formData, canDrive: false })}
                 className={`${
                   formData.canDrive === false
-                    ? "bg-red-1 text-white"
-                    : "bg-white text-gray-400"
+                    ? 'bg-red-1 text-white'
+                    : 'bg-white text-gray-400'
                 }  cursor-pointer hover:bg-red-1 hover:text-white text-md text-center p-2  lg:p-5 ml-2 mt-2 w-full rounded-lg`}
               >
                 NO
@@ -143,20 +143,20 @@ const WorkStatus = ({ setFormNo, formNo, formData, setFormData }) => {
             ) : null}
           </div>
         </div>
-        <div className="w-full px-10 flex my-6 ">
-          <button
-            onClick={() => setFormNo(4)}
-            className="flex-1 mr-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
-          >
-            BACK
-          </button>
-          <button
-            onClick={() => setFormNo(2)}
-            className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
-          >
-            NEXT
-          </button>
-        </div>
+      </div>
+      <div className="w-full px-10 flex my-6 ">
+        <button
+          onClick={() => setFormNo(4)}
+          className="flex-1 mr-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
+        >
+          BACK
+        </button>
+        <button
+          onClick={() => setFormNo(2)}
+          className="flex-1 ml-2 font-bold text-white bg-red-1 py-2 lg:py-4 px-3 md:px-8 lg::px-16 rounded-lg hover:bg-white border-4 border-double  border-red-1 hover:text-red-1  text-2xl mt-6 sm:mt-0 mb-10 md:mb-0 hover:shadow-button-inner-1"
+        >
+          NEXT
+        </button>
       </div>
     </div>
   );

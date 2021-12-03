@@ -76,10 +76,12 @@ import Applications from './MyComponents/DashBoard/Admin/Components/EmployeePort
 import { getReq } from './context/actions/adminActions/requirementActions';
 import StudentProfleLookup from './MyComponents/DashBoard/Admin/Components/LMS/Form/StudentProfleLookup';
 import ContactFormMessage from './MyComponents/DashBoard/Admin/ContactFormMessages';
+import { getAllCourses } from './context/actions/userActions';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getAllCourses());
     dispatch(getUser());
     dispatch(getToken());
     dispatch(getContact());

@@ -51,7 +51,7 @@ const getAllCourses = () => {
     axiosInstance
       .get('/material/getAllCourses')
       .then((res) => {
-        setAllCourse(res?.data?.data);
+        dispatch(setAllCourse(res?.data?.data));
       })
       .catch((err) => {});
   };
@@ -172,6 +172,20 @@ const updateCompletedChapter = (data) => {
   };
 };
 
+const completeCourse = (data) => {
+  return (dispatch) => {
+    axiosInstance
+      .put('/progress/completeCourse', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        dispatch(setProgress(res.data.data));
+      });
+  };
+};
+
 export {
   getProgress,
   setProgress,
@@ -184,4 +198,5 @@ export {
   setCurrentCourse,
   getUsersCourse,
   getAllCourses,
+  completeCourse,
 };
