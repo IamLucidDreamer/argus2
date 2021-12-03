@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import axiosInstance from '../../../../../../helpers/axiosInstance';
-import AddChapter from './Course/AddChapter';
-import AddCourse from './Course/AddCourse';
-import AddModule from './Course/AddModule';
-import AddSlide from './Course/AddSlide';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import axiosInstance from "../../../../../../helpers/axiosInstance";
+import AddChapter from "./Course/AddChapter";
+import AddCourse from "./Course/AddCourse";
+import AddModule from "./Course/AddModule";
+import AddSlide from "./Course/AddSlide";
 
 export const ClassMaterial = () => {
   const [button, setButton] = useState({
@@ -21,7 +21,7 @@ export const ClassMaterial = () => {
 
   useEffect(() => {
     axiosInstance
-      .get('/material/getAllCourses', {})
+      .get("/material/getAllCourses", {})
       .then((res) => {
         setCourse(res.data.data);
       })
@@ -43,8 +43,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 1
-              ? 'bg-white text-red-1'
-              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD COURSE
@@ -61,8 +61,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 2
-              ? 'bg-white text-red-1'
-              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD MODULE
@@ -79,8 +79,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5  rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 3
-              ? 'bg-white text-red-1'
-              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD CHAPTER
@@ -97,8 +97,8 @@ export const ClassMaterial = () => {
           }}
           className={`w-11/12 md:w-1/5 rounded-2xl p-4 text-center text-lg font-bold mx-auto my-2 border-2 border-red-1 ${
             active === 4
-              ? 'bg-white text-red-1'
-              : 'bg-red-1 text-white hover:text-red-1 hover:bg-white'
+              ? "bg-white text-red-1"
+              : "bg-red-1 text-white hover:text-red-1 hover:bg-white"
           }`}
         >
           ADD SLIDE
@@ -143,7 +143,9 @@ export const ClassMaterial = () => {
                 {c?.name}
               </h1>
               <div className="flex flex-col justify-center text-center lg:w-6/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
-                <h1 className="text-left">{c?.description}</h1>
+                <h1 className="text-left whitespace-pre-line">
+                  {c?.description}
+                </h1>
               </div>
               <div className="flex flex-col justify-center text-center lg:w-1/12 px-3 py-3 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0 text-lg lg:text-sm xl:text-lg">
                 <h1 className="font-bold">{c?.duration} min</h1>
@@ -151,16 +153,16 @@ export const ClassMaterial = () => {
 
               <div className="flex flex-col items-center justify-center text-center lg:w-2/12 px-3 py-2 text-gray-2 rounded-xl border-2 mx-1 my-1 lg:my-0">
                 <h1>
-                  {new Date(c?.createdAt).toLocaleString('en-Us', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
+                  {new Date(c?.createdAt).toLocaleString("en-Us", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
                   })}
                 </h1>
                 <h1>
-                  {new Date(c?.createdAt).toLocaleString('en-Us', {
-                    hour: '2-digit',
-                    minute: '2-digit',
+                  {new Date(c?.createdAt).toLocaleString("en-Us", {
+                    hour: "2-digit",
+                    minute: "2-digit",
                   })}
                 </h1>
               </div>

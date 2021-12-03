@@ -86,7 +86,7 @@ const Teams = () => {
         settings: {
           arrows: false,
           slidesToShow: 1,
-          centerPadding: "-2675px",
+          centerPadding: "-2676px",
         },
       },
     ],
