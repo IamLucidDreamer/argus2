@@ -1,9 +1,9 @@
-import React from 'react';
-import Logo from './../../argus website/SVG/Logowith shadow.svg';
-import { Link } from 'react-router-dom';
-import Login from '../DashBoard/Student/Login';
-import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import React from "react";
+import Logo from "./../../argus website/SVG/Logowith shadow.svg";
+import { Link } from "react-router-dom";
+import Login from "../DashBoard/Student/Login";
+import { useHistory } from "react-router";
+import { useSelector } from "react-redux";
 
 export default function Header({ open, setOpen }) {
   const history = useHistory();
@@ -40,8 +40,8 @@ export default function Header({ open, setOpen }) {
                   open={open}
                   onClick={() => {
                     console.log(user);
-                    if (user.isAuth === 'true') {
-                      history.push('/dashboard/student/home');
+                    if (user.isAuth === "true") {
+                      history.push("/dashboard/student/home");
                     } else {
                       setOpen(true);
                     }

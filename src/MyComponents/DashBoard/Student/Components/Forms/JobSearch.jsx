@@ -1,8 +1,8 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../../../context/actions/authActions/getUserAction";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 
 const JobSearch = ({ user }) => {
   const dispatch = useDispatch();
@@ -10,30 +10,30 @@ const JobSearch = ({ user }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.looking) {
-      errors.looking = '*Required';
+      errors.looking = "*Required";
     }
     if (!values.wantEmail) {
-      errors.wantEmail = '*Required';
+      errors.wantEmail = "*Required";
     }
     if (!values.prefferedCity) {
-      errors.prefferedCity = '*Required';
+      errors.prefferedCity = "*Required";
     }
     if (!values.availability) {
-      errors.availability = '*Required';
+      errors.availability = "*Required";
     }
     if (!values.wageRange) {
-      errors.wageRange = '*Required';
+      errors.wageRange = "*Required";
     }
     return errors;
   };
 
   const { getFieldProps, handleSubmit, errors, setValues, values } = useFormik({
     initialValues: {
-      looking: '',
-      wantEmail: '',
-      prefferedCity: '',
-      availability: '',
-      wageRange: '',
+      looking: "",
+      wantEmail: "",
+      prefferedCity: "",
+      availability: "",
+      wageRange: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
@@ -41,10 +41,10 @@ const JobSearch = ({ user }) => {
         updateUser(
           resetForm,
           { jobSearch: values },
-          'Job Search Details updated',
+          "Job Search Details updated",
           user?.name,
-          user._id,
-        ),
+          user._id
+        )
       );
     },
   });
@@ -69,7 +69,7 @@ const JobSearch = ({ user }) => {
           <span className="flex items-center text-red-1 text-4xl">
             <WorkOutlineIcon fontSize="inherit" />
           </span>
-          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
+          <h1 className="leading-tight text-xl md:text-3xl font-bold text-gray-3 mx-5">
             Job Search
           </h1>
         </div>
@@ -79,7 +79,7 @@ const JobSearch = ({ user }) => {
             <label> Are you looking for a job?</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('looking')}
+              {...getFieldProps("looking")}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -96,7 +96,7 @@ const JobSearch = ({ user }) => {
             <label> Email me about new opportunities?</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('wantEmail')}
+              {...getFieldProps("wantEmail")}
             >
               <option value="" disabled selected></option>
               <option value="YES">Yes</option>
@@ -111,16 +111,16 @@ const JobSearch = ({ user }) => {
           </div>
           <div className="flex flex-col mt-4">
             <label>
-              Maximum Travel Radius (In KM)-{' '}
+              Maximum Travel Radius (In KM)-{" "}
               <span>{values.prefferedCity}KM</span>
             </label>
             <input
               type="range"
               min="1"
-              max="50"
-              value="5"
+              max="200"
+              value="25"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('prefferedCity')}
+              {...getFieldProps("prefferedCity")}
             />
 
             {errors.prefferedCity ? (
@@ -133,7 +133,7 @@ const JobSearch = ({ user }) => {
             <label>Availability</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('availability')}
+              {...getFieldProps("availability")}
             >
               <option value="" selected disabled></option>
               <option value="Early Morning">Early Morning</option>
@@ -245,10 +245,10 @@ const JobSearch = ({ user }) => {
             <input
               type="range"
               min="1"
-              max="50"
-              value="5"
+              max="100"
+              value="25"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('wageRange')}
+              {...getFieldProps("wageRange")}
             />
             {errors?.wageRange ? (
               <div className="w-full text-xs text-red-400">

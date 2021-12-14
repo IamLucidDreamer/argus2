@@ -1,14 +1,14 @@
-import { useFormik } from 'formik';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Select from 'react-select';
+import { useFormik } from "formik";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Select from "react-select";
 import {
   getUser,
   updateUser,
-} from '../../../../../context/actions/authActions/getUserAction';
-import axiosInstance from '../../../../../helpers/axiosInstance';
-import { Country, State, City } from 'country-state-city';
-import ContactMailOutlinedIcon from '@mui/icons-material/ContactMailOutlined';
+} from "../../../../../context/actions/authActions/getUserAction";
+import axiosInstance from "../../../../../helpers/axiosInstance";
+import { Country, State, City } from "country-state-city";
+import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
 
 const ContactDetails = ({ user }) => {
   const dispatch = useDispatch();
@@ -16,35 +16,35 @@ const ContactDetails = ({ user }) => {
   const validate = (values) => {
     const errors = {};
     if (!values.country) {
-      errors.country = '*Required';
+      errors.country = "*Required";
     }
     if (!values.province) {
-      errors.province = '*Required';
+      errors.province = "*Required";
     }
     if (!values.streetNumber) {
-      errors.streetNumber = '*Required';
+      errors.streetNumber = "*Required";
     }
     if (!values.city) {
-      errors.city = '*Required';
+      errors.city = "*Required";
     }
     if (!values.street) {
-      errors.street = '*Required';
+      errors.street = "*Required";
     }
     if (!values.postalCode) {
-      errors.postalCode = '*Required';
+      errors.postalCode = "*Required";
     }
     if (!values.homePhone) {
       delete errors.homePhone;
     } else if (values.homePhone > 15 && values.homePhone < 6) {
-      errors.homePhone = 'Number should be in range 6-15';
+      errors.homePhone = "Number should be in range 6-15";
     }
     if (!values.phone) {
-      errors.phone = '*Required';
+      errors.phone = "*Required";
     } else if (values.phone > 15 && values.phone < 6) {
-      errors.phone = 'Number should be in range 6-15';
+      errors.phone = "Number should be in range 6-15";
     }
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
+      errors.email = "Invalid email address";
     }
 
     return errors;
@@ -53,16 +53,16 @@ const ContactDetails = ({ user }) => {
   const { getFieldProps, handleSubmit, errors, setValues, setFieldValue } =
     useFormik({
       initialValues: {
-        country: '',
-        province: '',
-        streetNumber: '',
-        city: '',
-        street: '',
-        postalCode: '',
-        suite: '',
-        homePhone: '',
-        phone: '',
-        email: '',
+        country: "",
+        province: "",
+        streetNumber: "",
+        city: "",
+        street: "",
+        postalCode: "",
+        suite: "",
+        homePhone: "",
+        phone: "",
+        email: "",
       },
       validate,
       onSubmit: async (values, { resetForm }) => {
@@ -70,10 +70,10 @@ const ContactDetails = ({ user }) => {
           updateUser(
             resetForm,
             values,
-            'Contact Details updated',
+            "Contact Details updated",
             user?.name,
-            user?._id,
-          ),
+            user?._id
+          )
         );
       },
     });
@@ -119,18 +119,18 @@ const ContactDetails = ({ user }) => {
   const customStyles = {
     option: (provided, state) => ({
       ...provided,
-      color: state.isSelected ? 'white' : 'gray',
+      color: state.isSelected ? "white" : "gray",
     }),
     control: () => ({
       // none of react-select's styles are passed to <Control />
-      display: 'flex',
+      display: "flex",
       border: 0,
-      borderBottom: '2px solid black',
+      borderBottom: "2px solid black",
       fontWeight: 100,
     }),
     singleValue: (provided, state) => {
       const opacity = state.isDisabled ? 0.5 : 1;
-      const transition = 'opacity 300ms';
+      const transition = "opacity 300ms";
       return { ...provided, opacity, transition };
     },
   };
@@ -145,7 +145,7 @@ const ContactDetails = ({ user }) => {
           <span className="flex items-center text-red-1 text-4xl">
             <ContactMailOutlinedIcon fontSize="inherit" />
           </span>
-          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
+          <h1 className="leading-tight text-xl md:text-3xl font-bold text-gray-3 mx-5">
             Contact Details
           </h1>
         </div>
@@ -162,13 +162,13 @@ const ContactDetails = ({ user }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={country}
               onChange={(selectedOption) => {
-                setFieldValue('country', selectedOption.label);
+                setFieldValue("country", selectedOption.label);
                 setCountry(selectedOption);
               }}
             />
@@ -195,13 +195,13 @@ const ContactDetails = ({ user }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={state}
               onChange={(selectedOption) => {
-                setFieldValue('province', selectedOption.label);
+                setFieldValue("province", selectedOption.label);
                 setState(selectedOption);
               }}
             />
@@ -223,13 +223,13 @@ const ContactDetails = ({ user }) => {
                 borderRadius: 0,
                 colors: {
                   ...theme.colors,
-                  primary25: 'lightgray',
-                  primary: '#BA0913',
+                  primary25: "lightgray",
+                  primary: "#BA0913",
                 },
               })}
               value={city}
               onChange={(selectedOption) => {
-                setFieldValue('city', selectedOption.label);
+                setFieldValue("city", selectedOption.label);
                 setCity(selectedOption);
               }}
             />
@@ -242,7 +242,7 @@ const ContactDetails = ({ user }) => {
             <input
               type="number"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('streetNumber')}
+              {...getFieldProps("streetNumber")}
             />
             {errors.streetNumber ? (
               <div className="w-full text-xs text-red-400">
@@ -254,7 +254,7 @@ const ContactDetails = ({ user }) => {
             <label> Street Name</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
-              {...getFieldProps('street')}
+              {...getFieldProps("street")}
             />
             {errors.street ? (
               <div className="w-full text-xs text-red-400">{errors.street}</div>
@@ -265,14 +265,14 @@ const ContactDetails = ({ user }) => {
             <label> Suite (Optional)</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('suite')}
+              {...getFieldProps("suite")}
             />
           </div>
           <div className="flex flex-col mt-4">
             <label> Postal Code</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
-              {...getFieldProps('postalCode')}
+              {...getFieldProps("postalCode")}
             />
             {errors.postalCode ? (
               <div className="w-full text-xs text-red-400">
@@ -285,7 +285,7 @@ const ContactDetails = ({ user }) => {
             <input
               type="number"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
-              {...getFieldProps('homePhone')}
+              {...getFieldProps("homePhone")}
             />
           </div>
           <div className="flex flex-col mt-4">
@@ -293,7 +293,7 @@ const ContactDetails = ({ user }) => {
             <input
               type="number"
               className="border-b-2 border-client focus:border-red-1 focus:outline-none "
-              {...getFieldProps('phone')}
+              {...getFieldProps("phone")}
             />
             {errors.phone ? (
               <div className="w-full text-xs text-red-400">{errors.phone}</div>
@@ -303,7 +303,7 @@ const ContactDetails = ({ user }) => {
             <label> Email</label>
             <input
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('email')}
+              {...getFieldProps("email")}
             />
             {errors.email ? (
               <div className="w-full text-xs text-red-400">{errors.email}</div>

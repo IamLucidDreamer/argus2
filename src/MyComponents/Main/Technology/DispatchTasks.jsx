@@ -42,28 +42,28 @@ class DispatchTasks extends Component {
 
                 <ul className="text-gray-2 text-lg mb-8">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Intuitive
-                    dashboards
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Intuitive dashboards
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Pass down
-                    notes from shift to shift or post to post{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span> Pass
+                    down notes from shift to shift or post to post{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Live GPS
-                    maps{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span> Live
+                    GPS maps{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Scheduling
-                    for tasks and guard tours{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Scheduling for tasks and guard tours{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Automation
-                    of sending recurring tasks and reminders{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Automation of sending recurring tasks and reminders{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Messaging
-                    within the Silvertrac mobile app for guards
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Messaging within the Silvertrac mobile app for guards
                   </li>
                 </ul>
 
@@ -80,16 +80,17 @@ class DispatchTasks extends Component {
 
                 <ul className="text-gray-2 text-lg mb-8">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Select “New
-                    Action” to pick any property in the system
+                    <span className="text-red-1 font-bold mr-2">✓</span> Select
+                    “New Action” to pick any property in the system
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Add “New
-                    Issue Type” and include any additional notes{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span> Add
+                    “New Issue Type” and include any additional notes{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Assign the
-                    new task to a specific guard or the first available officer{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span> Assign
+                    the new task to a specific guard or the first available
+                    officer{" "}
                   </li>
                 </ul>
 
@@ -106,17 +107,17 @@ class DispatchTasks extends Component {
 
                 <ul className="text-gray-2 text-lg mb-8">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> The guard
-                    assigned is instantly notified on their device with a
+                    <span className="text-red-1 font-bold mr-2">✓</span> The
+                    guard assigned is instantly notified on their device with a
                     description of the task and where to complete it.
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> They can
-                    handle the task right away and include pictures, notes or
-                    audio files for reports.{" "}
+                    <span className="text-red-1 font-bold mr-2">✓</span> They
+                    can handle the task right away and include pictures, notes
+                    or audio files for reports.{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="font-bold text-red-1">✓</span> Once
+                    <span className="text-red-1 font-bold mr-2">✓</span> Once
                     complete, the guard submits the task back to the dispatcher
                     and updates{" "}
                   </li>

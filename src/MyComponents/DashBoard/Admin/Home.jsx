@@ -1,12 +1,12 @@
-import React from 'react';
-import SideNav from './Components/SideNav';
-import ProfileBar from './Components/ProfileBar';
+import React from "react";
+import SideNav from "./Components/SideNav";
+import ProfileBar from "./Components/ProfileBar";
 
 export default function Home() {
   return (
     <div className="w-full flex flew-col md:flex-row">
       <div className="w-2/12 bg-red-1">
-        <SideNav />
+        <SideNav active={1} />
       </div>
       <div className="w-full">
         <ProfileBar />

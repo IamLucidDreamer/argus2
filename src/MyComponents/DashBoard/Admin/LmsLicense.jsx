@@ -13,7 +13,7 @@ export const LmsLicense = () => {
   return (
     <div className="w-full flex flew-col md:flex-row bg-client">
       <div className="w-36 md:w-56 lg:w-60 xl:w-64 bg-red-1">
-        <SideNav />
+        <SideNav active={6} />
       </div>
       <div className="w-9/12 sm:w-10/12">
         <ProfileBar />

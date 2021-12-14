@@ -283,7 +283,7 @@ const EmpOfMon = () => {
       {errors.description ? (
         <div className="w-full text-xs text-red-400">{errors.description}</div>
       ) : null}
-      <div className="w-full flex flex-col md:flex-row justify-evenly items-center my-6">
+      <div className="w-full flex flex-col lg:flex-row justify-evenly items-center my-6">
         <div className="flex flex-col items-center">
           <lable className="text-gray-2 mt-4 mb-1">
             Upload Image of the Area Manager

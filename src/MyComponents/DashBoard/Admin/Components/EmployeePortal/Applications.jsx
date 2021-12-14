@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import axiosInstance from '../../../../../helpers/axiosInstance';
-import SelectColumnFilter from '../../../../../helpers/TableFilter';
-import ProfileBar from '../ProfileBar';
-import SideNav from '../SideNav';
-import Table from '../../../../Components/reactTable';
+import React, { useEffect, useMemo, useState } from "react";
+import axiosInstance from "../../../../../helpers/axiosInstance";
+import SelectColumnFilter from "../../../../../helpers/TableFilter";
+import ProfileBar from "../ProfileBar";
+import SideNav from "../SideNav";
+import Table from "../../../../Components/reactTable";
 
 const Applications = () => {
   const [show, setShow] = useState(false);
@@ -11,7 +11,7 @@ const Applications = () => {
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('jwt'));
+    const token = JSON.parse(localStorage.getItem("jwt"));
     axiosInstance
       .get(`/application/get-all?page=1&limit=100000`, {
         headers: {
@@ -23,9 +23,9 @@ const Applications = () => {
         data.forEach((element) => {
           for (const key in element) {
             if (element[key] === true) {
-              element[key] = 'Yes';
+              element[key] = "Yes";
             } else if (element[key] === false) {
-              element[key] = 'No';
+              element[key] = "No";
             }
           }
         });
@@ -35,69 +35,69 @@ const Applications = () => {
 
   const headCells = [
     {
-      accessor: 'name',
-      Header: 'Name',
+      accessor: "name",
+      Header: "Name",
     },
     {
-      accessor: 'email',
-      Header: 'Email',
+      accessor: "email",
+      Header: "Email",
     },
     {
-      accessor: 'licenceNo',
-      Header: 'License No.',
+      accessor: "licenceNo",
+      Header: "License No.",
     },
     {
-      accessor: 'yearsOfExp',
-      Header: 'Years of Experience',
+      accessor: "yearsOfExp",
+      Header: "Years of Experience",
     },
     {
-      id: 'Eligibility Type',
-      accessor: 'eligibilityType',
-      Header: 'Eligibility Type',
+      id: "Eligibility Type",
+      accessor: "eligibilityType",
+      Header: "Eligibility Type",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Highest Level of Edu.',
-      accessor: 'highestLevelOfEducation',
-      Header: 'Highest Level of Edu.',
+      id: "Highest Level of Edu.",
+      accessor: "highestLevelOfEducation",
+      Header: "Highest Level of Edu.",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Registration',
-      accessor: 'createdAt',
-      Header: 'Applied On',
+      id: "Registration",
+      accessor: "createdAt",
+      Header: "Applied On",
     },
     {
-      id: 'Can Drive',
-      accessor: 'canDrive',
+      id: "Can Drive",
+      accessor: "canDrive",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Valid Guard License',
-      accessor: 'validSecurityGuardLicence',
+      id: "Valid Guard License",
+      accessor: "validSecurityGuardLicence",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Eligible to work in Canada',
-      accessor: 'elegibleToWorkInCanada',
+      id: "Eligible to work in Canada",
+      accessor: "elegibleToWorkInCanada",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Education in Canada',
-      accessor: 'educationInCanada',
+      id: "Education in Canada",
+      accessor: "educationInCanada",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
     {
-      id: 'Prior Experience',
-      accessor: 'priorExperience',
+      id: "Prior Experience",
+      accessor: "priorExperience",
       Filter: SelectColumnFilter,
-      filter: 'includes',
+      filter: "includes",
     },
   ];
   const columns = useMemo(() => headCells, []);
@@ -107,7 +107,7 @@ const Applications = () => {
   return (
     <div className="w-full flex flew-col md:flex-row">
       <div className="w-2/12 bg-red-1">
-        <SideNav />
+        <SideNav active={4} />
       </div>
       <div className="w-full">
         <ProfileBar />

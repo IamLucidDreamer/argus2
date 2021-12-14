@@ -71,7 +71,7 @@ const Tasks = ({ user }) => {
           <span className="flex items-center text-red-1 text-4xl">
             <CheckCircleOutlineIcon fontSize="inherit" />
           </span>
-          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
+          <h1 className="leading-tight text-xl md:text-3xl font-bold text-gray-3 mx-5">
             To Do List
           </h1>
         </div>

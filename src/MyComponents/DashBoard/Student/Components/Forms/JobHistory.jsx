@@ -1,18 +1,18 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import {
   getUser,
   userActivity,
-} from '../../../../../context/actions/authActions/getUserAction';
-import RestorePageOutlinedIcon from '@mui/icons-material/RestorePageOutlined';
-import axiosInstance from '../../../../../helpers/axiosInstance';
-import { IconButton } from '@mui/material';
-import { DeleteOutline } from '@mui/icons-material';
+} from "../../../../../context/actions/authActions/getUserAction";
+import RestorePageOutlinedIcon from "@mui/icons-material/RestorePageOutlined";
+import axiosInstance from "../../../../../helpers/axiosInstance";
+import { IconButton } from "@mui/material";
+import { DeleteOutline } from "@mui/icons-material";
 
 const JobHistory = ({ user, setShow }) => {
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem('jwt'));
+  const token = JSON.parse(localStorage.getItem("jwt"));
 
   const deleteRecord = (id) => {
     axiosInstance
@@ -22,7 +22,7 @@ const JobHistory = ({ user, setShow }) => {
         },
       })
       .then((res) => {
-        dispatch(userActivity('Job Record Deleted', user?.name, user?._id));
+        dispatch(userActivity("Job Record Deleted", user?.name, user?._id));
         dispatch(getUser());
       })
       .catch((err) => {});
@@ -35,12 +35,12 @@ const JobHistory = ({ user, setShow }) => {
           <span className="flex items-center text-red-1 text-4xl">
             <RestorePageOutlinedIcon fontSize="inherit" />
           </span>
-          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
+          <h1 className="leading-tight text-xl md:text-3xl font-bold text-gray-3 mx-5">
             Job History
           </h1>
         </div>
         {user?.employmentRecord?.length === 0 ? (
-          <p className="w-full text-center text-xl font-bold text-gray-400">
+          <p className="w-full text-center text-xl font-bold text-gray-400 mt-5">
             Add employment record
           </p>
         ) : (
@@ -122,7 +122,7 @@ const JobHistory = ({ user, setShow }) => {
             onClick={() => setShow(true)}
             className="mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
-            {user?.employmentRecord?.length === 0 ? 'Add' : 'Add More +'}
+            {user?.employmentRecord?.length === 0 ? "Add" : "Add More +"}
           </button>
         </div>
       </div>

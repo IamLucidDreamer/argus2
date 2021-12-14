@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Loader from 'react-loader-spinner';
-import { useSelector } from 'react-redux';
-import axiosInstance from '../../../../helpers/axiosInstance';
-import ProfilePicture from './../../../../argus website/PNG/IMG_0118.png';
+import React, { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
+import { useSelector } from "react-redux";
+import axiosInstance from "../../../../helpers/axiosInstance";
+import ProfilePicture from "./../../../../argus website/PNG/IMG_0118.png";
 
 function Message({ message }) {
   const loading = useSelector((state) => state.notification.messageLoading);
@@ -11,8 +11,8 @@ function Message({ message }) {
     <div
       className={`rounded w-full h-96 mb-2 font-medium text-gray-3 bg-bg-card overflow-y-scroll ${
         message
-          ? 'transition-all duration-300 opacity-100 block'
-          : 'transition-all duration-300 opacity-0 hidden'
+          ? "transition-all duration-300 opacity-100 block"
+          : "transition-all duration-300 opacity-0 hidden"
       }`}
     >
       {loading ? (
@@ -23,8 +23,8 @@ function Message({ message }) {
         <>
           {messages.length === 0 ? (
             <>
-              {' '}
-              <p className="w-full text-center text-xl font-bold text-gray-400">
+              {" "}
+              <p className="w-full text-center text-xl font-bold text-gray-400 mt-10">
                 No messages to show
               </p>
             </>
@@ -48,11 +48,11 @@ function Message({ message }) {
                     </div>
                     {m.message}
                     <div className="text-xs font-bold text-right mt-1">
-                      {new Date(m.createdAt).toLocaleDateString('en-GB')}{' '}
+                      {new Date(m.createdAt).toLocaleDateString("en-GB")}{" "}
                       <span className="">
                         {new Date(m.createdAt).toLocaleTimeString(`en-US`, {
-                          hour: '2-digit',
-                          minute: '2-digit',
+                          hour: "2-digit",
+                          minute: "2-digit",
                         })}
                       </span>
                     </div>
