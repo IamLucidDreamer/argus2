@@ -98,7 +98,11 @@ export default function StudentProfleLookup() {
                 <>
                   <div className="mx-4 md:mx-8 my-4 p-2 md:p-4 flex flex-col md:flex-row items-center justify-between text-gray-3">
                     <div className="flex items-center flex-col md:flex-row">
-                      <img src={Profile} className="rounded-full" alt="" />
+                      <img
+                        src={`${process.env.REACT_APP_BASE_URL}/user/profilePhoto/${user._id}`}
+                        className="rounded-full w-20 h-20"
+                        alt=""
+                      />
                       <h1 className="text-3xl font-bold p-2 md:p-4">
                         {user.name ? user.name : null}
                         {user.lastname ? user.lastname : null}

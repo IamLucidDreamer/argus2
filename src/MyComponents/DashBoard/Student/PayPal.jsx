@@ -36,7 +36,7 @@ const PayPal = ({ course, price, setShowAlert, buyCourse }) => {
                 message: 'Payment successfully!!!',
                 success: true,
               });
-              buyCourse();
+              buyCourse(order);
             });
           }}
           onError={(err) => {

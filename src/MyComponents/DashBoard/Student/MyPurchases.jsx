@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import axiosInstance from '../../../helpers/axiosInstance';
 
 const MyPurchases = () => {
   const course = useSelector((state) => state.progress.course);
   const progress = useSelector((state) => state.progress.progress);
+
+  const [purchases, setPurchases] = useState([]);
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('jwt'));
+    axiosInstance
+      .get('/myPurchases/get', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setPurchases(res?.data?.data);
+      })
+      .catch((err) => {});
+  }, []);
 
   return (
     <div className="rounded-2xl max-w-1200 mx-2 sm:mx-8 2xl:mx-auto my-4 bg-white shadow-button-shadow-3 px-2 md:px-8 pb-4">

@@ -1,27 +1,27 @@
-import React, { useRef, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
-import { getUser } from "../../../context/actions/authActions/getUserAction";
-import axiosInstance from "../../../helpers/axiosInstance";
-import SideLine from "../../Components/SideLine";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import Loader from "react-loader-spinner";
-import PayPal from "./PayPal";
+import React, { useRef, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router';
+import { getUser } from '../../../context/actions/authActions/getUserAction';
+import axiosInstance from '../../../helpers/axiosInstance';
+import SideLine from '../../Components/SideLine';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import Loader from 'react-loader-spinner';
+import PayPal from './PayPal';
 import {
   getProgress,
   getUsersCourse,
-} from "../../../context/actions/userActions";
-import Alert from "../../Components/Alert";
+} from '../../../context/actions/userActions';
+import Alert from '../../Components/Alert';
 
 export default function PaymentPage() {
-  const token = JSON.parse(localStorage.getItem("jwt"));
+  const token = JSON.parse(localStorage.getItem('jwt'));
   const { courseId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [course, setCourse] = useState();
   const [loading, setLoading] = useState(false);
-  const [couponCode, setCouponCode] = useState("");
+  const [couponCode, setCouponCode] = useState('');
   const [couponMsg, setCouponMsg] = useState(null);
   const [couponError, setCouponError] = useState(false);
   const [couponDiscount, setCouponDiscount] = useState(0);
@@ -30,7 +30,7 @@ export default function PaymentPage() {
   const [show, setShow] = useState(false);
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: "",
+    message: '',
     success: false,
   });
   const courses = useSelector((state) => state.progress.course);
@@ -63,13 +63,13 @@ export default function PaymentPage() {
     e.preventDefault();
     axiosInstance
       .post(
-        "/coupon/checkCoupon",
+        '/coupon/checkCoupon',
         { couponCode },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .then((res) => {
         setShow(true);
@@ -91,7 +91,7 @@ export default function PaymentPage() {
   };
 
   useEffect(() => {
-    if (couponCode === "") {
+    if (couponCode === '') {
       setCouponDiscount(0);
       setPrice(course?.price);
     }
@@ -103,36 +103,43 @@ export default function PaymentPage() {
     }, 3000);
   };
 
-  const buyCourse = () => {
+  const buyCourse = (order) => {
     axiosInstance
       .post(
-        "/material/buyCourse",
-        { courseId },
+        '/material/buyCourse',
+        {
+          courseId,
+          name: course?.name,
+          desc: course?.description,
+          coupon: couponCode,
+          originalPrice: course?.price,
+          order,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       )
       .then((res) => {
         dispatch(getUsersCourse());
         dispatch(getProgress());
         setShowAlert({
           show: true,
-          message: "Course Bought successfully!!!",
+          message: 'Course Bought successfully!!!',
           success: true,
         });
         setAlreadyBought(true);
-        if (couponCode !== "") {
+        if (couponCode !== '') {
           axiosInstance
             .post(
-              "/coupon/applyCoupon",
+              '/coupon/applyCoupon',
               { couponCode },
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
                 },
-              }
+              },
             )
             .then()
             .catch((err) => {});
@@ -141,7 +148,7 @@ export default function PaymentPage() {
       .catch((err) => {
         setShowAlert({
           show: true,
-          message: "Some error occurred, payment recieved.",
+          message: 'Some error occurred, payment recieved.',
           success: false,
         });
       });
@@ -206,7 +213,7 @@ export default function PaymentPage() {
                           {couponMsg ? (
                             <div
                               className={`w-full text-xs ${
-                                couponError ? "text-red-400" : "text-green-1"
+                                couponError ? 'text-red-400' : 'text-green-1'
                               }`}
                             >
                               {couponMsg}

@@ -24,20 +24,12 @@ const StudentRoutes = ({ component: Component, ...rest }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (user?.user?.role === 1) {
-      if (!progress) {
-        dispatch(getProgress());
-      }
-      if (courses.length === 0) {
-        dispatch(getUsersCourse());
-      }
-      if (activity.length === 0) {
-        dispatch(getHistory());
-      }
-      if (messages.length === 0) {
-        dispatch(getMessage());
-      }
+      dispatch(getProgress());
+      dispatch(getUsersCourse());
+      dispatch(getHistory());
+      dispatch(getMessage());
     }
-  }, [dispatch, user]);
+  }, [dispatch, user?.user?.role]);
 
   return (
     <Route

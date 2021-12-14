@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Loader from 'react-loader-spinner';
+import { useHistory } from 'react-router';
 import axiosInstance from '../../../../../../helpers/axiosInstance';
 import Table from '../../../../../../MyComponents/Components/reactTable';
 
@@ -19,6 +20,8 @@ const ProfileSearch = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [courses, setCourses] = useState([]);
+
+  const history = useHistory();
 
   useEffect(() => {
     axiosInstance
@@ -215,6 +218,9 @@ const ProfileSearch = () => {
               setSelected={setSelected}
               show={show}
               setShow={setShow}
+              func={(id) => {
+                history.push(`/dashboard/admin/lms/student/lookup/${id}`);
+              }}
             />
           ) : (
             <p className="w-full text-center text-xl font-bold text-gray-400">
