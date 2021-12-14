@@ -1,27 +1,27 @@
-import { useFormik } from 'formik';
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateUser } from '../../../../../context/actions/authActions/getUserAction';
-import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../../../../context/actions/authActions/getUserAction";
+import AccountBoxOutlinedIcon from "@mui/icons-material/AccountBoxOutlined";
 
 const PersonalDetails = ({ user }) => {
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
     if (!values.gender) {
-      errors.gender = '*Required';
+      errors.gender = "*Required";
     }
     if (!values.weight) {
-      errors.weight = '*Required';
+      errors.weight = "*Required";
     }
     if (!values.height) {
-      errors.height = '*Required';
+      errors.height = "*Required";
     }
     if (!values.eyeColor) {
-      errors.eyeColor = '*Required';
+      errors.eyeColor = "*Required";
     }
     if (!values.hairColor) {
-      errors.hairColor = '*Required';
+      errors.hairColor = "*Required";
     }
 
     return errors;
@@ -29,11 +29,11 @@ const PersonalDetails = ({ user }) => {
 
   const { getFieldProps, handleSubmit, errors, setValues, values } = useFormik({
     initialValues: {
-      gender: '',
-      weight: '',
-      height: '',
-      eyeColor: '',
-      hairColor: '',
+      gender: "",
+      weight: "",
+      height: "",
+      eyeColor: "",
+      hairColor: "",
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
@@ -41,10 +41,10 @@ const PersonalDetails = ({ user }) => {
         updateUser(
           resetForm,
           values,
-          'Personal Details updated',
+          "Personal Details updated",
           user?.name,
-          user?._id,
-        ),
+          user?._id
+        )
       );
     },
   });
@@ -72,7 +72,7 @@ const PersonalDetails = ({ user }) => {
           <span className="flex items-center text-red-1 text-4xl">
             <AccountBoxOutlinedIcon fontSize="inherit" />
           </span>
-          <h1 className="leading-tight text-3xl font-bold text-gray-3 mx-5">
+          <h1 className="leading-tight text-xl md:text-3xl font-bold text-gray-3 mx-5">
             Personal Details
           </h1>
         </div>
@@ -118,7 +118,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="280"
-                {...getFieldProps('height')}
+                {...getFieldProps("height")}
               />
               {errors.height ? (
                 <div className="w-full text-xs text-red-400">
@@ -134,7 +134,7 @@ const PersonalDetails = ({ user }) => {
                 type="number"
                 min="0"
                 max="500"
-                {...getFieldProps('weight')}
+                {...getFieldProps("weight")}
               />
               {errors.weight ? (
                 <div className="w-full text-xs text-red-400">
@@ -147,7 +147,7 @@ const PersonalDetails = ({ user }) => {
             <label> Eye Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('eyeColor')}
+              {...getFieldProps("eyeColor")}
             >
               <option value="" disabled selected>
                 Select Eye Color
@@ -170,7 +170,7 @@ const PersonalDetails = ({ user }) => {
             <label> Hair Color</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('hairColor')}
+              {...getFieldProps("hairColor")}
             >
               <option value="" disabled selected>
                 Select Hair Color
@@ -192,7 +192,7 @@ const PersonalDetails = ({ user }) => {
             <label> Gender</label>
             <select
               className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps('gender')}
+              {...getFieldProps("gender")}
             >
               <option value="" disabled selected>
                 Select gender

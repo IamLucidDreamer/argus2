@@ -1,10 +1,10 @@
-import React from 'react';
-import Loader from 'react-loader-spinner';
-import { useSelector } from 'react-redux';
+import React from "react";
+import Loader from "react-loader-spinner";
+import { useSelector } from "react-redux";
 
 function Notification({ notification }) {
   const loading = useSelector(
-    (state) => state.notification.notificationLoading,
+    (state) => state.notification.notificationLoading
   );
   const activity = useSelector((state) => state.notification.notification);
 
@@ -12,8 +12,8 @@ function Notification({ notification }) {
     <div
       className={`w-full h-96 mb-2 font-medium text-gray-3 bg-bg-card overflow-y-scroll rounded ${
         notification
-          ? 'transition-all duration-300 opacity-100 block'
-          : 'transition-all duration-300 opacity-0 hidden'
+          ? "transition-all duration-300 opacity-100 block"
+          : "transition-all duration-300 opacity-0 hidden"
       }`}
     >
       {loading ? (
@@ -24,7 +24,7 @@ function Notification({ notification }) {
         <>
           {activity.length === 0 ? (
             <>
-              <p className="w-full text-center text-xl font-bold text-gray-400">
+              <p className="w-full text-center text-xl font-bold text-gray-400 mt-10">
                 No notification to show
               </p>
             </>
@@ -35,11 +35,11 @@ function Notification({ notification }) {
                   <div className="border-b-3 border-white text-sm p-3 leading-snug rounded-lg text-gray-2">
                     {a.activityDetails}
                     <div className="text-xs font-bold text-right mt-1">
-                      {new Date(a.createdAt).toLocaleDateString('en-GB')}{' '}
+                      {new Date(a.createdAt).toLocaleDateString("en-GB")}{" "}
                       <span className="">
                         {new Date(a.createdAt).toLocaleTimeString(`en-US`, {
-                          hour: '2-digit',
-                          minute: '2-digit',
+                          hour: "2-digit",
+                          minute: "2-digit",
                         })}
                       </span>
                     </div>

@@ -62,10 +62,72 @@ const AddJobHistory = ({ show, setShow, user }) => {
           >
             <div className="flex flex-col">
               <label> Category</label>
-              <input
+              <select
                 className="border-b-2 border-client focus:border-red-1 focus:outline-none"
                 {...getFieldProps("category")}
-              />
+              >
+                <option value="" disabled selected>
+                  Select Industry
+                </option>
+                <option value="Administration, business and management">
+                  Administration, business and management
+                </option>
+                <option value="Animals, land and environment">
+                  Animals, land and environment
+                </option>
+                <option value="Computing and ICT">Computing and ICT</option>
+                <option value="4Construction and building. ">
+                  Construction and building.{" "}
+                </option>
+                <option value="Design, arts and crafts. Animator">
+                  Design, arts and crafts. Animator
+                </option>
+                <option value="Education and training. Careers adviser">
+                  Education and training. Careers adviser
+                </option>
+                <option value="Engineering">Engineering</option>
+                <option value="Financial services">Financial services</option>
+                <option value="Garage services">Garage services</option>
+                <option value="Hairdressing and beauty">
+                  Hairdressing and beauty
+                </option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Hospitality, catering and tourism">
+                  Hospitality, catering and tourism
+                </option>
+                <option value="Legal and court services">
+                  Legal and court services
+                </option>
+                <option value="Manufacturing and production">
+                  Manufacturing and production
+                </option>
+                <option value="Performing arts and media">
+                  Performing arts and media
+                </option>
+                <option value="Print and publishing, marketing and advertising">
+                  Print and publishing, marketing and advertising
+                </option>
+                <option value="Retail and customer services">
+                  Retail and customer services
+                </option>
+                <option value="Science, mathematics and statistics">
+                  Science, mathematics and statistics
+                </option>
+                <option value="Security, uniformed and protective services">
+                  Security, uniformed and protective services
+                </option>
+                <option value="Social sciences and religion">
+                  Social sciences and religion
+                </option>
+                <option value="Social work and caring services">
+                  Social work and caring services
+                </option>
+                <option value="Sport and leisure">Sport and leisure</option>
+                <option value="Transport, distribution and logistics">
+                  Transport, distribution and logistics
+                </option>
+                <option value="Others">Others</option>
+              </select>
               {errors.category ? (
                 <div className="w-full text-xs text-red-400">
                   {errors.category}

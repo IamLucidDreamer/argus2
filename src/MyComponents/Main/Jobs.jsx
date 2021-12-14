@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import about_image from './../../argus website/PNG/Video.png';
-import SideBar from './../Components/SideBar.jsx';
-import SideLine from './../Components/SideLine';
-import { IconButton } from '@mui/material';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import PersonalDetails from './jobApplicationForms/PersonalDetails';
-import WorkStatus from './jobApplicationForms/WorkStatus';
-import Education from './jobApplicationForms/Education';
-import Experience from './jobApplicationForms/Experience';
-import axiosInstance from '../../helpers/axiosInstance';
-import Alert from '../Components/Alert';
-import { useSelector } from 'react-redux';
-import { API } from '../../api';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import about_image from "./../../argus website/PNG/Video.png";
+import SideBar from "./../Components/SideBar.jsx";
+import SideLine from "./../Components/SideLine";
+import { IconButton } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import PersonalDetails from "./jobApplicationForms/PersonalDetails";
+import WorkStatus from "./jobApplicationForms/WorkStatus";
+import Education from "./jobApplicationForms/Education";
+import Experience from "./jobApplicationForms/Experience";
+import axiosInstance from "../../helpers/axiosInstance";
+import Alert from "../Components/Alert";
+import { useSelector } from "react-redux";
+import { API } from "../../api";
+import { Link } from "react-router-dom";
 
 const Jobs = () => {
   const [show, setShow] = useState(false);
@@ -37,7 +37,7 @@ const Jobs = () => {
   });
   const [showAlert, setShowAlert] = useState({
     show: false,
-    message: '',
+    message: "",
     success: false,
   });
 
@@ -48,19 +48,19 @@ const Jobs = () => {
     let status = true;
     for (const key in formData) {
       if (
-        (formData[key] === null || formData[key] === '') &&
-        key !== 'licenceNo'
+        (formData[key] === null || formData[key] === "") &&
+        key !== "licenceNo"
       ) {
         status = false;
       }
     }
     if (status) {
       axiosInstance
-        .post('/application/create', formData)
+        .post("/application/create", formData)
         .then((res) => {
           setShowAlert({
             show: true,
-            message: 'Application submitted successfully!!!',
+            message: "Application submitted successfully!!!",
             success: true,
           });
           setTimeout(() => {
@@ -83,14 +83,14 @@ const Jobs = () => {
         .catch((err) => {
           setShowAlert({
             show: true,
-            message: 'Error submitting application!!!',
+            message: "Error submitting application!!!",
             success: false,
           });
         });
     } else {
       setShowAlert({
         show: true,
-        message: 'Fill all fields!!!',
+        message: "Fill all fields!!!",
         success: false,
       });
     }
@@ -137,26 +137,26 @@ const Jobs = () => {
                     Malls
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                    Commercial Properties{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Commercial Properties{" "}
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                    Condominiums{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                    Condominiums{" "}
                   </li>
                 </div>
                 <div className="md:ml-10">
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
                     Industrial Sites
                   </li>
                   <li className="flex flex-row items-start my-0.5">
-                    <span className="text-red-1 font-bold mr-2">✓</span>{' '}
+                    <span className="text-red-1 font-bold mr-2">✓</span>{" "}
                     Healthcare Facilities
                   </li>
                   <li className="flex flex-row items-start my-0.5">
                     <span className="text-red-1 font-bold mr-2">✓</span> Mobile
-                    Guard{' '}
+                    Guard{" "}
                   </li>
                 </div>
               </ul>
@@ -175,7 +175,7 @@ const Jobs = () => {
               <ul className="text-gray-2 font-medium text-lg mb-6">
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> A valid
-                  Ontario Security Licence{' '}
+                  Ontario Security Licence{" "}
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> Previous
@@ -186,8 +186,8 @@ const Jobs = () => {
                   (Ontario Grade 12 or equivalent)
                 </li>
                 <li className="flex flex-row items-start my-0.5">
-                  <span className="text-red-1 font-bold mr-2">✓</span>{' '}
-                  Availability to work required shifts{' '}
+                  <span className="text-red-1 font-bold mr-2">✓</span>{" "}
+                  Availability to work required shifts{" "}
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> No
@@ -199,7 +199,7 @@ const Jobs = () => {
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> Available
-                  transportation to get to work{' '}
+                  transportation to get to work{" "}
                 </li>
                 <li className="flex flex-row items-start my-0.5">
                   <span className="text-red-1 font-bold mr-2">✓</span> A clean
@@ -227,7 +227,7 @@ const Jobs = () => {
                             <img
                               src={`${API}/requirement/get-photo/${r?._id}`}
                               alt=""
-                              className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl shadow-button-inner mx-auto"
+                              className="h-52 sm:h-80 md:h-56 lg:h-64 object-cover object-center rounded-2xl mx-auto"
                             />
                           </div>
                           <div className=" bg-white mx-3 md:mx-0 lg:mx-3 mt-4">
@@ -266,7 +266,7 @@ const Jobs = () => {
       </div>
       <div
         className={`${
-          show ? 'block' : 'hidden'
+          show ? "block" : "hidden"
         } fixed top-1/2 right-1/2 transform translate-x-1/2 z-50 -translate-y-1/2 flex justify-center items-center w-full h-full bg-black bg-opacity-50`}
       >
         <div className="bg-client rounded-lg w-11/12 lg:w-2/3 relative pb-4">
@@ -300,10 +300,10 @@ const Jobs = () => {
 
           <div className="w-full flex justify-center mt-4 mb-4 px-4">
             <h1 className="text-3xl font-bold text-gray-3">
-              {formNo === 4 ? 'Personal Information' : null}
-              {formNo === 3 ? 'Work Status' : null}
-              {formNo === 2 ? 'Education' : null}
-              {formNo === 1 ? 'Experience' : null}
+              {formNo === 4 ? "Personal Information" : null}
+              {formNo === 3 ? "Work Status" : null}
+              {formNo === 2 ? "Education" : null}
+              {formNo === 1 ? "Experience" : null}
             </h1>
           </div>
           <div className="w-full px-2 lg:px-10 mb-6">
@@ -311,7 +311,7 @@ const Jobs = () => {
               <div
                 className={`${
                   formNo === 1
-                    ? 'w-full'
+                    ? "w-full"
                     : formNo === 2
                     ? `w-2/3`
                     : formNo === 3
