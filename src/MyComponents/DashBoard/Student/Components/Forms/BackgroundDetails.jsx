@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   getUser,
@@ -7,6 +7,8 @@ import {
 } from "../../../../../context/actions/authActions/getUserAction";
 import axiosInstance from "../../../../../helpers/axiosInstance";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import Multiselect from "multiselect-react-dropdown";
+import { languages } from "../../../../../Data/languages";
 
 const BackgroundDetails = ({ user }) => {
   const dispatch = useDispatch();
@@ -31,13 +33,15 @@ const BackgroundDetails = ({ user }) => {
     return errors;
   };
 
-  const { getFieldProps, handleSubmit, errors, setValues } = useFormik({
+  const [selectedLanguages, setSelectedLanguages] = useState([]);
+
+  const { getFieldProps, handleSubmit, errors, values, setValues } = useFormik({
     initialValues: {
       hasCriminalRecord: "",
       hasVechicle: "",
       hasLicenseToDrive: "",
       levelOfEducation: "",
-      languagesKnown: [""],
+      languagesKnown: selectedLanguages,
     },
     validate,
     onSubmit: async (values, { resetForm }) => {
@@ -50,6 +54,7 @@ const BackgroundDetails = ({ user }) => {
           user?._id
         )
       );
+      resetForm();
     },
   });
 
@@ -62,6 +67,8 @@ const BackgroundDetails = ({ user }) => {
       languagesKnown: [user?.languagesKnown],
     });
   }, [user, setValues]);
+
+  console.log({ values });
 
   return (
     <div className="w-full lg:w-1/2 mx-auto">
@@ -161,9 +168,12 @@ const BackgroundDetails = ({ user }) => {
               Spoken Languages (Multiple Selections Can be Made From a dropdown
               of Languages)
             </label>
-            <input
-              className="border-b-2 border-client focus:border-red-1 focus:outline-none"
-              {...getFieldProps("languagesKnown[0]")}
+            <Multiselect
+              options={languages} // Options to display in the dropdown
+              selectedValues={values.languagesKnown.name}
+              onSelect={(language) => setSelectedLanguages(language)}
+              onRemove={(language) => setSelectedLanguages(language)}
+              displayValue="name" // Property name to display in the dropdown options
             />
             {errors?.languagesKnown ? (
               <div className="w-full text-xs text-red-400">
@@ -174,7 +184,8 @@ const BackgroundDetails = ({ user }) => {
         </div>
         <div className="flex shadow-forms-1 z-20 rounded-b-2xl">
           <button
-            type="submit"
+            //type="submit"
+            onClick={() => console.log({ values })}
             className=" mx-auto my-4 w-1/2 text-lg lg:text-2xl p-2 text-white font-bold hover:bg-white border-4 bg-red-1 border-red-1 border-double hover:text-red-1 rounded-lg hover:shadow-button-inner"
           >
             UPDATE
